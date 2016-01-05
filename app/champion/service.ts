@@ -70,7 +70,7 @@ export class SkillService {
 
     GetChampion(skill:SkillModel) {
         return filter(this.GetRandomChampions(), node => {
-            return champion.id == skill.championId;
+            return node.id == skill.championId;
         })[0];
     }
 
@@ -101,7 +101,7 @@ export class SkillService {
 
     GetInvalidComponents(skill:SkillModel) {
         return filter(this.GetRandomChampions(), node => {
-            return champion.id != skill.championId;
+            return node.id != skill.championId;
         });
     }
 }

@@ -26,7 +26,6 @@ export class ChampionSkillsGame extends BaseGame {
   }
 
   getChoices(question:any) {
-    console.log(this.championService.GetComponents(question));
     return this.championService.GetComponents(question);
   }
 }
