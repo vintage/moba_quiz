@@ -5,12 +5,12 @@ import {random, sample} from 'lodash';
 import {ItemService} from "../../../item/service";
 import {BaseGame} from "../base/component";
 
-import {PriceButton} from "./price_button";
+import {AnswerButton} from "../../answer_button/component";
 
 @Component({
   templateUrl: 'build/game/types/item_price/template.html',
   outputs: ['answerInvalid', 'questionFinished'],
-  directives: [PriceButton],
+  directives: [AnswerButton],
 })
 export class ItemPriceGame extends BaseGame {
   answerInvalid = new EventEmitter();

@@ -1,15 +1,15 @@
 import {Component, EventEmitter} from 'angular2/core';
 
 import {ChampionService} from "../../../champion/service";
-import {Slot} from "../../slot/component";
 import {BaseGame} from "../base/component";
+import {AnswerButton} from "../../answer_button/component";
 
 @Component({
-  templateUrl: 'build/game/types/champion_skills/template.html',
+  templateUrl: 'build/game/types/champion_attack_type/template.html',
   outputs: ['answerInvalid', 'questionFinished'],
-  directives: [Slot],
+  directives: [AnswerButton],
 })
-export class ChampionSkillsGame extends BaseGame {
+export class ChampionAttackTypeGame extends BaseGame {
   answerInvalid = new EventEmitter();
   questionFinished = new EventEmitter();
 
@@ -22,11 +22,14 @@ export class ChampionSkillsGame extends BaseGame {
   }
 
   getAnswers(question:any) {
-    return this.championService.GetValidComponents(question);
+    let answer = 'Melee';
+    if(question.is_range) {
+      answer = 'Range';
+    }
+    return [answer];
   }
 
   getChoices(question:any) {
-    console.log(this.championService.GetComponents(question));
-    return this.championService.GetComponents(question);
+    return ['Melee', 'Range'];
   }
 }

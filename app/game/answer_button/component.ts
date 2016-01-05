@@ -2,17 +2,17 @@ import {Component, EventEmitter} from 'angular2/core';
 import {Button} from 'ionic-framework/ionic';
 
 @Component({
-  selector: 'price-button',
-  template: '<button full dark (click)="onClick()">{{ price }}</button>',
+  selector: 'answer-button',
+  template: '<button full dark (click)="onClick()">{{ value }}</button>',
   directives: [Button],
-  inputs: ['price'],
+  inputs: ['value'],
   outputs: ['picked'],
 })
-export class PriceButton {
-  public price:number;
+export class AnswerButton {
+  public value:any;
   picked = new EventEmitter();
 
   onClick() {
-    this.picked.emit(this.price);
+    this.picked.emit(this.value);
   }
 }
