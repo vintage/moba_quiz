@@ -1,7 +1,7 @@
 import {OnInit, EventEmitter} from 'angular2/core';
 import {shuffle} from 'lodash';
 
-export class BaseGame {
+export class BaseGame implements OnInit {
   answerInvalid = new EventEmitter();
   questionFinished = new EventEmitter();
 

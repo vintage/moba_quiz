@@ -6,6 +6,7 @@ import {ChampionService} from '../champion/service';
 import {Stats} from "./stats/component";
 import {GameTypeService} from "./types/service";
 import {GameTypeModel} from "./types/model";
+import {GameplayService} from "../gameplay/service";
 
 @Page({
   templateUrl: 'build/game/game.html',
@@ -19,6 +20,7 @@ export class GamePage {
       nav: NavController,
       dcl: DynamicComponentLoader,
       elementRef: ElementRef,
+      gameplayService: GameplayService,
       itemService: ItemService,
       championService: ChampionService,
       gameTypeService: GameTypeService
@@ -27,6 +29,7 @@ export class GamePage {
     this.dcl = dcl;
     this.elementRef = elementRef;
 
+    this.gameplay = gameplayService;
     this.gameTypeService = gameTypeService;
 
     itemService.Initialize().add(() => {
@@ -43,6 +46,7 @@ export class GamePage {
 
       component.questionFinished.subscribe(() => {
         componentRef.dispose();
+        this.gameplay.levelPassed();
         this.openLevel();
       });
 
@@ -50,5 +54,9 @@ export class GamePage {
         console.log("invalid answer");
       });
     });
+  }
+
+  onTimeOver() {
+    console.log("KONIEC GRY");
   }
 }

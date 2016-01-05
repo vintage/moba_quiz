@@ -3,7 +3,7 @@
     <div style="z-index: 1; position: absolute; background-color: #B5B026; opacity: 0.8; height: 80%; width:100%; top: 20%"></div>
 
     <div style="z-index: 10; position: absolute; height: 100%; width: 100%">
-        <game-stats></game-stats>
+        <game-stats (timeOver)="onTimeOver()"></game-stats>
 
         <div #child></div>
     </div>

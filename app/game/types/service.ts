@@ -16,8 +16,8 @@ export class GameTypeService {
         this.gameTypes = [
             new GameTypeModel('item_recipe', ItemRecipeGame),
             new GameTypeModel('item_price', ItemPriceGame),
-            new GameTypeModel('champion_skills', ChampionSkillsGame)
-            new GameTypeModel('champion_attack_type', ChampionAttackTypeGame)
+            new GameTypeModel('champion_skills', ChampionSkillsGame),
+            new GameTypeModel('champion_attack_type', ChampionAttackTypeGame),
             new GameTypeModel('skill_champion', SkillChampionGame)
         ];
     }
