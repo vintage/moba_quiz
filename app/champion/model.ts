@@ -1,0 +1,43 @@
+import {get} from 'lodash';
+
+export class ChampionModel {
+    public id: string;
+    public name: string;
+    public skills: SkillModel[];
+    private image: string;
+
+    constructor(json: Object) {
+        this.id = json.id;
+        this.name = json.name;
+        this.image = json.image;
+        this.skills = [];
+
+        let spells = get(json, 'spells', []);
+
+        for(let spell of spells) {
+            this.skills.push(new SkillModel(spell, this.id));
+        }
+    }
+
+    GetImageSource() {
+        return "data/images/champions/" + this.id + "/" + this.image[0];
+    }
+}
+
+export class SkillModel {
+    public id: string;
+    public name: string;
+    public championId: string;
+    private image: string;
+
+    constructor(json: Object, championId:string) {
+        this.id = json.id;
+        this.name = json.name;
+        this.image = json.image;
+        this.championId = championId;
+    }
+
+    GetImageSource() {
+        return "data/images/champions/" + this.championId + "/" + this.image;
+    }
+}
