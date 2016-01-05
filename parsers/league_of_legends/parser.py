@@ -3,6 +3,7 @@ import os
 import shutil
 
 import requests
+from tqdm import tqdm
 
 item_image_path = './data/images/items/'
 champion_image_path = './data/images/champions/'
@@ -26,7 +27,7 @@ def setup_items():
     json_data = requests.get(items_url).json()
 
     result = []
-    for item_id, data in json_data['data'].items():
+    for item_id, data in tqdm(json_data['data'].items(), desc='Parsing items'):
         image_name = data['image']['full']
 
         image_url = '{}/img/item/{}'.format(base_url, image_name)
@@ -49,13 +50,15 @@ def setup_champions():
     champion_ids = [ch_id for ch_id in requests.get(champions_url).json()['data'].keys()]
 
     result = []
-    for champion_id in champion_ids:
+    for champion_id in tqdm(champion_ids, desc='Parsing champions'):
         detail_url = '{}/data/en_US/champion/{}.json'.format(base_url, champion_id)
         data = requests.get(detail_url).json()['data'][champion_id]
 
         image_name = data['image']['full']
         image_path = os.path.join(champion_image_path, champion_id.lower())
         os.makedirs(image_path, exist_ok=True)
+
+        is_range = data['stats']['attackrange'] > 250
 
         download_image(
             '{}/img/champion/{}'.format(base_url, image_name),
@@ -98,8 +101,9 @@ def setup_champions():
 
         result.append({
             'id': champion_id,
-            'image': ['s_avatar.png', 'l_avatar.jpg'],
             'name': data['name'],
+            'image': ['s_avatar.png', 'l_avatar.jpg'],
+            'is_range': is_range,
             'spells': spells,
         })
 
@@ -108,4 +112,4 @@ def setup_champions():
 
 
 setup_items()
-# setup_champions()
+setup_champions()
