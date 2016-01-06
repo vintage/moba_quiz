@@ -1,5 +1,5 @@
 import {Page, NavController} from 'ionic-framework/ionic';
-import {DynamicComponentLoader, Component, ElementRef} from 'angular2/core';
+import {DynamicComponentLoader, ElementRef} from 'angular2/core';
 
 import {ItemService} from "../item/service";
 import {ChampionService} from '../champion/service';
@@ -7,6 +7,7 @@ import {Stats} from "./stats/component";
 import {GameTypeService} from "./types/service";
 import {GameTypeModel} from "./types/model";
 import {GameplayService} from "../gameplay/service";
+import {ScoreSubmitPage} from "../score_submit/page";
 
 @Page({
   templateUrl: 'build/game/game.html',
@@ -55,6 +56,7 @@ export class GamePage {
       component.answerInvalid.subscribe(() => {
         this.isPerfect = false;
         this.gameplay.invalidMove();
+
         if(this.gameplay.isOver()) {
           this.finishGame();
         }
@@ -63,13 +65,10 @@ export class GamePage {
   }
 
   onTimeOver() {
-    console.log("KONIEC CZASU");
-
     this.finishGame();
   }
 
   finishGame() {
-    // Move to score submit view
-    console.log("FINISH GAME");
+    this.nav.push(ScoreSubmitPage);
   }
 }

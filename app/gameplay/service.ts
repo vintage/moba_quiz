@@ -18,7 +18,7 @@ export class GameplayService {
     constructor() {
         this.points = 0;
         this.streak = 0;
-        this.lives = 3;
+        this.lives = 4;
         this.level = 1;
         this.refreshTimer();
     }
@@ -35,7 +35,9 @@ export class GameplayService {
     }
 
     invalidMove() {
-        this.lives -= 1;
+        if(this.lives > 0) {
+            this.lives -= 1;
+        }
         this.streak = 0;
     }
 
@@ -64,6 +66,6 @@ export class GameplayService {
     }
 
     isOver() {
-        return this.lives < 0;
+        return this.lives <= 0;
     }
 }
