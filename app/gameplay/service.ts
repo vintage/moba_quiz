@@ -4,7 +4,9 @@ export class GameplayService {
     public points:number;
     public streak:number;
     public lives:number;
-    public progressLeft:number;
+    // Given in ms
+    public timeLimit:number;
+    public timeLeft:number;
 
     constructor() {
         this.points = 0;
@@ -14,7 +16,8 @@ export class GameplayService {
     }
 
     private refreshTimer() {
-        this.progressLeft = 1000;
+        this.timeLimit = 15 * 1000;
+        this.timeLeft = this.timeLimit;
     }
 
     invalidMove() {

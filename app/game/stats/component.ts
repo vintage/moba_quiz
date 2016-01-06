@@ -10,10 +10,11 @@ import {GameplayService} from "../../gameplay/service";
 export class Stats implements OnInit {
   timeOver = new EventEmitter();
 
-  public gameplay:GameplayService;
+  public progressMax:number;
 
   constructor(gameplayService: GameplayService) {
     this.gameplay = gameplayService;
+    this.progressMax = 1000;
   }
 
   ngOnInit() {
@@ -21,16 +22,18 @@ export class Stats implements OnInit {
   }
 
   currentProgress() {
-    return this.gameplay.progressLeft;
+    return (this.gameplay.timeLeft / this.gameplay.timeLimit) * this.progressMax;
   }
 
   updateTimer() {
+    let interval = 100;
+
     setTimeout(() => {
-      this.gameplay.progressLeft -= 10;
-      if(this.gameplay.progressLeft == 0) {
+      this.gameplay.timeLeft -= interval;
+      if(this.gameplay.timeLeft == 0) {
         this.timeOver.emit();
       }
       this.updateTimer();
-    }, 100);
+    }, interval);
   }
 }
