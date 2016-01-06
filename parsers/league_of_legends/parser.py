@@ -28,6 +28,11 @@ def setup_items():
 
     result = []
     for item_id, data in tqdm(json_data['data'].items(), desc='Parsing items'):
+        name = data['name']
+
+        if name.startswith('Enchantment'):
+            continue
+
         image_name = data['image']['full']
 
         image_url = '{}/img/item/{}'.format(base_url, image_name)
@@ -35,7 +40,7 @@ def setup_items():
 
         result.append({
             'id': item_id,
-            'name': data['name'],
+            'name': name,
             'image': image_name,
             'into': data.get('into', []),
             'from': data.get('from', []),
