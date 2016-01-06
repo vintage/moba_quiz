@@ -3,7 +3,7 @@ import {sample} from 'lodash';
 export class GameplayService {
     public points:number;
     public streak:number;
-    public lives:number;
+    public chances:number;
     public level:number;
     // Time is stored in ms
     public timeLimit:number;
@@ -18,7 +18,7 @@ export class GameplayService {
     constructor() {
         this.points = 0;
         this.streak = 0;
-        this.lives = 4;
+        this.chances = 4;
         this.level = 1;
         this.refreshTimer();
     }
@@ -35,8 +35,8 @@ export class GameplayService {
     }
 
     invalidMove() {
-        if(this.lives > 0) {
-            this.lives -= 1;
+        if(this.chances > 0) {
+            this.chances -= 1;
         }
         this.streak = 0;
     }
@@ -66,6 +66,6 @@ export class GameplayService {
     }
 
     isOver() {
-        return this.lives <= 0;
+        return this.chances <= 0;
     }
 }
