@@ -18,14 +18,14 @@ export class SkillChampionGame extends BaseGame {
   }
 
   getQuestion() {
-    return this.skillService.GetNext();
+    return this.skillService.getAny();
   }
 
   getAnswers(question:any) {
-    return this.skillService.GetValidComponents(question);
+    return this.skillService.getValidComponents(question);
   }
 
   getChoices(question:any) {
-    return this.skillService.GetComponents(question);
+    return this.skillService.getComponents(question);
   }
 }

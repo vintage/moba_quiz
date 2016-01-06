@@ -21,7 +21,7 @@ export class ItemPriceGame extends BaseGame {
   }
 
   getQuestion() {
-    return this.itemService.GetNext();
+    return this.itemService.getAny();
   }
 
   getAnswers(question:any) {

@@ -18,14 +18,14 @@ export class ItemRecipeGame extends BaseGame {
   }
 
   getQuestion() {
-    return this.itemService.GetNext();
+    return this.itemService.getAny();
   }
 
   getAnswers(question:any) {
-    return this.itemService.GetValidComponents(question);
+    return this.itemService.getValidComponents(question);
   }
 
   getChoices(question:any) {
-    return this.itemService.GetComponents(question);
+    return this.itemService.getComponents(question);
   }
 }

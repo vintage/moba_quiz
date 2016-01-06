@@ -17,7 +17,7 @@ export class ItemModel {
         this.image = json.image;
     }
 
-    GetImageSource() {
+    getImageSource() {
         return "data/images/items/" + this.image;
     }
 }

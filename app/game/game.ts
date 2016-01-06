@@ -32,15 +32,15 @@ export class GamePage {
     this.gameplay = gameplayService;
     this.gameTypeService = gameTypeService;
 
-    itemService.Initialize().add(() => {
-      championService.Initialize().add(() => {
+    itemService.initialize().add(() => {
+      championService.initialize().add(() => {
         this.openLevel();
       });
     });
   }
 
   openLevel() {
-    this.gameType = this.gameTypeService.getRandom();
+    this.gameType = this.gameTypeService.getAny();
     this.dcl.loadIntoLocation(this.gameType.component, this.elementRef, 'child').then((componentRef) => {
       let component = componentRef.instance;
 

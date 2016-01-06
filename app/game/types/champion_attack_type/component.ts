@@ -18,7 +18,7 @@ export class ChampionAttackTypeGame extends BaseGame {
   }
 
   getQuestion() {
-    return this.championService.GetNext();
+    return this.championService.getAny();
   }
 
   getAnswers(question:any) {

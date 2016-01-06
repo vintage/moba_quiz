@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
-import {shuffle, filter, merge} from 'lodash';
+import {shuffle, filter, random} from 'lodash';
 
 import {ItemModel} from './model';
 
@@ -12,7 +12,7 @@ export class ItemService {
         this.http = http;
     }
 
-    Initialize() {
+    initialize() {
         return this.http.get('data/items.json')
             .subscribe(res => {
                 json = res.json();
@@ -23,33 +23,31 @@ export class ItemService {
             });
     }
 
-    GetAllRandom() {
-        return shuffle(this.items);
-    }
-
-    GetNext() {
-        var items = filter(this.GetAllRandom(), node => {
+    getAny() {
+        let items = filter(this.items, node => {
             return node.from.length > 0;
         });
-        return items[0];
+        let index = random(0, items.length);
+
+        return items[index];
     }
 
-    GetComponents(item:ItemModel) {
-        var valid = this.GetValidComponents(item);
-        var invalid = this.GetInvalidComponents(item);
+    getComponents(item:ItemModel) {
+        let valid = this.getValidComponents(item);
+        let invalid = this.getInvalidComponents(item);
 
-        var components = valid.concat(invalid.slice(0, 12 - valid.length));
-        return shuffle(components);
+        let components = valid.concat(invalid.slice(0, 12 - valid.length));
+        return components;
     }
 
-    GetValidComponents(item:ItemModel) {
-        return filter(this.GetAllRandom(), node => {
+    getValidComponents(item:ItemModel) {
+        return filter(this.items, node => {
             return item.from.indexOf(node.id) != -1;
         });
     }
 
-    GetInvalidComponents(item:ItemModel) {
-        return filter(this.GetAllRandom(), node => {
+    getInvalidComponents(item:ItemModel) {
+        return filter(shuffle(this.items), node => {
             return item.id != node.id;
         });
     }

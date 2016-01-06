@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
-import {shuffle, filter} from 'lodash';
+import {shuffle, filter, random} from 'lodash';
 
 import {ChampionModel, SkillModel} from './model';
 
@@ -13,7 +13,7 @@ export class ChampionService {
         this.http = http;
     }
 
-    Initialize() {
+    initialize() {
         return this.http.get('data/champions.json')
             .subscribe(res => {
                 json = res.json();
@@ -28,35 +28,28 @@ export class ChampionService {
             });
     }
 
-    GetAllRandom() {
-        return shuffle(this.champions);
+    getAny() {
+        let champions = this.champions;
+        let index = random(0, champions.length);
+        return champions[index];
     }
 
-    GetRandomSkills() {
-        return shuffle(this.skills);
-    }
-
-    GetNext() {
-        let champions = this.GetAllRandom();
-        return champions[0];
-    }
-
-    GetComponents(champion:ChampionModel) {
-        var valid = this.GetValidComponents(champion);
-        var invalid = this.GetInvalidComponents(champion);
+    getComponents(champion:ChampionModel) {
+        var valid = this.getValidComponents(champion);
+        var invalid = this.getInvalidComponents(champion);
 
         var components = valid.concat(invalid.slice(0, 12 - valid.length));
-        return shuffle(components);
+        return components;
     }
 
-    GetValidComponents(champion:ChampionModel) {
-        return filter(this.GetRandomSkills(), node => {
+    getValidComponents(champion:ChampionModel) {
+        return filter(this.skills, node => {
             return champion.skills.indexOf(node) != -1;
         });
     }
 
-    GetInvalidComponents(champion:ChampionModel) {
-        return filter(this.GetRandomSkills(), node => {
+    getInvalidComponents(champion:ChampionModel) {
+        return filter(shuffle(this.skills), node => {
             return champion.skills.indexOf(node) == -1;
         });
     }
@@ -68,39 +61,32 @@ export class SkillService {
         this.championService = championService;
     }
 
-    GetChampion(skill:SkillModel) {
-        return filter(this.GetRandomChampions(), node => {
+    getChampion(skill:SkillModel) {
+        return filter(this.championService.champions, node => {
             return node.id == skill.championId;
         })[0];
     }
 
-    GetAllRandom() {
-        return this.championService.GetRandomSkills();
+    getAny() {
+        let skills = this.championService.skills;
+        let index = random(0, skills.length);
+        return skills[index];
     }
 
-    GetRandomChampions() {
-        return this.championService.GetAllRandom();
-    }
-
-    GetNext() {
-        let skills = this.GetAllRandom();
-        return skills[0];
-    }
-
-    GetComponents(skill:SkillModel) {
-        var valid = this.GetValidComponents(skill);
-        var invalid = this.GetInvalidComponents(skill);
+    getComponents(skill:SkillModel) {
+        var valid = this.getValidComponents(skill);
+        var invalid = this.getInvalidComponents(skill);
 
         var components = valid.concat(invalid.slice(0, 6 - valid.length));
-        return shuffle(components);
+        return components;
     }
 
-    GetValidComponents(skill:SkillModel) {
-        return [this.GetChampion(skill)];
+    getValidComponents(skill:SkillModel) {
+        return [this.getChampion(skill)];
     }
 
-    GetInvalidComponents(skill:SkillModel) {
-        return filter(this.GetRandomChampions(), node => {
+    getInvalidComponents(skill:SkillModel) {
+        return filter(shuffle(this.championService.champions), node => {
             return node.id != skill.championId;
         });
     }

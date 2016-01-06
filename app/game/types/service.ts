@@ -22,7 +22,7 @@ export class GameTypeService {
         ];
     }
 
-    getRandom() {
+    getAny() {
         return sample(this.gameTypes);
     }
 }

@@ -18,14 +18,14 @@ export class ChampionSkillsGame extends BaseGame {
   }
 
   getQuestion() {
-    return this.championService.GetNext();
+    return this.championService.getAny();
   }
 
   getAnswers(question:any) {
-    return this.championService.GetValidComponents(question);
+    return this.championService.getValidComponents(question).slice(0, 5);
   }
 
   getChoices(question:any) {
-    return this.championService.GetComponents(question);
+    return this.championService.getComponents(question).slice(0, 12);
   }
 }

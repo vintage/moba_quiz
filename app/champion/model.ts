@@ -22,7 +22,7 @@ export class ChampionModel {
         }
     }
 
-    GetImageSource() {
+    getImageSource() {
         return "data/images/champions/" + this.id + "/" + this.image[0];
     }
 }
@@ -40,7 +40,7 @@ export class SkillModel {
         this.championId = championId;
     }
 
-    GetImageSource() {
+    getImageSource() {
         return "data/images/champions/" + this.championId + "/" + this.image;
     }
 }
