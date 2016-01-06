@@ -25,11 +25,25 @@ export class GameplayService {
         this.streak = 0;
     }
 
+    getLevelPoints() {
+        // Base points
+        let points = 250;
+
+        // Time bonus
+        points += parseInt((this.timeLeft / this.timeLimit) * 200);
+
+        // Streak bonus
+        points += this.streak * 10;
+
+        return points;
+    }
+
     levelPassed(isPerfect:boolean) {
         if(isPerfect) {
             this.streak += 1;
         }
 
+        this.points += this.getLevelPoints();
         this.refreshTimer();
     }
 
