@@ -15,6 +15,7 @@ import {GameplayService} from "../gameplay/service";
 })
 export class GamePage {
   public gameType: GameTypeModel;
+  public isPerfect:boolean;
 
   constructor(
       nav: NavController,
@@ -40,23 +41,35 @@ export class GamePage {
   }
 
   openLevel() {
+    this.isPerfect = true;
     this.gameType = this.gameTypeService.getAny();
     this.dcl.loadIntoLocation(this.gameType.component, this.elementRef, 'child').then((componentRef) => {
       let component = componentRef.instance;
 
       component.questionFinished.subscribe(() => {
         componentRef.dispose();
-        this.gameplay.levelPassed();
+        this.gameplay.levelPassed(this.isPerfect);
         this.openLevel();
       });
 
       component.answerInvalid.subscribe(() => {
-        console.log("invalid answer");
+        this.isPerfect = false;
+        this.gameplay.invalidMove();
+        if(this.gameplay.isOver()) {
+          this.finishGame();
+        }
       });
     });
   }
 
   onTimeOver() {
-    console.log("KONIEC GRY");
+    console.log("KONIEC CZASU");
+
+    this.finishGame();
+  }
+
+  finishGame() {
+    // Move to score submit view
+    console.log("FINISH GAME");
   }
 }

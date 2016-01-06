@@ -4,7 +4,7 @@ export class GameplayService {
     public points:number;
     public streak:number;
     public lives:number;
-    // Given in ms
+    // Time is stored in ms
     public timeLimit:number;
     public timeLeft:number;
 
@@ -22,13 +22,18 @@ export class GameplayService {
 
     invalidMove() {
         this.lives -= 1;
+        this.streak = 0;
     }
 
-    levelPassed() {
+    levelPassed(isPerfect:boolean) {
+        if(isPerfect) {
+            this.streak += 1;
+        }
+
         this.refreshTimer();
     }
 
     isOver() {
-        return this.lives <= 0;
+        return this.lives < 0;
     }
 }
