@@ -27,7 +27,7 @@ export class ItemService {
         let items = filter(this.items, node => {
             return node.from.length > 0;
         });
-        let index = random(0, items.length);
+        let index = random(0, items.length - 1);
 
         return items[index];
     }

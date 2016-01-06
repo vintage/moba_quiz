@@ -30,7 +30,7 @@ export class ChampionService {
 
     getAny() {
         let champions = this.champions;
-        let index = random(0, champions.length);
+        let index = random(0, champions.length - 1);
         return champions[index];
     }
 
@@ -69,7 +69,7 @@ export class SkillService {
 
     getAny() {
         let skills = this.championService.skills;
-        let index = random(0, skills.length);
+        let index = random(0, skills.length - 1);
         return skills[index];
     }
 
