@@ -4,19 +4,33 @@ export class GameplayService {
     public points:number;
     public streak:number;
     public lives:number;
+    public level:number;
     // Time is stored in ms
     public timeLimit:number;
     public timeLeft:number;
+
+    // Some configuration options. All of them should be marked as `private`.
+    // Minimum amount of time given for providing answer
+    private timeLimitMin:number = 3 * 1000;
+    // Level count after the timer is decreased
+    private timeLimitUpdateInterval = 5;
 
     constructor() {
         this.points = 0;
         this.streak = 0;
         this.lives = 3;
+        this.level = 1;
         this.refreshTimer();
     }
 
     private refreshTimer() {
-        this.timeLimit = 15 * 1000;
+        let levelPenalty = parseInt(this.level / this.timeLimitUpdateInterval) * 1000;
+
+        this.timeLimit = 15 * 1000 - levelPenalty;
+
+        // Enforce the minimum time limit
+        this.timeLimit = Math.max(this.timeLimit, this.timeLimitMin);
+
         this.timeLeft = this.timeLimit;
     }
 
@@ -39,6 +53,8 @@ export class GameplayService {
     }
 
     levelPassed(isPerfect:boolean) {
+        this.level += 1;
+
         if(isPerfect) {
             this.streak += 1;
         }
