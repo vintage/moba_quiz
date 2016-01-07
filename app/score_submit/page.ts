@@ -14,6 +14,7 @@ export class ScoreSubmitPage implements OnInit {
   public country:CountryModel;
 
   constructor(nav: NavController, gameplayService: GameplayService, countryService:CountryService) {
+    console.log(nav);
     this.nav = nav;
     this.gameplay = gameplayService;
     this.countryService = countryService;

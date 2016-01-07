@@ -9,7 +9,8 @@ import {CountryModel} from './model';
 
 @Injectable()
 export class CountryService {
-    objects:CountryModel[];
+    private objects:CountryModel[];
+    private current:CountryModel;
 
     constructor(http:Http) {
         this.http = http;
@@ -33,14 +34,22 @@ export class CountryService {
     }
 
     setCurrent(country:CountryModel) {
+        this.current = country;
         this.storage.set('current_country', country.id);
     }
 
     getCurrent() {
-        return this.storage.get('current_country').then(current => {
-            return filter(this.objects, country => {
-                return country.id == current;
+        if(this.current) {
+            return Promise.resolve(this.current);
+        }
+
+        return this.storage.get('current_country').then(currentId => {
+            let current = filter(this.objects, country => {
+                return country.id == currentId;
             })[0];
+
+            this.current = current;
+            return current;
         });
     }
 }
