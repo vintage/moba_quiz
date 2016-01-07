@@ -16,6 +16,10 @@ export class GameplayService {
     private timeLimitUpdateInterval = 5;
 
     constructor() {
+        this.restart();
+    }
+
+    public restart() {
         this.points = 0;
         this.streak = 0;
         this.chances = 4;
@@ -66,6 +70,6 @@ export class GameplayService {
     }
 
     isOver() {
-        return this.chances <= 0;
+        return this.chances <= 0 || this.timeLeft <= 0;
     }
 }

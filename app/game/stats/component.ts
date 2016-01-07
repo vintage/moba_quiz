@@ -33,7 +33,10 @@ export class Stats implements OnInit {
       if(this.gameplay.timeLeft == 0) {
         this.timeOver.emit();
       }
-      this.updateTimer();
+
+      if(!this.gameplay.isOver()) {
+        this.updateTimer();
+      }
     }, interval);
   }
 }

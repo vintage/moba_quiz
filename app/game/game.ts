@@ -69,6 +69,9 @@ export class GamePage {
   }
 
   finishGame() {
+    let currentView = this.nav.last();
+
+    this.nav.remove(currentView.index);
     this.nav.push(ScoreSubmitPage);
   }
 }

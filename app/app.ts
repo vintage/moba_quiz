@@ -21,9 +21,9 @@ class MyApp {
     // set up our app
     this.app = app;
     this.platform = platform;
-    //this.game = GamePage;
+    this.game = GamePage;
     //this.game = CountryListPage;
-    this.game = ScoreSubmitPage;
+    //this.game = ScoreSubmitPage;
     this.initializeApp();
   }
 
