@@ -9,20 +9,13 @@ export class ScoreService {
         this.http = http;
     }
 
-    initialize() {
-        //return this.http.get('data/items.json')
-        //    .subscribe(res => {
-        //        json = res.json();
-        //        this.items = [];
-        //        json.map(itemJson => {
-        //            this.items.push(new ItemModel(itemJson));
-        //        });
-        //    });
-    }
-
-    submit(player:string, score:number) {
+    save(player:string, score:number) {
         console.log('submit score ' + score + ' for player ' + player);
 
-        return true;
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(true);
+            }, 2000);
+        });
     }
 }

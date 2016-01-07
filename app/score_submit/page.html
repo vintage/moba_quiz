@@ -27,7 +27,8 @@
 
     <ion-row>
         <ion-col>
-            <button full dark>Submit</button>
+            <button *ngIf="!isSubmitted" full dark (click)="submitScore()" [disabled]="isPending">Submit</button>
+            <button *ngIf="isSubmitted" full dark disabled>Score submitted</button>
         </ion-col>
     </ion-row>
 
