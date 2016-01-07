@@ -1,3 +1,45 @@
 <ion-content style="background: url('img/triangular.png')">
-    Hello
+    <ion-row>
+        <ion-col>
+            <h2 class="align-center">Total score</h2>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <h2 class="align-center"> {{ gameplay.points }}</h2>
+        </ion-col>
+    </ion-row>
+
+    <ion-row >
+        <ion-col>
+            <ion-input>
+                <input type="text" placeholder="Player name" #playerName>
+            </ion-input>
+        </ion-col>
+        <ion-col>
+            <span (click)="showCountryList()">
+                <img *ngIf="country" src="{{ country.getImageSource() }}" />
+                <a *ngIf="!country">Pick your country</a>
+            </span>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <button full dark>Submit</button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <button full dark>Play again</button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <button full dark>Back to menu</button>
+        </ion-col>
+    </ion-row>
 </ion-content>
