@@ -1,3 +1,5 @@
+import {Storage, LocalStorage} from 'ionic-framework/ionic'
+
 import {sample} from 'lodash';
 
 export class GameplayService {
@@ -16,15 +18,30 @@ export class GameplayService {
     private timeLimitUpdateInterval = 5;
 
     constructor() {
+        this.storage = new Storage(LocalStorage);
         this.restart();
     }
 
     public restart() {
+        this.updateTimesPlayed();
+
         this.points = 0;
         this.streak = 0;
         this.chances = 4;
         this.level = 1;
         this.refreshTimer();
+    }
+
+    private updateTimesPlayed() {
+        let timesPlayed = this.getTimesPlayed().then(timesPlayed => {
+           this.storage.set('times_played', parseInt(timesPlayed) + 1);
+        });
+    }
+
+    public getTimesPlayed() {
+        return this.storage.get('times_played').then(timesPlayed => {
+            return timesPlayed || 0;
+        });
     }
 
     private refreshTimer() {
