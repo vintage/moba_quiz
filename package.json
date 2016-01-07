@@ -23,7 +23,7 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "https://github.com/leecrossley/cordova-plugin-game-center"
+    "cordova-sqlite-storage"
   ],
   "cordovaPlatforms": [
     "ios",
