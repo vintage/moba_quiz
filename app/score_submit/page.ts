@@ -1,5 +1,5 @@
 import {OnInit} from 'angular2/core';
-import {Button, Page, NavController} from 'ionic-framework/ionic';
+import {Button, Page, NavController, Alert} from 'ionic-framework/ionic';
 
 import {GameplayService} from "../gameplay/service";
 import {CountryListPage} from "../country_list/page";
@@ -61,7 +61,12 @@ export class ScoreSubmitPage implements OnInit {
         this.isSubmitted = true;
       }
       else {
-        // TODO: Create modal/popup/whatever that score couldn't be submitted
+        let alert = Alert.create({
+          title: "Score hasn't been saved",
+          subTitle: 'Check your internet connection and try again.',
+          buttons: ['OK']
+        });
+        this.nav.present(alert);
       }
     });
   }
