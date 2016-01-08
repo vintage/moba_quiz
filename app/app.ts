@@ -2,14 +2,12 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 import {App, IonicApp, Platform} from 'ionic-framework/ionic';
 
 import {GameTypeService} from './game/types/service';
-import {GamePage} from './game/game';
 import {ItemService} from './item/service';
 import {ChampionService, SkillService} from './champion/service';
 import {GameplayService} from './gameplay/service';
 import {CountryService} from './country/service';
 
-import {CountryListPage} from './country_list/page';
-import {ScoreSubmitPage} from './score_submit/page';
+import {MainMenuPage} from './main_menu/page';
 
 @App({
   templateUrl: 'build/app.html',
@@ -21,9 +19,7 @@ class MyApp {
     // set up our app
     this.app = app;
     this.platform = platform;
-    this.game = GamePage;
-    //this.game = CountryListPage;
-    //this.game = ScoreSubmitPage;
+    this.root = MainMenuPage;
     this.initializeApp();
   }
 

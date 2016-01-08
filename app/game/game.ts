@@ -36,6 +36,7 @@ export class GamePage {
 
     itemService.initialize().add(() => {
       championService.initialize().add(() => {
+        this.gameplay.restart();
         this.openLevel();
       });
     });
@@ -69,9 +70,9 @@ export class GamePage {
   }
 
   finishGame() {
-    let currentView = this.nav.last();
-
-    this.nav.remove(currentView.index);
+    //let currentView = this.nav.last();
+    //
+    //this.nav.remove(currentView.index);
     this.nav.push(ScoreSubmitPage);
   }
 }

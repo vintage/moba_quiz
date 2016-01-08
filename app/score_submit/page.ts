@@ -7,6 +7,7 @@ import {CountryService} from "../country/service";
 import {CountryModel} from "../country/model";
 import {GamePage} from "../game/game";
 import {ScoreService} from "../score/service";
+import {MainMenuPage} from "../main_menu/page";
 
 @Page({
   templateUrl: 'build/score_submit/page.html',
@@ -40,8 +41,11 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   playAgain() {
-    this.gameplay.restart();
     this.nav.push(GamePage);
+  }
+
+  openMenu() {
+    this.nav.push(MainMenuPage);
   }
 
   submitScore() {
@@ -57,8 +61,6 @@ export class ScoreSubmitPage implements OnInit {
         this.isSubmitted = true;
       }
       else {
-
-
         // TODO: Create modal/popup/whatever that score couldn't be submitted
       }
     });
