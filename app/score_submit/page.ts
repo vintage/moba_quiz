@@ -11,8 +11,7 @@ import {MainMenuPage} from "../main_menu/page";
 
 @Page({
   templateUrl: 'build/score_submit/page.html',
-  directives: [Button],
-  providers: [ScoreService],
+  directives: [Button]
 })
 export class ScoreSubmitPage implements OnInit {
   public country:CountryModel;
@@ -26,6 +25,14 @@ export class ScoreSubmitPage implements OnInit {
     this.scoreService = scoreService;
     this.isPending = false;
     this.isSubmitted = false;
+  }
+
+  ngOnInit() {
+    this.scoreService.getBestScore().then(bestScore => {
+      if(bestScore < this.gameplay.points) {
+        this.scoreService.setBestScore(this.gameplay.points);
+      }
+    });
   }
 
   onPageWillEnter() {

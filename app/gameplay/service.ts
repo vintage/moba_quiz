@@ -44,7 +44,7 @@ export class GameplayService {
 
     public getTimesPlayed() {
         return this.storage.get('times_played').then(timesPlayed => {
-            return timesPlayed || 0;
+            return parseInt(timesPlayed) || 0;
         });
     }
 

@@ -1,5 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
+import {Storage, LocalStorage} from 'ionic-framework/ionic'
 
 import {ScoreModel} from './model';
 
@@ -7,6 +8,7 @@ import {ScoreModel} from './model';
 export class ScoreService {
     constructor(http:Http) {
         this.http = http;
+        this.storage = new Storage(LocalStorage);
     }
 
     save(player:string, score:number) {
@@ -16,6 +18,16 @@ export class ScoreService {
             setTimeout(() => {
                 resolve(true);
             }, 2000);
+        });
+    }
+
+    setBestScore(score:number) {
+        return this.storage.set('best_score', score);
+    }
+
+    getBestScore() {
+        return this.storage.get('best_score').then(bestScore => {
+            return parseInt(bestScore) || 0;
         });
     }
 }
