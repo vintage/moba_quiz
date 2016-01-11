@@ -36,7 +36,7 @@ export class GamePage {
 
     itemService.initialize().add(() => {
       championService.initialize().add(() => {
-        this.gameplay.restart();
+        this.gameplay.start();
         this.openLevel();
       });
     });

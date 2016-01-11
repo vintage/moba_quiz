@@ -15,3 +15,4 @@ parsers/lib/
 parsers/.Python
 parsers/pip-selfcheck.json
 parsers/*/data/
+npm-debug.log

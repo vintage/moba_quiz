@@ -19,12 +19,16 @@ export class GameplayService {
 
     constructor() {
         this.storage = new Storage(LocalStorage);
+
+        this.restart();
+    }
+
+    public start() {
+        this.updateTimesPlayed();
         this.restart();
     }
 
     public restart() {
-        this.updateTimesPlayed();
-
         this.points = 0;
         this.streak = 0;
         this.chances = 4;
@@ -33,8 +37,8 @@ export class GameplayService {
     }
 
     private updateTimesPlayed() {
-        let timesPlayed = this.getTimesPlayed().then(timesPlayed => {
-           this.storage.set('times_played', parseInt(timesPlayed) + 1);
+        this.getTimesPlayed().then(timesPlayed => {
+           return this.storage.set('times_played', parseInt(timesPlayed) + 1);
         });
     }
 
