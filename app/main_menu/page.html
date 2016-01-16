@@ -1,29 +1,45 @@
 <ion-content style="background: url('img/triangular.png')">
     <ion-row>
         <ion-col>
-            <button full dark (click)="openGame()">Play</button>
+            <button block dark (click)="openGame()">
+                <icon play></icon>
+                Play
+            </button>
         </ion-col>
+    </ion-row>
 
-        <ion-col>
-            <button full dark (click)="openHighscore()">Highscore</button>
+    <ion-row>
+         <ion-col>
+            <button block dark (click)="openHighscore()">
+                <icon trophy></icon>
+                Highscore
+            </button>
         </ion-col>
     </ion-row>
 
     <ion-row>
         <ion-col>
-            <button full dark (click)="openSettings()">Settings</button>
-        </ion-col>
-
-        <ion-col>
-            <button full dark (click)="openContact()">Contact</button>
+            <button block dark (click)="openContact()">
+                <icon chatboxes></icon>
+                Contact
+            </button>
         </ion-col>
     </ion-row>
-    
+
+    <ion-row>
+        <ion-col>
+            <button block dark (click)="openRating()">
+                <icon happy></icon>
+                Rate me
+            </button>
+        </ion-col>
+    </ion-row>
+
     <ion-row>
         <ion-col>
             Times played
         </ion-col>
-        
+
         <ion-col>
             {{ timesPlayed }}
         </ion-col>
