@@ -1,12 +1,12 @@
 import {OnInit} from 'angular2/core';
 import {Button, Page, NavController, Platform} from 'ionic-framework/ionic';
 
-import {GamePage} from "../game/game";
-import {GameplayService} from "../gameplay/service";
-import {ScoreService} from "../score/service";
+import {GamePage} from "../game/page";
+import {GameplayService} from "../../providers/gameplay/service";
+import {ScoreService} from "../../providers/score/service";
 
 @Page({
-  templateUrl: 'build/main_menu/page.html',
+  templateUrl: 'build/pages/main_menu/page.html',
   directives: [Button]
 })
 export class MainMenuPage {

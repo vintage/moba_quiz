@@ -11,14 +11,16 @@ export class ScoreService {
         this.storage = new Storage(LocalStorage);
     }
 
-    save(player:string, score:number) {
+    create(player:string, score:number) {
         console.log('submit score ' + score + ' for player ' + player);
 
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(true);
-            }, 2000);
-        });
+        return this.http.post('http://gamejolt.com/api/game/v1/scores/add/')
+            .subscribe(res => {
+              console.log(res);
+                json = res.json();
+                console.log(json);
+                return false;
+            });
     }
 
     setBestScore(score:number) {

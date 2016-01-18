@@ -1,11 +1,12 @@
 import {Component, EventEmitter} from 'angular2/core';
 
-import {ChampionService} from "../../../champion/service";
+import {ChampionService} from "../../../../providers/champion/service";
+
 import {BaseGame} from "../base/component";
 import {AnswerButton} from "../../answer_button/component";
 
 @Component({
-  templateUrl: 'build/game/types/champion_attack_type/template.html',
+  templateUrl: 'build/pages/game/types/champion_attack_type/template.html',
   outputs: ['answerInvalid', 'questionFinished'],
   directives: [AnswerButton],
 })

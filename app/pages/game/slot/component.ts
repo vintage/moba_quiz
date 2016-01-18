@@ -1,10 +1,10 @@
 import {Component, EventEmitter} from 'angular2/core';
 
-import {ItemModel} from "../../item/model";
+import {ItemModel} from "../../../providers/item/model";
 
 @Component({
   selector: 'game-slot',
-  templateUrl: 'build/game/slot/template.html',
+  templateUrl: 'build/pages/game/slot/template.html',
   inputs: ['item'],
   outputs: ['picked'],
 })

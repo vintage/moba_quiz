@@ -1,6 +1,0 @@
-{
-  name: "Name of the app",
-  iosStore: "App ID in the iOS store",
-  droidStore: "App ID in the Google Play store",
-  win8Store: "App ID in the Microsoft store"
-}

@@ -1,10 +1,10 @@
 import {Component, EventEmitter, OnInit} from 'angular2/core';
 
-import {GameplayService} from "../../gameplay/service";
+import {GameplayService} from "../../../providers/gameplay/service";
 
 @Component({
   selector: 'game-stats',
-  templateUrl: 'build/game/stats/template.html',
+  templateUrl: 'build/pages/game/stats/template.html',
   outputs: ['timeOver']
 })
 export class Stats implements OnInit {

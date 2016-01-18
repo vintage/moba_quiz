@@ -4,7 +4,6 @@ import {Http} from 'angular2/http';
 
 import {filter} from 'lodash';
 
-
 import {CountryModel} from './model';
 
 @Injectable()

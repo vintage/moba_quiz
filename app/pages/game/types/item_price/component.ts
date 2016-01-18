@@ -2,13 +2,13 @@ import {Component, EventEmitter} from 'angular2/core';
 import {Button} from 'ionic-framework/ionic';
 import {random, sample} from 'lodash';
 
-import {ItemService} from "../../../item/service";
-import {BaseGame} from "../base/component";
+import {ItemService} from "../../../../providers/item/service";
 
+import {BaseGame} from "../base/component";
 import {AnswerButton} from "../../answer_button/component";
 
 @Component({
-  templateUrl: 'build/game/types/item_price/template.html',
+  templateUrl: 'build/pages/game/types/item_price/template.html',
   outputs: ['answerInvalid', 'questionFinished'],
   directives: [AnswerButton],
 })

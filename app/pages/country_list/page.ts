@@ -2,11 +2,11 @@ import {Page, NavController} from 'ionic-framework/ionic';
 
 import {filter} from 'lodash';
 
-import {CountryService} from '../country/service';
-import {CountryModel} from '../country/model';
+import {CountryService} from '../../providers/country/service';
+import {CountryModel} from '../../providers/country/model';
 
 @Page({
-  templateUrl: 'build/country_list/page.html'
+  templateUrl: 'build/pages/country_list/page.html'
 })
 export class CountryListPage {
   constructor(nav: NavController, countryService: CountryService) {

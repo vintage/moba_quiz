@@ -1,16 +1,17 @@
 import {OnInit} from 'angular2/core';
 import {Button, Page, NavController, Alert} from 'ionic-framework/ionic';
 
-import {GameplayService} from "../gameplay/service";
+import {GameplayService} from "../../providers/gameplay/service";
+import {CountryService} from "../../providers/country/service";
+import {CountryModel} from "../../providers/country/model";
+import {ScoreService} from "../../providers/score/service";
+
 import {CountryListPage} from "../country_list/page";
-import {CountryService} from "../country/service";
-import {CountryModel} from "../country/model";
-import {GamePage} from "../game/game";
-import {ScoreService} from "../score/service";
+import {GamePage} from "../game/page";
 import {MainMenuPage} from "../main_menu/page";
 
 @Page({
-  templateUrl: 'build/score_submit/page.html',
+  templateUrl: 'build/pages/score_submit/page.html',
   directives: [Button]
 })
 export class ScoreSubmitPage implements OnInit {
@@ -61,7 +62,7 @@ export class ScoreSubmitPage implements OnInit {
     }
 
     this.isPending = true;
-    this.scoreService.save('playerName', this.gameplay.points).then((is_success) => {
+    this.scoreService.create('playerName', this.gameplay.points).add((is_success) => {
       this.isPending = false;
 
       if(is_success) {

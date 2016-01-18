@@ -1,11 +1,11 @@
 import {Component, EventEmitter} from 'angular2/core';
 
-import {ItemService} from "../../../item/service";
+import {ItemService} from "../../../../providers/item/service";
 import {Slot} from "../../slot/component";
 import {BaseGame} from "../base/component";
 
 @Component({
-  templateUrl: 'build/game/types/item_recipe/template.html',
+  templateUrl: 'build/pages/game/types/item_recipe/template.html',
   outputs: ['answerInvalid', 'questionFinished'],
   directives: [Slot],
 })

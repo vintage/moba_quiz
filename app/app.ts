@@ -1,18 +1,17 @@
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {App, IonicApp, Platform} from 'ionic-framework/ionic';
 
-import {GameTypeService} from './game/types/service';
-import {ItemService} from './item/service';
-import {ChampionService, SkillService} from './champion/service';
-import {GameplayService} from './gameplay/service';
-import {CountryService} from './country/service';
-import {ScoreService} from './score/service';
+import {ItemService} from './providers/item/service';
+import {ChampionService, SkillService} from './providers/champion/service';
+import {GameplayService} from './providers/gameplay/service';
+import {CountryService} from './providers/country/service';
+import {ScoreService} from './providers/score/service';
 
-import {MainMenuPage} from './main_menu/page';
+import {MainMenuPage} from './pages/main_menu/page';
 
 @App({
   templateUrl: 'build/app.html',
-  providers: [ItemService, ChampionService, SkillService, GameplayService, GameTypeService, CountryService, ScoreService, HTTP_PROVIDERS]
+  providers: [ItemService, ChampionService, SkillService, GameplayService, CountryService, ScoreService, HTTP_PROVIDERS]
 })
 class MyApp {
   constructor(app: IonicApp, platform: Platform) {
