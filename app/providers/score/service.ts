@@ -23,6 +23,23 @@ export class ScoreService {
             });
     }
 
+    getAll() {
+      return [
+        new ScoreModel("Raz", 2930198),
+        new ScoreModel("Dwa", 2239481),
+        new ScoreModel("Trzy", 1903913),
+        new ScoreModel("Cztery", 15000)
+      ];
+    }
+
+    getMonthly() {
+      return this.getAll();
+    }
+
+    getWeekly() {
+      return this.getAll();
+    }
+
     setBestScore(score:number) {
         return this.storage.set('best_score', score);
     }
