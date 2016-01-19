@@ -49,7 +49,7 @@ export class GameplayService {
   }
 
   private refreshTimer() {
-    let levelPenalty = parseInt(this.level / this.timeLimitUpdateInterval) * 1000;
+    let levelPenalty = Math.round(this.level / this.timeLimitUpdateInterval) * 1000;
 
     this.timeLimit = 15 * 1000 - levelPenalty;
 
@@ -71,7 +71,7 @@ export class GameplayService {
     let points = 250;
 
     // Time bonus
-    points += parseInt((this.timeLeft / this.timeLimit) * 200);
+    points += Math.round((this.timeLeft / this.timeLimit) * 200);
 
     // Streak bonus
     points += this.streak * 10;

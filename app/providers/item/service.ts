@@ -13,11 +13,15 @@ export class ItemService {
   }
 
   load() {
+    if (this.items) {
+      return Promise.resolve(this.items);
+    }
+
     return new Promise(resolve => {
-      this.http.get('data/items.json')
-        .subscribe(res => {
-        json = res.json();
+      this.http.get('data/items.json').subscribe(res => {
         this.items = [];
+
+        let json = res.json();
         json.map(itemJson => {
           this.items.push(new ItemModel(itemJson));
         });

@@ -14,12 +14,16 @@ export class ChampionService {
   }
 
   load() {
+    if (this.champions && this.skills) {
+      return Promise.resolve([this.champions, this.skills]);
+    }
+
     return new Promise(resolve => {
-      this.http.get('data/champions.json')
-        .subscribe(res => {
-        json = res.json();
+      this.http.get('data/champions.json').subscribe(res => {
         this.champions = [];
         this.skills = [];
+        
+        let json = res.json();
         json.map(champJson => {
           let champion = new ChampionModel(champJson);
 
@@ -27,7 +31,7 @@ export class ChampionService {
           this.skills = this.skills.concat(champion.skills);
         });
 
-        resolve(this.champions);
+        resolve([this.champions, this.skills]);
       });
     });
   }

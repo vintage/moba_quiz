@@ -2,7 +2,7 @@ import {Storage, LocalStorage} from 'ionic-framework/ionic'
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 
-import {filter} from 'lodash';
+import {filter, sortBy} from 'lodash';
 
 import {CountryModel} from './model';
 
@@ -17,14 +17,19 @@ export class CountryService {
   }
 
   load() {
+    if (this.objects) {
+      return Promise.resolve(this.objects);
+    }
+
     this.objects = [];
     return new Promise(resolve => {
       this.http.get('data/countries.json')
         .subscribe(res => {
-        json = res.json();
+        let json = res.json();
         json.map(jsonObject => {
           this.objects.push(new CountryModel(jsonObject));
         });
+        this.objects = sortBy(this.objects, 'name');
         resolve(this.objects);
       });
     });
