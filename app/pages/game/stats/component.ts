@@ -10,7 +10,7 @@ import {GameplayService} from "../../../providers/gameplay/service";
 export class Stats implements OnInit {
   timeOver = new EventEmitter();
 
-  public progressMax:number;
+  public progressMax: number;
 
   constructor(gameplayService: GameplayService) {
     this.gameplay = gameplayService;
@@ -30,11 +30,11 @@ export class Stats implements OnInit {
 
     setTimeout(() => {
       this.gameplay.timeLeft -= interval;
-      if(this.gameplay.timeLeft == 0) {
+      if (this.gameplay.timeLeft == 0) {
         this.timeOver.emit();
       }
 
-      if(!this.gameplay.isOver()) {
+      if (!this.gameplay.isOver()) {
         this.updateTimer();
       }
     }, interval);

@@ -12,8 +12,8 @@ import {HighscorePage} from "../highscore/page";
   directives: [Button]
 })
 export class MainMenuPage {
-  public timesPlayed:number;
-  public bestScore:number;
+  public timesPlayed: number;
+  public bestScore: number;
 
   constructor(nav: NavController, gameplayService: GameplayService, scoreService: ScoreService, platform: Platform) {
     this.nav = nav;
@@ -46,37 +46,26 @@ export class MainMenuPage {
 
       console.log(this.platform);
 
-      if(this.platform.is('ios')) {
+      if (this.platform.is('ios')) {
         marketUrl = 'itms-apps://itunes.apple.com/app/idYOUR_APP_ID';
       }
-      else if(this.platform.is('android')) {
+      else if (this.platform.is('android')) {
         marketUrl = 'market://details?id=com.YOUR.PACKAGENAME';
       }
-      else if(this.platform.is('windowsphone')) {
+      else if (this.platform.is('windowsphone')) {
         marketUrl = 'http://windowsphone.com/s?appId=c14e93aa-27d7-df11-a844-00237de2db9e';
       }
 
-      if(marketUrl) {
+      if (marketUrl) {
         window.open(marketUrl);
       }
     });
-
-    var devicePlatform = device.platform;
-
-    // Check which platform
-    if (devicePlatform == "iOS") {
-        window.open('https://itunes.apple.com/us/app/YOUR-APP-SLUG-HERE/id000000000?mt=8&uo=4'); // or itms://
-    } else if (devicePlatform == "Android") {
-        window.open('market://details?id=com.YOUR.PACKAGENAME');
-    } else if (devicePlatform == "BlackBerry"){
-        window.open('http://appworld.blackberry.com/webstore/content/<applicationid>');
-    }
   }
 
   openContact() {
     this.platform.ready().then(() => {
-      cordova.plugins.email.isAvailable(function (isAvailable) {
-        if(isAvailable) {
+      cordova.plugins.email.isAvailable(function(isAvailable) {
+        if (isAvailable) {
           cordova.plugins.email.open();
         }
       });

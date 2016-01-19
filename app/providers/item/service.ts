@@ -6,49 +6,53 @@ import {ItemModel} from './model';
 
 @Injectable()
 export class ItemService {
-    items:ItemModel[];
+  items: ItemModel[];
 
-    constructor(http:Http) {
-        this.http = http;
-    }
+  constructor(http: Http) {
+    this.http = http;
+  }
 
-    initialize() {
-        return this.http.get('data/items.json')
-            .subscribe(res => {
-                json = res.json();
-                this.items = [];
-                json.map(itemJson => {
-                    this.items.push(new ItemModel(itemJson));
-                });
-            });
-    }
-
-    getAny() {
-        let items = filter(this.items, node => {
-            return node.from.length > 0;
+  load() {
+    return new Promise(resolve => {
+      this.http.get('data/items.json')
+        .subscribe(res => {
+        json = res.json();
+        this.items = [];
+        json.map(itemJson => {
+          this.items.push(new ItemModel(itemJson));
         });
-        let index = random(0, items.length - 1);
 
-        return items[index];
-    }
+        resolve(this.items);
+      });
+    });
+  }
 
-    getComponents(item:ItemModel) {
-        let valid = this.getValidComponents(item);
-        let invalid = this.getInvalidComponents(item);
+  getAny() {
+    let items = filter(this.items, node => {
+      return node.from.length > 0;
+    });
+    let index = random(0, items.length - 1);
 
-        let components = valid.concat(invalid.slice(0, 12 - valid.length));
-        return components;
-    }
+    return items[index];
+  }
 
-    getValidComponents(item:ItemModel) {
-        return filter(this.items, node => {
-            return item.from.indexOf(node.id) != -1;
-        });
-    }
+  getComponents(item: ItemModel) {
+    let valid = this.getValidComponents(item);
+    let invalid = this.getInvalidComponents(item);
 
-    getInvalidComponents(item:ItemModel) {
-        return filter(shuffle(this.items), node => {
-            return item.id != node.id;
-        });
-    }
+    let components = valid.concat(invalid.slice(0, 12 - valid.length));
+    return components;
+  }
+
+  getValidComponents(item: ItemModel) {
+    return filter(this.items, node => {
+      return item.from.indexOf(node.id) != -1;
+    });
+  }
+
+  getInvalidComponents(item: ItemModel) {
+    return filter(shuffle(this.items), node => {
+      return item.id != node.id;
+    });
+  }
 }

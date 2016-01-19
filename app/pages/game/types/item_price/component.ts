@@ -24,11 +24,11 @@ export class ItemPriceGame extends BaseGame {
     return this.itemService.getAny();
   }
 
-  getAnswers(question:any) {
+  getAnswers(question: any) {
     return [question.price];
   }
 
-  getChoices(question:any) {
+  getChoices(question: any) {
     let choiceDifferences = [
       100, 200, 250, 300, 400
     ];
@@ -36,15 +36,15 @@ export class ItemPriceGame extends BaseGame {
     let correct = this.getAnswers(question)[0];
     let choices = [correct];
 
-    for(let i=0; i<5; i++) {
+    for (let i = 0; i < 5; i++) {
       let choice = null;
 
       // Make unique choice
-      while(choice == null || choices.indexOf(choice) != -1) {
+      while (choice == null || choices.indexOf(choice) != -1) {
         let anyChoice = sample(choices);
         let choiceDiff = sample(choiceDifferences);
 
-        if(random(1)) {
+        if (random(1)) {
           choice = anyChoice + choiceDiff;
         }
         else {

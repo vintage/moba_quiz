@@ -8,8 +8,8 @@ import {ScoreModel} from "../../providers/score/model";
   templateUrl: 'build/pages/highscore/highscore_list.html',
 })
 class HighscoreGeneralPage implements OnInit {
-  title:string;
-  scores:ScoreModel[];
+  title: string;
+  scores: ScoreModel[];
 
   constructor(scoreService: ScoreService) {
     this.score = scoreService;
@@ -33,7 +33,7 @@ class HighscoreGeneralPage implements OnInit {
   templateUrl: 'build/pages/highscore/highscore_list.html',
 })
 class HighscoreMonthlyPage implements OnInit {
-  title:string;
+  title: string;
 
   constructor(scoreService: ScoreService) {
     this.score = scoreService;
@@ -57,8 +57,8 @@ class HighscoreMonthlyPage implements OnInit {
   templateUrl: 'build/pages/highscore/highscore_list.html',
 })
 class HighscoreWeeklyPage implements OnInit {
-  title:string;
-  scores:ScoreModel[];
+  title: string;
+  scores: ScoreModel[];
 
   constructor(scoreService: ScoreService) {
     this.score = scoreService;

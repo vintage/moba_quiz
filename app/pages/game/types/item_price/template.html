@@ -1,38 +1,38 @@
 <h1 class="align-center">{{ question.name }}</h1>
 
-<ion-row >
-    <ion-col>
-        <div class="align-center">
-            <img #questionImage [src]="question.getImageSource()" class="question-image">
-        </div>
-    </ion-col>
+<ion-row>
+  <ion-col>
+    <div class="align-center">
+      <img #questionImage [src]="question.getImageSource()" class="question-image">
+    </div>
+  </ion-col>
 </ion-row>
 
 <div *ngIf="choices">
-    <ion-row>
-        <ion-col>
-            <answer-button [value]="choices[0]" (picked)="onItemPicked($event)"></answer-button>
-        </ion-col>
-        <ion-col>
-            <answer-button [value]="choices[1]" (picked)="onItemPicked($event)"></answer-button>
-        </ion-col>
-    </ion-row>
+  <ion-row>
+    <ion-col>
+      <answer-button [value]="choices[0]" (picked)="onItemPicked($event)"></answer-button>
+    </ion-col>
+    <ion-col>
+      <answer-button [value]="choices[1]" (picked)="onItemPicked($event)"></answer-button>
+    </ion-col>
+  </ion-row>
 
-    <ion-row>
-        <ion-col>
-            <answer-button [value]="choices[2]" (picked)="onItemPicked($event)"></answer-button>
-        </ion-col>
-        <ion-col>
-            <answer-button [value]="choices[3]" (picked)="onItemPicked($event)"></answer-button>
-        </ion-col>
-    </ion-row>
+  <ion-row>
+    <ion-col>
+      <answer-button [value]="choices[2]" (picked)="onItemPicked($event)"></answer-button>
+    </ion-col>
+    <ion-col>
+      <answer-button [value]="choices[3]" (picked)="onItemPicked($event)"></answer-button>
+    </ion-col>
+  </ion-row>
 
-    <ion-row>
-        <ion-col>
-            <answer-button [value]="choices[4]" (picked)="onItemPicked($event)"></answer-button>
-        </ion-col>
-        <ion-col>
-            <answer-button [value]="choices[5]" (picked)="onItemPicked($event)"></answer-button>
-        </ion-col>
-    </ion-row>
+  <ion-row>
+    <ion-col>
+      <answer-button [value]="choices[4]" (picked)="onItemPicked($event)"></answer-button>
+    </ion-col>
+    <ion-col>
+      <answer-button [value]="choices[5]" (picked)="onItemPicked($event)"></answer-button>
+    </ion-col>
+  </ion-row>
 </div>

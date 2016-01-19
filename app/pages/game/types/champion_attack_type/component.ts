@@ -22,15 +22,15 @@ export class ChampionAttackTypeGame extends BaseGame {
     return this.championService.getAny();
   }
 
-  getAnswers(question:any) {
+  getAnswers(question: any) {
     let answer = 'Melee';
-    if(question.is_range) {
+    if (question.is_range) {
       answer = 'Range';
     }
     return [answer];
   }
 
-  getChoices(question:any) {
+  getChoices(question: any) {
     return ['Melee', 'Range'];
   }
 }

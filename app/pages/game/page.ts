@@ -36,8 +36,8 @@ export class GamePage {
     this.gameplay = gameplayService;
     this.gameTypeService = gameTypeService;
 
-    itemService.initialize().add(() => {
-      championService.initialize().add(() => {
+    itemService.load().then(() => {
+      championService.load().then(() => {
         this.gameplay.start();
         this.openLevel();
       });

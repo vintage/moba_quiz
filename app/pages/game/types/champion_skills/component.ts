@@ -22,11 +22,11 @@ export class ChampionSkillsGame extends BaseGame {
     return this.championService.getAny();
   }
 
-  getAnswers(question:any) {
+  getAnswers(question: any) {
     return this.championService.getValidComponents(question).slice(0, 5);
   }
 
-  getChoices(question:any) {
+  getChoices(question: any) {
     return this.championService.getComponents(question).slice(0, 12);
   }
 }

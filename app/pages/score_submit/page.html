@@ -1,46 +1,46 @@
 <ion-content style="background: url('img/triangular.png')">
-    <ion-row>
-        <ion-col>
-            <h2 class="align-center">Total score</h2>
-        </ion-col>
-    </ion-row>
+  <ion-row>
+    <ion-col>
+      <h2 class="align-center">Total score</h2>
+    </ion-col>
+  </ion-row>
 
-    <ion-row>
-        <ion-col>
-            <h2 class="align-center"> {{ gameplay.points }}</h2>
-        </ion-col>
-    </ion-row>
+  <ion-row>
+    <ion-col>
+      <h2 class="align-center"> {{ gameplay.points }}</h2>
+    </ion-col>
+  </ion-row>
 
-    <ion-row center>
-        <ion-col>
-            <ion-input>
-                <input type="text" placeholder="Player name" #playerName>
-            </ion-input>
-        </ion-col>
-        <ion-col>
-            <span (click)="showCountryList()">
+  <ion-row center>
+    <ion-col>
+      <ion-input>
+        <input type="text" placeholder="Player name" #playerName>
+      </ion-input>
+    </ion-col>
+    <ion-col>
+      <span (click)="showCountryList()">
                 <img *ngIf="country" src="{{ country.getImageSource() }}" />
                 <a *ngIf="!country">Pick your country</a>
             </span>
-        </ion-col>
-    </ion-row>
+    </ion-col>
+  </ion-row>
 
-    <ion-row>
-        <ion-col>
-            <button *ngIf="!isSubmitted" full dark (click)="submitScore()" [disabled]="isPending">Submit</button>
-            <button *ngIf="isSubmitted" full dark disabled>Score submitted</button>
-        </ion-col>
-    </ion-row>
+  <ion-row>
+    <ion-col>
+      <button *ngIf="!isSubmitted" full dark (click)="submitScore()" [disabled]="isPending">Submit</button>
+      <button *ngIf="isSubmitted" full dark disabled>Score submitted</button>
+    </ion-col>
+  </ion-row>
 
-    <ion-row>
-        <ion-col>
-            <button full dark (click)="playAgain()">Play again</button>
-        </ion-col>
-    </ion-row>
+  <ion-row>
+    <ion-col>
+      <button full dark (click)="playAgain()">Play again</button>
+    </ion-col>
+  </ion-row>
 
-    <ion-row>
-        <ion-col>
-            <button full dark (click)="openMenu()">Back to menu</button>
-        </ion-col>
-    </ion-row>
+  <ion-row>
+    <ion-col>
+      <button full dark (click)="openMenu()">Back to menu</button>
+    </ion-col>
+  </ion-row>
 </ion-content>

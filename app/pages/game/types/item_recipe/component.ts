@@ -21,11 +21,11 @@ export class ItemRecipeGame extends BaseGame {
     return this.itemService.getAny();
   }
 
-  getAnswers(question:any) {
+  getAnswers(question: any) {
     return this.itemService.getValidComponents(question);
   }
 
-  getChoices(question:any) {
+  getChoices(question: any) {
     return this.itemService.getComponents(question);
   }
 }

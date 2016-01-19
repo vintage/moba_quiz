@@ -9,7 +9,7 @@ import {Button} from 'ionic-framework/ionic';
   outputs: ['picked'],
 })
 export class AnswerButton {
-  public value:any;
+  public value: any;
   picked = new EventEmitter();
 
   onClick() {

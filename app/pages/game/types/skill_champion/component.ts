@@ -21,11 +21,11 @@ export class SkillChampionGame extends BaseGame {
     return this.skillService.getAny();
   }
 
-  getAnswers(question:any) {
+  getAnswers(question: any) {
     return this.skillService.getValidComponents(question);
   }
 
-  getChoices(question:any) {
+  getChoices(question: any) {
     return this.skillService.getComponents(question);
   }
 }

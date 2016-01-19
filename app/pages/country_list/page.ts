@@ -16,7 +16,7 @@ export class CountryListPage {
     countryService.initialize();
   }
 
-  selectCountry(country:CountryModel) {
+  selectCountry(country: CountryModel) {
     this.countryService.setCurrent(country);
 
     this.nav.pop();

@@ -9,8 +9,8 @@ import {ItemModel} from "../../../providers/item/model";
   outputs: ['picked'],
 })
 export class Slot {
-  public emptyImageSource:string = "data/images/items/3041.png";
-  public item:ItemModel;
+  public emptyImageSource: string = "data/images/items/3041.png";
+  public item: ItemModel;
   picked = new EventEmitter();
 
   onClick() {

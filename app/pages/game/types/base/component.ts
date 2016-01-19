@@ -18,11 +18,11 @@ export class BaseGame implements OnInit {
 
   }
 
-  getAnswers(question:any) {
+  getAnswers(question: any) {
 
   }
 
-  getChoices(question:any) {
+  getChoices(question: any) {
 
   }
 
@@ -33,7 +33,7 @@ export class BaseGame implements OnInit {
 
     this.answers = [];
     this.answersLeft = [];
-    for(let answer of answers) {
+    for (let answer of answers) {
       this.answers.push(null);
       this.answersLeft.push(answer);
     }
@@ -41,9 +41,9 @@ export class BaseGame implements OnInit {
     this.choices = shuffle(this.getChoices(this.question));
   }
 
-  choiceValid(item:any) {
+  choiceValid(item: any) {
     let free_slot = this.answers.indexOf(null);
-    if(free_slot != -1) {
+    if (free_slot != -1) {
       this.answers[free_slot] = item;
     }
 
@@ -57,14 +57,14 @@ export class BaseGame implements OnInit {
     this.answerInvalid.emit();
   }
 
-  isValid(item:any) {
+  isValid(item: any) {
     return this.answersLeft.indexOf(item) != -1;
   }
 
-  onItemPicked(item:any) {
+  onItemPicked(item: any) {
     let is_valid: bool = this.isValid(item);
 
-    if(is_valid) {
+    if (is_valid) {
       let position = this.answersLeft.indexOf(item);
       this.answersLeft.splice(position, 1);
 
@@ -75,7 +75,7 @@ export class BaseGame implements OnInit {
     }
 
     // Go to the next level
-    if(this.answersLeft.length == 0) {
+    if (this.answersLeft.length == 0) {
       this.questionFinished.emit(this.question);
     }
   }

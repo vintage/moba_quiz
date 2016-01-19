@@ -15,11 +15,11 @@ import {MainMenuPage} from "../main_menu/page";
   directives: [Button]
 })
 export class ScoreSubmitPage implements OnInit {
-  public country:CountryModel;
-  public isPending:boolean;
-  public isSubmitted:boolean;
+  public country: CountryModel;
+  public isPending: boolean;
+  public isSubmitted: boolean;
 
-  constructor(nav: NavController, gameplayService: GameplayService, countryService:CountryService, scoreService:ScoreService) {
+  constructor(nav: NavController, gameplayService: GameplayService, countryService: CountryService, scoreService: ScoreService) {
     this.nav = nav;
     this.gameplay = gameplayService;
     this.countryService = countryService;
@@ -30,14 +30,14 @@ export class ScoreSubmitPage implements OnInit {
 
   ngOnInit() {
     this.scoreService.getBestScore().then(bestScore => {
-      if(bestScore < this.gameplay.points) {
+      if (bestScore < this.gameplay.points) {
         this.scoreService.setBestScore(this.gameplay.points);
       }
     });
   }
 
   onPageWillEnter() {
-    this.countryService.initialize().add(() => {
+    this.countryService.load().then(() => {
       this.countryService.getCurrent().then(country => {
         this.country = country
       });
@@ -45,7 +45,7 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   showCountryList() {
-   this.nav.push(CountryListPage);
+    this.nav.push(CountryListPage);
   }
 
   playAgain() {
@@ -57,15 +57,15 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   submitScore() {
-    if(this.isPending) {
+    if (this.isPending) {
       return false;
     }
 
     this.isPending = true;
-    this.scoreService.create('playerName', this.gameplay.points).add((is_success) => {
+    this.scoreService.create('playerName', this.gameplay.points).then((is_success) => {
       this.isPending = false;
 
-      if(is_success) {
+      if (is_success) {
         this.isSubmitted = true;
       }
       else {
