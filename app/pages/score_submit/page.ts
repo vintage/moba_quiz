@@ -16,6 +16,7 @@ import {MainMenuPage} from "../main_menu/page";
 })
 export class ScoreSubmitPage implements OnInit {
   public country: CountryModel;
+  public playerName: string;
   public isPending: boolean;
   public isSubmitted: boolean;
 
@@ -62,7 +63,7 @@ export class ScoreSubmitPage implements OnInit {
     }
 
     this.isPending = true;
-    this.scoreService.create('playerName', this.gameplay.points).then((is_success) => {
+    this.scoreService.create(this.playerName, this.gameplay.points, this.country.id).then((is_success) => {
       this.isPending = false;
 
       if (is_success) {

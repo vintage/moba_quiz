@@ -14,14 +14,14 @@
   <ion-row center>
     <ion-col>
       <ion-input>
-        <input type="text" placeholder="Player name" #playerName>
+        <input type="text" placeholder="Player name" [(ngModel)]="playerName">
       </ion-input>
     </ion-col>
     <ion-col>
       <span (click)="showCountryList()">
-                <img *ngIf="country" src="{{ country.getImageSource() }}" />
-                <a *ngIf="!country">Pick your country</a>
-            </span>
+        <img *ngIf="country" src="{{ country.getImageSource() }}" />
+        <a *ngIf="!country">Pick your country</a>
+      </span>
     </ion-col>
   </ion-row>
 

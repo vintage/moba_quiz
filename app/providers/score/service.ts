@@ -11,15 +11,15 @@ export class ScoreService {
     this.storage = new Storage(LocalStorage);
   }
 
-  create(player: string, score: number) {
-    console.log('submit score ' + score + ' for player ' + player);
-
+  create(player: string, score: number, country:string) {
     return new Promise(resolve => {
-      this.http.post('http://gamejolt.com/api/game/v1/scores/add/')
-        .subscribe(res => {
-        console.log(res);
-        json = res.json();
-        resolve(false);
+      GJAPI.ScoreAddGuest (0, score, score, player, "country=" + country, (data) => {
+        if(data['success'] == 'true' || data['success'] == true) {
+          resolve(true);
+        }
+        else {
+          resolve(false);
+        }
       });
     });
   }

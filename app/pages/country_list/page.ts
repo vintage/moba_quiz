@@ -13,7 +13,7 @@ export class CountryListPage {
     this.nav = nav;
     this.countryService = countryService;
 
-    countryService.initialize();
+    countryService.load();
   }
 
   selectCountry(country: CountryModel) {
