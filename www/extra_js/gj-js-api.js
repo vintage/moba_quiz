@@ -51,7 +51,7 @@ var GJAPI = {};
 // configuration attributes
 GJAPI.iGameID    = 119874;      // # change this
 GJAPI.sGameKey   = "5b3df4e63d85b476241b8dace44c1e3a";     // # change this too
-GJAPI.bAutoLogin = true;   // automatically log in users on Game Jolt
+GJAPI.bAutoLogin = false;   // automatically log in users on Game Jolt
 if(GJAPI.iGameID === 0 || GJAPI.sGameKey === "") alert("Game ID or Game Key missing!");
 
 GJAPI.sAPI      = "http://gamejolt.com/api/game/v1";

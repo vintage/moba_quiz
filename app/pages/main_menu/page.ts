@@ -44,8 +44,6 @@ export class MainMenuPage {
     this.platform.ready().then(() => {
       var marketUrl = null;
 
-      console.log(this.platform);
-
       if (this.platform.is('ios')) {
         marketUrl = 'itms-apps://itunes.apple.com/app/idYOUR_APP_ID';
       }

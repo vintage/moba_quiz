@@ -13,19 +13,13 @@ class HighscoreGeneralPage implements OnInit {
 
   constructor(scoreService: ScoreService) {
     this.score = scoreService;
-    this.title = this.getTitle();
+    this.title = 'General';
   }
 
   ngOnInit() {
-    this.scores = this.getScores();
-  }
-
-  getTitle() {
-    return 'General';
-  }
-
-  getScores() {
-    return this.score.getAll();
+    this.score.getAll().then(scores => {
+      this.scores = scores;
+    });
   }
 }
 
@@ -37,19 +31,13 @@ class HighscoreMonthlyPage implements OnInit {
 
   constructor(scoreService: ScoreService) {
     this.score = scoreService;
-    this.title = this.getTitle();
+    this.title = 'Monthly';
   }
 
   ngOnInit() {
-    this.scores = this.getScores();
-  }
-
-  getTitle() {
-    return 'Monthly';
-  }
-
-  getScores() {
-    return this.score.getMonthly();
+    this.score.getMonthly().then(scores => {
+      this.scores = scores;
+    });
   }
 }
 
@@ -62,20 +50,13 @@ class HighscoreWeeklyPage implements OnInit {
 
   constructor(scoreService: ScoreService) {
     this.score = scoreService;
-    this.title = this.getTitle();
+    this.title = 'Weekly';
   }
 
   ngOnInit() {
-    this.scores = this.getScores();
-    console.log(this.scores);
-  }
-
-  getTitle() {
-    return 'Weekly';
-  }
-
-  getScores() {
-    return this.score.getWeekly();
+    this.score.getWeekly().then(scores => {
+      this.scores = scores;
+    });
   }
 }
 
@@ -92,9 +73,5 @@ export class HighscorePage {
     this.monthlyTab = HighscoreMonthlyPage;
     this.weeklyTab = HighscoreWeeklyPage;
     this.generalTab = HighscoreGeneralPage;
-  }
-
-  ngOnInit() {
-    console.log("OK");
   }
 }

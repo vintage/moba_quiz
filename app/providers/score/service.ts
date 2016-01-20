@@ -25,12 +25,19 @@ export class ScoreService {
   }
 
   getAll() {
-    return [
-      new ScoreModel("Raz", 2930198),
-      new ScoreModel("Dwa", 2239481),
-      new ScoreModel("Trzy", 1903913),
-      new ScoreModel("Cztery", 15000)
-    ];
+    return new Promise(resolve => {
+      GJAPI.ScoreFetch (0, false, 100, (data) => {
+        let scores = [];
+        data["scores"].map(scoreObj => {
+          scores.push(new ScoreModel(
+            scoreObj['score'],
+            scoreObj['guest'],
+            scoreObj['extra_data'].replace("country=", "")
+          ));
+        })
+        resolve(scores);
+      });
+    });
   }
 
   getMonthly() {
