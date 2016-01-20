@@ -19,6 +19,7 @@ export class ScoreSubmitPage implements OnInit {
   public playerName: string;
   public isPending: boolean;
   public isSubmitted: boolean;
+  public score: number;
 
   constructor(nav: NavController, gameplayService: GameplayService, countryService: CountryService, scoreService: ScoreService) {
     this.nav = nav;
@@ -27,12 +28,13 @@ export class ScoreSubmitPage implements OnInit {
     this.scoreService = scoreService;
     this.isPending = false;
     this.isSubmitted = false;
+    this.score = this.gameplay.points;
   }
 
   ngOnInit() {
     this.scoreService.getBestScore().then(bestScore => {
-      if (bestScore < this.gameplay.points) {
-        this.scoreService.setBestScore(this.gameplay.points);
+      if (this.score > bestScore) {
+        this.scoreService.setBestScore(this.score);
       }
     });
   }
@@ -63,7 +65,7 @@ export class ScoreSubmitPage implements OnInit {
     }
 
     this.isPending = true;
-    this.scoreService.create(this.playerName, this.gameplay.points, this.country.id).then((is_success) => {
+    this.scoreService.create(this.playerName, this.score, this.country.id).then((is_success) => {
       this.isPending = false;
 
       if (is_success) {

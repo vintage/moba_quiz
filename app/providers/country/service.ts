@@ -35,10 +35,6 @@ export class CountryService {
     });
   }
 
-  getAll() {
-    return this.objects;
-  }
-
   setCurrent(country: CountryModel) {
     this.current = country;
     this.storage.set('current_country', country.id);
