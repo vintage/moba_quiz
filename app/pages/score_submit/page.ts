@@ -59,13 +59,37 @@ export class ScoreSubmitPage implements OnInit {
     this.nav.push(MainMenuPage);
   }
 
+  is_valid() {
+    let valid = true;
+    if(!this.playerName) {
+      let alert = Alert.create({
+        title: "Missing player name",
+        subTitle: 'You need to enter your player name to submit the score.',
+        buttons: ['OK']
+      });
+      this.nav.present(alert);
+      valid = false;
+    }
+
+    return valid;
+  }
+
   submitScore() {
+    if (!this.is_valid()) {
+      return false;
+    }
+
     if (this.isPending) {
       return false;
     }
 
+    let countryID = "";
+    if(this.country) {
+      countryID = this.country.id;
+    }
+
     this.isPending = true;
-    this.scoreService.create(this.playerName, this.score, this.country.id).then((is_success) => {
+    this.scoreService.create(this.playerName, this.score, countryID).then((is_success) => {
       this.isPending = false;
 
       if (is_success) {

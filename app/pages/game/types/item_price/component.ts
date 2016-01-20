@@ -40,7 +40,7 @@ export class ItemPriceGame extends BaseGame {
       let choice = null;
 
       // Make unique choice
-      while (choice == null || choices.indexOf(choice) != -1) {
+      while (choice == null || choice <= 0 || choices.indexOf(choice) != -1) {
         let anyChoice = sample(choices);
         let choiceDiff = sample(choiceDifferences);
 

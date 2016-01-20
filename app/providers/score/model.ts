@@ -6,10 +6,15 @@ export class ScoreModel {
   constructor(player: string, score: string, flag: string) {
     this.player = player;
     this.score = score;
-    this.flag = flag.substring(0, 2);
+    this.flag = flag;
   }
 
   getImageSource() {
-    return "img/flags/" + this.flag + ".png";
+    if(this.flag && this.flag.length == 2) {
+      return "img/flags/" + this.flag + ".png";
+    }
+    else {
+      return "img/flags/_unknown.png";
+    }
   }
 }
