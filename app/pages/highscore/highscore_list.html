@@ -10,7 +10,7 @@
       </ion-thumbnail>
 
       <h2>{{ score.score }}</h2>
-      <p>{{ score.player }}
+      <p>{{ score.player|slice:0:16 }}</p>
     </ion-item>
   </ion-list>
 </ion-content>

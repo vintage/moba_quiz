@@ -30,8 +30,8 @@ export class ScoreService {
         let scores = [];
         data["scores"].map(scoreObj => {
           scores.push(new ScoreModel(
-            scoreObj['score'],
             scoreObj['guest'],
+            scoreObj['score'],
             scoreObj['extra_data'].replace("country=", "")
           ));
         })

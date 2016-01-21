@@ -60,15 +60,23 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   is_valid() {
-    let valid = true;
+    let valid = true,
+      message = '';
     if(!this.playerName) {
+      valid = false;
+      message = 'You need to enter your player name to submit the score.';
+    }
+    else if(this.playerName.length > 16) {
+      valid = false;
+      message = 'Player name can be 16 characters only.';
+    }
+
+    if(!valid) {
       let alert = Alert.create({
-        title: "Missing player name",
-        subTitle: 'You need to enter your player name to submit the score.',
+        title: message,
         buttons: ['OK']
       });
       this.nav.present(alert);
-      valid = false;
     }
 
     return valid;
