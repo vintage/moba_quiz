@@ -78,6 +78,7 @@ export class GamePage {
       });
 
       component.answerInvalid.subscribe(() => {
+        navigator.vibrate(1000);
         this.isPerfect = false;
         this.gameplay.invalidMove();
 

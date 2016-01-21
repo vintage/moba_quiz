@@ -25,7 +25,8 @@
     "ionic-plugin-keyboard",
     "cordova-sqlite-storage",
     "cordova-plugin-email",
-    "cordova-plugin-game-center"
+    "cordova-plugin-game-center",
+    "cordova-plugin-vibration"
   ],
   "cordovaPlatforms": [
     "ios",
