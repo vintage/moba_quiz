@@ -15,6 +15,7 @@ export class ChampionAttackTypeGame extends BaseGame {
   questionFinished = new EventEmitter();
 
   constructor(championService: ChampionService) {
+    super();
     this.championService = championService;
   }
 

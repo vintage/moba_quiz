@@ -14,7 +14,17 @@ export class ItemRecipeGame extends BaseGame {
   questionFinished = new EventEmitter();
 
   constructor(itemService: ItemService) {
+    super();
     this.itemService = itemService;
+  }
+
+  choiceValid(item:any) {
+    super.choiceValid(item);
+
+    // Drop item from available selection
+    // TODO: Nie zadziala jesli jest kilka takich samych itemow na planszy
+    let position = this.choices.indexOf(item);
+    this.choices[position] = null;
   }
 
   getQuestion() {

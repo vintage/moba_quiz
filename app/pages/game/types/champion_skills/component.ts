@@ -15,7 +15,16 @@ export class ChampionSkillsGame extends BaseGame {
   questionFinished = new EventEmitter();
 
   constructor(championService: ChampionService) {
+    super();
     this.championService = championService;
+  }
+
+  choiceValid(item:any) {
+    super.choiceValid(item);
+
+    // Drop item from available selection
+    let position = this.choices.indexOf(item);
+    this.choices[position] = null;
   }
 
   getQuestion() {

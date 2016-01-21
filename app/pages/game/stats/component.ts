@@ -5,16 +5,19 @@ import {GameplayService} from "../../../providers/gameplay/service";
 @Component({
   selector: 'game-stats',
   templateUrl: 'build/pages/game/stats/template.html',
+  inputs: ['timerEnabled'],
   outputs: ['timeOver']
 })
 export class Stats implements OnInit {
   timeOver = new EventEmitter();
 
   public progressMax: number;
+  public timerEnabled: boolean;
 
   constructor(gameplayService: GameplayService) {
     this.gameplay = gameplayService;
     this.progressMax = 1000;
+    this.timerEnabled = true;
   }
 
   ngOnInit() {
@@ -29,7 +32,10 @@ export class Stats implements OnInit {
     let interval = 100;
 
     setTimeout(() => {
-      this.gameplay.timeLeft -= interval;
+      if(this.timerEnabled) {
+        this.gameplay.timeLeft -= interval;
+      }
+
       if (this.gameplay.timeLeft == 0) {
         this.timeOver.emit();
       }

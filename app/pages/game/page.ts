@@ -1,4 +1,4 @@
-import {Page, NavController} from 'ionic-framework/ionic';
+import {Page, NavController, Alert} from 'ionic-framework/ionic';
 import {DynamicComponentLoader, ElementRef} from 'angular2/core';
 
 import {ItemService} from "../../providers/item/service";
@@ -19,6 +19,7 @@ import {ScoreSubmitPage} from "../score_submit/page";
 export class GamePage {
   public gameType: GameTypeModel;
   public isPerfect:boolean;
+  public isLocked:boolean;
 
   constructor(
       nav: NavController,
@@ -36,11 +37,27 @@ export class GamePage {
     this.gameplay = gameplayService;
     this.gameTypeService = gameTypeService;
 
+    this.isLocked = false;
+
     itemService.load().then(() => {
       championService.load().then(() => {
         this.gameplay.start();
         this.openLevel();
       });
+    });
+  }
+
+  openLevelStats() {
+    return new Promise(resolve => {
+      let alert = Alert.create({
+        title: '+' + this.gameplay.getLevelPoints() + ' points'
+      });
+      this.nav.present(alert);
+
+      setTimeout(() => {
+        alert.dismiss(null);
+        resolve(true);
+      }, 1000);
     });
   }
 
@@ -51,9 +68,13 @@ export class GamePage {
       let component = componentRef.instance;
 
       component.questionFinished.subscribe(() => {
-        componentRef.dispose();
-        this.gameplay.levelPassed(this.isPerfect);
-        this.openLevel();
+        this.isLocked = true;
+        this.openLevelStats().then(() => {
+          componentRef.dispose();
+          this.gameplay.levelPassed(this.isPerfect);
+          this.openLevel();
+          this.isLocked = false;
+        });
       });
 
       component.answerInvalid.subscribe(() => {

@@ -46,11 +46,6 @@ export class BaseGame implements OnInit {
     if (free_slot != -1) {
       this.answers[free_slot] = item;
     }
-
-    // Drop item from available selection
-    // TODO: Nie zadziala jesli jest kilka takich samych itemow na planszy
-    position = this.choices.indexOf(item);
-    this.choices[position] = null;
   }
 
   choiceInvalid() {

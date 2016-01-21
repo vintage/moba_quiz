@@ -17,6 +17,7 @@ export class ItemPriceGame extends BaseGame {
   questionFinished = new EventEmitter();
 
   constructor(itemService: ItemService) {
+    super();
     this.itemService = itemService;
   }
 

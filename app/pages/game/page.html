@@ -1,7 +1,7 @@
 <ion-content style="background: url('img/triangular.png')">
 
   <div>
-    <game-stats (timeOver)="onTimeOver()"></game-stats>
+    <game-stats (timeOver)="onTimeOver()" [timerEnabled]="!isLocked"></game-stats>
 
     <div #child></div>
   </div>
