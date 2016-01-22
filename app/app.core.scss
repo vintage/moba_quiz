@@ -11,12 +11,28 @@
 
 // @import "pages/item-details/item-details";
 
+@font-face {
+    font-family: 'bitterregular';
+    src: url('../fonts/bitter-regular-webfont.eot');
+    src: url('../fonts/bitter-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/bitter-regular-webfont.woff2') format('woff2'),
+         url('../fonts/bitter-regular-webfont.woff') format('woff'),
+         url('../fonts/bitter-regular-webfont.ttf') format('truetype'),
+         url('../fonts/bitter-regular-webfont.svg#bitterregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  font-family: "bitterregular";
+}
+
 .align-center {
   text-align: center;
 }
 
-.question-slot img {
-
+.align-right {
+  text-align: right;
 }
 
 .game-progress {
@@ -24,6 +40,4 @@
   width: 100%;
 }
 
-.question-image {
-
-}
+@import "pages/main_menu/page";

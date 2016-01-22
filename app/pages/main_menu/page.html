@@ -1,4 +1,4 @@
-<ion-content style="background: url('img/triangular.png')">
+<ion-content style="background: url('img/triangular.png')" class="main-menu-page">
   <ion-row>
     <ion-col>
       <button block default (click)="openGame()">
@@ -35,23 +35,17 @@
     </ion-col>
   </ion-row>
 
-  <ion-row>
-    <ion-col>
-      Times played
-    </ion-col>
-
-    <ion-col>
-      {{ timesPlayed }}
+  <ion-row class="stats">
+    <ion-col class="align-center">
+      <span class="label">Best score</span>
+      <span class="value">{{ bestScore }}</span>
     </ion-col>
   </ion-row>
 
-  <ion-row>
-    <ion-col>
-      Best score
-    </ion-col>
-
-    <ion-col>
-      {{ bestScore }}
+  <ion-row class="stats">
+    <ion-col class="align-center">
+      <span class="label">Times played</span>
+      <span class="value">{{ timesPlayed }}</span>
     </ion-col>
   </ion-row>
 </ion-content>

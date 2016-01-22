@@ -27,7 +27,8 @@
     "cordova-sqlite-storage",
     "cordova-plugin-email",
     "cordova-plugin-game-center",
-    "cordova-plugin-vibration"
+    "cordova-plugin-vibration",
+    "cordova-plugin-admobpro"
   ],
   "cordovaPlatforms": [
     "ios",
