@@ -11,7 +11,7 @@ module.exports = {
       dest: 'www/build/css',
       include: [
         'node_modules/ionic-framework',
-        'node_modules/ionicons/dist/scss'
+        //'node_modules/ionicons/dist/scss'
       ]
     },
     fonts: {
