@@ -50,6 +50,7 @@ export class GamePage {
 
   openLevelStats() {
     return new Promise(resolve => {
+      // TODO: Ensure that alert can't be closed manually (clicking on the background)
       let alert = Alert.create({
         title: '+' + this.gameplay.getLevelPoints() + ' points'
       });

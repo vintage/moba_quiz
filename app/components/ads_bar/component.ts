@@ -14,12 +14,12 @@ export class AdsBar {
     // TODO: Move configuration to some settings file
     // TODO: Separate ads unit per platform WP/Android/iOS
 
-    if(AdMob) {
-      AdMob.createBanner({
-        adId: admobid.banner,
-        position: AdMob.AD_POSITION.BOTTOM_CENTER,
-        autoShow: true
-      });
-    }
+    // if(AdMob) {
+    //   AdMob.createBanner({
+    //     adId: admobid.banner,
+    //     position: AdMob.AD_POSITION.BOTTOM_CENTER,
+    //     autoShow: true
+    //   });
+    // }
   }
 }

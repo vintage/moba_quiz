@@ -1,15 +1,19 @@
-<ion-row>
-  <ion-col>
-    Points: {{ gameplay.points }}
-  </ion-col>
+<div class="game-stats">
+  <ion-row center>
+    <ion-col class="points-bar align-left">
+      <ion-icon name="flash"></ion-icon> {{ gameplay.points|number }}
+    </ion-col>
 
-  <ion-col class="align-right">
-    Chances: {{ gameplay.chances }}
-  </ion-col>
-</ion-row>
+    <ion-col class="chances-bar align-right">
+      <ion-icon name="heart" [isActive]="gameplay.chances > 3"></ion-icon>
+      <ion-icon name="heart" [isActive]="gameplay.chances > 2"></ion-icon>
+      <ion-icon name="heart" [isActive]="gameplay.chances > 1"></ion-icon>
+    </ion-col>
+  </ion-row>
 
-<ion-row>
-  <ion-col>
-    <progress value="{{ currentProgress() }}" max="{{ progressMax }}" class="game-progress"></progress>
-  </ion-col>
-</ion-row>
+  <ion-row>
+    <ion-col>
+      <progress value="{{ currentProgress() }}" max="{{ progressMax }}"></progress>
+    </ion-col>
+  </ion-row>
+</div>

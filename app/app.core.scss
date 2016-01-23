@@ -35,9 +35,5 @@ body {
   text-align: right;
 }
 
-.game-progress {
-  display: block;
-  width: 100%;
-}
-
 @import "pages/main_menu/page";
+@import "pages/game/stats/style";

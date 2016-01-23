@@ -5,7 +5,7 @@
         <img src="{{ score.getImageSource() }}">
       </ion-thumbnail>
 
-      <h2>{{ score.score }}</h2>
+      <h2>{{ score.score|number }}</h2>
       <p>{{ score.player|slice:0:16 }}</p>
     </ion-item>
   </ion-list>

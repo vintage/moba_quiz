@@ -5,7 +5,7 @@ export class ScoreModel {
 
   constructor(player: string, score: string, flag: string) {
     this.player = player;
-    this.score = score;
+    this.score = parseInt(score.toString());
     this.flag = flag;
   }
 
