@@ -59,7 +59,15 @@ export class BaseGame implements OnInit {
     return this.answersLeft.indexOf(item) != -1;
   }
 
+  isFinished() {
+    return this.answersLeft.length == 0;
+  }
+
   onItemPicked(item: any) {
+    if (this.isFinished()) {
+      return;
+    }
+
     let is_valid: bool = this.isValid(item);
 
     if (is_valid) {
@@ -73,7 +81,7 @@ export class BaseGame implements OnInit {
     }
 
     // Go to the next level
-    if (this.answersLeft.length == 0) {
+    if (this.isFinished()) {
       this.questionFinished.emit(this.question);
     }
   }
