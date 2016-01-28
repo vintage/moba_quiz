@@ -11,6 +11,7 @@ import {BaseGame} from "../base/component";
 })
 export class SkillChampionGame extends BaseGame {
   answerInvalid = new EventEmitter();
+  answerValid = new EventEmitter();
   questionFinished = new EventEmitter();
 
   constructor(skillService: SkillService) {

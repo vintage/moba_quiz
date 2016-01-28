@@ -28,7 +28,8 @@
     "cordova-plugin-email",
     "cordova-plugin-game-center",
     "cordova-plugin-vibration",
-    "cordova-plugin-admobpro"
+    "cordova-plugin-admobpro",
+    "cordova-plugin-media"
   ],
   "cordovaPlatforms": [
     "ios",

@@ -3,6 +3,7 @@ import {shuffle} from 'lodash';
 
 export class BaseGame implements OnInit {
   answerInvalid = new EventEmitter();
+  answerValid = new EventEmitter();
   questionFinished = new EventEmitter();
 
   public question: any;
@@ -46,6 +47,8 @@ export class BaseGame implements OnInit {
     if (free_slot != -1) {
       this.answers[free_slot] = item;
     }
+
+    this.answerValid.emit();
   }
 
   choiceInvalid() {

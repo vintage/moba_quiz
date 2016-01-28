@@ -14,6 +14,7 @@ import {AnswerButton} from "../../answer_button/component";
 })
 export class ItemPriceGame extends BaseGame {
   answerInvalid = new EventEmitter();
+  answerValid = new EventEmitter();
   questionFinished = new EventEmitter();
 
   constructor(itemService: ItemService) {

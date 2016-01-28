@@ -12,6 +12,7 @@ import {AnswerButton} from "../../answer_button/component";
 })
 export class ChampionAttackTypeGame extends BaseGame {
   answerInvalid = new EventEmitter();
+  answerValid = new EventEmitter();
   questionFinished = new EventEmitter();
 
   constructor(championService: ChampionService) {

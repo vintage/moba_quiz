@@ -79,7 +79,12 @@ export class GamePage {
         });
       });
 
+      component.answerValid.subscribe(() => {
+        this.playSound('sfx/choice_valid.mp3');
+      });
+
       component.answerInvalid.subscribe(() => {
+        this.playSound('sfx/choice_invalid.wav');
         navigator.vibrate(1000);
         this.isPerfect = false;
         this.gameplay.invalidMove();
@@ -96,9 +101,13 @@ export class GamePage {
   }
 
   finishGame() {
-    //let currentView = this.nav.last();
-    //
-    //this.nav.remove(currentView.index);
     this.nav.push(ScoreSubmitPage);
+  }
+
+  playSound(src:string) {
+    if(window.cordova) {
+      let sfx = new Media(src);
+      sfx.play();
+    }
   }
 }
