@@ -11,11 +11,14 @@ module.exports = {
       dest: 'www/build/css',
       include: [
         'node_modules/ionic-framework',
-        //'node_modules/ionicons/dist/scss'
+        'node_modules/ionicons/dist/scss'
       ]
     },
     fonts: {
-      src: ['node_modules/ionic-framework/fonts/**/*.ttf'],
+      src: [
+        'www/fonts/**/*.+(ttf|woff|woff2)',
+        'node_modules/ionic-framework/fonts/**/*.+(ttf|woff|woff2)'
+      ],
       dest: "www/build/fonts"
     },
     watch: {

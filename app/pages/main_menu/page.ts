@@ -41,7 +41,7 @@ export class MainMenuPage {
   }
 
   openRating() {
-    this.platform.ready().then(() => {
+    if(window.cordova) {
       var marketUrl = null;
 
       if (this.platform.is('ios')) {
@@ -57,16 +57,16 @@ export class MainMenuPage {
       if (marketUrl) {
         window.open(marketUrl);
       }
-    });
+    }
   }
 
   openContact() {
-    this.platform.ready().then(() => {
+    if(window.cordova) {
       cordova.plugins.email.isAvailable(function(isAvailable) {
         if (isAvailable) {
           cordova.plugins.email.open();
         }
       });
-    });
+    }
   }
 }
