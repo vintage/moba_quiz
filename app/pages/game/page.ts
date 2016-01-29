@@ -54,9 +54,14 @@ export class GamePage {
       let alert = Alert.create({
         title: '+' + this.gameplay.getLevelPoints() + ' points'
       });
+
+      // Workaround for disabling alert dismissing
+      let alertDismiss = alert.dismiss;
+      alert.dismiss = function() {};
       this.nav.present(alert);
 
       setTimeout(() => {
+        alert.dismiss = alertDismiss;
         alert.dismiss(null);
         resolve(true);
       }, 1000);
