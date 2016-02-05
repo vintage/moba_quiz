@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "angular2": "2.0.0-beta.1",
+    "angular2": "2.0.0-beta.2",
     "es6-promise": "3.0.2",
     "es6-shim": "0.33.13",
-    "ionic-framework": "2.0.0-alpha.52",
+    "ionic-framework": "2.0.0-alpha.54",
     "ionicons": "^3.0.0-alpha.3",
     "lodash": "^4.0.1",
     "reflect-metadata": "0.1.2",
@@ -33,7 +33,10 @@
   ],
   "cordovaPlatforms": [
     "ios",
-    "android",
+    {
+      "platform": "android",
+      "locator": "browser"
+    },
     "wp8"
   ]
 }
