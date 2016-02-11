@@ -1,4 +1,4 @@
-import {Storage, SqlStorage} from 'ionic-framework/ionic'
+import {Storage, LocalStorage} from 'ionic-framework/ionic'
 
 import {sample} from 'lodash';
 
@@ -18,7 +18,7 @@ export class GameplayService {
   private timeLimitUpdateInterval = 5;
 
   constructor() {
-    this.storage = new Storage(SqlStorage);
+    this.storage = new Storage(LocalStorage);
 
     this.restart();
   }

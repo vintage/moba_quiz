@@ -72,6 +72,7 @@ export class GamePage {
     this.isPerfect = true;
     this.gameType = this.gameTypeService.getAny();
     this.dcl.loadIntoLocation(this.gameType.component, this.elementRef, 'child').then((componentRef) => {
+      componentRef.location.nativeElement.className += this.gameType.name;
       let component = componentRef.instance;
 
       component.questionFinished.subscribe(() => {

@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.resolve('www/build/js'),
     filename: 'app.bundle.js',
-    pathinfo: false // show module paths in the bundle, handy for debugging
+    pathinfo: true // show module paths in the bundle, handy for debugging
   },
   module: {
     loaders: [

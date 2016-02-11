@@ -25,6 +25,10 @@ export class ChampionModel {
   getImageSource() {
     return "data/images/champions/" + this.id + "/" + this.image[0];
   }
+
+  getBigImage() {
+    return "data/images/champions/" + this.id + "/" + this.image[1];
+  }
 }
 
 export class SkillModel {

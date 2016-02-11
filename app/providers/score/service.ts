@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
-import {Storage, SqlStorage} from 'ionic-framework/ionic'
+import {Storage, LocalStorage} from 'ionic-framework/ionic'
 
 import {ScoreModel} from './model';
 
@@ -8,7 +8,7 @@ import {ScoreModel} from './model';
 export class ScoreService {
   constructor(http: Http) {
     this.http = http;
-    this.storage = new Storage(SqlStorage);
+    this.storage = new Storage(LocalStorage);
   }
 
   create(player: string, score: number, country:string) {
