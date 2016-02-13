@@ -3,7 +3,7 @@ import {Button} from 'ionic-framework/ionic';
 
 @Component({
   selector: 'answer-button',
-  template: '<button full dark (click)="onClick()">{{ value }}</button>',
+  templateUrl: 'build/pages/game/answer_button/template.html',
   directives: [Button],
   inputs: ['value'],
   outputs: ['picked'],

@@ -1,15 +1,18 @@
 .game-stats {
-  progress::-moz-progress-bar { background: blue; }
-  progress::-webkit-progress-value { background: blue; }
+  $progress-color: map-get($colors, danger);
+
+  progress::-moz-progress-bar { background: $progress-color; }
+  progress::-webkit-progress-value { background: $progress-color; }
 
   progress {
     display: block;
     width: 100%;
-    background: blue;
-    color: blue;
+    background: $progress-color;
+    color: $progress-color;
   }
 
   .points-bar {
+    color: yellow;
     font-size: 20px;
   }
 

@@ -37,10 +37,29 @@ body {
 
 .panel-box {
   background-color: rgb(18, 27, 38);
-  background-color: rgba(18, 27, 38, 0.6);
+  background-color: rgba(18, 27, 38, 0.9);
+}
+
+.champion-avatar-background {
+  overflow:hidden;
+  position:absolute;
+  top: 0;
+  z-index: -99;
+  width: 100%;
+  height: 100%;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+scroll-content {
+  background: url('/img/background.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
 }
 
 @import "pages/main_menu/page";
 @import "pages/game/stats/style";
 @import "pages/game/slot/style";
-@import "pages/game/types/champion_skills/style";

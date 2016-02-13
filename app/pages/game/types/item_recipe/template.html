@@ -1,18 +1,15 @@
 <ion-row>
   <ion-col>
-    <game-slot [item]="answers[0]"></game-slot>
-  </ion-col>
-  <ion-col>
     <div class="align-center">
       <img #questionImage [src]="question.getImageSource()" class="question-image">
     </div>
   </ion-col>
-  <ion-col>
-    <game-slot [item]="answers[4]"></game-slot>
-  </ion-col>
 </ion-row>
 
 <ion-row>
+  <ion-col>
+    <game-slot [item]="answers[0]"></game-slot>
+  </ion-col>
   <ion-col>
     <game-slot [item]="answers[1]"></game-slot>
   </ion-col>
@@ -22,9 +19,12 @@
   <ion-col>
     <game-slot [item]="answers[3]"></game-slot>
   </ion-col>
+  <ion-col>
+    <game-slot [item]="answers[4]"></game-slot>
+  </ion-col>
 </ion-row>
 
-<div *ngIf="choices">
+<div *ngIf="choices" class="panel-box">
   <ion-row>
     <ion-col>
       <game-slot [item]="choices[0]" (picked)="onItemPicked($event)"></game-slot>

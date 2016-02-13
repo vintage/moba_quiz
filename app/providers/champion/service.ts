@@ -22,7 +22,7 @@ export class ChampionService {
       this.http.get('data/champions.json').subscribe(res => {
         this.champions = [];
         this.skills = [];
-        
+
         let json = res.json();
         json.map(champJson => {
           let champion = new ChampionModel(champJson);
@@ -85,7 +85,7 @@ export class SkillService {
     var valid = this.getValidComponents(skill);
     var invalid = this.getInvalidComponents(skill);
 
-    var components = valid.concat(invalid.slice(0, 6 - valid.length));
+    var components = valid.concat(invalid.slice(0, 9 - valid.length));
     return components;
   }
 
