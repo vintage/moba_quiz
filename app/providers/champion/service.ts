@@ -43,7 +43,7 @@ export class ChampionService {
   }
 
   getComponents(champion: ChampionModel) {
-    var valid = this.getValidComponents(champion);
+    var valid = this.getValidComponents(champion).slice(0, 5);
     var invalid = this.getInvalidComponents(champion);
 
     var components = valid.concat(invalid.slice(0, 12 - valid.length));
