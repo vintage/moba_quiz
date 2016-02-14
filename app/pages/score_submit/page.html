@@ -16,10 +16,11 @@
   <div class="panel-box">
     <ion-row center *ngIf="score > 0">
       <ion-col>
-        <ion-input>
-          <input maxlength="16" type="text" placeholder="Player name" [(ngModel)]="playerName">
-        </ion-input>
+        <ion-item>
+          <ion-input maxlength="16" type="text" placholder="Player name" [(ngModel)]="playerName"></ion-input>
+        </ion-item>
       </ion-col>
+
       <ion-col>
         <span (click)="showCountryList()">
           <img *ngIf="country" src="{{ country.getImageSource() }}" />

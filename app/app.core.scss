@@ -53,11 +53,23 @@ body {
   background-position: center;
 }
 
-scroll-content {
+ion-content {
   background: url('/img/background.jpg');
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
+}
+
+.alert-wrapper {
+  color: yellow;
+  background-color: rgb(18, 27, 38);
+  background-color: rgba(18, 27, 38, 0.9);
+}
+
+ion-alert.single-line {
+  .alert-title {
+    margin: 8px 0;
+  }
 }
 
 @import "pages/main_menu/page";
