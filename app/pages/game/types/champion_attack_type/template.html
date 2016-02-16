@@ -1,4 +1,4 @@
-<div class="champion-avatar-background" style="background-image: url({{ question.getBigImage() }})">
+<div class="champion-avatar-background" [ngStyle]="{'background-image': 'url(' + question.getBigImage() + ')'}">
 </div>
 
 <ion-row>
