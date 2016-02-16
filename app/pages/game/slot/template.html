@@ -1,6 +1,6 @@
-<div class="align-center question-slot">
+<button clear class="align-center question-slot" (click)="onClick()">
   <div class="background">
 
   </div>
-  <img *ngIf="item" [src]="item.getImageSource()" (click)="onClick()" class="image">
-</div>
+  <img *ngIf="item" [src]="item.getImageSource()" class="image">
+</button>

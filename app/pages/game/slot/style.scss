@@ -1,4 +1,7 @@
 .question-slot {
+  background-color: transparent;
+  cursor: default;
+  display: block;
   position: relative;
   margin: 0 auto;
   width: 60px;
@@ -16,8 +19,8 @@
 
   .background {
     position: absolute;
-    top: 2;
-    left: 2;
+    top: 0;
+    left: 0;
     z-index: 0;
 
     width: 64px;
