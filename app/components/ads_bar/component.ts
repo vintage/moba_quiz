@@ -1,14 +1,14 @@
-import {Component} from 'angular2/core';
+import {Component} from "angular2/core";
 
 @Component({
-  selector: 'ads-bar',
-  template: ''
+  selector: "ads-bar",
+  template: ""
 })
 export class AdsBar {
   constructor() {
-    var admobid = {
-      banner: 'ca-app-pub-4764697513834958/3928703662',
-      interstitial: 'ca-app-pub-4764697513834958/8725226061'
+    let admobid = {
+      banner: "ca-app-pub-4764697513834958/3928703662",
+      interstitial: "ca-app-pub-4764697513834958/8725226061"
     };
 
     // TODO: Move configuration to some settings file
