@@ -8,6 +8,8 @@ import {CountryService} from './providers/country/service';
 import {ScoreService} from './providers/score/service';
 
 import {MainMenuPage} from './pages/main_menu/page';
+//import {enableProdMode} from 'angular2/core';
+//enableProdMode();
 
 @App({
   templateUrl: 'build/app.html',

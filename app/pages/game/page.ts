@@ -52,17 +52,14 @@ export class GamePage {
     return new Promise(resolve => {
       // TODO: Ensure that alert can't be closed manually (clicking on the background)
       let alert = Alert.create({
-        title: '+ ' + this.gameplay.getLevelPoints() + ' points'
+        title: '+ ' + this.gameplay.getLevelPoints() + ' points',
+        enableBackdropDismiss: false
       });
       alert.setCssClass('single-line');
 
-      // Workaround for disabling alert dismissing
-      let alertDismiss = alert.dismiss;
-      alert.dismiss = function() {};
       this.nav.present(alert);
 
       setTimeout(() => {
-        alert.dismiss = alertDismiss;
         alert.dismiss(null);
         resolve(true);
       }, 1000);
@@ -112,7 +109,7 @@ export class GamePage {
   }
 
   playSound(src:string) {
-    if(window.cordova) {
+    if(window.Media) {
       let sfx = new Media(src);
       sfx.play();
     }

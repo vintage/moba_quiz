@@ -14,6 +14,8 @@ export class Slot {
   picked = new EventEmitter();
 
   onClick() {
-    this.picked.emit(this.item);
+    if(this.item) {
+      this.picked.emit(this.item);
+    }
   }
 }

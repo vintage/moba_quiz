@@ -17,18 +17,20 @@
   <script src="build/js/app.bundle.js"></script>
 
   <script type="text/javascript">
-    document.addEventListener("deviceready", function() {
-      window.backgroundMusic = new Media('sfx/background.mp3');
-      window.backgroundMusic.play();
-    }, false);
+    if(window.Media) {
+      document.addEventListener("deviceready", function() {
+        window.backgroundMusic = new Media('sfx/background.mp3');
+        window.backgroundMusic.play();
+      }, false);
 
-    document.addEventListener("pause", function() {
-      window.backgroundMusic.pause();
-    }, false);
+      document.addEventListener("pause", function() {
+        window.backgroundMusic.pause();
+      }, false);
 
-    document.addEventListener("resume", function() {
-      window.backgroundMusic.play();
-    }, false);
+      document.addEventListener("resume", function() {
+        window.backgroundMusic.play();
+      }, false);
+    }
   </script>
 </body>
 </html>
