@@ -66,12 +66,6 @@ ion-content {
   background-color: rgba(18, 27, 38, 0.9);
 }
 
-ion-alert.single-line {
-  .alert-title {
-    margin: 8px 0;
-  }
-}
-
 @import "pages/main_menu/page";
 @import "pages/game/stats/style";
 @import "pages/game/slot/style";

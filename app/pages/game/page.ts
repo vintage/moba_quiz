@@ -55,14 +55,13 @@ export class GamePage {
         title: '+ ' + this.gameplay.getLevelPoints() + ' points',
         enableBackdropDismiss: false
       });
-      alert.setCssClass('single-line');
 
       this.nav.present(alert);
 
       setTimeout(() => {
         alert.dismiss(null);
         resolve(true);
-      }, 1000);
+      }, 10000);
     });
   }
 
