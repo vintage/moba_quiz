@@ -1,59 +1,92 @@
-import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
-import {Storage, LocalStorage} from 'ionic-framework/ionic'
+import {Injectable} from "angular2/core";
+import {Http, Headers} from "angular2/http";
+import {Storage, LocalStorage} from "ionic-framework/ionic";
 
-import {ScoreModel} from './model';
+import {ScoreModel} from "./model";
 
 @Injectable()
 export class ScoreService {
+  API_URL: string = "http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/lol/scores/";
+  http: Http;
+  storage: Storage;
+
   constructor(http: Http) {
     this.http = http;
     this.storage = new Storage(LocalStorage);
   }
 
-  create(player: string, score: number, country:string) {
+  hashObject(obj) {
+    let keys = Object.keys(obj).sort();
+    let output = [], prop;
+    for (let i = 0; i < keys.length; i++) {
+      prop = keys[i];
+      output.push(prop);
+      output.push(obj[prop]);
+    }
+
+    return JSON.stringify(output);
+  }
+
+  create(player: string, score: number, country: string) {
+    let data = {
+      "player_name": player,
+      "value": score,
+      "country_code": country,
+      "platform": "ios"
+    };
+    data["hash"] = window.CryptoJS.SHA1(this.hashObject(data)).toString();
+
     return new Promise(resolve => {
-      GJAPI.ScoreAddGuest (0, score, score, player, "country=" + country, (data) => {
-        if(data['success'] == 'true' || data['success'] == true) {
-          resolve(true);
-        }
-        else {
-          resolve(false);
-        }
+      let headers = new Headers();
+      headers.append("Content-Type", "application/json");
+
+      this.http.post(
+        this.API_URL, JSON.stringify(data), {headers: headers}
+      ).subscribe(res => {
+        // FIXME: res.ok in angular.beta7
+        resolve(res.status > 200 && res.status < 300);
       });
     });
   }
 
-  getAll() {
+  list(mode: string) {
     return new Promise(resolve => {
-      GJAPI.ScoreFetch (0, false, 100, (data) => {
+      this.http.get(this.API_URL + "?mode=" + mode).subscribe(res => {
         let scores = [];
-        data["scores"].map(scoreObj => {
-          scores.push(new ScoreModel(
-            scoreObj['guest'],
-            scoreObj['score'],
-            scoreObj['extra_data'].replace("country=", "")
-          ));
-        })
+
+        let json = res.json();
+        json.map(scoreJson => {
+          let score = new ScoreModel(scoreJson);
+          scores.push(score);
+        });
+
         resolve(scores);
       });
     });
   }
 
+  getAll() {
+    return this.list("all");
+  }
+
+  getDaily() {
+    return this.list("daily");
+  }
+
   getMonthly() {
-    return this.getAll();
+    return this.list("monthly");
   }
 
   getWeekly() {
-    return this.getAll();
+    return this.list("weekly");
   }
 
   setBestScore(score: number) {
-    return this.storage.set('best_score', score);
+    return this.storage.set("best_score", score);
   }
 
   getBestScore() {
-    return this.storage.get('best_score').then(bestScore => {
+    return this.storage.get("best_score").then(bestScore => {
       return parseInt(bestScore) || 0;
     });
   }

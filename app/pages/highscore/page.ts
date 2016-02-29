@@ -1,19 +1,20 @@
-import {OnInit} from 'angular2/core';
-import {Button, Page, NavController, Platform} from 'ionic-framework/ionic';
+import {OnInit} from "angular2/core";
+import {Button, Page, NavController, Platform} from "ionic-framework/ionic";
 
 import {ScoreService} from "../../providers/score/service";
 import {ScoreModel} from "../../providers/score/model";
 
 @Page({
-  templateUrl: 'build/pages/highscore/highscore_list.html',
+  templateUrl: "build/pages/highscore/highscore_list.html",
 })
 class HighscoreGeneralPage implements OnInit {
   title: string;
   scores: ScoreModel[];
+  score: ScoreService;
 
   constructor(scoreService: ScoreService) {
     this.score = scoreService;
-    this.title = 'General';
+    this.title = "General";
   }
 
   ngOnInit() {
@@ -24,14 +25,16 @@ class HighscoreGeneralPage implements OnInit {
 }
 
 @Page({
-  templateUrl: 'build/pages/highscore/highscore_list.html',
+  templateUrl: "build/pages/highscore/highscore_list.html",
 })
 class HighscoreMonthlyPage implements OnInit {
   title: string;
+  scores: ScoreModel[];
+  score: ScoreService;
 
   constructor(scoreService: ScoreService) {
     this.score = scoreService;
-    this.title = 'Monthly';
+    this.title = "Monthly";
   }
 
   ngOnInit() {
@@ -42,15 +45,16 @@ class HighscoreMonthlyPage implements OnInit {
 }
 
 @Page({
-  templateUrl: 'build/pages/highscore/highscore_list.html',
+  templateUrl: "build/pages/highscore/highscore_list.html",
 })
 class HighscoreWeeklyPage implements OnInit {
   title: string;
   scores: ScoreModel[];
+  score: ScoreService;
 
   constructor(scoreService: ScoreService) {
     this.score = scoreService;
-    this.title = 'Weekly';
+    this.title = "Weekly";
   }
 
   ngOnInit() {
@@ -61,7 +65,27 @@ class HighscoreWeeklyPage implements OnInit {
 }
 
 @Page({
-  templateUrl: 'build/pages/highscore/page.html',
+  templateUrl: "build/pages/highscore/highscore_list.html",
+})
+class HighscoreDailyPage implements OnInit {
+  title: string;
+  scores: ScoreModel[];
+  score: ScoreService;
+
+  constructor(scoreService: ScoreService) {
+    this.score = scoreService;
+    this.title = "Daily";
+  }
+
+  ngOnInit() {
+    this.score.getDaily().then(scores => {
+      this.scores = scores;
+    });
+  }
+}
+
+@Page({
+  templateUrl: "build/pages/highscore/page.html",
   directives: [Button]
 })
 export class HighscorePage {
@@ -70,8 +94,9 @@ export class HighscorePage {
     this.platform = platform;
     this.scoreService = scoreService;
 
-    this.monthlyTab = HighscoreMonthlyPage;
+    this.dailyTab = HighscoreDailyPage;
     this.weeklyTab = HighscoreWeeklyPage;
+    this.monthlyTab = HighscoreMonthlyPage;
     this.generalTab = HighscoreGeneralPage;
   }
 }

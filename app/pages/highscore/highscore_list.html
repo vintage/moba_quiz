@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="scores && scores.length">
     <ion-item *ngFor="#score of scores">
       <ion-thumbnail item-left>
         <img src="{{ score.getImageSource() }}">
@@ -9,4 +9,16 @@
       <p>{{ score.player|slice:0:16 }}</p>
     </ion-item>
   </ion-list>
+
+  <ion-card *ngIf="scores && !scores.length">
+    <ion-card-header>
+      Good news,
+    </ion-card-header>
+
+    <ion-card-content>
+      It seems there are no score for this leaderboard.
+      Play your <b>first game</b> and be the best one!
+    </ion-card-content>
+
+  </ion-card>
 </ion-content>

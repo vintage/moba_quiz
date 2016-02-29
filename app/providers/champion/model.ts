@@ -9,14 +9,13 @@ export class ChampionModel {
   public skills: SkillModel[];
 
   constructor(json: Object) {
-    this.id = json.id;
-    this.name = json.name;
-    this.image = json.image;
-    this.is_range = json.is_range;
+    this.id = get(json, "id");
+    this.name = get(json, "name");
+    this.image = get(json, "image");
+    this.is_range = get(json, "is_range");
     this.skills = [];
 
-    let spells = get(json, 'spells', []);
-
+    let spells = get(json, "spells", []);
     for (let spell of spells) {
       this.skills.push(new SkillModel(spell, this.id));
     }
@@ -38,9 +37,9 @@ export class SkillModel {
   private image: string;
 
   constructor(json: Object, championId: string) {
-    this.id = json.id;
-    this.name = json.name;
-    this.image = json.image;
+    this.id = get(json, "id");
+    this.name = get(json, "name");
+    this.image = get(json, "image");
     this.championId = championId;
   }
 

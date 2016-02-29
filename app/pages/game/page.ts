@@ -61,7 +61,7 @@ export class GamePage {
       setTimeout(() => {
         alert.dismiss(null);
         resolve(true);
-      }, 10000);
+      }, 1000);
     });
   }
 

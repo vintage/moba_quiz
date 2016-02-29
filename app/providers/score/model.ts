@@ -1,16 +1,20 @@
+import {get} from 'lodash';
+
 export class ScoreModel {
   public player: string;
-  public score: string;
+  public score: number;
   public flag: string;
+  public platform: string;
 
-  constructor(player: string, score: string, flag: string) {
-    this.player = player;
-    this.score = parseInt(score.toString());
-    this.flag = flag;
+  constructor(json: Object) {
+    this.player = get(json, "player_name");
+    this.score = parseInt(get(json, "value"));
+    this.flag = get(json, "country_code");
+    this.platform = get(json, "platform");
   }
 
   getImageSource() {
-    if(this.flag && this.flag.length == 2) {
+    if (this.flag && this.flag.length === 2) {
       return "img/flags/" + this.flag + ".png";
     }
     else {
