@@ -14,8 +14,8 @@ export class AdsBar {
     // TODO: Move configuration to some settings file
     // TODO: Separate ads unit per platform WP/Android/iOS
 
-    if(window.cordova) {
-      AdMob.createBanner({
+    if(window.AdMob) {
+      window.AdMob.createBanner({
         adId: admobid.banner,
         position: AdMob.AD_POSITION.BOTTOM_CENTER,
         autoShow: true

@@ -1,8 +1,8 @@
-import {Page, NavController, Alert} from 'ionic-framework/ionic';
-import {DynamicComponentLoader, ElementRef} from 'angular2/core';
+import {Page, NavController, Alert} from "ionic-framework/ionic";
+import {DynamicComponentLoader, ElementRef} from "angular2/core";
 
 import {ItemService} from "../../providers/item/service";
-import {ChampionService} from '../../providers/champion/service';
+import {ChampionService} from "../../providers/champion/service";
 import {GameplayService} from "../../providers/gameplay/service";
 
 import {Stats} from "./stats/component";
@@ -12,15 +12,18 @@ import {ScoreSubmitPage} from "../score_submit/page";
 import {AdsBar} from "../../components/ads_bar/component";
 
 @Page({
-  templateUrl: 'build/pages/game/page.html',
+  templateUrl: "build/pages/game/page.html",
   directives: [Stats, AdsBar],
   providers: [GameTypeService],
-  inputs: ['question']
+  inputs: ["question"]
 })
 export class GamePage {
   public gameType: GameTypeModel;
-  public isPerfect:boolean;
-  public isLocked:boolean;
+  public gameTypeService: GameTypeService;
+  public gameplay: GameplayService;
+
+  public isPerfect: boolean;
+  public isLocked: boolean;
 
   constructor(
       nav: NavController,
@@ -50,9 +53,9 @@ export class GamePage {
 
   openLevelStats() {
     return new Promise(resolve => {
-      // TODO: Ensure that alert can't be closed manually (clicking on the background)
+      // TODO: Ensure that alert can"t be closed manually (clicking on the background)
       let alert = Alert.create({
-        title: '+ ' + this.gameplay.getLevelPoints() + ' points',
+        title: "+ " + this.gameplay.getLevelPoints() + " points",
         enableBackdropDismiss: false
       });
 
@@ -68,7 +71,7 @@ export class GamePage {
   openLevel() {
     this.isPerfect = true;
     this.gameType = this.gameTypeService.getAny();
-    this.dcl.loadIntoLocation(this.gameType.component, this.elementRef, 'child').then((componentRef) => {
+    this.dcl.loadIntoLocation(this.gameType.component, this.elementRef, "child").then((componentRef) => {
       componentRef.location.nativeElement.className += this.gameType.name;
       let component = componentRef.instance;
 
@@ -83,12 +86,16 @@ export class GamePage {
       });
 
       component.answerValid.subscribe(() => {
-        this.playSound('sfx/choice_valid.mp3');
+        this.playSound("sfx/choice_valid.mp3");
       });
 
       component.answerInvalid.subscribe(() => {
-        this.playSound('sfx/choice_invalid.wav');
-        navigator.vibrate(1000);
+        this.playSound("sfx/choice_invalid.wav");
+
+        if (window.navigator.vibrate) {
+          window.navigator.vibrate(1000);
+        }
+
         this.isPerfect = false;
         this.gameplay.invalidMove();
 
@@ -107,8 +114,8 @@ export class GamePage {
     this.nav.push(ScoreSubmitPage);
   }
 
-  playSound(src:string) {
-    if(window.Media) {
+  playSound(src: string) {
+    if (window.Media) {
       let sfx = new Media(src);
       sfx.play();
     }

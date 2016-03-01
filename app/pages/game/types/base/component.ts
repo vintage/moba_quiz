@@ -1,5 +1,5 @@
-import {OnInit, EventEmitter} from 'angular2/core';
-import {shuffle} from 'lodash';
+import {OnInit, EventEmitter} from "angular2/core";
+import {shuffle} from "lodash";
 
 export class BaseGame implements OnInit {
   answerInvalid = new EventEmitter();
@@ -20,7 +20,7 @@ export class BaseGame implements OnInit {
   }
 
   getAnswers(question: any) {
-
+    return [];
   }
 
   getChoices(question: any) {
@@ -30,11 +30,9 @@ export class BaseGame implements OnInit {
   initializeGame() {
     this.question = this.getQuestion();
 
-    answers = this.getAnswers(this.question);
-
     this.answers = [];
     this.answersLeft = [];
-    for (let answer of answers) {
+    for (let answer of this.getAnswers(this.question)) {
       this.answers.push(null);
       this.answersLeft.push(answer);
     }
@@ -44,7 +42,7 @@ export class BaseGame implements OnInit {
 
   choiceValid(item: any) {
     let free_slot = this.answers.indexOf(null);
-    if (free_slot != -1) {
+    if (free_slot !== -1) {
       this.answers[free_slot] = item;
     }
 
@@ -56,11 +54,11 @@ export class BaseGame implements OnInit {
   }
 
   isValid(item: any) {
-    return this.answersLeft.indexOf(item) != -1;
+    return this.answersLeft.indexOf(item) !== -1;
   }
 
   isFinished() {
-    return this.answersLeft.length == 0;
+    return this.answersLeft.length === 0;
   }
 
   onItemPicked(item: any) {
@@ -68,7 +66,7 @@ export class BaseGame implements OnInit {
       return;
     }
 
-    let is_valid: bool = this.isValid(item);
+    let is_valid: boolean = this.isValid(item);
 
     if (is_valid) {
       let position = this.answersLeft.indexOf(item);
