@@ -1,5 +1,5 @@
 import {Component, EventEmitter} from 'angular2/core';
-import {Button} from 'ionic-framework/ionic';
+import {Button} from 'ionic-angular';
 import {random, sample} from 'lodash';
 
 import {ItemService} from "../../../../providers/item/service";

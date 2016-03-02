@@ -1,4 +1,4 @@
-import {Page, NavController, Alert} from "ionic-framework/ionic";
+import {Page, NavController, Alert} from "ionic-angular";
 import {DynamicComponentLoader, ElementRef} from "angular2/core";
 
 import {ItemService} from "../../providers/item/service";

@@ -1,4 +1,4 @@
-import {Storage, LocalStorage} from 'ionic-framework/ionic'
+import {Storage, LocalStorage} from 'ionic-angular'
 
 import {sample} from 'lodash';
 

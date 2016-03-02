@@ -1,6 +1,6 @@
 import {Injectable} from "angular2/core";
 import {Http, Headers} from "angular2/http";
-import {Storage, LocalStorage} from "ionic-framework/ionic";
+import {Storage, LocalStorage} from "ionic-angular";
 
 import {ScoreModel} from "./model";
 

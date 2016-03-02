@@ -1,5 +1,5 @@
 import {HTTP_PROVIDERS} from 'angular2/http';
-import {App, IonicApp, Platform} from 'ionic-framework/ionic';
+import {App, IonicApp, Platform} from 'ionic-angular';
 
 import {ItemService} from './providers/item/service';
 import {ChampionService, SkillService} from './providers/champion/service';

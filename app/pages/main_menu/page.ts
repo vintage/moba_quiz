@@ -1,5 +1,5 @@
 import {OnInit} from 'angular2/core';
-import {Button, Page, NavController, Platform} from 'ionic-framework/ionic';
+import {Button, Page, NavController, Platform} from 'ionic-angular';
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {ScoreService} from "../../providers/score/service";
