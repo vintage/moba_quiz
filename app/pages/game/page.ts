@@ -4,6 +4,7 @@ import {DynamicComponentLoader, ElementRef} from "angular2/core";
 import {ItemService} from "../../providers/item/service";
 import {ChampionService} from "../../providers/champion/service";
 import {GameplayService} from "../../providers/gameplay/service";
+import {AdService} from "../../providers/ads/service";
 
 import {Stats} from "./stats/component";
 import {GameTypeService} from "./types/service";
@@ -20,7 +21,9 @@ export class GamePage {
   public gameType: GameTypeModel;
   public gameTypeService: GameTypeService;
   public gameplay: GameplayService;
+  public ads: AdService;
 
+  public showAd: boolean;
   public isPerfect: boolean;
   public isLocked: boolean;
 
@@ -31,7 +34,8 @@ export class GamePage {
       gameplayService: GameplayService,
       itemService: ItemService,
       championService: ChampionService,
-      gameTypeService: GameTypeService
+      gameTypeService: GameTypeService,
+      ads: AdService
   ) {
     this.nav = nav;
     this.dcl = dcl;
@@ -39,8 +43,17 @@ export class GamePage {
 
     this.gameplay = gameplayService;
     this.gameTypeService = gameTypeService;
+    this.ads = ads;
 
     this.isLocked = false;
+    this.showAd = false;
+
+    this.gameplay.getTimesPlayed().then((timesPlayed) => {
+      if (timesPlayed === 3 || timesPlayed % 10 === 0) {
+        this.showAd = true;
+        this.ads.prepareFullScreen();
+      }
+    });
 
     itemService.load().then(() => {
       championService.load().then(() => {
@@ -98,7 +111,7 @@ export class GamePage {
         this.isPerfect = false;
         this.gameplay.invalidMove();
 
-        if(this.gameplay.isOver()) {
+        if (this.gameplay.isOver()) {
           this.finishGame();
         }
       });
@@ -110,6 +123,10 @@ export class GamePage {
   }
 
   finishGame() {
+    if (this.showAd) {
+      this.ads.showFullScreen();
+    }
+
     this.nav.push(ScoreSubmitPage);
   }
 
