@@ -9,11 +9,10 @@ import {Stats} from "./stats/component";
 import {GameTypeService} from "./types/service";
 import {GameTypeModel} from "./types/model";
 import {ScoreSubmitPage} from "../score_submit/page";
-import {AdsBar} from "../../components/ads_bar/component";
 
 @Page({
   templateUrl: "build/pages/game/page.html",
-  directives: [Stats, AdsBar],
+  directives: [Stats],
   providers: [GameTypeService],
   inputs: ["question"]
 })
