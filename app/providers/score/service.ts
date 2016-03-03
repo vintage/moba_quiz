@@ -24,7 +24,7 @@ export class ScoreService {
       output.push(obj[prop]);
     }
 
-    return JSON.stringify(output);
+    return JSON.stringify(output).toLowerCase().replace(/[^a-z0-9]/gi, "");
   }
 
   create(player: string, score: number, country: string) {
