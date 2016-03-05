@@ -11,76 +11,87 @@ class HighscoreGeneralPage implements OnInit {
   title: string;
   scores: ScoreModel[];
   score: ScoreService;
+  platform: Platform;
+  isOnline: boolean;
 
-  constructor(scoreService: ScoreService) {
+  constructor(scoreService: ScoreService, platform: Platform) {
     this.score = scoreService;
-    this.title = "General";
+    this.platform = platform;
   }
 
   ngOnInit() {
-    this.score.getAll().then(scores => {
-      this.scores = scores;
+    this.title = this.getTitle();
+    this.isOnline = true;
+
+    this.platform.ready().then(() => {
+      if (window.navigator.connection && window.navigator.connection.type === window.Connection.NONE) {
+        this.isOnline = false;
+      }
+      else {
+        this.getScores().then(scores => {
+          this.scores = scores;
+        });
+      }
     });
+  }
+
+  getScores() {
+    return this.score.getAll();
+  }
+
+  getTitle() {
+    return "General";
   }
 }
 
 @Page({
   templateUrl: "build/pages/highscore/highscore_list.html",
 })
-class HighscoreMonthlyPage implements OnInit {
-  title: string;
-  scores: ScoreModel[];
-  score: ScoreService;
-
-  constructor(scoreService: ScoreService) {
-    this.score = scoreService;
-    this.title = "Monthly";
+class HighscoreMonthlyPage extends HighscoreGeneralPage {
+  constructor(scoreService: ScoreService, platform: Platform) {
+    super(scoreService, platform);
   }
 
-  ngOnInit() {
-    this.score.getMonthly().then(scores => {
-      this.scores = scores;
-    });
+  getScores() {
+    return this.score.getMonthly();
+  }
+
+  getTitle() {
+    return "Monthly";
   }
 }
 
 @Page({
   templateUrl: "build/pages/highscore/highscore_list.html",
 })
-class HighscoreWeeklyPage implements OnInit {
-  title: string;
-  scores: ScoreModel[];
-  score: ScoreService;
-
-  constructor(scoreService: ScoreService) {
-    this.score = scoreService;
-    this.title = "Weekly";
+class HighscoreWeeklyPage extends HighscoreGeneralPage {
+  constructor(scoreService: ScoreService, platform: Platform) {
+    super(scoreService, platform);
   }
 
-  ngOnInit() {
-    this.score.getWeekly().then(scores => {
-      this.scores = scores;
-    });
+  getScores() {
+    return this.score.getWeekly();
+  }
+
+  getTitle() {
+    return "Weekly";
   }
 }
 
 @Page({
   templateUrl: "build/pages/highscore/highscore_list.html",
 })
-class HighscoreDailyPage implements OnInit {
-  title: string;
-  scores: ScoreModel[];
-  score: ScoreService;
-
-  constructor(scoreService: ScoreService) {
-    this.score = scoreService;
-    this.title = "Daily";
+class HighscoreDailyPage extends HighscoreGeneralPage {
+  constructor(scoreService: ScoreService, platform: Platform) {
+    super(scoreService, platform);
   }
 
-  ngOnInit() {
-    this.score.getDaily().then(scores => {
-      this.scores = scores;
-    });
+  getScores() {
+    return this.score.getDaily();
+  }
+
+  getTitle() {
+    return "Daily";
   }
 }
 
@@ -89,6 +100,10 @@ class HighscoreDailyPage implements OnInit {
   directives: [Button]
 })
 export class HighscorePage {
+  nav: NavController;
+  platform: Platform;
+  scoreService: ScoreService;
+
   constructor(nav: NavController, scoreService: ScoreService, platform: Platform) {
     this.nav = nav;
     this.platform = platform;

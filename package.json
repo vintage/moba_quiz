@@ -28,7 +28,8 @@
     "cordova-plugin-email",
     "cordova-plugin-vibration",
     "cordova-plugin-admobpro",
-    "cordova-plugin-media"
+    "cordova-plugin-media",
+    "cordova-plugin-network-information"
   ],
   "cordovaPlatforms": [
     "ios",

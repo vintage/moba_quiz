@@ -1,5 +1,5 @@
-import {OnInit} from 'angular2/core';
-import {Button, Page, NavController, Alert} from 'ionic-angular';
+import {OnInit} from "angular2/core";
+import {Button, Page, NavController, Alert} from "ionic-angular";
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {CountryService} from "../../providers/country/service";
@@ -11,7 +11,7 @@ import {GamePage} from "../game/page";
 import {MainMenuPage} from "../main_menu/page";
 
 @Page({
-  templateUrl: 'build/pages/score_submit/page.html',
+  templateUrl: "build/pages/score_submit/page.html",
   directives: [Button]
 })
 export class ScoreSubmitPage implements OnInit {
@@ -42,7 +42,7 @@ export class ScoreSubmitPage implements OnInit {
   onPageWillEnter() {
     this.countryService.load().then(() => {
       this.countryService.getCurrent().then(country => {
-        this.country = country
+        this.country = country;
       });
     });
   }
@@ -60,21 +60,27 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   is_valid() {
-    let valid = true,
-      message = '';
-    if(!this.playerName) {
+    let valid = true;
+    let message = "";
+
+    if (!this.playerName) {
       valid = false;
-      message = 'You need to enter your player name to submit the score.';
+      message = "You need to enter your player name to submit the score.";
     }
-    else if(this.playerName.length > 16) {
+    else if (this.playerName.length > 16) {
       valid = false;
-      message = 'Player name can be 16 characters only.';
+      message = "Player name can be 16 characters only.";
     }
 
-    if(!valid) {
+    if (window.navigator.connection && window.navigator.connection.type === window.Connection.NONE) {
+      valid = false;
+      message = "Can't submit the score. Check your internet connection.";
+    }
+
+    if (!valid) {
       let alert = Alert.create({
         title: message,
-        buttons: ['OK']
+        buttons: ["OK"]
       });
       this.nav.present(alert);
     }
@@ -92,7 +98,7 @@ export class ScoreSubmitPage implements OnInit {
     }
 
     let countryID = "";
-    if(this.country) {
+    if (this.country) {
       countryID = this.country.id;
     }
 
@@ -106,11 +112,18 @@ export class ScoreSubmitPage implements OnInit {
       else {
         let alert = Alert.create({
           title: "Score hasn't been saved",
-          subTitle: 'Check your internet connection and try again.',
-          buttons: ['OK']
+          subTitle: "Check your internet connection and try again.",
+          buttons: ["OK"]
         });
         this.nav.present(alert);
       }
+    }).catch(() => {
+      let alert = Alert.create({
+        title: "Score hasn't been saved",
+        subTitle: "Check your internet connection and try again.",
+        buttons: ["OK"]
+      });
+      this.nav.present(alert);
     });
   }
 }
