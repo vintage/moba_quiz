@@ -1,5 +1,11 @@
 <ion-content style="background-image: url('img/background.jpg')">
   <div *ngIf="isOnline">
+    <ion-card *ngIf="!scores">
+      <ion-card-content>
+        <ion-spinner name="crescent"></ion-spinner>
+      </ion-card-content>
+    </ion-card>
+
     <ion-list *ngIf="scores && scores.length">
       <ion-item *ngFor="#score of scores">
         <ion-thumbnail item-left>
