@@ -1,8 +1,9 @@
-import {Storage, LocalStorage} from 'ionic-angular'
+import {Storage, LocalStorage} from "ionic-angular";
 
-import {sample} from 'lodash';
+import {sample} from "lodash";
 
 export class GameplayService {
+  public playerName: string;
   public points: number;
   public streak: number;
   public chances: number;
@@ -10,6 +11,7 @@ export class GameplayService {
   // Time is stored in ms
   public timeLimit: number;
   public timeLeft: number;
+  public storage: Storage;
 
   // Some configuration options. All of them should be marked as `private`.
   // Minimum amount of time given for providing answer
@@ -38,12 +40,12 @@ export class GameplayService {
 
   private updateTimesPlayed() {
     this.getTimesPlayed().then(timesPlayed => {
-      return this.storage.set('times_played', parseInt(timesPlayed) + 1);
+      return this.storage.set("times_played", parseInt(timesPlayed) + 1);
     });
   }
 
   public getTimesPlayed() {
-    return this.storage.get('times_played').then(timesPlayed => {
+    return this.storage.get("times_played").then(timesPlayed => {
       return parseInt(timesPlayed) || 0;
     });
   }
@@ -92,5 +94,21 @@ export class GameplayService {
 
   isOver() {
     return this.chances <= 0 || this.timeLeft <= 0;
+  }
+
+  setPlayerName(name: string) {
+    this.playerName = name;
+    this.storage.set("current_player", name);
+  }
+
+  getPlayerName() {
+    if (this.playerName) {
+      return Promise.resolve(this.playerName);
+    }
+
+    return this.storage.get("current_player").then(playerName => {
+      this.playerName = playerName;
+      return playerName;
+    });
   }
 }

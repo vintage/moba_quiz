@@ -15,6 +15,10 @@ import {MainMenuPage} from "../main_menu/page";
   directives: [Button]
 })
 export class ScoreSubmitPage implements OnInit {
+  gameplay: GameplayService;
+  scoreService: ScoreService;
+  countryService: CountryService;
+
   public country: CountryModel;
   public playerName: string;
   public isPending: boolean;
@@ -36,6 +40,10 @@ export class ScoreSubmitPage implements OnInit {
       if (this.score > bestScore) {
         this.scoreService.setBestScore(this.score);
       }
+    });
+
+    this.gameplay.getPlayerName().then(playerName => {
+      this.playerName = playerName;
     });
   }
 
@@ -96,6 +104,8 @@ export class ScoreSubmitPage implements OnInit {
     if (this.isPending) {
       return false;
     }
+
+    this.gameplay.setPlayerName(this.playerName);
 
     let countryID = "";
     if (this.country) {
