@@ -30,9 +30,15 @@
     </ion-row>
 
     <ion-row *ngIf="score > 0">
-      <ion-col>
-        <button *ngIf="!isSubmitted" block primary (click)="submitScore()" [disabled]="isPending">Submit</button>
+      <ion-col *ngIf="!isPending">
+        <button *ngIf="!isSubmitted" block primary (click)="submitScore()">Submit</button>
         <button *ngIf="isSubmitted" block primary disabled>Score submitted</button>
+      </ion-col>
+
+      <ion-col *ngIf="isPending">
+        <button block primary disabled>
+          <ion-spinner name="crescent"></ion-spinner>
+        </button>
       </ion-col>
     </ion-row>
 
