@@ -42,21 +42,19 @@ export class MainMenuPage {
   }
 
   openRating() {
-    if (window.cordova) {
-      let marketUrl = null;
+    let marketUrl = null;
 
-      if (this.platform.is("ios")) {
-        marketUrl = "itms-apps://itunes.apple.com/app/idYOUR_APP_ID";
-      }
-      else if (this.platform.is("android")) {
-        marketUrl = "market://details?id=com.YOUR.PACKAGENAME";
-      }
-      else if (this.platform.is("windowsphone")) {
-        marketUrl = "http://windowsphone.com/s?appId=c14e93aa-27d7-df11-a844-00237de2db9e";
-      }
-
-      window.open(marketUrl, "_blank", "location=yes");
+    if (this.platform.is("ios")) {
+      marketUrl = "itms-apps://itunes.apple.com/app/idYOUR_APP_ID";
     }
+    else if (this.platform.is("android")) {
+      marketUrl = "market://details?id=com.YOUR.PACKAGENAME";
+    }
+    else {
+      marketUrl = "http://windowsphone.com/s?appId=c14e93aa-27d7-df11-a844-00237de2db9e";
+    }
+
+    window.cordova.InAppBrowser.open(marketUrl, "_system", "location=no");
   }
 
   openContact() {
