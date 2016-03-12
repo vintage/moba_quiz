@@ -1,5 +1,5 @@
 import {OnInit} from "angular2/core";
-import {Button, Page, NavController, Platform} from "ionic-angular";
+import {Button, Page, NavController, Platform, Alert} from "ionic-angular";
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {ScoreService} from "../../providers/score/service";
@@ -46,19 +46,41 @@ export class MainMenuPage {
       marketUrl = "market://details?id=com.YOUR.PACKAGENAME";
     }
     else {
-      marketUrl = "http://windowsphone.com/s?appId=c14e93aa-27d7-df11-a844-00237de2db9e";
+      marketUrl = "https://www.microsoft.com/pl-pl/store/games/lol-quiz-free/9wzdncrfhvz4";
     }
 
-    window.cordova.InAppBrowser.open(marketUrl, "_system", "location=no");
+    if (window.cordova) {
+      window.cordova.InAppBrowser.open(marketUrl, "_system", "location=no");
+    }
+    else {
+      window.open(marketUrl, "_blank");
+    }
+  }
+
+  showContactAlert() {
+    let alert = Alert.create({
+      title: "Missing email client",
+      message: "Contact us at puppy.box@outlook.com!"
+    });
+
+    this.nav.present(alert);
   }
 
   openContact() {
-    if(window.cordova) {
-      cordova.plugins.email.isAvailable(function(isAvailable) {
+    if (window.cordova) {
+      window.cordova.plugins.email.isAvailable(function(isAvailable) {
         if (isAvailable) {
-          cordova.plugins.email.open();
+          window.cordova.plugins.email.open({
+            to: "puppy.box@outlook.com",
+            subject: "Contact form"
+          });
+        } else {
+          this.showContactAlert();
         }
       });
+    }
+    else {
+      this.showContactAlert();
     }
   }
 }
