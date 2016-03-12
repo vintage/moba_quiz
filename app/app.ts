@@ -9,8 +9,8 @@ import {ScoreService} from "./providers/score/service";
 import {AdService} from "./providers/ads/service";
 
 import {MainMenuPage} from "./pages/main_menu/page";
-// import {enableProdMode} from "angular2/core";
-// enableProdMode();
+import {enableProdMode} from "angular2/core";
+enableProdMode();
 
 @App({
   templateUrl: "build/app.html",
@@ -25,7 +25,7 @@ import {MainMenuPage} from "./pages/main_menu/page";
     HTTP_PROVIDERS,
   ]
 })
-class MyApp {
+class MobaApp {
   root: any;
 
   constructor(public app: IonicApp, public platform: Platform, public ads: AdService) {
