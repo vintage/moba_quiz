@@ -1,4 +1,4 @@
-import {Component, EventEmitter} from 'angular2/core';
+import {Component, EventEmitter} from "angular2/core";
 
 import {ChampionService} from "../../../../providers/champion/service";
 
@@ -6,8 +6,9 @@ import {Slot} from "../../slot/component";
 import {BaseGame} from "../base/component";
 
 @Component({
-  templateUrl: 'build/pages/game/types/champion_skills/template.html',
-  outputs: ['answerInvalid', 'questionFinished'],
+  selector: "game-champion-skills",
+  templateUrl: "build/pages/game/types/champion_skills/template.html",
+  outputs: ["answerInvalid", "questionFinished"],
   directives: [Slot],
 })
 export class ChampionSkillsGame extends BaseGame {

@@ -34,8 +34,8 @@ export class Stats implements OnInit {
     let interval = 100;
 
     setTimeout(() => {
-      if(this.timerEnabled) {
-        this.gameplay.timeLeft -= interval;
+      if (this.timerEnabled) {
+        //this.gameplay.timeLeft -= interval;
       }
 
       if (this.gameplay.timeLeft == 0) {

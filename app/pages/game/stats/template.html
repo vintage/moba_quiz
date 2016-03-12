@@ -1,6 +1,6 @@
 <ion-row class="game-stats panel-box">
-  <ion-col>
-    <ion-row center>
+  <ion-col class="no-padding">
+    <ion-row center class="no-padding" style="padding-bottom: 2px">
       <ion-col class="points-bar align-left">
         <ion-icon name="flash"></ion-icon> {{ gameplay.points }}
       </ion-col>
@@ -12,8 +12,8 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col>
+    <ion-row class="no-padding">
+      <ion-col class="no-padding">
         <progress value="{{ currentProgress() }}" max="{{ progressMax }}"></progress>
       </ion-col>
     </ion-row>

@@ -1,4 +1,6 @@
 .game-stats {
+  height: 60px;
+
   $progress-color: map-get($colors, danger);
 
   progress::-moz-progress-bar { background: $progress-color; }
@@ -19,5 +21,9 @@
   .chances-bar {
     font-size: 20px;
     color: map-get($colors, danger);
+  }
+
+  .no-padding {
+    padding: 0;
   }
 }
