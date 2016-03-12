@@ -9,10 +9,9 @@ import {ScoreService} from "./providers/score/service";
 import {AdService} from "./providers/ads/service";
 
 import {MainMenuPage} from "./pages/main_menu/page";
-import {enableProdMode} from "angular2/core";
-enableProdMode();
 
 @App({
+  prodMode: true,
   templateUrl: "build/app.html",
   providers: [
     ItemService,
