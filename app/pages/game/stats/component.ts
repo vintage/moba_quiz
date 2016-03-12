@@ -1,23 +1,22 @@
-import {Component, EventEmitter, OnInit} from 'angular2/core';
-import {Icon} from 'ionic-angular';
+import {Component, EventEmitter, OnInit} from "angular2/core";
+import {Icon} from "ionic-angular";
 
 import {GameplayService} from "../../../providers/gameplay/service";
 
 @Component({
-  selector: 'game-stats',
-  templateUrl: 'build/pages/game/stats/template.html',
+  selector: "game-stats",
+  templateUrl: "build/pages/game/stats/template.html",
   directives: [Icon],
-  inputs: ['timerEnabled'],
-  outputs: ['timeOver']
+  inputs: ["timerEnabled"],
+  outputs: ["timeOver"]
 })
 export class Stats implements OnInit {
   timeOver = new EventEmitter();
 
-  public progressMax: number;
-  public timerEnabled: boolean;
+  progressMax: number;
+  timerEnabled: boolean;
 
-  constructor(gameplayService: GameplayService) {
-    this.gameplay = gameplayService;
+  constructor(public gameplay: GameplayService) {
     this.progressMax = 1000;
     this.timerEnabled = true;
   }
@@ -35,7 +34,7 @@ export class Stats implements OnInit {
 
     setTimeout(() => {
       if (this.timerEnabled) {
-        //this.gameplay.timeLeft -= interval;
+        // this.gameplay.timeLeft -= interval;
       }
 
       if (this.gameplay.timeLeft == 0) {

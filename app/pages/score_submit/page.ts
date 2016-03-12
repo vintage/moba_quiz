@@ -15,24 +15,20 @@ import {MainMenuPage} from "../main_menu/page";
   directives: [Button]
 })
 export class ScoreSubmitPage implements OnInit {
-  gameplay: GameplayService;
-  scoreService: ScoreService;
-  countryService: CountryService;
+  country: CountryModel;
+  playerName: string;
+  isPending: boolean;
+  isSubmitted: boolean;
+  score: number;
 
-  public country: CountryModel;
-  public playerName: string;
-  public isPending: boolean;
-  public isSubmitted: boolean;
-  public score: number;
-
-  constructor(nav: NavController, gameplayService: GameplayService, countryService: CountryService, scoreService: ScoreService) {
-    this.nav = nav;
-    this.gameplay = gameplayService;
-    this.countryService = countryService;
-    this.scoreService = scoreService;
+  constructor(
+      public nav: NavController,
+      public gameplay: GameplayService,
+      public countryService: CountryService,
+      public scoreService: ScoreService) {
     this.isPending = false;
     this.isSubmitted = false;
-    this.score = this.gameplay.points;
+    this.score = gameplay.points;
   }
 
   ngOnInit() {

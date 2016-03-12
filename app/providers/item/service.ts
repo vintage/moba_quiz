@@ -1,15 +1,14 @@
-import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
-import {shuffle, filter, random} from 'lodash';
+import {Injectable} from "angular2/core";
+import {Http} from "angular2/http";
+import {shuffle, filter, random} from "lodash";
 
-import {ItemModel} from './model';
+import {ItemModel} from "./model";
 
 @Injectable()
 export class ItemService {
   items: ItemModel[];
 
-  constructor(http: Http) {
-    this.http = http;
+  constructor(public http: Http) {
   }
 
   load() {
@@ -18,7 +17,7 @@ export class ItemService {
     }
 
     return new Promise(resolve => {
-      this.http.get('data/items.json').subscribe(res => {
+      this.http.get("data/items.json").subscribe(res => {
         this.items = [];
 
         let json = res.json();
@@ -50,13 +49,13 @@ export class ItemService {
 
   getValidComponents(item: ItemModel) {
     return filter(this.items, node => {
-      return item.from.indexOf(node.id) != -1;
+      return item.from.indexOf(node.id) !== -1;
     });
   }
 
   getInvalidComponents(item: ItemModel) {
     return filter(shuffle(this.items), node => {
-      return item.id != node.id;
+      return item.id !== node.id;
     });
   }
 }

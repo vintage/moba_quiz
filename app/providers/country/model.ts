@@ -1,10 +1,12 @@
+import {get} from "lodash";
+
 export class CountryModel {
-  public id: string;
-  public name: string;
+  id: string;
+  name: string;
 
   constructor(json: Object) {
-    this.id = json.iso;
-    this.name = json.name;
+    this.id = get(json, "iso");
+    this.name = get(json, "name");
   }
 
   getImageSource() {

@@ -15,9 +15,8 @@ export class ItemRecipeGame extends BaseGame {
   answerValid = new EventEmitter();
   questionFinished = new EventEmitter();
 
-  constructor(itemService: ItemService) {
+  constructor(public itemService: ItemService) {
     super();
-    this.itemService = itemService;
   }
 
   choiceValid(item:any) {

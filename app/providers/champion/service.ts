@@ -1,16 +1,15 @@
-import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
-import {shuffle, filter, random} from 'lodash';
+import {Injectable} from "angular2/core";
+import {Http} from "angular2/http";
+import {shuffle, filter, random} from "lodash";
 
-import {ChampionModel, SkillModel} from './model';
+import {ChampionModel, SkillModel} from "./model";
 
 @Injectable()
 export class ChampionService {
   champions: ChampionModel[];
   skills: SkillModel[];
 
-  constructor(http: Http) {
-    this.http = http;
+  constructor(public http: Http) {
   }
 
   load() {
@@ -19,7 +18,7 @@ export class ChampionService {
     }
 
     return new Promise(resolve => {
-      this.http.get('data/champions.json').subscribe(res => {
+      this.http.get("data/champions.json").subscribe(res => {
         this.champions = [];
         this.skills = [];
 
@@ -43,35 +42,34 @@ export class ChampionService {
   }
 
   getComponents(champion: ChampionModel) {
-    var valid = this.getValidComponents(champion).slice(0, 5);
-    var invalid = this.getInvalidComponents(champion);
+    let valid = this.getValidComponents(champion).slice(0, 5);
+    let invalid = this.getInvalidComponents(champion);
 
-    var components = valid.concat(invalid.slice(0, 12 - valid.length));
+    let components = valid.concat(invalid.slice(0, 12 - valid.length));
     return components;
   }
 
   getValidComponents(champion: ChampionModel) {
     return filter(this.skills, node => {
-      return champion.skills.indexOf(node) != -1;
+      return champion.skills.indexOf(node) !== -1;
     });
   }
 
   getInvalidComponents(champion: ChampionModel) {
     return filter(shuffle(this.skills), node => {
-      return champion.skills.indexOf(node) == -1;
+      return champion.skills.indexOf(node) === -1;
     });
   }
 }
 
 @Injectable()
 export class SkillService {
-  constructor(championService: ChampionService) {
-    this.championService = championService;
+  constructor(public championService: ChampionService) {
   }
 
   getChampion(skill: SkillModel) {
     return filter(this.championService.champions, node => {
-      return node.id == skill.championId;
+      return node.id === skill.championId;
     })[0];
   }
 
@@ -82,10 +80,10 @@ export class SkillService {
   }
 
   getComponents(skill: SkillModel) {
-    var valid = this.getValidComponents(skill);
-    var invalid = this.getInvalidComponents(skill);
+    let valid = this.getValidComponents(skill);
+    let invalid = this.getInvalidComponents(skill);
 
-    var components = valid.concat(invalid.slice(0, 9 - valid.length));
+    let components = valid.concat(invalid.slice(0, 9 - valid.length));
     return components;
   }
 
@@ -95,7 +93,7 @@ export class SkillService {
 
   getInvalidComponents(skill: SkillModel) {
     return filter(shuffle(this.championService.champions), node => {
-      return node.id != skill.championId;
+      return node.id !== skill.championId;
     });
   }
 }

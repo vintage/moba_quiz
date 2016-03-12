@@ -15,9 +15,8 @@ export class SkillChampionGame extends BaseGame {
   answerValid = new EventEmitter();
   questionFinished = new EventEmitter();
 
-  constructor(skillService: SkillService) {
+  constructor(public skillService: SkillService) {
     super();
-    this.skillService = skillService;
   }
 
   getQuestion() {

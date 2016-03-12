@@ -3,15 +3,15 @@ import {Storage, LocalStorage} from "ionic-angular";
 import {sample} from "lodash";
 
 export class GameplayService {
-  public playerName: string;
-  public points: number;
-  public streak: number;
-  public chances: number;
-  public level: number;
+  playerName: string;
+  points: number;
+  streak: number;
+  chances: number;
+  level: number;
   // Time is stored in ms
-  public timeLimit: number;
-  public timeLeft: number;
-  public storage: Storage;
+  timeLimit: number;
+  timeLeft: number;
+  storage: Storage;
 
   // Some configuration options. All of them should be marked as `private`.
   // Minimum amount of time given for providing answer
@@ -25,12 +25,12 @@ export class GameplayService {
     this.restart();
   }
 
-  public start() {
+  start() {
     this.updateTimesPlayed();
     this.restart();
   }
 
-  public restart() {
+  restart() {
     this.points = 0;
     this.streak = 0;
     this.chances = 4;
@@ -44,7 +44,7 @@ export class GameplayService {
     });
   }
 
-  public getTimesPlayed() {
+  getTimesPlayed() {
     return this.storage.get("times_played").then(timesPlayed => {
       return parseInt(timesPlayed) || 0;
     });

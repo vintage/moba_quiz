@@ -6,10 +6,10 @@ export class BaseGame implements OnInit {
   answerValid = new EventEmitter();
   questionFinished = new EventEmitter();
 
-  public question: any;
-  public answers: any[];
-  public answersLeft: any[];
-  public choices: any[];
+  question: any;
+  answers: any[];
+  answersLeft: any[];
+  choices: any[];
 
   ngOnInit() {
     this.initializeGame();

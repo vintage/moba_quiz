@@ -16,9 +16,8 @@ export class ChampionSkillsGame extends BaseGame {
   answerValid = new EventEmitter();
   questionFinished = new EventEmitter();
 
-  constructor(championService: ChampionService) {
+  constructor(public championService: ChampionService) {
     super();
-    this.championService = championService;
   }
 
   choiceValid(item:any) {

@@ -7,11 +7,9 @@ import {ScoreModel} from "./model";
 @Injectable()
 export class ScoreService {
   API_URL: string = "http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/lol/scores/";
-  http: Http;
   storage: Storage;
 
-  constructor(http: Http) {
-    this.http = http;
+  constructor(public http: Http) {
     this.storage = new Storage(LocalStorage);
   }
 

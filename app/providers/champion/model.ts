@@ -1,12 +1,11 @@
-import {get} from 'lodash';
+import {get} from "lodash";
 
 export class ChampionModel {
-  public id: string;
-  public name: string;
-  public is_range: boolean;
+  id: string;
+  name: string;
+  is_range: boolean;
+  skills: SkillModel[];
   private image: string;
-
-  public skills: SkillModel[];
 
   constructor(json: Object) {
     this.id = get(json, "id");
@@ -31,9 +30,9 @@ export class ChampionModel {
 }
 
 export class SkillModel {
-  public id: string;
-  public name: string;
-  public championId: string;
+  id: string;
+  name: string;
+  championId: string;
   private image: string;
 
   constructor(json: Object, championId: string) {

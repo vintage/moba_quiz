@@ -3,10 +3,7 @@ import {Platform} from "ionic-angular";
 
 @Injectable()
 export class AdService {
-  platform: Platform;
-
-  constructor(platform: Platform) {
-    this.platform = platform;
+  constructor(public platform: Platform) {
   }
 
   showBanner() {

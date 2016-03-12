@@ -1,20 +1,20 @@
-import {get} from 'lodash';
+import {get} from "lodash";
 
 export class ItemModel {
-  public id: string;
-  public name: string;
-  public from: ItemModel[];
-  public into: ItemModel[];
-  public price: number;
+  id: string;
+  name: string;
+  from: ItemModel[];
+  into: ItemModel[];
+  price: number;
   private image: string;
 
   constructor(json: Object) {
-    this.id = json.id;
-    this.name = json.name;
-    this.from = get(json, 'from', []);
-    this.into = get(json, 'into', []);
-    this.price = json.price;
-    this.image = json.image;
+    this.id = get(json, "id");
+    this.name = get(json, "name");
+    this.from = get(json, "from", []);
+    this.into = get(json, "into", []);
+    this.price = get(json, "price");
+    this.image = get(json, "image");
   }
 
   getImageSource() {

@@ -10,13 +10,9 @@ import {ScoreModel} from "../../providers/score/model";
 class HighscoreGeneralPage implements OnInit {
   title: string;
   scores: ScoreModel[];
-  score: ScoreService;
-  platform: Platform;
   isOnline: boolean;
 
-  constructor(scoreService: ScoreService, platform: Platform) {
-    this.score = scoreService;
-    this.platform = platform;
+  constructor(public score: ScoreService, public platform: Platform) {
   }
 
   ngOnInit() {
@@ -48,8 +44,8 @@ class HighscoreGeneralPage implements OnInit {
   templateUrl: "build/pages/highscore/highscore_list.html",
 })
 class HighscoreMonthlyPage extends HighscoreGeneralPage {
-  constructor(scoreService: ScoreService, platform: Platform) {
-    super(scoreService, platform);
+  constructor(public score: ScoreService, public platform: Platform) {
+    super(score, platform);
   }
 
   getScores() {
@@ -65,8 +61,8 @@ class HighscoreMonthlyPage extends HighscoreGeneralPage {
   templateUrl: "build/pages/highscore/highscore_list.html",
 })
 class HighscoreWeeklyPage extends HighscoreGeneralPage {
-  constructor(scoreService: ScoreService, platform: Platform) {
-    super(scoreService, platform);
+  constructor(public score: ScoreService, public platform: Platform) {
+    super(score, platform);
   }
 
   getScores() {
@@ -82,8 +78,8 @@ class HighscoreWeeklyPage extends HighscoreGeneralPage {
   templateUrl: "build/pages/highscore/highscore_list.html",
 })
 class HighscoreDailyPage extends HighscoreGeneralPage {
-  constructor(scoreService: ScoreService, platform: Platform) {
-    super(scoreService, platform);
+  constructor(public score: ScoreService, public platform: Platform) {
+    super(score, platform);
   }
 
   getScores() {
@@ -100,11 +96,15 @@ class HighscoreDailyPage extends HighscoreGeneralPage {
   directives: [Button]
 })
 export class HighscorePage {
-  nav: NavController;
-  platform: Platform;
-  scoreService: ScoreService;
+  dailyTab: any;
+  weeklyTab: any;
+  monthlyTab: any;
+  generalTab: any;
 
-  constructor(nav: NavController, scoreService: ScoreService, platform: Platform) {
+  constructor(
+      public nav: NavController,
+      public scoreService: ScoreService,
+      public platform: Platform) {
     this.nav = nav;
     this.platform = platform;
     this.scoreService = scoreService;

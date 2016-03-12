@@ -1,10 +1,10 @@
-import {get} from 'lodash';
+import {get} from "lodash";
 
 export class ScoreModel {
-  public player: string;
-  public score: number;
-  public flag: string;
-  public platform: string;
+  player: string;
+  score: number;
+  flag: string;
+  platform: string;
 
   constructor(json: Object) {
     this.player = get(json, "player_name");

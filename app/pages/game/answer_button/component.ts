@@ -1,15 +1,15 @@
-import {Component, EventEmitter} from 'angular2/core';
-import {Button} from 'ionic-angular';
+import {Component, EventEmitter} from "angular2/core";
+import {Button} from "ionic-angular";
 
 @Component({
-  selector: 'answer-button',
-  templateUrl: 'build/pages/game/answer_button/template.html',
+  selector: "answer-button",
+  templateUrl: "build/pages/game/answer_button/template.html",
   directives: [Button],
-  inputs: ['value'],
-  outputs: ['picked'],
+  inputs: ["value"],
+  outputs: ["picked"],
 })
 export class AnswerButton {
-  public value: any;
+  value: any;
   picked = new EventEmitter();
 
   onClick() {

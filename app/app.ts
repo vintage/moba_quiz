@@ -26,14 +26,12 @@ import {MainMenuPage} from "./pages/main_menu/page";
   ]
 })
 class MyApp {
-  ads: AdService;
+  root: any;
 
-  constructor(app: IonicApp, platform: Platform, ads: AdService) {
-    this.app = app;
-    this.platform = platform;
+  constructor(public app: IonicApp, public platform: Platform, public ads: AdService) {
     this.root = MainMenuPage;
+
     this.initializeApp();
-    this.ads = ads;
   }
 
   initializeApp() {

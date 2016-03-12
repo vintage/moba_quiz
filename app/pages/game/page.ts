@@ -18,37 +18,26 @@ import {ScoreSubmitPage} from "../score_submit/page";
   inputs: ["question"]
 })
 export class GamePage {
-  public gameType: GameTypeModel;
-  public gameTypeService: GameTypeService;
-  public gameplay: GameplayService;
-  public ads: AdService;
+  gameType: GameTypeModel;
 
-  public showAd: boolean;
-  public isPerfect: boolean;
-  public isLocked: boolean;
+  showAd: boolean;
+  isPerfect: boolean;
+  isLocked: boolean;
 
   constructor(
-      nav: NavController,
-      dcl: DynamicComponentLoader,
-      elementRef: ElementRef,
-      gameplayService: GameplayService,
-      itemService: ItemService,
-      championService: ChampionService,
-      gameTypeService: GameTypeService,
-      ads: AdService
+      public nav: NavController,
+      public dcl: DynamicComponentLoader,
+      public elementRef: ElementRef,
+      public gameplay: GameplayService,
+      public itemService: ItemService,
+      public championService: ChampionService,
+      public gameTypeService: GameTypeService,
+      public ads: AdService
   ) {
-    this.nav = nav;
-    this.dcl = dcl;
-    this.elementRef = elementRef;
-
-    this.gameplay = gameplayService;
-    this.gameTypeService = gameTypeService;
-    this.ads = ads;
-
     this.isLocked = false;
     this.showAd = false;
 
-    this.gameplay.getTimesPlayed().then((timesPlayed) => {
+    gameplay.getTimesPlayed().then((timesPlayed) => {
       if (timesPlayed === 3 || timesPlayed % 10 === 0) {
         this.showAd = true;
         this.ads.prepareFullScreen();
@@ -131,7 +120,7 @@ export class GamePage {
 
   playSound(src: string) {
     if (window.Media) {
-      let sfx = new Media(src);
+      let sfx = new window.Media(src);
       sfx.play();
     }
   }

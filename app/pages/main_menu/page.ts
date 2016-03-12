@@ -12,15 +12,10 @@ import {HighscorePage} from "../highscore/page";
   directives: [Button]
 })
 export class MainMenuPage {
-  public timesPlayed: number;
-  public bestScore: number;
-  public platform: Platform;
+  timesPlayed: number;
+  bestScore: number;
 
-  constructor(nav: NavController, gameplayService: GameplayService, scoreService: ScoreService, platform: Platform) {
-    this.nav = nav;
-    this.platform = platform;
-    this.gameplay = gameplayService;
-    this.scoreService = scoreService;
+  constructor(public nav: NavController, public gameplay: GameplayService, public scoreService: ScoreService, public platform: Platform) {
   }
 
   ngOnInit() {
