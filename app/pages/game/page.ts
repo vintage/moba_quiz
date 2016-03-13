@@ -5,6 +5,7 @@ import {ItemService} from "../../providers/item/service";
 import {ChampionService} from "../../providers/champion/service";
 import {GameplayService} from "../../providers/gameplay/service";
 import {AdService} from "../../providers/ads/service";
+import {PointsPipe} from "../../pipes/numbers";
 
 import {Stats} from "./stats/component";
 import {GameTypeService} from "./types/service";
@@ -54,9 +55,10 @@ export class GamePage {
 
   openLevelStats() {
     return new Promise(resolve => {
-      // TODO: Ensure that alert can"t be closed manually (clicking on the background)
+      let points: string = new PointsPipe().transform(this.gameplay.getLevelPoints(), []);
+
       let alert = Alert.create({
-        title: "+ " + this.gameplay.getLevelPoints() + " points",
+        title: "+ " + points + " points",
         enableBackdropDismiss: false
       });
 

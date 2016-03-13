@@ -3,13 +3,15 @@ import {Button, Page, NavController, Platform, Alert} from "ionic-angular";
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {ScoreService} from "../../providers/score/service";
+import {PointsPipe} from "../../pipes/numbers";
 
 import {GamePage} from "../game/page";
 import {HighscorePage} from "../highscore/page";
 
 @Page({
   templateUrl: "build/pages/main_menu/page.html",
-  directives: [Button]
+  directives: [Button],
+  pipes: [PointsPipe]
 })
 export class MainMenuPage {
   timesPlayed: number;

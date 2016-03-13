@@ -2,13 +2,15 @@ import {Component, EventEmitter, OnInit} from "angular2/core";
 import {Icon} from "ionic-angular";
 
 import {GameplayService} from "../../../providers/gameplay/service";
+import {PointsPipe} from "../../../pipes/numbers";
 
 @Component({
   selector: "game-stats",
   templateUrl: "build/pages/game/stats/template.html",
   directives: [Icon],
   inputs: ["timerEnabled"],
-  outputs: ["timeOver"]
+  outputs: ["timeOver"],
+  pipes: [PointsPipe]
 })
 export class Stats implements OnInit {
   timeOver = new EventEmitter();

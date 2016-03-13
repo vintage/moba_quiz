@@ -3,9 +3,11 @@ import {Button, Page, NavController, Platform} from "ionic-angular";
 
 import {ScoreService} from "../../providers/score/service";
 import {ScoreModel} from "../../providers/score/model";
+import {PointsPipe} from "../../pipes/numbers";
 
 @Page({
   templateUrl: "build/pages/highscore/highscore_list.html",
+  pipes: [PointsPipe]
 })
 class HighscoreGeneralPage implements OnInit {
   title: string;
@@ -42,6 +44,7 @@ class HighscoreGeneralPage implements OnInit {
 
 @Page({
   templateUrl: "build/pages/highscore/highscore_list.html",
+  pipes: [PointsPipe]
 })
 class HighscoreMonthlyPage extends HighscoreGeneralPage {
   constructor(public score: ScoreService, public platform: Platform) {
@@ -59,6 +62,7 @@ class HighscoreMonthlyPage extends HighscoreGeneralPage {
 
 @Page({
   templateUrl: "build/pages/highscore/highscore_list.html",
+  pipes: [PointsPipe]
 })
 class HighscoreWeeklyPage extends HighscoreGeneralPage {
   constructor(public score: ScoreService, public platform: Platform) {
@@ -76,6 +80,7 @@ class HighscoreWeeklyPage extends HighscoreGeneralPage {
 
 @Page({
   templateUrl: "build/pages/highscore/highscore_list.html",
+  pipes: [PointsPipe]
 })
 class HighscoreDailyPage extends HighscoreGeneralPage {
   constructor(public score: ScoreService, public platform: Platform) {

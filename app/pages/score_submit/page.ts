@@ -5,6 +5,7 @@ import {GameplayService} from "../../providers/gameplay/service";
 import {CountryService} from "../../providers/country/service";
 import {CountryModel} from "../../providers/country/model";
 import {ScoreService} from "../../providers/score/service";
+import {PointsPipe} from "../../pipes/numbers";
 
 import {CountryListPage} from "../country_list/page";
 import {GamePage} from "../game/page";
@@ -12,7 +13,8 @@ import {MainMenuPage} from "../main_menu/page";
 
 @Page({
   templateUrl: "build/pages/score_submit/page.html",
-  directives: [Button]
+  directives: [Button],
+  pipes: [PointsPipe]
 })
 export class ScoreSubmitPage implements OnInit {
   country: CountryModel;
