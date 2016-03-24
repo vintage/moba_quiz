@@ -2,6 +2,7 @@ import json
 import os
 import shutil
 
+from PIL import Image
 import requests
 from tqdm import tqdm
 
@@ -20,6 +21,10 @@ def download_image(url, path):
     response = requests.get(url, stream=True)
     with open(path, 'wb') as outfile:
         shutil.copyfileobj(response.raw, outfile)
+
+    # compress image
+    image = Image.open(path)
+    image.save(path, quality=95, optimize=True)
     del response
 
 
