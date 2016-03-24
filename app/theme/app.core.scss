@@ -58,6 +58,11 @@ ion-content {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
+  background-position: center;
+
+  scroll-content {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
 }
 
 .alert-wrapper {

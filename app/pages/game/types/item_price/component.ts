@@ -1,5 +1,4 @@
-import {Component, EventEmitter} from "angular2/core";
-import {Button} from "ionic-angular";
+import {Component} from "angular2/core";
 import {random, sample} from "lodash";
 
 import {ItemService} from "../../../../providers/item/service";
@@ -10,14 +9,9 @@ import {AnswerButton} from "../../answer_button/component";
 @Component({
   selector: "game-item-price",
   templateUrl: "build/pages/game/types/item_price/template.html",
-  outputs: ["answerInvalid", "questionFinished"],
-  directives: [AnswerButton],
+  directives: [AnswerButton]
 })
 export class ItemPriceGame extends BaseGame {
-  answerInvalid = new EventEmitter();
-  answerValid = new EventEmitter();
-  questionFinished = new EventEmitter();
-
   constructor(public itemService: ItemService) {
     super();
   }

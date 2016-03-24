@@ -1,4 +1,4 @@
-import {Component, EventEmitter} from "angular2/core";
+import {Component} from "angular2/core";
 
 import {ChampionService} from "../../../../providers/champion/service";
 
@@ -8,19 +8,20 @@ import {BaseGame} from "../base/component";
 @Component({
   selector: "game-champion-skills",
   templateUrl: "build/pages/game/types/champion_skills/template.html",
-  outputs: ["answerInvalid", "questionFinished"],
-  directives: [Slot],
+  directives: [Slot]
 })
 export class ChampionSkillsGame extends BaseGame {
-  answerInvalid = new EventEmitter();
-  answerValid = new EventEmitter();
-  questionFinished = new EventEmitter();
-
   constructor(public championService: ChampionService) {
     super();
   }
 
-  choiceValid(item:any) {
+  initializeGame() {
+    super.initializeGame();
+
+    this.setBackground.emit(this.question.getBigImage());
+  }
+
+  choiceValid(item: any) {
     super.choiceValid(item);
 
     // Drop item from available selection

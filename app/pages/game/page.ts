@@ -24,6 +24,7 @@ export class GamePage {
   showAd: boolean;
   isPerfect: boolean;
   isLocked: boolean;
+  backgroundImage: string = "img/background.jpg";
 
   constructor(
       public nav: NavController,
@@ -51,6 +52,14 @@ export class GamePage {
         this.openLevel();
       });
     });
+  }
+
+  setBackground(background: string) {
+    this.backgroundImage = background;
+  }
+
+  resetBackground() {
+    this.backgroundImage = "img/background.jpg";
   }
 
   openLevelStats() {
@@ -85,6 +94,11 @@ export class GamePage {
           this.openLevel();
           this.isLocked = false;
         });
+      });
+
+      this.resetBackground();
+      component.setBackground.subscribe((background) => {
+        this.setBackground(background);
       });
 
       component.answerValid.subscribe(() => {

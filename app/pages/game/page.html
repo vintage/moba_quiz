@@ -1,4 +1,4 @@
-<ion-content style="background-image: url('img/background.jpg')">
+<ion-content style="background-image: url({{ backgroundImage }})">
   <game-stats (timeOver)="onTimeOver()" [timerEnabled]="!isLocked"></game-stats>
 
   <div #child></div>

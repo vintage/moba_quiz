@@ -1,4 +1,4 @@
-import {Component, EventEmitter} from "angular2/core";
+import {Component} from "angular2/core";
 
 import {ItemService} from "../../../../providers/item/service";
 import {Slot} from "../../slot/component";
@@ -7,19 +7,14 @@ import {BaseGame} from "../base/component";
 @Component({
   selector: "game-item-recipe",
   templateUrl: "build/pages/game/types/item_recipe/template.html",
-  outputs: ["answerInvalid", "questionFinished"],
-  directives: [Slot],
+  directives: [Slot]
 })
 export class ItemRecipeGame extends BaseGame {
-  answerInvalid = new EventEmitter();
-  answerValid = new EventEmitter();
-  questionFinished = new EventEmitter();
-
   constructor(public itemService: ItemService) {
     super();
   }
 
-  choiceValid(item:any) {
+  choiceValid(item: any) {
     super.choiceValid(item);
 
     // Drop item from available selection

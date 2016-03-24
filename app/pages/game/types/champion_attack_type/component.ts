@@ -1,4 +1,4 @@
-import {Component, EventEmitter} from "angular2/core";
+import {Component} from "angular2/core";
 
 import {ChampionService} from "../../../../providers/champion/service";
 
@@ -8,16 +8,17 @@ import {AnswerButton} from "../../answer_button/component";
 @Component({
   selector: "game-champion-attack-type",
   templateUrl: "build/pages/game/types/champion_attack_type/template.html",
-  outputs: ["answerInvalid", "questionFinished"],
-  directives: [AnswerButton],
+  directives: [AnswerButton]
 })
 export class ChampionAttackTypeGame extends BaseGame {
-  answerInvalid = new EventEmitter();
-  answerValid = new EventEmitter();
-  questionFinished = new EventEmitter();
-
   constructor(public championService: ChampionService) {
     super();
+  }
+
+  initializeGame() {
+    super.initializeGame();
+
+    this.setBackground.emit(this.question.getBigImage());
   }
 
   getQuestion() {
