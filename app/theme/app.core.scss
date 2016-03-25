@@ -59,6 +59,7 @@ ion-content {
   -moz-background-size: cover;
   background-size: cover;
   background-position: center;
+  margin-bottom: 50px; // ad at the bottom
 
   scroll-content {
     background-color: rgba(0, 0, 0, 0.7);
@@ -85,3 +86,4 @@ ion-content {
 @import "../pages/game/slot/style";
 @import "../pages/game/page";
 @import "../pages/score_submit/page";
+@import "../pages/game/answer_button/style";

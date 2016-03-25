@@ -1,5 +1,8 @@
 <button clear class="align-center question-slot" (click)="onClick()">
   <div class="background">
-    <img *ngIf="item" [src]="item.getImageSource()" class="image">
+
+    <div *ngIf="item" class="image" [ngStyle]="{'background-image': 'url(' + item.getImageSource() + ')'}">
+
+    </div>
   </div>
 </button>

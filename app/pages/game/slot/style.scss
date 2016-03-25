@@ -13,7 +13,14 @@ game-slot {
       width: 100%;
       height: 100%;
       background-color: #0f1528;
+      padding: 1px;
       border: 1px solid #182241;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+      }
     }
   }
 
