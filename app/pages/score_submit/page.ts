@@ -1,5 +1,5 @@
 import {OnInit} from "angular2/core";
-import {Button, Page, NavController, Alert} from "ionic-angular";
+import {Button, Page, NavController, Alert, ViewController} from "ionic-angular";
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {CountryService} from "../../providers/country/service";
@@ -25,6 +25,7 @@ export class ScoreSubmitPage implements OnInit {
 
   constructor(
       public nav: NavController,
+      public viewCtrl: ViewController,
       public gameplay: GameplayService,
       public countryService: CountryService,
       public scoreService: ScoreService) {
@@ -58,11 +59,13 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   playAgain() {
-    this.nav.push(GamePage);
+    this.nav.push(GamePage).then(() => {
+      this.nav.remove(this.viewCtrl.index);
+    });
   }
 
   openMenu() {
-    this.nav.push(MainMenuPage);
+    this.nav.popToRoot();
   }
 
   is_valid() {

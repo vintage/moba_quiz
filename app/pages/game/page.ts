@@ -1,4 +1,4 @@
-import {Page, NavController, Alert} from "ionic-angular";
+import {Page, NavController, Alert, ViewController} from "ionic-angular";
 import {DynamicComponentLoader, ElementRef} from "angular2/core";
 
 import {ItemService} from "../../providers/item/service";
@@ -28,6 +28,7 @@ export class GamePage {
 
   constructor(
       public nav: NavController,
+      public viewCtrl: ViewController,
       public dcl: DynamicComponentLoader,
       public elementRef: ElementRef,
       public gameplay: GameplayService,
@@ -85,6 +86,7 @@ export class GamePage {
     this.gameType = this.gameTypeService.getAny();
     this.dcl.loadIntoLocation(this.gameType.component, this.elementRef, "child").then((componentRef) => {
       let component = componentRef.instance;
+      componentRef.location.nativeElement.className += "game-container";
 
       component.questionFinished.subscribe(() => {
         this.isLocked = true;
@@ -131,7 +133,9 @@ export class GamePage {
       this.ads.showFullScreen();
     }
 
-    this.nav.push(ScoreSubmitPage);
+    this.nav.push(ScoreSubmitPage).then(() => {
+      this.nav.remove(this.viewCtrl.index);
+    });
   }
 
   playSound(src: string) {
