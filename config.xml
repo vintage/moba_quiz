@@ -2,7 +2,7 @@
 <widget id="com.puppybox.lolquiz" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Quiz for LoL</name>
   <description>Quiz game for League of Legends players</description>
-  <author email="kamil.rykowski@outlook.com">PuppyBox</author>
+  <author email="puppy.box@outlook.com">PuppyBox</author>
   <content src="index.html"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
@@ -47,6 +47,9 @@
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
+  <preference name="FullScreen" value="true"/>
+  <preference name="KeepRunning" value="false"/>
+  <preference name="Orientation" value="portait"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <feature name="StatusBar">
