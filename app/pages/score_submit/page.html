@@ -1,7 +1,14 @@
 <ion-content style="background-image: url('img/background.jpg')" class="score-submit-page">
   <ion-row>
     <ion-col>
-      <h2 class="score-overview">Total score</h2>
+      <h2 class="score-overview">
+        <span *ngIf="isNewHighscore">
+          <ion-icon name="trophy"></ion-icon> New Highscore!
+        </span>
+        <span *ngIf="!isNewHighscore">
+          Total score
+        </span>
+      </h2>
     </ion-col>
   </ion-row>
 

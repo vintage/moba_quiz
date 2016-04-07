@@ -30,14 +30,15 @@
   <script type="text/javascript">
     function playMusic(media) {
       media.play({
-        playAudioWhenScreenIsLocked : false,
+        playAudioWhenScreenIsLocked: false,
         numberOfLoops: 9999,
-      })
+      });
+      media.setVolume(0.2);
     }
 
     document.addEventListener("deviceready", function() {
       if(window.Media) {
-        window.backgroundMusic = new Media('sfx/background.mp3');
+        window.backgroundMusic = new Media('sfx/background2.mp3');
         playMusic(window.backgroundMusic);
       }
     }, false);

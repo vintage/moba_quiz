@@ -21,6 +21,7 @@ export class ScoreSubmitPage implements OnInit {
   playerName: string;
   isPending: boolean;
   isSubmitted: boolean;
+  isNewHighscore: boolean;
   score: number;
 
   constructor(
@@ -31,12 +32,15 @@ export class ScoreSubmitPage implements OnInit {
       public scoreService: ScoreService) {
     this.isPending = false;
     this.isSubmitted = false;
+    this.isNewHighscore = false;
     this.score = gameplay.points;
   }
 
   ngOnInit() {
     this.scoreService.getBestScore().then(bestScore => {
       if (this.score > bestScore) {
+        this.isNewHighscore = true;
+        this.playSound("sfx/new_best_score.mp3");
         this.scoreService.setBestScore(this.score);
       }
     });
@@ -136,5 +140,12 @@ export class ScoreSubmitPage implements OnInit {
       });
       this.nav.present(alert);
     });
+  }
+
+  playSound(src: string) {
+    if (window.Media) {
+      let sfx = new window.Media(src);
+      sfx.play();
+    }
   }
 }

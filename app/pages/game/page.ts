@@ -90,6 +90,8 @@ export class GamePage {
 
       component.questionFinished.subscribe(() => {
         this.isLocked = true;
+
+        this.playSound("sfx/next_level.wav");
         this.openLevelStats().then(() => {
           componentRef.dispose();
           this.gameplay.levelPassed(this.isPerfect);
@@ -104,7 +106,7 @@ export class GamePage {
       });
 
       component.answerValid.subscribe(() => {
-        this.playSound("sfx/choice_valid.mp3");
+        this.playSound("sfx/choice_valid.wav");
       });
 
       component.answerInvalid.subscribe(() => {
