@@ -19,6 +19,7 @@
 // The "primary" color is the only required color in the map.
 // Both iOS and MD colors can be further customized if colors
 // are different per mode.
+@import 'globals.core';
 
 $colors: (
   primary:    #387ef5,

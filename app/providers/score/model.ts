@@ -15,10 +15,10 @@ export class ScoreModel {
 
   getImageSource() {
     if (this.flag && this.flag.length === 2) {
-      return "img/flags/" + this.flag + ".png";
+      return "data/images/flags/" + this.flag + ".png";
     }
     else {
-      return "img/flags/_unknown.png";
+      return "data/images/flags/_unknown.png";
     }
   }
 }

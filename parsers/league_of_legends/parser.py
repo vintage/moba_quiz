@@ -65,18 +65,22 @@ def setup_champions():
         data = requests.get(detail_url).json()['data'][champion_id]
 
         image_name = data['image']['full']
-        image_path = os.path.join(champion_image_path, champion_id.lower())
+        # image_path = os.path.join(champion_image_path, champion_id.lower())
+        image_path = champion_image_path
         os.makedirs(image_path, exist_ok=True)
 
         is_range = data['stats']['attackrange'] > 250
 
+        small_avatar = '{}_s_avatar.png'.format(champion_id)
+        large_avatar = '{}_l_avatar.png'.format(champion_id)
+
         download_image(
             '{}/img/champion/{}'.format(base_url, image_name),
-            os.path.join(image_path, 's_avatar.png')
+            os.path.join(image_path, small_avatar)
         )
         download_image(
             'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{}_0.jpg'.format(champion_id),
-            os.path.join(image_path, 'l_avatar.jpg')
+            os.path.join(image_path, large_avatar)
         )
 
         spells = []
@@ -112,7 +116,7 @@ def setup_champions():
         result.append({
             'id': champion_id,
             'name': data['name'],
-            'image': ['s_avatar.png', 'l_avatar.jpg'],
+            'image': [small_avatar, large_avatar],
             'is_range': is_range,
             'spells': spells,
         })

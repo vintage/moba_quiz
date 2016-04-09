@@ -21,11 +21,11 @@ export class ChampionModel {
   }
 
   getImageSource() {
-    return "data/images/champions/" + this.id + "/" + this.image[0];
+    return "data/images/champions/" + this.image[0];
   }
 
   getBigImage() {
-    return "data/images/champions/" + this.id + "/" + this.image[1];
+    return "data/images/champions/" + this.image[1];
   }
 }
 
@@ -43,6 +43,6 @@ export class SkillModel {
   }
 
   getImageSource() {
-    return "data/images/champions/" + this.championId + "/" + this.image;
+    return "data/images/champions/" + this.image;
   }
 }

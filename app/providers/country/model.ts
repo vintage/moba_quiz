@@ -10,6 +10,6 @@ export class CountryModel {
   }
 
   getImageSource() {
-    return "img/flags/" + this.id + ".png";
+    return "data/images/flags/" + this.id + ".png";
   }
 }
