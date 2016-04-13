@@ -38,7 +38,7 @@
 
     document.addEventListener("deviceready", function() {
       if(window.Media) {
-        window.backgroundMusic = new Media('sfx/background.mp3');
+        window.backgroundMusic = new window.Media('sfx/background.mp3');
         playMusic(window.backgroundMusic);
       }
     }, false);
