@@ -62,6 +62,10 @@ export class BaseGame implements OnInit {
     return this.answersLeft.length === 0;
   }
 
+  finish() {
+    this.questionFinished.emit(this.question);
+  }
+
   onItemPicked(item: any) {
     if (this.isFinished()) {
       return;
@@ -81,7 +85,7 @@ export class BaseGame implements OnInit {
 
     // Go to the next level
     if (this.isFinished()) {
-      this.questionFinished.emit(this.question);
+      this.finish();
     }
   }
 }

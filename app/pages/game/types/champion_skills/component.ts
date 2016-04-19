@@ -1,6 +1,7 @@
 import {Component} from "angular2/core";
 
 import {ChampionService} from "../../../../providers/champion/service";
+import {AchievementService} from "../../../../providers/achievement/service";
 
 import {Slot} from "../../slot/component";
 import {BaseGame} from "../base/component";
@@ -11,7 +12,9 @@ import {BaseGame} from "../base/component";
   directives: [Slot]
 })
 export class ChampionSkillsGame extends BaseGame {
-  constructor(public championService: ChampionService) {
+  constructor(
+    public championService: ChampionService,
+    public achievements: AchievementService) {
     super();
   }
 
@@ -30,7 +33,17 @@ export class ChampionSkillsGame extends BaseGame {
   }
 
   getQuestion() {
-    return this.championService.getAny();
+    let question = this.championService.getAny();
+
+    this.achievements.update("seen_all_champions", question.id);
+
+    return question;
+  }
+
+  finish() {
+    super.finish();
+
+    this.achievements.update("solved_all_champions", this.question.id);
   }
 
   getAnswers(question: any) {

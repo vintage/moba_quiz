@@ -3,10 +3,12 @@ import {Button, Page, NavController, Platform, Alert} from "ionic-angular";
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {ScoreService} from "../../providers/score/service";
+import {AchievementService} from "../../providers/achievement/service";
 import {PointsPipe} from "../../pipes/numbers";
 
 import {GamePage} from "../game/page";
 import {HighscorePage} from "../highscore/page";
+import {AchievementListPage} from "../achievement_list/page";
 
 @Page({
   templateUrl: "build/pages/main_menu/page.html",
@@ -17,7 +19,12 @@ export class MainMenuPage {
   timesPlayed: number;
   bestScore: number;
 
-  constructor(public nav: NavController, public gameplay: GameplayService, public scoreService: ScoreService, public platform: Platform) {
+  constructor(
+    public nav: NavController,
+    public gameplay: GameplayService,
+    public scoreService: ScoreService,
+    public achievements: AchievementService,
+    public platform: Platform) {
   }
 
   ngOnInit() {
@@ -36,6 +43,10 @@ export class MainMenuPage {
 
   openHighscore() {
     this.nav.push(HighscorePage);
+  }
+
+  openAchievements() {
+    this.nav.push(AchievementListPage);
   }
 
   openRating() {
@@ -57,12 +68,14 @@ export class MainMenuPage {
     else {
       window.open(marketUrl, "_blank");
     }
+
+    this.achievements.update("rate_app");
   }
 
   showContactAlert() {
     let alert = Alert.create({
       title: "Missing email client",
-      message: "Contact us at puppy.box@outlook.com!"
+      message: "Contact us at puppy.box@outlook.com"
     });
 
     this.nav.present(alert);

@@ -1,6 +1,7 @@
 import {Component} from "angular2/core";
 
 import {ItemService} from "../../../../providers/item/service";
+import {AchievementService} from "../../../../providers/achievement/service";
 import {Slot} from "../../slot/component";
 import {BaseGame} from "../base/component";
 
@@ -10,7 +11,9 @@ import {BaseGame} from "../base/component";
   directives: [Slot]
 })
 export class ItemRecipeGame extends BaseGame {
-  constructor(public itemService: ItemService) {
+  constructor(
+    public itemService: ItemService,
+    public achievements: AchievementService) {
     super();
   }
 
@@ -24,7 +27,17 @@ export class ItemRecipeGame extends BaseGame {
   }
 
   getQuestion() {
-    return this.itemService.getAny();
+    let question = this.itemService.getAny();
+
+    this.achievements.update("seen_all_items", question.id);
+
+    return question;
+  }
+
+  finish() {
+    super.finish();
+
+    this.achievements.update("solved_all_items", this.question.id);
   }
 
   getAnswers(question: any) {

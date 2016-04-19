@@ -5,6 +5,7 @@ import {ItemService} from "../../providers/item/service";
 import {ChampionService} from "../../providers/champion/service";
 import {GameplayService} from "../../providers/gameplay/service";
 import {AdService} from "../../providers/ads/service";
+import {AchievementService} from "../../providers/achievement/service";
 import {PointsPipe} from "../../pipes/numbers";
 
 import {Stats} from "./stats/component";
@@ -35,7 +36,8 @@ export class GamePage {
       public itemService: ItemService,
       public championService: ChampionService,
       public gameTypeService: GameTypeService,
-      public ads: AdService
+      public ads: AdService,
+      public achievements: AchievementService
   ) {
     this.isLocked = false;
     this.showAd = false;
@@ -50,6 +52,9 @@ export class GamePage {
     itemService.load().then(() => {
       championService.load().then(() => {
         this.gameplay.start();
+        this.achievements.update("gameplay_small_play_count");
+        this.achievements.update("gameplay_medium_play_count");
+        this.achievements.update("gameplay_big_play_count");
         this.openLevel();
       });
     });
@@ -95,6 +100,14 @@ export class GamePage {
         this.openLevelStats().then(() => {
           componentRef.dispose();
           this.gameplay.levelPassed(this.isPerfect);
+
+          let strike = this.gameplay.strike;
+          if (strike > 0) {
+            this.achievements.update("gameplay_small_strike", strike);
+            this.achievements.update("gameplay_medium_strike", strike);
+            this.achievements.update("gameplay_big_strike", strike);
+          }
+
           this.openLevel();
           this.isLocked = false;
         });

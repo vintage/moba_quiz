@@ -5,7 +5,7 @@ import {sample} from "lodash";
 export class GameplayService {
   playerName: string;
   points: number;
-  streak: number;
+  strike: number;
   chances: number;
   level: number;
   // Time is stored in ms
@@ -32,7 +32,7 @@ export class GameplayService {
 
   restart() {
     this.points = 0;
-    this.streak = 0;
+    this.strike = 0;
     this.chances = 4;
     this.level = 1;
     this.refreshTimer();
@@ -65,18 +65,18 @@ export class GameplayService {
     if (this.chances > 0) {
       this.chances -= 1;
     }
-    this.streak = 0;
+    this.strike = 0;
   }
 
   getLevelPoints() {
     // Base points
-    let points = 15108;
+    let points = 16000;
 
     // Time bonus
-    points += Math.round((this.timeLeft / this.timeLimit) * 6000);
+    points += Math.round((this.timeLeft / this.timeLimit) * (points * 2));
 
-    // Streak bonus
-    points += Math.min(this.streak * 400, 8000);
+    // Strike bonus
+    points += Math.min(this.strike * 400, points);
 
     return points;
   }
@@ -85,7 +85,7 @@ export class GameplayService {
     this.level += 1;
 
     if (isPerfect) {
-      this.streak += 1;
+      this.strike += 1;
     }
 
     this.points += this.getLevelPoints();

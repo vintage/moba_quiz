@@ -7,6 +7,7 @@ import {GameplayService} from "./providers/gameplay/service";
 import {CountryService} from "./providers/country/service";
 import {ScoreService} from "./providers/score/service";
 import {AdService} from "./providers/ads/service";
+import {AchievementService} from "./providers/achievement/service";
 
 import {MainMenuPage} from "./pages/main_menu/page";
 
@@ -21,6 +22,7 @@ import {MainMenuPage} from "./pages/main_menu/page";
     CountryService,
     ScoreService,
     AdService,
+    AchievementService,
     HTTP_PROVIDERS,
   ]
 })

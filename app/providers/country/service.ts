@@ -24,7 +24,7 @@ export class CountryService {
 
     this.objects = [];
     return new Promise(resolve => {
-      this.http.get("data/countries.json")
+      this.http.get("data_common/countries.json")
         .subscribe(res => {
         let json = res.json();
         json.map(jsonObject => {
