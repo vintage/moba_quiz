@@ -17,16 +17,24 @@ champions_url = '{}/data/en_US/champion.json'.format(base_url)
 os.makedirs(item_image_path, exist_ok=True)
 os.makedirs(champion_image_path, exist_ok=True)
 
+def clean_filename(filename):
+    return ''.join(filename.split()).lower()
 
-def download_image(url, path):
+
+def download_image(url, path, filename):
     response = requests.get(url, stream=True)
-    with open(path, 'wb') as outfile:
+
+    filename = clean_filename(filename)
+    full_path = os.path.join(path, filename)
+    with open(full_path, 'wb') as outfile:
         shutil.copyfileobj(response.raw, outfile)
 
     # compress image
-    image = Image.open(path)
-    image.save(path, quality=95, optimize=True)
+    image = Image.open(full_path)
+    image.save(full_path, quality=95, optimize=True)
     del response
+
+    return filename
 
 
 def setup_items():
@@ -40,14 +48,12 @@ def setup_items():
             continue
 
         image_name = data['image']['full']
-
         image_url = '{}/img/item/{}'.format(base_url, image_name)
-        download_image(image_url, os.path.join(item_image_path, image_name))
 
         result.append({
             'id': item_id,
             'name': name,
-            'image': image_name,
+            'image': download_image(image_url, item_image_path, image_name),
             'into': data.get('into', []),
             'from': data.get('from', []),
             'price': data['gold']['total'],
@@ -74,52 +80,49 @@ def setup_champions():
 
         is_range = data['stats']['attackrange'] > 250
 
-        small_avatar = '{}_s_avatar.png'.format(champion_id)
-        large_avatar = '{}_l_avatar.png'.format(champion_id)
-
-        download_image(
-            '{}/img/champion/{}'.format(base_url, image_name),
-            os.path.join(image_path, small_avatar)
-        )
-        download_image(
-            'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{}_0.jpg'.format(champion_id),
-            os.path.join(image_path, large_avatar)
-        )
-
         spells = []
 
         # Add pasive skill
         passive_data = data['passive']
         passive_image = passive_data['image']['full']
-        download_image(
-            '{}/img/passive/{}'.format(base_url, passive_image),
-            os.path.join(image_path, passive_image)
-        )
 
         spells.append({
             'id': '{}_passive'.format(champion_id),
             'name': passive_data['name'],
-            'image': passive_image,
+            'image': download_image(
+                '{}/img/passive/{}'.format(base_url, passive_image),
+                image_path, passive_image
+            )
         })
 
         for spell_data in data['spells']:
             spell_image = spell_data['image']['full']
 
-            download_image(
-                '{}/img/spell/{}'.format(base_url, spell_image),
-                os.path.join(image_path, spell_image)
-            )
-
             spells.append({
                 'id': spell_data['id'],
                 'name': spell_data['name'],
-                'image': spell_image,
+                'image': download_image(
+                    '{}/img/spell/{}'.format(base_url, spell_image),
+                    image_path, spell_image
+                ),
             })
+
+        small_avatar = '{}_s_avatar.png'.format(champion_id)
+        large_avatar = '{}_l_avatar.png'.format(champion_id)
 
         result.append({
             'id': champion_id,
             'name': data['name'],
-            'image': [small_avatar, large_avatar],
+            'image': [
+                download_image(
+                    '{}/img/champion/{}'.format(base_url, image_name),
+                    image_path, small_avatar
+                ),
+                download_image(
+                    'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{}_0.jpg'.format(champion_id),
+                    image_path, large_avatar
+                )
+            ],
             'is_range': is_range,
             'spells': spells,
         })
