@@ -123,6 +123,10 @@ export class GamePage {
       });
 
       component.answerInvalid.subscribe(() => {
+        if (this.isLocked) {
+          return;
+        }
+
         this.playSound("sfx/choice_invalid.wav");
 
         this.isPerfect = false;
@@ -140,6 +144,8 @@ export class GamePage {
   }
 
   finishGame() {
+    this.isLocked = true;
+
     if (this.showAd) {
       this.ads.showFullScreen();
     }
