@@ -5,7 +5,6 @@ export class BaseGame implements OnInit {
   @Output() answerInvalid: EventEmitter<any> = new EventEmitter();
   @Output() answerValid: EventEmitter<any> = new EventEmitter();
   @Output() questionFinished: EventEmitter<any> = new EventEmitter();
-  @Output() setBackground: EventEmitter<any> = new EventEmitter();
 
   question: any;
   answers: any[];

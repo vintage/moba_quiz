@@ -15,12 +15,6 @@ export class ChampionAttackTypeGame extends BaseGame {
     super();
   }
 
-  initializeGame() {
-    super.initializeGame();
-
-    this.setBackground.emit(this.question.getBigImage());
-  }
-
   getQuestion() {
     return this.championService.getAny();
   }

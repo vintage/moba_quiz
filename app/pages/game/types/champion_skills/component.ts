@@ -18,12 +18,6 @@ export class ChampionSkillsGame extends BaseGame {
     super();
   }
 
-  initializeGame() {
-    super.initializeGame();
-
-    this.setBackground.emit(this.question.getBigImage());
-  }
-
   choiceValid(item: any) {
     super.choiceValid(item);
 

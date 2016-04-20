@@ -21,11 +21,7 @@ export class ChampionModel {
   }
 
   getImageSource() {
-    return "data/images/champions/" + this.image[0];
-  }
-
-  getBigImage() {
-    return "data/images/champions/" + this.image[1];
+    return "data/images/champions/" + this.image;
   }
 }
 

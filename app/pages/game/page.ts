@@ -25,7 +25,6 @@ export class GamePage {
   showAd: boolean;
   isPerfect: boolean;
   isLocked: boolean;
-  backgroundImage: string = "img/background.jpg";
 
   constructor(
       public nav: NavController,
@@ -60,14 +59,6 @@ export class GamePage {
     });
   }
 
-  setBackground(background: string) {
-    this.backgroundImage = background;
-  }
-
-  resetBackground() {
-    this.backgroundImage = "img/background.jpg";
-  }
-
   openLevelStats() {
     return new Promise(resolve => {
       let points: string = new PointsPipe().transform(this.gameplay.getLevelPoints(), []);
@@ -82,7 +73,7 @@ export class GamePage {
       setTimeout(() => {
         alert.dismiss(null);
         resolve(true);
-      }, 1000);
+      }, 500);
     });
   }
 
@@ -111,11 +102,6 @@ export class GamePage {
           this.openLevel();
           this.isLocked = false;
         });
-      });
-
-      this.resetBackground();
-      component.setBackground.subscribe((background) => {
-        this.setBackground(background);
       });
 
       component.answerValid.subscribe(() => {

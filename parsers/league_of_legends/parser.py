@@ -107,22 +107,15 @@ def setup_champions():
                 ),
             })
 
-        small_avatar = '{}_s_avatar.png'.format(champion_id)
-        large_avatar = '{}_l_avatar.png'.format(champion_id)
+        small_avatar = '{}_avatar.png'.format(champion_id)
 
         result.append({
             'id': champion_id,
             'name': data['name'],
-            'image': [
-                download_image(
-                    '{}/img/champion/{}'.format(base_url, image_name),
-                    image_path, small_avatar
-                ),
-                download_image(
-                    'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{}_0.jpg'.format(champion_id),
-                    image_path, large_avatar
-                )
-            ],
+            'image': download_image(
+                '{}/img/champion/{}'.format(base_url, image_name),
+                image_path, small_avatar
+            ),
             'is_range': is_range,
             'spells': spells,
         })
