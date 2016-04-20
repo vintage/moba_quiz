@@ -64,7 +64,7 @@ export class ScoreSubmitPage implements OnInit {
 
   playAgain() {
     this.nav.push(GamePage).then(() => {
-      this.nav.remove(this.viewCtrl.index);
+      this.nav.remove(this.nav.indexOf(this.viewCtrl));
     });
   }
 

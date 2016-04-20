@@ -125,10 +125,6 @@ export class GamePage {
       component.answerInvalid.subscribe(() => {
         this.playSound("sfx/choice_invalid.wav");
 
-        if (window.navigator.vibrate) {
-          window.navigator.vibrate(1000);
-        }
-
         this.isPerfect = false;
         this.gameplay.invalidMove();
 
@@ -149,7 +145,7 @@ export class GamePage {
     }
 
     this.nav.push(ScoreSubmitPage).then(() => {
-      this.nav.remove(this.viewCtrl.index);
+      this.nav.remove(this.nav.indexOf(this.viewCtrl));
     });
   }
 
