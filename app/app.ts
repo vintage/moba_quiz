@@ -37,6 +37,8 @@ class MobaApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      window.navigator.splashscreen.hide();
+
       console.log("Platform ready");
 
       if (typeof StatusBar !== "undefined") {

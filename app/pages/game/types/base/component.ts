@@ -46,11 +46,11 @@ export class BaseGame implements OnInit {
       this.answers[free_slot] = item;
     }
 
-    this.answerValid.emit();
+    this.answerValid.emit(null);
   }
 
   choiceInvalid() {
-    this.answerInvalid.emit();
+    this.answerInvalid.emit(null);
   }
 
   isValid(item: any) {
