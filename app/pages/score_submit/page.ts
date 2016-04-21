@@ -143,9 +143,9 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   playSound(src: string) {
-    if (window.Media) {
-      let sfx = new window.Media(src);
-      sfx.play();
-    }
+    // if (window.Media) {
+    //   let sfx = new window.Media(src);
+    //   sfx.play();
+    // }
   }
 }
