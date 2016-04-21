@@ -49,7 +49,7 @@
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="FullScreen" value="true"/>
   <preference name="KeepRunning" value="false"/>
-  <preference name="Orientation" value="portait"/>
+  <preference name="Orientation" value="portrait"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <feature name="StatusBar">
