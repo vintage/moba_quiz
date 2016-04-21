@@ -82,7 +82,6 @@ export class GamePage {
     this.gameType = this.gameTypeService.getAny();
     this.dcl.loadIntoLocation(this.gameType.component, this.elementRef, "child").then((componentRef) => {
       let component = componentRef.instance;
-      componentRef.location.nativeElement.className += "game-container";
 
       component.questionFinished.subscribe(() => {
         this.isLocked = true;

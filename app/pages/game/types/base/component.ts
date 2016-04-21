@@ -2,9 +2,9 @@ import {OnInit, EventEmitter, Output} from "angular2/core";
 import {shuffle} from "lodash";
 
 export class BaseGame implements OnInit {
-  @Output() answerInvalid: EventEmitter<any> = new EventEmitter();
-  @Output() answerValid: EventEmitter<any> = new EventEmitter();
-  @Output() questionFinished: EventEmitter<any> = new EventEmitter();
+  @Output() answerInvalid: EventEmitter<any> = new EventEmitter(false);
+  @Output() answerValid: EventEmitter<any> = new EventEmitter(false);
+  @Output() questionFinished: EventEmitter<any> = new EventEmitter(false);
 
   question: any;
   answers: any[];
