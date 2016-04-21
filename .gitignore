@@ -17,3 +17,5 @@ parsers/pip-selfcheck.json
 parsers/*/data/
 npm-debug.log
 .vscode/*
+.idea/encodings.xml
+.idea/*

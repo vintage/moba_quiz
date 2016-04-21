@@ -1,23 +1,27 @@
 {
   "dependencies": {
-    "angular2": "2.0.0-beta.13",
+    "angular2": "2.0.0-beta.15",
     "es6-promise": "3.0.2",
     "es6-shim": "^0.35.0",
-    "ionic-angular": "2.0.0-beta.4",
+    "ionic-angular": "2.0.0-beta.5",
     "ionic-native": "^1.1.0",
-    "ionicons": "^3.0.0-alpha.3",
+    "ionicons": "3.0.0-alpha.3",
     "lodash": "^4.0.1",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
-    "zone.js": "0.6.6"
+    "zone.js": "0.6.11"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^0.15.9",
-    "strip-sourcemap-loader": "0.0.1",
-    "typescript": "^1.7.3"
+    "del": "2.2.0",
+    "gulp": "3.9.1",
+    "gulp-watch": "4.3.5",
+    "ionic-gulp-browserify-typescript": "^1.0.0",
+    "ionic-gulp-fonts-copy": "^1.0.0",
+    "ionic-gulp-html-copy": "^1.0.0",
+    "ionic-gulp-sass-build": "^1.0.0",
+    "ionic-gulp-scripts-copy": "^1.0.0",
+    "run-sequence": "1.1.5"
   },
-  "name": "mobaquiz",
-  "description": "MobaQuiz: Framework for Moba quizes",
   "cordovaPlugins": [
     "cordova-plugin-device",
     "cordova-plugin-console",
@@ -34,8 +38,12 @@
   ],
   "cordovaPlatforms": [
     "ios",
-    "android",
-    "windows",
-    "browser"
-  ]
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
+    }
+  ],
+  "name": "moba_quizz",
+  "description": "MobaQuiz: Framework for Moba quizes"
 }
