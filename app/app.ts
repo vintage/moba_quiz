@@ -13,6 +13,9 @@ import {MainMenuPage} from "./pages/main_menu/page";
 
 @App({
   prodMode: true,
+  config: {
+    statusbarPadding: false
+  },
   templateUrl: "build/app.html",
   providers: [
     ItemService,

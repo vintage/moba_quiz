@@ -1,0 +1,47 @@
+<ion-navbar *navbar>
+  <ion-title>About</ion-title>
+</ion-navbar>
+
+<ion-content style="background-image: url('img/background.jpg')">
+  <ion-card>
+    <ion-card-header>
+      If you just
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="bug" item-left></ion-icon>
+            found a bug
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="flame" item-left></ion-icon>
+            though about any improvement or change
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="hand" item-left></ion-icon>
+            want to say <b>Hi</b>
+        </ion-item>
+      </ion-list>
+
+      <button block secondary (click)="openContact()">
+        <ion-icon name="chatboxes"></ion-icon>
+        Contact Us
+      </button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Authors
+    </ion-card-header>
+
+    <ion-card-content>
+      The game has been made by the <b>PuppyBox</b> studio (one-man army).
+      Big thanks to the <b>Lorc</b> who has made the icons used in the achievement
+      system.
+    </ion-card-content>
+  </ion-card>
+</ion-content>

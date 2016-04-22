@@ -157,22 +157,22 @@ def setup_achievements(items, champions):
       },
       {
         "id": "solved_all_skills",
-        "name": "All your skill are belong to us",
-        "description": "Match all skills with their champions",
+        "name": "Every move is mine",
+        "description": "Solve all skill levels",
         "type": "array",
         "goal": skill_count,
       },
       {
         "id": "solved_all_items",
-        "name": "Call me master of crafting",
-        "description": "Answer all recipe-based questions",
+        "name": "Call me blacksmith",
+        "description": "Solve all recipe levels",
         "type": "array",
         "goal": item_count,
       },
       {
         "id": "solved_all_champions",
-        "name": "Yes I know all of them",
-        "description": "Match all champions with their skills",
+        "name": "I know all of them",
+        "description": "Solve all champion levels",
         "type": "array",
         "goal": champion_count,
       },
@@ -207,21 +207,21 @@ def setup_achievements(items, champions):
       {
         "id": "gameplay_small_strike",
         "name": "Warm up",
-        "description": "Answer perfectly 10 questions in a row",
+        "description": "Make a 10x strike",
         "type": "number",
         "goal": 10
       },
       {
         "id": "gameplay_medium_strike",
         "name": "Unstoppable",
-        "description": "Answer perfectly 50 questions in a row",
+        "description": "Make a 50x strike",
         "type": "number",
         "goal": 50
       },
       {
         "id": "gameplay_big_strike",
         "name": "Godlike",
-        "description": "Answer perfectly 150 questions in a row",
+        "description": "Make a 150x strike",
         "type": "number",
         "goal": 150
       },

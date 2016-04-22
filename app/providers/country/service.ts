@@ -1,4 +1,4 @@
-import {Storage, LocalStorage} from "ionic-angular";
+import {Storage, SqlStorage} from "ionic-angular";
 import {Injectable} from "angular2/core";
 import {Http} from "angular2/http";
 
@@ -14,7 +14,7 @@ export class CountryService {
   private current: CountryModel;
 
   constructor(public http: Http) {
-    this.storage = new Storage(LocalStorage);
+    this.storage = new Storage(SqlStorage);
   }
 
   load() {

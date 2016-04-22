@@ -1,6 +1,6 @@
 import {Injectable} from "angular2/core";
 import {Http, Headers} from "angular2/http";
-import {Storage, LocalStorage} from "ionic-angular";
+import {Storage, SqlStorage} from "ionic-angular";
 
 import {ScoreModel} from "./model";
 
@@ -10,7 +10,7 @@ export class ScoreService {
   storage: Storage;
 
   constructor(public http: Http) {
-    this.storage = new Storage(LocalStorage);
+    this.storage = new Storage(SqlStorage);
   }
 
   hashObject(obj) {

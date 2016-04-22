@@ -1,6 +1,6 @@
 import {Injectable} from "angular2/core";
 import {Http} from "angular2/http";
-import {Storage, LocalStorage} from "ionic-angular";
+import {Storage, SqlStorage} from "ionic-angular";
 import {shuffle, filter, random} from "lodash";
 
 import {AbstractAchievementModel, AchievementFactory} from "./model";
@@ -11,7 +11,7 @@ export class AchievementService {
   achievements: AbstractAchievementModel[];
 
   constructor(public http: Http) {
-    this.storage = new Storage(LocalStorage);
+    this.storage = new Storage(SqlStorage);
   }
 
   update(achievementId: string, value?: any) {
