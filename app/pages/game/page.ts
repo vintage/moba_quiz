@@ -48,14 +48,12 @@ export class GamePage {
       }
     });
 
-    itemService.load().then(() => {
-      championService.load().then(() => {
-        this.gameplay.start();
-        this.achievements.update("gameplay_small_play_count");
-        this.achievements.update("gameplay_medium_play_count");
-        this.achievements.update("gameplay_big_play_count");
-        this.openLevel();
-      });
+    Promise.all([itemService.load(), championService.load()]).then(() => {
+      this.gameplay.start();
+      this.achievements.update("gameplay_small_play_count");
+      this.achievements.update("gameplay_medium_play_count");
+      this.achievements.update("gameplay_big_play_count");
+      this.openLevel();
     });
   }
 

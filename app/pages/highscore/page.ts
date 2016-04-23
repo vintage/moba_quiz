@@ -21,16 +21,14 @@ class HighscoreGeneralPage implements OnInit {
     this.title = this.getTitle();
     this.isOnline = true;
 
-    this.platform.ready().then(() => {
-      if (window.navigator.connection && window.navigator.connection.type === window.Connection.NONE) {
-        this.isOnline = false;
-      }
-      else {
-        this.getScores().then(scores => {
-          this.scores = scores;
-        });
-      }
-    });
+    if (window.navigator.connection && window.navigator.connection.type === window.Connection.NONE) {
+      this.isOnline = false;
+    }
+    else {
+      this.getScores().then(scores => {
+        this.scores = scores;
+      });
+    }
   }
 
   getScores() {

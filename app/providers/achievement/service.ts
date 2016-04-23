@@ -33,26 +33,35 @@ export class AchievementService {
   }
 
   getProgress(achievement: AbstractAchievementModel) {
-    let progressKey = this.getProgressKey(achievement);
-    return this.storage.get(progressKey).then(progress => {
+    let progress_key = this.getProgressKey(achievement);
+    return this.storage.get(progress_key).then(progress => {
+      if (!progress) {
+        return 0;
+      }
       return JSON.parse(progress);
     });
   }
 
   setProgress(achievement: AbstractAchievementModel, progress: any) {
-    let progressKey = this.getProgressKey(achievement);
-    return this.storage.set(progressKey, JSON.stringify(progress));
+    let progress_key = this.getProgressKey(achievement);
+    return this.storage.set(progress_key, JSON.stringify(progress));
   }
 
   loadExtended() {
     return this.load().then(achievements => {
+      let promises = [];
       achievements.forEach(achievement => {
-        this.getProgress(achievement).then(progress => {
-          achievement.setProgress(progress);
-        });
+        promises.push(new Promise(resolve => {
+          return this.getProgress(achievement).then(progress => {
+            achievement.setProgress(progress);
+            return resolve(achievement);
+          });
+        }));
       });
 
-      return achievements;
+      return Promise.all(promises).then(value => {
+        return value;
+      });
     });
   }
 
