@@ -69,7 +69,7 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   openMenu() {
-    this.nav.popToRoot();
+    this.nav.setRoot(MainMenuPage);
   }
 
   is_valid() {
