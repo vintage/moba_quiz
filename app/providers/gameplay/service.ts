@@ -6,6 +6,7 @@ export class GameplayService {
   playerName: string;
   points: number;
   strike: number;
+  maxStrike: number;
   chances: number;
   level: number;
   // Time is stored in ms
@@ -33,6 +34,7 @@ export class GameplayService {
   restart() {
     this.points = 0;
     this.strike = 0;
+    this.maxStrike = 0;
     this.chances = 4;
     this.level = 1;
     this.refreshTimer();
@@ -86,6 +88,10 @@ export class GameplayService {
 
     if (isPerfect) {
       this.strike += 1;
+
+      if (this.strike > this.maxStrike) {
+        this.maxStrike = this.strike;
+      }
     }
 
     this.points += this.getLevelPoints();
