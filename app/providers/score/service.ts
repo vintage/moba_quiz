@@ -8,12 +8,10 @@ import {ScoreModel} from "./model";
 
 @Injectable()
 export class ScoreService {
-  apiUrl: string;
   storage: Storage;
 
   constructor(public http: Http, private settings: SettingsService) {
     this.storage = new Storage(SqlStorage);
-    this.apiUrl = settings.highscoreUrl;
   }
 
   hashObject(obj) {
@@ -42,7 +40,7 @@ export class ScoreService {
       headers.append("Content-Type", "application/json");
 
       this.http.post(
-        this.apiUrl, JSON.stringify(data), {headers: headers}
+        this.settings.highscoreUrl, JSON.stringify(data), {headers: headers}
       ).subscribe(res => {
         // FIXME: res.ok in angular.beta7
         resolve(res.status > 200 && res.status < 300);
@@ -52,7 +50,7 @@ export class ScoreService {
 
   list(mode: string) {
     return new Promise(resolve => {
-      this.http.get(this.apiUrl + "?mode=" + mode).subscribe(res => {
+      this.http.get(this.settings.highscoreUrl + "?mode=" + mode).subscribe(res => {
         let scores = [];
 
         let json = res.json();

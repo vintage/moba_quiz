@@ -49,8 +49,6 @@ class MobaApp {
     this.platform.ready().then(() => {
       window.navigator.splashscreen.hide();
 
-      console.log("Platform ready");
-
       if (typeof StatusBar !== "undefined") {
         StatusBar.styleDefault();
       }
@@ -58,6 +56,8 @@ class MobaApp {
       this.settings.load().then(() => {
         this.ads.showBanner();
       });
+    }).catch(() => {
+      this.settings.load();
     });
   }
 }

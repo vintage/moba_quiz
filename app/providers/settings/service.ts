@@ -25,6 +25,23 @@ export class SettingsService {
       this.http.get("data/settings.json").subscribe(res => {
         let json = res.json();
 
+        this.legalDisclaimer = json["legal_disclaimer"];
+        this.highscoreUrl = json["highscore_url"];
+
+        let adData = {};
+        if (this.platform.is("ios")) {
+          adData = json["ads"]["ios"];
+        }
+        else if (this.platform.is("android")) {
+          adData = json["ads"]["android"];
+        }
+        else {
+          adData = json["ads"]["default"];
+        }
+
+        this.smallBanner = adData["small"];
+        this.bigBanner = adData["full_screen"];
+
         this.isLoaded = true;
         resolve(null);
       });
