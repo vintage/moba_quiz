@@ -2,15 +2,18 @@ import {Injectable} from "angular2/core";
 import {Http, Headers} from "angular2/http";
 import {Storage, SqlStorage} from "ionic-angular";
 
+import {SettingsService} from "../settings/service";
+
 import {ScoreModel} from "./model";
 
 @Injectable()
 export class ScoreService {
-  API_URL: string = "http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/lol/scores/";
+  apiUrl: string;
   storage: Storage;
 
-  constructor(public http: Http) {
+  constructor(public http: Http, private settings: SettingsService) {
     this.storage = new Storage(SqlStorage);
+    this.apiUrl = settings.highscoreUrl;
   }
 
   hashObject(obj) {
@@ -39,7 +42,7 @@ export class ScoreService {
       headers.append("Content-Type", "application/json");
 
       this.http.post(
-        this.API_URL, JSON.stringify(data), {headers: headers}
+        this.apiUrl, JSON.stringify(data), {headers: headers}
       ).subscribe(res => {
         // FIXME: res.ok in angular.beta7
         resolve(res.status > 200 && res.status < 300);
@@ -49,7 +52,7 @@ export class ScoreService {
 
   list(mode: string) {
     return new Promise(resolve => {
-      this.http.get(this.API_URL + "?mode=" + mode).subscribe(res => {
+      this.http.get(this.apiUrl + "?mode=" + mode).subscribe(res => {
         let scores = [];
 
         let json = res.json();

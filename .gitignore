@@ -14,8 +14,9 @@ parsers/include/
 parsers/lib/
 parsers/.Python
 parsers/pip-selfcheck.json
-parsers/*/data/
+parsers/*/*/data/
 npm-debug.log
 .vscode/*
 .idea/encodings.xml
 .idea/*
+*.pyc

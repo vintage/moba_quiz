@@ -8,6 +8,7 @@ import {CountryService} from "./providers/country/service";
 import {ScoreService} from "./providers/score/service";
 import {AdService} from "./providers/ads/service";
 import {AchievementService} from "./providers/achievement/service";
+import {SettingsService} from "./providers/settings/service";
 
 import {MainMenuPage} from "./pages/main_menu/page";
 
@@ -26,13 +27,19 @@ import {MainMenuPage} from "./pages/main_menu/page";
     ScoreService,
     AdService,
     AchievementService,
+    SettingsService,
     HTTP_PROVIDERS,
   ]
 })
 class MobaApp {
   root: any;
 
-  constructor(public app: IonicApp, public platform: Platform, public ads: AdService) {
+  constructor(
+    public app: IonicApp,
+    public platform: Platform,
+    private ads: AdService,
+    private settings: SettingsService
+  ) {
     this.root = MainMenuPage;
 
     this.initializeApp();
@@ -48,7 +55,9 @@ class MobaApp {
         StatusBar.styleDefault();
       }
 
-      this.ads.showBanner();
+      this.settings.load().then(() => {
+        this.ads.showBanner();
+      });
     });
   }
 }

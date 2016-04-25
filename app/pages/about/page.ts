@@ -1,10 +1,15 @@
 import {Page, NavController, Alert} from "ionic-angular";
 
+import {SettingsService} from "../../providers/settings/service";
+
 @Page({
   templateUrl: "build/pages/about/page.html",
 })
 export class AboutPage {
-  constructor(public nav: NavController) {
+  disclaimer: string;
+
+  constructor(public nav: NavController, private settings: SettingsService) {
+    this.disclaimer = settings.legalDisclaimer;
   }
 
   showContactAlert() {

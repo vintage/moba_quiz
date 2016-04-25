@@ -126,6 +126,32 @@ def setup_champions():
     return result
 
 
+def setup_settings():
+    result = {
+        'ads': {
+            'ios': {
+                'small': 'ca-app-pub-4764697513834958/6693594860',
+                'full_screen': 'ca-app-pub-4764697513834958/2123794461',
+            },
+            'android': {
+                'small': 'ca-app-pub-4764697513834958/9308984069',
+                'full_screen': 'ca-app-pub-4764697513834958/4599582865',
+            },
+            'default': {
+                'small': 'ca-app-pub-4764697513834958/7883646863',
+                'full_screen': 'ca-app-pub-4764697513834958/7744046068',
+            },
+        },
+        'legal_disclaimer': 'Its RIOT not me',
+        'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/lol/scores/',
+    }
+
+    with open('./data/settings.json', 'w') as outfile:
+        json.dump(result, outfile)
+
+    return result
+
+
 def setup_achievements(items, champions):
     item_count = len(list(filter(lambda x: len(x['from']) > 0, items)))
     champion_count = len(champions)
@@ -176,34 +202,6 @@ def setup_achievements(items, champions):
         "type": "array",
         "goal": champion_count,
       },
-    #   {
-    #     "id": "highscore_daily",
-    #     "name": "First step to fame",
-    #     "description": "Get a score in the daily highscore",
-    #     "type": "boolean",
-    #     "goal": 1,
-    #   },
-    #   {
-    #     "id": "highscore_weekly",
-    #     "name": "Am I famous already?",
-    #     "description": "Get a score in the weekly highscore",
-    #     "type": "boolean",
-    #     "goal": 1,
-    #   },
-    #   {
-    #     "id": "highscore_monthly",
-    #     "name": "Hall of Fame",
-    #     "description": "Get a score in the montly highscore",
-    #     "type": "boolean",
-    #     "goal": 1,
-    #   },
-    #   {
-    #     "id": "highscore_best_daily",
-    #     "name": "Fame of the day",
-    #     "description": "Be the number one in the daily highscore",
-    #     "type": "boolean",
-    #     "goal": 1,
-    #   },
       {
         "id": "gameplay_small_strike",
         "name": "Warm up",
@@ -263,3 +261,4 @@ def setup_achievements(items, champions):
 items = setup_items()
 champions = setup_champions()
 setup_achievements(items, champions)
+setup_settings()
