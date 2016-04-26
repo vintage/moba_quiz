@@ -162,7 +162,7 @@ def setup_settings():
             'android': 'market://details?id=com.YOUR.PACKAGENAME',
             'windows': '',
         },
-        'legal_disclaimer': 'Its RIOT not me',
+        'legal_disclaimer': 'This application is not created, sponsored or endorsed by Valve Corporation and doesn’t reflect the views or opinions of Valve Corporation or anyone officially involved in producing or managing Dota 2. Dota 2 is a registered trademark of Valve Corporation. All in-game descriptions, characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
         'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/dota/scores/',
     }
 
