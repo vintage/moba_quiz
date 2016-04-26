@@ -142,6 +142,11 @@ def setup_settings():
                 'full_screen': 'ca-app-pub-4764697513834958/7744046068',
             },
         },
+        'urls': {
+            'ios': 'itms-apps://itunes.apple.com/app/id1107274781',
+            'android': 'market://details?id=com.YOUR.PACKAGENAME',
+            'windows': '',
+        },
         'legal_disclaimer': 'Its RIOT not me',
         'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/lol/scores/',
     }

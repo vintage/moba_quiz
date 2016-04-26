@@ -11,6 +11,7 @@ export class SettingsService {
   bigBanner: string;
   legalDisclaimer: string;
   highscoreUrl: string;
+  appUrl: string;
 
   constructor(public platform: Platform, public http: Http) {
     this.isLoaded = false;
@@ -30,12 +31,15 @@ export class SettingsService {
 
         let adData = {};
         if (this.platform.is("ios")) {
+          this.appUrl = json["urls"]["ios"];
           adData = json["ads"]["ios"];
         }
         else if (this.platform.is("android")) {
+          this.appUrl = json["urls"]["android"];
           adData = json["ads"]["android"];
         }
         else {
+          this.appUrl = json["urls"]["windows"];
           adData = json["ads"]["default"];
         }
 

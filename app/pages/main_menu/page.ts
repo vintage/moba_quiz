@@ -4,6 +4,7 @@ import {Button, Page, NavController, Platform, Alert} from "ionic-angular";
 import {GameplayService} from "../../providers/gameplay/service";
 import {ScoreService} from "../../providers/score/service";
 import {AchievementService} from "../../providers/achievement/service";
+import {SettingsService} from "../../providers/settings/service";
 import {PointsPipe} from "../../pipes/numbers";
 
 import {GamePage} from "../game/page";
@@ -25,6 +26,7 @@ export class MainMenuPage {
     public gameplay: GameplayService,
     public scoreService: ScoreService,
     public achievements: AchievementService,
+    private settings: SettingsService,
     public platform: Platform) {
   }
 
@@ -55,23 +57,11 @@ export class MainMenuPage {
   }
 
   openRating() {
-    let marketUrl = null;
-
-    if (this.platform.is("ios")) {
-      marketUrl = "itms-apps://itunes.apple.com/app/idYOUR_APP_ID";
-    }
-    else if (this.platform.is("android")) {
-      marketUrl = "market://details?id=com.YOUR.PACKAGENAME";
-    }
-    else {
-      marketUrl = "https://www.microsoft.com/pl-pl/store/games/lol-quiz-free/9wzdncrfhvz4";
-    }
-
     if (window.cordova) {
-      window.cordova.InAppBrowser.open(marketUrl, "_system", "location=no");
+      window.cordova.InAppBrowser.open(this.settings.appUrl, "_system", "location=no");
     }
     else {
-      window.open(marketUrl, "_blank");
+      window.open(this.settings.appUrl, "_blank");
     }
 
     this.achievements.update("rate_app");
