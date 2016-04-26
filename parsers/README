@@ -1,0 +1,6 @@
+1. Execute one of the available parsers
+2. When parser finish his job it will create data/ directory which need to be copied
+to the root www/ directory.
+3. Copy static assets from parser static/ directory (except PSD files!)
+4. Put icon & splashscreen into resources/ directory
+5. Execute "ionic resources"
