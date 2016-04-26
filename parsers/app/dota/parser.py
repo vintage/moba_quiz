@@ -42,8 +42,18 @@ def setup_items():
     json_data = requests.get(items_url).json()
 
     result = []
+    price_map = {}
     for item_id, data in tqdm(json_data['itemdata'].items(), desc='Parsing items'):
+        # Skip item upgrades like diffusal blade or necronomicon
+        if item_id[-1].isdigit():
+            continue
+
+        # Skip special items
+        if item_id.startswith(('winter_', 'greevil_', 'halloween_', 'mystery_')):
+            continue
+
         name = data['dname']
+        price = data['cost']
 
         image_name = data['img']
         image_url = '{}/items/{}'.format(base_image_url, image_name)
@@ -54,8 +64,28 @@ def setup_items():
             'image': download_image(image_url, item_image_path, image_name),
             'into': [],
             'from': data['components'] or [],
-            'price': data['cost'],
+            'price': price,
         })
+
+        price_map[item_id] = price
+
+    # Validate which items need a recipe. Even official https://www.dota2.com
+    # page do it like this, have no idea why it's not included in the API.
+    # Check in JS BuildItemFullBoxHTML( iData ) function for proof.
+    for item in result:
+        total_price = item['price']
+        component_price = sum([price_map[c] for c in item['from']])
+
+        if component_price and total_price > component_price:
+            item['from'].append('recipe')
+
+    # verify components
+    item_ids = [i['id'] for i in result]
+
+    for r in result:
+        for r_from in r['from']:
+            if r_from not in item_ids:
+                raise Exception(r_from)
 
     with open('./data/items.json', 'w') as outfile:
         json.dump(result, outfile)
