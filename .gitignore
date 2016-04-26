@@ -20,3 +20,4 @@ npm-debug.log
 .idea/encodings.xml
 .idea/*
 *.pyc
+resources/
