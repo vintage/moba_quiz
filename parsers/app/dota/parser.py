@@ -2,6 +2,7 @@ import json
 import os
 import shutil
 import functools
+import re
 
 from PIL import Image
 import requests
@@ -19,7 +20,15 @@ os.makedirs(item_image_path, exist_ok=True)
 os.makedirs(champion_image_path, exist_ok=True)
 
 def clean_filename(filename):
-    return ''.join(filename.split()).lower()
+    filename = ''.join(filename.split()).lower()
+    extension_dot = filename.rindex('.')
+
+    left_part = filename[:extension_dot]
+    right_part = filename[extension_dot:]
+    # Characters after last . can be [a-z] only
+    right_part = " ".join(re.findall("[a-zA-Z]+", right_part))
+
+    return "{}.{}".format(left_part, right_part)
 
 
 def download_image(url, path, filename):
@@ -42,6 +51,15 @@ def setup_items():
     json_data = requests.get(items_url).json()
 
     result = []
+    recipe_image_url = 'http://cdn.dota2.com/apps/dota2/images/items/recipe_lg.png'
+    result.append({
+        'id': 'recipe',
+        'name': 'Recipe',
+        'image': download_image(recipe_image_url, item_image_path, 'recipe.png'),
+        'into': [],
+        'from': [],
+        'price': 0,
+    })
     price_map = {}
     for item_id, data in tqdm(json_data['itemdata'].items(), desc='Parsing items'):
         # Skip item upgrades like diffusal blade or necronomicon
@@ -52,12 +70,16 @@ def setup_items():
         if item_id.startswith(('winter_', 'greevil_', 'halloween_', 'mystery_')):
             continue
 
+        if item_id in ('banana',):
+            continue
+
         name = data['dname']
         price = data['cost']
 
         image_name = data['img']
         image_url = '{}/items/{}'.format(base_image_url, image_name)
-
+        if image_url == 'http://cdn.dota2.com/apps/dota2/images/items/banana_lg.png?3':
+            import ipdb; ipdb.set_trace()
         result.append({
             'id': item_id,
             'name': name,
@@ -158,7 +180,7 @@ def setup_settings():
             },
         },
         'urls': {
-            'ios': 'itms-apps://itunes.apple.com/app/id1107274781',
+            'ios': 'itms-apps://itunes.apple.com/app/id1109010695',
             'android': 'market://details?id=com.YOUR.PACKAGENAME',
             'windows': '',
         },

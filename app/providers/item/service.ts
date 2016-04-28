@@ -32,7 +32,7 @@ export class ItemService {
 
   getAny() {
     let items = filter(this.items, node => {
-      return node.from.length > 0;
+      return node.from.length > 0 && node.price > 0;
     });
     let index = random(0, items.length - 1);
 
