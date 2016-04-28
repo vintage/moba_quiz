@@ -21,3 +21,4 @@ npm-debug.log
 .idea/*
 *.pyc
 resources/
+config.xml
