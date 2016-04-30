@@ -22,15 +22,14 @@ export class CountryService {
       return Promise.resolve(this.objects);
     }
 
-    this.objects = [];
     return new Promise(resolve => {
-      this.http.get("data_common/countries.json")
-        .subscribe(res => {
+      this.http.get("data_common/countries.json").subscribe(res => {
         let json = res.json();
-        json.map(jsonObject => {
-          this.objects.push(new CountryModel(jsonObject));
+        this.objects = json.map(data => {
+          return new CountryModel(data);
         });
         this.objects = sortBy(this.objects, "name");
+
         resolve(this.objects);
       });
     });
@@ -47,7 +46,7 @@ export class CountryService {
     }
 
     return this.storage.get("current_country").then(currentId => {
-      let current = filter(this.objects, country => {
+      let current = this.objects.filter(country => {
         return country.id === currentId;
       })[0];
 

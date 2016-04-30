@@ -3,8 +3,8 @@ import {get} from "lodash";
 export class ItemModel {
   id: string;
   name: string;
-  from: ItemModel[];
-  into: ItemModel[];
+  from: string[];
+  into: string[];
   price: number;
   private image: string;
 

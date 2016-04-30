@@ -16,9 +16,9 @@ export class AchievementService {
 
   update(achievementId: string, value?: any) {
     return this.load().then(achievements => {
-      let achievement = achievements.filter(
-        item => item.id === achievementId
-      )[0];
+      let achievement = achievements.filter(item => {
+        return item.id === achievementId;
+      })[0];
 
       return this.getProgress(achievement).then(progress => {
         let newValue = achievement.update(progress, value);
@@ -75,10 +75,8 @@ export class AchievementService {
         this.achievements = [];
 
         let json = res.json();
-        json.map(itemJson => {
-          this.achievements.push(AchievementFactory.createAchievement(
-            itemJson
-          ));
+        this.achievements = json.map(data => {
+          return AchievementFactory.createAchievement(data);
         });
 
         resolve(this.achievements);

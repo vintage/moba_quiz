@@ -1,6 +1,6 @@
 import {Injectable} from "angular2/core";
 import {Http} from "angular2/http";
-import {shuffle, filter, random} from "lodash";
+import {shuffle, random} from "lodash";
 
 import {ItemModel} from "./model";
 
@@ -18,11 +18,9 @@ export class ItemService {
 
     return new Promise(resolve => {
       this.http.get("data/items.json").subscribe(res => {
-        this.items = [];
-
         let json = res.json();
-        json.map(itemJson => {
-          this.items.push(new ItemModel(itemJson));
+        this.items = json.map(data => {
+          return new ItemModel(data);
         });
 
         resolve(this.items);
@@ -31,7 +29,7 @@ export class ItemService {
   }
 
   getAny() {
-    let items = filter(this.items, node => {
+    let items = this.items.filter(node => {
       return node.from.length > 0 && node.price > 0;
     });
     let index = random(0, items.length - 1);
@@ -48,13 +46,21 @@ export class ItemService {
   }
 
   getValidComponents(item: ItemModel) {
-    return filter(this.items, node => {
-      return item.from.indexOf(node.id) !== -1;
+    let components = [];
+
+    this.items.forEach(node => {
+      item.from.filter(component => {
+        return component === node.id;
+      }).map(component => {
+        components.push(node);
+      });
     });
+
+    return components;
   }
 
   getInvalidComponents(item: ItemModel) {
-    return filter(shuffle(this.items), node => {
+    return shuffle(this.items).filter(node => {
       return item.id !== node.id;
     });
   }

@@ -23,8 +23,8 @@ export class ChampionService {
         this.skills = [];
 
         let json = res.json();
-        json.map(champJson => {
-          let champion = new ChampionModel(champJson);
+        json.map(data => {
+          let champion = new ChampionModel(data);
 
           this.champions.push(champion);
           this.skills = this.skills.concat(champion.skills);
@@ -68,7 +68,7 @@ export class SkillService {
   }
 
   getChampion(skill: SkillModel) {
-    return filter(this.championService.champions, node => {
+    return this.championService.champions.filter(node => {
       return node.id === skill.championId;
     })[0];
   }
@@ -92,7 +92,7 @@ export class SkillService {
   }
 
   getInvalidComponents(skill: SkillModel) {
-    return filter(shuffle(this.championService.champions), node => {
+    return shuffle(this.championService.champions).filter(node => {
       return node.id !== skill.championId;
     });
   }

@@ -51,12 +51,9 @@ export class ScoreService {
   list(mode: string) {
     return new Promise(resolve => {
       this.http.get(this.settings.highscoreUrl + "?mode=" + mode).subscribe(res => {
-        let scores = [];
-
         let json = res.json();
-        json.map(scoreJson => {
-          let score = new ScoreModel(scoreJson);
-          scores.push(score);
+        let scores = json.map(data => {
+          return new ScoreModel(data);
         });
 
         resolve(scores);
