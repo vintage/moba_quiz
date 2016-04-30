@@ -1,4 +1,4 @@
-<ion-content style="background-image: url('data/background.jpg')">
+<ion-content style="background-image: url('data/background.jpg')" class="highscore-list">
   <div *ngIf="isOnline">
     <ion-card *ngIf="!scores">
       <ion-card-content>
@@ -7,10 +7,11 @@
     </ion-card>
 
     <ion-list *ngIf="scores && scores.length">
-      <ion-item *ngFor="#score of scores">
-        <ion-thumbnail item-left>
-          <img src="{{ score.getImageSource() }}">
-        </ion-thumbnail>
+      <ion-item *ngFor="#score of scores; #i=index">
+        <button dark clear item-left>{{ i + 1 }}.</button>
+        <ion-avatar item-left>
+          <img src="{{ score.getImageSource() }}" class="flag">
+        </ion-avatar>
 
         <h2>{{ score.score|points }}</h2>
         <p>{{ score.player|slice:0:16 }}</p>
