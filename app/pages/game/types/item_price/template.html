@@ -9,28 +9,28 @@
 <div *ngIf="choices" class="panel-box">
   <ion-row>
     <ion-col>
-      <answer-button [choice]="choices[0]" (picked)="onItemPicked($event)"></answer-button>
+      <answer-button [choice]="choices[0]" (picked)="onChoice($event)"></answer-button>
     </ion-col>
     <ion-col>
-      <answer-button [choice]="choices[1]" (picked)="onItemPicked($event)"></answer-button>
-    </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col>
-      <answer-button [choice]="choices[2]" (picked)="onItemPicked($event)"></answer-button>
-    </ion-col>
-    <ion-col>
-      <answer-button [choice]="choices[3]" (picked)="onItemPicked($event)"></answer-button>
+      <answer-button [choice]="choices[1]" (picked)="onChoice($event)"></answer-button>
     </ion-col>
   </ion-row>
 
   <ion-row>
     <ion-col>
-      <answer-button [choice]="choices[4]" (picked)="onItemPicked($event)"></answer-button>
+      <answer-button [choice]="choices[2]" (picked)="onChoice($event)"></answer-button>
     </ion-col>
     <ion-col>
-      <answer-button [choice]="choices[5]" (picked)="onItemPicked($event)"></answer-button>
+      <answer-button [choice]="choices[3]" (picked)="onChoice($event)"></answer-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <answer-button [choice]="choices[4]" (picked)="onChoice($event)"></answer-button>
+    </ion-col>
+    <ion-col>
+      <answer-button [choice]="choices[5]" (picked)="onChoice($event)"></answer-button>
     </ion-col>
   </ion-row>
 </div>

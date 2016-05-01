@@ -1,4 +1,4 @@
-import {Component, EventEmitter} from "angular2/core";
+import {Component, EventEmitter, Output} from "angular2/core";
 import {Button} from "ionic-angular";
 
 import {GameChoice} from "../types/model";
@@ -7,14 +7,16 @@ import {GameChoice} from "../types/model";
   selector: "answer-button",
   templateUrl: "build/pages/game/answer_button/template.html",
   directives: [Button],
-  inputs: ["choice"],
-  outputs: ["picked"],
+  inputs: ["choice"]
 })
 export class AnswerButton {
+  @Output() picked: EventEmitter<any> = new EventEmitter(false);
+
   choice: GameChoice;
-  picked = new EventEmitter();
 
   onClick() {
-    this.picked.emit(this.choice);
+    if (this.choice) {
+      this.picked.emit(this.choice);
+    }
   }
 }

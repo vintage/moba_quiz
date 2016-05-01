@@ -9,37 +9,37 @@
 <div *ngIf="choices" class="panel-box">
   <ion-row>
     <ion-col>
-      <game-slot [item]="choices[0]" (picked)="onItemPicked($event)"></game-slot>
+      <game-slot [choice]="choices[0]" (picked)="onChoice($event)"></game-slot>
     </ion-col>
     <ion-col>
-      <game-slot [item]="choices[1]" (picked)="onItemPicked($event)"></game-slot>
+      <game-slot [choice]="choices[1]" (picked)="onChoice($event)"></game-slot>
     </ion-col>
     <ion-col>
-      <game-slot [item]="choices[2]" (picked)="onItemPicked($event)"></game-slot>
-    </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col>
-      <game-slot [item]="choices[3]" (picked)="onItemPicked($event)"></game-slot>
-    </ion-col>
-    <ion-col>
-      <game-slot [item]="choices[4]" (picked)="onItemPicked($event)"></game-slot>
-    </ion-col>
-    <ion-col>
-      <game-slot [item]="choices[5]" (picked)="onItemPicked($event)"></game-slot>
+      <game-slot [choice]="choices[2]" (picked)="onChoice($event)"></game-slot>
     </ion-col>
   </ion-row>
 
   <ion-row>
     <ion-col>
-      <game-slot [item]="choices[6]" (picked)="onItemPicked($event)"></game-slot>
+      <game-slot [choice]="choices[3]" (picked)="onChoice($event)"></game-slot>
     </ion-col>
     <ion-col>
-      <game-slot [item]="choices[7]" (picked)="onItemPicked($event)"></game-slot>
+      <game-slot [choice]="choices[4]" (picked)="onChoice($event)"></game-slot>
     </ion-col>
     <ion-col>
-      <game-slot [item]="choices[8]" (picked)="onItemPicked($event)"></game-slot>
+      <game-slot [choice]="choices[5]" (picked)="onChoice($event)"></game-slot>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <game-slot [choice]="choices[6]" (picked)="onChoice($event)"></game-slot>
+    </ion-col>
+    <ion-col>
+      <game-slot [choice]="choices[7]" (picked)="onChoice($event)"></game-slot>
+    </ion-col>
+    <ion-col>
+      <game-slot [choice]="choices[8]" (picked)="onChoice($event)"></game-slot>
     </ion-col>
   </ion-row>
 </div>

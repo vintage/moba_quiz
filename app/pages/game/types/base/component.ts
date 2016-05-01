@@ -81,8 +81,7 @@ export class BaseGame implements OnInit {
     this.questionFinished.emit(this.question);
   }
 
-  onItemPicked(choice: GameChoice) {
-    console.log(choice);
+  onChoice(choice: GameChoice) {
     if (this.isFinished()) {
       return;
     }
