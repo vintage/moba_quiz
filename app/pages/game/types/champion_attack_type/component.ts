@@ -4,6 +4,7 @@ import {ChampionService} from "../../../../providers/champion/service";
 
 import {BaseGame} from "../base/component";
 import {AnswerButton} from "../../answer_button/component";
+import {GameChoice} from "../model";
 
 @Component({
   selector: "game-champion-attack-type",
@@ -19,15 +20,16 @@ export class ChampionAttackTypeGame extends BaseGame {
     return this.championService.getAny();
   }
 
-  getAnswers(question: any) {
-    let answer = "Melee";
-    if (question.is_range) {
-      answer = "Range";
-    }
-    return [answer];
+  getChoices() {
+    let is_range = this.question.is_range;
+
+    return [
+      new GameChoice("Melee", !is_range),
+      new GameChoice("Range", is_range)
+    ];
   }
 
-  getChoices(question: any) {
-    return ["Melee", "Range"];
+  isFinished() {
+    return this.answers.length > 0;
   }
 }

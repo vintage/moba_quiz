@@ -37,14 +37,6 @@ export class ItemService {
     return items[index];
   }
 
-  getComponents(item: ItemModel) {
-    let valid = this.getValidComponents(item);
-    let invalid = this.getInvalidComponents(item);
-
-    let components = valid.concat(invalid.slice(0, 12 - valid.length));
-    return components;
-  }
-
   getValidComponents(item: ItemModel) {
     let components = [];
 

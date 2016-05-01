@@ -1,15 +1,16 @@
 import {OnInit, EventEmitter, Output} from "angular2/core";
 import {shuffle} from "lodash";
 
+import {GameChoice} from "../model";
+
 export class BaseGame implements OnInit {
   @Output() answerInvalid: EventEmitter<any> = new EventEmitter(false);
   @Output() answerValid: EventEmitter<any> = new EventEmitter(false);
   @Output() questionFinished: EventEmitter<any> = new EventEmitter(false);
 
   question: any;
-  answers: any[];
-  answersLeft: any[];
-  choices: any[];
+  answers: GameChoice[];
+  choices: GameChoice[];
 
   ngOnInit() {
     this.initializeGame();
@@ -19,67 +20,80 @@ export class BaseGame implements OnInit {
 
   }
 
-  getAnswers(question: any) {
+  getValidOptions() {
     return [];
   }
 
-  getChoices(question: any) {
+  getInvalidOptions() {
+    return [];
+  }
 
+  getChoices() {
+    let answersLimit = this.getAnswersLimit();
+    let choicesLimit = this.getChoicesLimit();
+
+    let validChoices = shuffle(this.getValidOptions().map(option => {
+      return new GameChoice(option, true);
+    })).slice(0, answersLimit);
+
+    let invalidChoices = shuffle(this.getInvalidOptions().map(option => {
+      return new GameChoice(option, false);
+    })).slice(0, choicesLimit - validChoices.length);
+
+    return shuffle(validChoices.concat(invalidChoices));
+  }
+
+  getAnswersLimit() {
+    return 5;
+  }
+
+  getChoicesLimit() {
+    return 12;
   }
 
   initializeGame() {
     this.question = this.getQuestion();
-
     this.answers = [];
-    this.answersLeft = [];
-    for (let answer of this.getAnswers(this.question)) {
-      this.answers.push(null);
-      this.answersLeft.push(answer);
-    }
-
-    this.choices = shuffle(this.getChoices(this.question));
+    this.choices = this.getChoices();
   }
 
-  choiceValid(item: any) {
-    let free_slot = this.answers.indexOf(null);
-    if (free_slot !== -1) {
-      this.answers[free_slot] = item;
-    }
+  choiceValid(choice: GameChoice) {
+    this.answers.push(choice);
 
     this.answerValid.emit(null);
   }
 
-  choiceInvalid() {
+  choiceInvalid(choice: GameChoice) {
     this.answerInvalid.emit(null);
   }
 
-  isValid(item: any) {
-    return this.answersLeft.indexOf(item) !== -1;
+  isValid(choice: GameChoice) {
+    return choice.isValid;
   }
 
   isFinished() {
-    return this.answersLeft.length === 0;
+    return this.choices.filter(choice => {
+      return choice && choice.isValid;
+    }).length === 0;
   }
 
   finish() {
     this.questionFinished.emit(this.question);
   }
 
-  onItemPicked(item: any) {
+  onItemPicked(choice: GameChoice) {
+    console.log(choice);
     if (this.isFinished()) {
       return;
     }
 
-    let is_valid: boolean = this.isValid(item);
+    let is_valid: boolean = this.isValid(choice);
 
     if (is_valid) {
-      let position = this.answersLeft.indexOf(item);
-      this.answersLeft.splice(position, 1);
-
-      this.choiceValid(item);
+      this.choiceValid(choice);
     }
     else {
-      this.choiceInvalid();
+      this.choiceInvalid(choice);
     }
 
     // Go to the next level

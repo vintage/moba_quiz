@@ -4,6 +4,7 @@ import {SkillService} from "../../../../providers/champion/service";
 import {AchievementService} from "../../../../providers/achievement/service";
 import {Slot} from "../../slot/component";
 import {BaseGame} from "../base/component";
+import {GameChoice} from "../model";
 
 @Component({
   selector: "game-skill-champion",
@@ -31,11 +32,23 @@ export class SkillChampionGame extends BaseGame {
     this.achievements.update("solved_all_skills", this.question.id);
   }
 
-  getAnswers(question: any) {
-    return this.skillService.getValidComponents(question);
+  getValidOptions() {
+    return this.skillService.getValidComponents(this.question);
   }
 
-  getChoices(question: any) {
-    return this.skillService.getComponents(question);
+  getInvalidOptions() {
+    return this.skillService.getInvalidComponents(this.question);
+  }
+
+  getAnswersLimit() {
+    return 1;
+  }
+
+  getChoicesLimit() {
+    return 9;
+  }
+
+  isFinished() {
+    return this.answers.length > 0;
   }
 }

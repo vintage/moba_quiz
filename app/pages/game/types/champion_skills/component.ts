@@ -5,6 +5,7 @@ import {AchievementService} from "../../../../providers/achievement/service";
 
 import {Slot} from "../../slot/component";
 import {BaseGame} from "../base/component";
+import {GameChoice} from "../model";
 
 @Component({
   selector: "game-champion-skills",
@@ -18,11 +19,11 @@ export class ChampionSkillsGame extends BaseGame {
     super();
   }
 
-  choiceValid(item: any) {
-    super.choiceValid(item);
+  choiceValid(choice: GameChoice) {
+    super.choiceValid(choice);
 
     // Drop item from available selection
-    let position = this.choices.indexOf(item);
+    let position = this.choices.indexOf(choice);
     this.choices[position] = null;
   }
 
@@ -40,11 +41,19 @@ export class ChampionSkillsGame extends BaseGame {
     this.achievements.update("solved_all_champions", this.question.id);
   }
 
-  getAnswers(question: any) {
-    return this.championService.getValidComponents(question).slice(0, 5);
+  getValidOptions() {
+    return this.championService.getValidComponents(this.question);
   }
 
-  getChoices(question: any) {
-    return this.championService.getComponents(question).slice(0, 12);
+  getInvalidOptions() {
+    return this.championService.getInvalidComponents(this.question);
+  }
+
+  getAnswersLimit() {
+    return 5;
+  }
+
+  getChoicesLimit() {
+    return 12;
   }
 }

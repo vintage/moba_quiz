@@ -4,6 +4,7 @@ import {ItemService} from "../../../../providers/item/service";
 import {AchievementService} from "../../../../providers/achievement/service";
 import {Slot} from "../../slot/component";
 import {BaseGame} from "../base/component";
+import {GameChoice} from "../model";
 
 @Component({
   selector: "game-item-recipe",
@@ -17,12 +18,12 @@ export class ItemRecipeGame extends BaseGame {
     super();
   }
 
-  choiceValid(item: any) {
-    super.choiceValid(item);
+  choiceValid(choice: GameChoice) {
+    super.choiceValid(choice);
 
     // Drop item from available selection
     // TODO: Nie zadziala jesli jest kilka takich samych itemow na planszy
-    let position = this.choices.indexOf(item);
+    let position = this.choices.indexOf(choice);
     this.choices[position] = null;
   }
 
@@ -40,11 +41,19 @@ export class ItemRecipeGame extends BaseGame {
     this.achievements.update("solved_all_items", this.question.id);
   }
 
-  getAnswers(question: any) {
-    return this.itemService.getValidComponents(question);
+  getValidOptions() {
+    return this.itemService.getValidComponents(this.question);
   }
 
-  getChoices(question: any) {
-    return this.itemService.getComponents(question);
+  getInvalidOptions() {
+    return this.itemService.getInvalidComponents(this.question);
+  }
+
+  getAnswersLimit() {
+    return 5;
+  }
+
+  getChoicesLimit() {
+    return 12;
   }
 }

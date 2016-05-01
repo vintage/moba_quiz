@@ -1,6 +1,7 @@
 import {Component, EventEmitter} from "angular2/core";
 
 import {ItemModel} from "../../../providers/item/model";
+import {GameChoice} from "../types/model";
 
 @Component({
   selector: "game-slot",
@@ -10,7 +11,7 @@ import {ItemModel} from "../../../providers/item/model";
 })
 export class Slot {
   emptyImageSource: string = "data/images/items/3041.png";
-  item: ItemModel;
+  item: GameChoice;
   picked = new EventEmitter();
 
   onClick() {

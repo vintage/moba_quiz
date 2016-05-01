@@ -41,14 +41,6 @@ export class ChampionService {
     return champions[index];
   }
 
-  getComponents(champion: ChampionModel) {
-    let valid = this.getValidComponents(champion).slice(0, 5);
-    let invalid = this.getInvalidComponents(champion);
-
-    let components = valid.concat(invalid.slice(0, 12 - valid.length));
-    return components;
-  }
-
   getValidComponents(champion: ChampionModel) {
     return filter(this.skills, node => {
       return champion.skills.indexOf(node) !== -1;
@@ -77,14 +69,6 @@ export class SkillService {
     let skills = this.championService.skills;
     let index = random(0, skills.length - 1);
     return skills[index];
-  }
-
-  getComponents(skill: SkillModel) {
-    let valid = this.getValidComponents(skill);
-    let invalid = this.getInvalidComponents(skill);
-
-    let components = valid.concat(invalid.slice(0, 9 - valid.length));
-    return components;
   }
 
   getValidComponents(skill: SkillModel) {

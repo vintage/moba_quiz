@@ -9,10 +9,10 @@
 <div *ngIf="choices" class="panel-box">
   <ion-row>
     <ion-col>
-      <answer-button [value]="choices[0]" (picked)="onItemPicked($event)"></answer-button>
+      <answer-button [choice]="choices[0]" (picked)="onItemPicked($event)"></answer-button>
     </ion-col>
     <ion-col>
-      <answer-button [value]="choices[1]" (picked)="onItemPicked($event)"></answer-button>
+      <answer-button [choice]="choices[1]" (picked)="onItemPicked($event)"></answer-button>
     </ion-col>
   </ion-row>
 </div>

@@ -5,6 +5,7 @@ import {ItemService} from "../../../../providers/item/service";
 
 import {BaseGame} from "../base/component";
 import {AnswerButton} from "../../answer_button/component";
+import {GameChoice} from "../model";
 
 @Component({
   selector: "game-item-price",
@@ -20,23 +21,19 @@ export class ItemPriceGame extends BaseGame {
     return this.itemService.getAny();
   }
 
-  getAnswers(question: any) {
-    return [question.price];
-  }
-
-  getChoices(question: any) {
+  getChoices() {
     let choiceDifferences = [
       100, 200, 250, 300, 400
     ];
 
-    let correct = this.getAnswers(question)[0];
+    let correct = this.question.price;
     let choices = [correct];
 
     for (let i = 0; i < 5; i++) {
       let choice = null;
 
       // Make unique choice
-      while (choice == null || choice <= 0 || choices.indexOf(choice) != -1) {
+      while (choice == null || choice <= 0 || choices.indexOf(choice) !== -1) {
         let anyChoice = sample(choices);
         let choiceDiff = sample(choiceDifferences);
 
@@ -51,6 +48,12 @@ export class ItemPriceGame extends BaseGame {
       choices.push(choice);
     }
 
-    return choices;
+    return choices.map(choice => {
+      return new GameChoice(choice, choice === correct);
+    });
+  }
+
+  isFinished() {
+    return this.answers.length > 0;
   }
 }
