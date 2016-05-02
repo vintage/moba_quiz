@@ -84,6 +84,10 @@ export class ScoreSubmitPage implements OnInit {
       valid = false;
       message = "Player name can be 16 characters only.";
     }
+    else if (!/^[a-zA-Z0-9]+$/.test(this.playerName)) {
+      valid = false;
+      message = "Player name can contain only letters and digits. No special characters are allowed.";
+    }
 
     if (window.navigator.connection && window.navigator.connection.type === window.Connection.NONE) {
       valid = false;
