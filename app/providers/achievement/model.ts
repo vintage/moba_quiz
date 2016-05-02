@@ -51,7 +51,7 @@ class NumberAchievementModel extends AbstractAchievementModel {
   }
 
   setProgress(current: number) {
-    this.progress = current || 0;
+    this.progress = Math.min(current || 0, this.goal);
   }
 }
 
