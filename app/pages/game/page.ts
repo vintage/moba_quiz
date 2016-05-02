@@ -69,8 +69,9 @@ export class GamePage {
       this.nav.present(alert);
 
       setTimeout(() => {
-        alert.dismiss(null);
-        resolve(true);
+        alert.dismiss(null).then(() => {
+          resolve(true);
+        });
       }, 500);
     });
   }
@@ -141,14 +142,14 @@ export class GamePage {
     this.nav.present(alert);
 
     setTimeout(() => {
-      alert.dismiss(null);
+      alert.dismiss(null).then(() => {
+        if (this.showAd) {
+          this.ads.showFullScreen();
+        }
 
-      if (this.showAd) {
-        this.ads.showFullScreen();
-      }
-
-      this.nav.push(ScoreSubmitPage).then(() => {
-        this.nav.remove(this.nav.indexOf(this.viewCtrl));
+        this.nav.push(ScoreSubmitPage).then(() => {
+          this.nav.remove(this.nav.indexOf(this.viewCtrl));
+        });
       });
     }, 1000);
   }
