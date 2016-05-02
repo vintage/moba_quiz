@@ -42,7 +42,7 @@ export class GamePage {
     this.showAd = false;
 
     gameplay.getTimesPlayed().then((timesPlayed) => {
-      if (timesPlayed === 3 || timesPlayed % 10 === 0) {
+      if (timesPlayed && timesPlayed % 6 === 0) {
         this.showAd = true;
         this.ads.prepareFullScreen();
       }
@@ -133,13 +133,24 @@ export class GamePage {
   finishGame() {
     this.isLocked = true;
 
-    if (this.showAd) {
-      this.ads.showFullScreen();
-    }
-
-    this.nav.push(ScoreSubmitPage).then(() => {
-      this.nav.remove(this.nav.indexOf(this.viewCtrl));
+    let alert = Alert.create({
+      title: "Game Over",
+      enableBackdropDismiss: false
     });
+
+    this.nav.present(alert);
+
+    setTimeout(() => {
+      alert.dismiss(null);
+
+      if (this.showAd) {
+        this.ads.showFullScreen();
+      }
+
+      this.nav.push(ScoreSubmitPage).then(() => {
+        this.nav.remove(this.nav.indexOf(this.viewCtrl));
+      });
+    }, 1000);
   }
 
   playSound(src: string) {
