@@ -1,5 +1,5 @@
 import {Component} from "angular2/core";
-import {random, sample} from "lodash";
+import {random, sample, shuffle} from "lodash";
 
 import {ItemService} from "../../../../providers/item/service";
 
@@ -48,9 +48,9 @@ export class ItemPriceGame extends BaseGame {
       choices.push(choice);
     }
 
-    return choices.map(choice => {
+    return shuffle(choices.map(choice => {
       return new GameChoice(choice, choice === correct);
-    });
+    }));
   }
 
   isFinished() {

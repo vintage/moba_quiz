@@ -53,7 +53,7 @@ export class ItemService {
 
   getInvalidComponents(item: ItemModel) {
     return shuffle(this.items).filter(node => {
-      return item.id !== node.id;
+      return item.id !== node.id && item.from.indexOf(node.id) === -1;
     });
   }
 }
