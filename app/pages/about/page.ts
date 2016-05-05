@@ -23,7 +23,7 @@ export class AboutPage {
 
   openContact() {
     if (window.cordova) {
-      window.cordova.plugins.email.isAvailable(function(isAvailable) {
+      window.cordova.plugins.email.isAvailable(isAvailable => {
         if (isAvailable) {
           window.cordova.plugins.email.open({
             to: "puppy.box@outlook.com",
