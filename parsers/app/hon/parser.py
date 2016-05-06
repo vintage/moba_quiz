@@ -127,7 +127,11 @@ def setup_champions():
         data = data[list(data.keys())[0]]
         hero_id = data['hero_id']
         name = data['disp_name']
-        is_range = data['attacktype'] == 'range'
+
+        if data['attacktype'] not in ('melee', 'ranged'):
+            raise Exception("Unknown attack type")
+
+        is_range = data['attacktype'] == 'ranged'
 
         spells = []
         skills_data = get_api_data(champion_url.format(hero_id))
