@@ -16,9 +16,9 @@ export class GameplayService {
 
   // Some configuration options. All of them should be marked as `private`.
   // Minimum amount of time given for providing answer
-  private timeLimitMin: number = 3 * 1000;
+  private timeLimitMin: number = 5 * 1000;
   // Level count after the timer is decreased
-  private timeLimitUpdateInterval = 5;
+  private timeLimitUpdateInterval = 8;
 
   constructor() {
     this.storage = new Storage(SqlStorage);
@@ -54,6 +54,7 @@ export class GameplayService {
 
   private refreshTimer() {
     let levelPenalty = Math.round(this.level / this.timeLimitUpdateInterval) * 1000;
+    levelPenalty = 20 * 1000;
 
     this.timeLimit = 15 * 1000 - levelPenalty;
 
