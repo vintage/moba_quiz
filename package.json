@@ -43,7 +43,8 @@
       "platform": "ios",
       "version": "",
       "locator": "ios"
-    }
+    },
+    "android"
   ],
   "name": "moba_quiz",
   "description": "MobaQuiz: Framework for Moba quizes"
