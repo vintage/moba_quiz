@@ -21,6 +21,17 @@ export class AboutPage {
     this.nav.present(alert);
   }
 
+  openHomepage() {
+    let url: string = "https://www.facebook.com/puppy.box.studio/";
+
+    if (window.cordova) {
+      window.cordova.InAppBrowser.open(url, "_system", "location=no");
+    }
+    else {
+      window.open(url, "_blank");
+    }
+  }
+
   openContact() {
     if (window.cordova) {
       window.cordova.plugins.email.isAvailable(isAvailable => {
