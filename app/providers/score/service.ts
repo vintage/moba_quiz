@@ -26,12 +26,12 @@ export class ScoreService {
     return JSON.stringify(output).toLowerCase().replace(/[^a-z0-9]/gi, "");
   }
 
-  create(player: string, score: number, country: string) {
+  create(player: string, score: number, country: string, platform: string) {
     let data = {
       "player_name": player,
       "value": score,
       "country_code": country,
-      "platform": "ios"
+      "platform": platform
     };
     data["hash"] = window.CryptoJS.SHA1(this.hashObject(data)).toString();
 

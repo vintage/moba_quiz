@@ -21,4 +21,16 @@ export class ScoreModel {
       return "data_common/flags/_unknown.png";
     }
   }
+
+  getPlatformImage() {
+    if (this.platform === "windows") {
+      return "data_common/platforms/windows.png";
+    }
+    else if (this.platform === "android") {
+      return "data_common/platforms/android.png";
+    }
+    else {
+      return "data_common/platforms/apple.png";
+    }
+  }
 }

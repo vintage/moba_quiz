@@ -1,5 +1,5 @@
 import {OnInit} from "angular2/core";
-import {Button, Page, NavController, Alert, ViewController} from "ionic-angular";
+import {Button, Page, NavController, Alert, ViewController, Platform} from "ionic-angular";
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {CountryService} from "../../providers/country/service";
@@ -27,6 +27,7 @@ export class ScoreSubmitPage implements OnInit {
   constructor(
       public nav: NavController,
       public viewCtrl: ViewController,
+      public platform: Platform,
       public gameplay: GameplayService,
       public countryService: CountryService,
       public scoreService: ScoreService) {
@@ -122,7 +123,19 @@ export class ScoreSubmitPage implements OnInit {
     }
 
     this.isPending = true;
-    this.scoreService.create(this.playerName, this.score, countryID).then((is_success) => {
+
+    let platform: string;
+    if (this.platform.is("ios")) {
+      platform = "apple";
+    }
+    else if (this.platform.is("android")) {
+      platform = "android";
+    }
+    else {
+      platform = "windows";
+    }
+
+    this.scoreService.create(this.playerName, this.score, countryID, platform).then((is_success) => {
       this.isPending = false;
 
       if (is_success) {

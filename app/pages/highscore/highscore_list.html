@@ -9,7 +9,9 @@
     <ion-list *ngIf="scores && scores.length">
       <ion-item *ngFor="#score of scores; #i=index">
         <button dark item-left>{{ i + 1 }}</button>
+
         <ion-avatar item-left>
+          <img src="{{ score.getPlatformImage() }}" class="platform">
           <img src="{{ score.getImageSource() }}" class="flag">
         </ion-avatar>
 

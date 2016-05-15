@@ -1,5 +1,12 @@
 .highscore-list {
   .flag {
+    float: left;
     border-radius: 0 !important;
+  }
+
+  .platform {
+    float: left;
+    border-radius: 0 !important;
+    margin-right: 8px;
   }
 }

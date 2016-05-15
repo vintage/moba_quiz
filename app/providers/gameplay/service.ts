@@ -42,7 +42,7 @@ export class GameplayService {
 
   private updateTimesPlayed() {
     this.getTimesPlayed().then(timesPlayed => {
-      return this.storage.set("times_played", parseInt(timesPlayed) + 1);
+      return this.storage.set("times_played", timesPlayed + 1);
     });
   }
 
