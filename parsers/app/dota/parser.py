@@ -33,6 +33,8 @@ def clean_filename(filename):
 
 def download_image(url, path, filename):
     response = requests.get(url, stream=True)
+    if response.status_code != 200:
+        raise Exception()
 
     filename = clean_filename(filename)
     full_path = os.path.join(path, filename)
@@ -78,12 +80,17 @@ def setup_items():
 
         image_name = data['img']
         image_url = '{}/items/{}'.format(base_image_url, image_name)
-        if image_url == 'http://cdn.dota2.com/apps/dota2/images/items/banana_lg.png?3':
-            import ipdb; ipdb.set_trace()
+
+        try:
+            image = download_image(image_url, item_image_path, image_name)
+        except:
+            print('Item image at {} is broken.'.format(image_url))
+            continue
+
         result.append({
             'id': item_id,
             'name': name,
-            'image': download_image(image_url, item_image_path, image_name),
+            'image': image,
             'into': [],
             'from': data['components'] or [],
             'price': price,
