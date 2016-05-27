@@ -47,7 +47,7 @@
   <preference name="FullScreen" value="true"/>
   <preference name="KeepRunning" value="false"/>
   <preference name="Orientation" value="portrait"/>
-  <preference name="android-minSdkVersion" value="16"/>
+  <preference name="android-minSdkVersion" value="19"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="AutoHideSplashScreen" value="false"/>
   <preference name="FadeSplashScreen" value="false"/>
