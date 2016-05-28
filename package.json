@@ -35,16 +35,12 @@
     "cordova-plugin-admobpro",
     "cordova-plugin-media",
     "cordova-plugin-network-information",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-crosswalk-webview"
   ],
   "cordovaPlatforms": [
-    "ios",
-    {
-      "platform": "ios",
-      "version": "",
-      "locator": "ios"
-    },
-    "android"
+    "android",
+    "ios"
   ],
   "name": "moba_quiz",
   "description": "MobaQuiz: Framework for Moba quizes"

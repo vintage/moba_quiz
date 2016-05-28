@@ -47,7 +47,7 @@
   <preference name="FullScreen" value="true"/>
   <preference name="KeepRunning" value="false"/>
   <preference name="Orientation" value="portrait"/>
-  <preference name="android-minSdkVersion" value="19"/>
+  <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="AutoHideSplashScreen" value="false"/>
   <preference name="FadeSplashScreen" value="false"/>
@@ -57,4 +57,8 @@
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
   <icon src="resources/ios/icon/icon-small@3x.png"/>
+  <preference name="xwalkVersion" value="xwalk_core_library_beta:18+"/>
+  <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect"/>
+  <preference name="xwalkMode" value="embedded"/>
+  <preference name="xwalkMultipleApk" value="true"/>
 </widget>
