@@ -39,7 +39,7 @@ body {
   background-color: #171512;
   border-image-slice: 44;
   border-image-width: 16px;
-  border-image-source: url('/images/border_simple.png');
+  border-image-source: url('../../images/border_simple.png');
 }
 
 .divider {
@@ -61,7 +61,7 @@ body {
 }
 
 ion-content {
-  background-image: url('data/background.jpg');
+  background-image: url('../../data/background.jpg');
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
