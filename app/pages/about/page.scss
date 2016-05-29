@@ -4,16 +4,20 @@
     background: transparent;
 
     ion-card-header {
-      color: color($colors, secondary);
+      color: color($colors, primary);
     }
 
     ion-card-content {
-      color: #fff;
+      color: color($colors, secondary);
 
       ion-list {
         ion-item {
-          color: #fff;
+          color: color($colors, secondary);
           background: transparent;
+
+          ion-icon {
+            color: color($colors, primary);;
+          }
         }
       }
     }

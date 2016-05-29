@@ -1,5 +1,16 @@
-.achievement-list {
-  .locked {
-    opacity: 0.3;
+.achievement-list-page {
+  ion-list {
+    ion-item {
+      color: #fff;
+      background: transparent;
+    }
+  }
+
+  h2 {
+    color: color($colors, primary);
+  }
+
+  p, button {
+    color: color($colors, secondary);
   }
 }
