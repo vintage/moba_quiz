@@ -1,26 +1,16 @@
 <ion-row>
   <ion-col>
     <div class="align-center">
-      <img #questionImage [src]="question.getImageSource()" class="question-image">
-    </div>
-  </ion-col>
-</ion-row>
+      <game-slot [choice]="answers[0]" class="non-interactive"></game-slot>
+      <game-slot [choice]="answers[1]" class="non-interactive"></game-slot>
+      <game-slot [choice]="answers[2]" class="non-interactive"></game-slot>
 
-<ion-row>
-  <ion-col>
-    <game-slot [choice]="answers[0]" class="non-interactive"></game-slot>
-  </ion-col>
-  <ion-col>
-    <game-slot [choice]="answers[1]" class="non-interactive"></game-slot>
-  </ion-col>
-  <ion-col>
-    <game-slot [choice]="answers[2]" class="non-interactive"></game-slot>
-  </ion-col>
-  <ion-col>
-    <game-slot [choice]="answers[3]" class="non-interactive"></game-slot>
-  </ion-col>
-  <ion-col>
-    <game-slot [choice]="answers[4]" class="non-interactive"></game-slot>
+      <img #questionImage [src]="question.getImageSource()" class="question-image">
+
+      <game-slot [choice]="answers[3]" class="non-interactive"></game-slot>
+      <game-slot [choice]="answers[4]" class="non-interactive"></game-slot>
+      <game-slot class="non-interactive"></game-slot>
+    </div>
   </ion-col>
 </ion-row>
 

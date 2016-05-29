@@ -1,5 +1,5 @@
 .game-stats {
-  height: 62px;
+  height: 72px;
 
   $progress-color: color($colors, danger);
 
@@ -38,6 +38,15 @@
   .points-bar {
     color: yellow;
     font-size: 20px;
+
+    .icon {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url('/images/coin.png');
+    }
   }
 
   .chances-bar {

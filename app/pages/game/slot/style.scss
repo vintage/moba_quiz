@@ -17,7 +17,7 @@ game-slot {
       height: 100%;
       background-color: #0f1528;
       padding: 1px;
-      border: 1px solid #182241;
+      border-image: url("/images/border_simple.png") 7;
 
       .image {
         width: 100%;
@@ -29,8 +29,10 @@ game-slot {
 
   &.non-interactive {
     .question-slot {
-      width: 12vmin;
-      height: 12vmin;
+      margin-top: -55px;
+      display: inline;
+      width: 8vmin;
+      height: 8vmin;
     }
   }
 }

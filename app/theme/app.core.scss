@@ -35,9 +35,17 @@ body {
   text-align: right;
 }
 
+.border-simple {
+  border-image-slice: 44;
+  border-image-width: 16px;
+  border-image-source: url('/images/border_simple.png');
+}
+
 .panel-box {
-  background-color: rgb(18, 27, 38);
-  background-color: rgba(18, 27, 38, 0.9);
+  background-color: #171512;
+  border-image-slice: 44;
+  border-image-width: 16px;
+  border-image-source: url('/images/border_simple.png');
 }
 
 .champion-avatar-background {
@@ -61,6 +69,7 @@ ion-content {
   background-position: center;
 
   scroll-content {
+    padding: 5px;
     background-color: rgba(0, 0, 0, 0.7);
   }
 }
