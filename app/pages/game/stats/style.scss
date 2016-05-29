@@ -36,7 +36,7 @@
   }
 
   .points-bar {
-    color: yellow;
+    color: color($colors, secondary);
     font-size: 20px;
 
     .icon {
@@ -51,7 +51,7 @@
 
   .chances-bar {
     font-size: 20px;
-    color: color($colors, danger);
+    color: color($colors, primary);
   }
 
   .no-padding {
