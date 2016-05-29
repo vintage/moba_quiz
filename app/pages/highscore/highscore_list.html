@@ -1,47 +1,49 @@
 <ion-content style="background-image: url('data/background.jpg')" class="highscore-list">
-  <div *ngIf="isOnline">
-    <ion-card *ngIf="!scores">
-      <ion-card-content>
-        <ion-spinner name="crescent"></ion-spinner>
-      </ion-card-content>
-    </ion-card>
+  <div class="panel-box">
+    <div *ngIf="isOnline">
+      <ion-card *ngIf="!scores">
+        <ion-card-content>
+          <ion-spinner name="crescent"></ion-spinner>
+        </ion-card-content>
+      </ion-card>
 
-    <ion-list *ngIf="scores && scores.length">
-      <ion-item *ngFor="#score of scores; #i=index">
-        <button dark item-left>{{ i + 1 }}</button>
+      <ion-list no-lines *ngIf="scores && scores.length">
+        <ion-item *ngFor="#score of scores; #i=index">
+          <button dark item-left>{{ i + 1 }}</button>
 
-        <ion-avatar item-left>
-          <img src="{{ score.getPlatformImage() }}" class="platform">
-          <img src="{{ score.getImageSource() }}" class="flag">
-        </ion-avatar>
+          <ion-avatar item-left>
+            <img src="{{ score.getPlatformImage() }}" class="platform">
+            <img src="{{ score.getImageSource() }}" class="flag">
+          </ion-avatar>
 
-        <h2>{{ score.score|points }}</h2>
-        <p>{{ score.player|slice:0:16 }}</p>
-      </ion-item>
-    </ion-list>
+          <h2>{{ score.score|points }}</h2>
+          <p>{{ score.player|slice:0:16 }}</p>
+        </ion-item>
+      </ion-list>
 
-    <ion-card *ngIf="scores && !scores.length">
-      <ion-card-header>
-        Good news,
-      </ion-card-header>
+      <ion-card *ngIf="scores && !scores.length">
+        <ion-card-header>
+          Good news,
+        </ion-card-header>
 
-      <ion-card-content>
-        It seems there are no score for this leaderboard.
-        Play your <b>first game</b> and be the best one!
-      </ion-card-content>
-    </ion-card>
-  </div>
+        <ion-card-content>
+          It seems there are no score for this leaderboard.
+          Play your <b>first game</b> and be the best one!
+        </ion-card-content>
+      </ion-card>
+    </div>
 
-  <div *ngIf="!isOnline">
-    <ion-card>
-      <ion-card-header>
-        Unable to fetch scores,
-      </ion-card-header>
+    <div *ngIf="!isOnline">
+      <ion-card>
+        <ion-card-header>
+          Unable to fetch scores,
+        </ion-card-header>
 
-      <ion-card-content>
-        It seems that you are not connected to the Internet.
-        Check your connection and try again to see the <b>best players</b> scores!
-      </ion-card-content>
-    </ion-card>
+        <ion-card-content>
+          It seems that you are not connected to the Internet.
+          Check your connection and try again to see the <b>best players</b> scores!
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
 </ion-content>
