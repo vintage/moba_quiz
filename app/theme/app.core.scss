@@ -35,17 +35,16 @@ body {
   text-align: right;
 }
 
-.border-simple {
-  border-image-slice: 44;
-  border-image-width: 16px;
-  border-image-source: url('/images/border_simple.png');
-}
-
 .panel-box {
   background-color: #171512;
   border-image-slice: 44;
   border-image-width: 16px;
   border-image-source: url('/images/border_simple.png');
+}
+
+.divider {
+  margin: 0 40px;
+  border-top: 1px solid #8f7d69;
 }
 
 .champion-avatar-background {

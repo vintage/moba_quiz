@@ -1,70 +1,72 @@
 <ion-content class="main-menu-page" style="background-image: url('data/background.jpg')">
-  <ion-row class="panel-box">
-    <ion-col>
-      <ion-row>
-        <ion-col>
-          <button block default (click)="openGame()">
-            <ion-icon name="play"></ion-icon>
-            Play
-          </button>
-        </ion-col>
-      </ion-row>
+  <div class="panel-box">
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <button block default (click)="openGame()">
+              <ion-icon name="play"></ion-icon>
+              Play
+            </button>
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <button block secondary (click)="openHighscore()">
-            <ion-icon name="podium"></ion-icon>
-            Highscore
-          </button>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col>
+            <button block secondary (click)="openHighscore()">
+              <ion-icon name="podium"></ion-icon>
+              Highscore
+            </button>
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <button block secondary (click)="openAchievements()">
-            <ion-icon name="ribbon"></ion-icon>
-            Achievements
-          </button>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col>
+            <button block secondary (click)="openAchievements()">
+              <ion-icon name="ribbon"></ion-icon>
+              Achievements
+            </button>
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <button block secondary (click)="openRating()">
-            <ion-icon name="star"></ion-icon>
-            Rate APP
-          </button>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col>
+            <button block secondary (click)="openRating()">
+              <ion-icon name="star"></ion-icon>
+              Rate APP
+            </button>
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <button block secondary (click)="openAbout()">
-            <ion-icon name="contact"></ion-icon>
-            About
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-col>
-  </ion-row>
+        <ion-row>
+          <ion-col>
+            <button block secondary (click)="openAbout()">
+              <ion-icon name="contact"></ion-icon>
+              About
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
 
-  <br />
+    <div class="divider"></div>
 
-  <ion-row class="panel-box">
-    <ion-col>
-      <ion-row class="stats">
-        <ion-col class="align-center">
-          <span class="label">Best score</span>
-          <span class="value">{{ bestScore|points }}</span>
-        </ion-col>
-      </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-row class="stats">
+          <ion-col class="align-center">
+            <span class="label">Best score</span>
+            <span class="value">{{ bestScore|points }}</span>
+          </ion-col>
+        </ion-row>
 
-      <ion-row class="stats">
-        <ion-col class="align-center">
-          <span class="label">Times played</span>
-          <span class="value">{{ timesPlayed }}</span>
-        </ion-col>
-      </ion-row>
-    </ion-col>
-  </ion-row>
+        <ion-row class="stats">
+          <ion-col class="align-center">
+            <span class="label">Times played</span>
+            <span class="value">{{ timesPlayed }}</span>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>
