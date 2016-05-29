@@ -1,7 +1,7 @@
 .game-stats {
   height: 72px;
 
-  $progress-color: color($colors, danger);
+  $progress-color: color($colors, primary);
 
   progress::-moz-progress-bar { background: $progress-color; }
   progress::-webkit-progress-value { background: $progress-color; }

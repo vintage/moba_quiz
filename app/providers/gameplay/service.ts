@@ -54,9 +54,8 @@ export class GameplayService {
 
   private refreshTimer() {
     let levelPenalty = Math.round(this.level / this.timeLimitUpdateInterval) * 1000;
-    levelPenalty = 20 * 1000;
 
-    this.timeLimit = 15 * 1000 - levelPenalty;
+    this.timeLimit = 20 * 1000 - levelPenalty;
 
     // Enforce the minimum time limit
     this.timeLimit = Math.max(this.timeLimit, this.timeLimitMin);
