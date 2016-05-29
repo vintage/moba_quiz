@@ -1,0 +1,21 @@
+.about-page {
+  ion-card {
+    box-shadow: none;
+    background: transparent;
+
+    ion-card-header {
+      color: color($colors, secondary);
+    }
+
+    ion-card-content {
+      color: #fff;
+
+      ion-list {
+        ion-item {
+          color: #fff;
+          background: transparent;
+        }
+      }
+    }
+  }
+}

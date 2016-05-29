@@ -3,60 +3,66 @@
 </ion-navbar>
 
 <ion-content style="background-image: url('data/background.jpg')">
-  <ion-card>
-    <ion-card-header>
-      If you just
-    </ion-card-header>
+  <div class="panel-box">
+    <ion-card>
+      <ion-card-header>
+        If you just
+      </ion-card-header>
 
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-icon name="bug" item-left></ion-icon>
-            found a bug
-        </ion-item>
+      <ion-card-content>
+        <ion-list no-lines>
+          <ion-item>
+            <ion-icon name="bug" item-left></ion-icon>
+              found a bug
+          </ion-item>
 
-        <ion-item>
-          <ion-icon name="flame" item-left></ion-icon>
-            have any suggestion
-        </ion-item>
+          <ion-item>
+            <ion-icon name="flame" item-left></ion-icon>
+              have any suggestion
+          </ion-item>
 
-        <ion-item>
-          <ion-icon name="hand" item-left></ion-icon>
-            want to say <b>Hi</b>
-        </ion-item>
-      </ion-list>
+          <ion-item>
+            <ion-icon name="hand" item-left></ion-icon>
+              want to say <b>Hi</b>
+          </ion-item>
+        </ion-list>
 
-      <button block secondary (click)="openContact()">
-        <ion-icon name="chatboxes"></ion-icon>
-        Contact Us
-      </button>
+        <button block primary (click)="openContact()">
+          <ion-icon name="chatboxes"></ion-icon>
+          Contact Us
+        </button>
 
-      <button block dark (click)="openHomepage()">
-        <ion-icon name="contact"></ion-icon>
-        Homepage
-      </button>
-    </ion-card-content>
-  </ion-card>
+        <button block secondary (click)="openHomepage()">
+          <ion-icon name="contact"></ion-icon>
+          Visit Facebook
+        </button>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      Authors
-    </ion-card-header>
+    <div class="divider"></div>
 
-    <ion-card-content>
-      The game has been made by the <b>PuppyBox</b> studio (one-man army).
-      Big thanks to the <b>Lorc</b> who has made the icons used in the achievement
-      system.
-    </ion-card-content>
-  </ion-card>
+    <ion-card>
+      <ion-card-header>
+        Authors
+      </ion-card-header>
 
-  <ion-card>
-    <ion-card-header>
-      Legal disclaimer
-    </ion-card-header>
+      <ion-card-content>
+        The game has been made by the <b>PuppyBox</b> studio (one-man army).
+        Big thanks to the <b>Lorc</b> who has made the icons used in the achievement
+        system.
+      </ion-card-content>
+    </ion-card>
 
-    <ion-card-content>
-      {{ disclaimer }}
-    </ion-card-content>
-  </ion-card>
+    <div class="divider"></div>
+
+    <ion-card>
+      <ion-card-header>
+        Legal disclaimer
+      </ion-card-header>
+
+      <ion-card-content>
+        {{ disclaimer }}
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
