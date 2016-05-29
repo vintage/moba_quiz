@@ -14,7 +14,11 @@
   </ion-col>
 </ion-row>
 
-<div *ngIf="choices" class="panel-box">
+<div *ngIf="choices" class="panel-box panel-ribbon">
+  <div class="ribbon">
+    Item recipe
+  </div>
+
   <ion-row>
     <ion-col>
       <game-slot [choice]="choices[0]" (picked)="onChoice($event)"></game-slot>

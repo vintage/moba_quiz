@@ -6,7 +6,10 @@
   </ion-col>
 </ion-row>
 
-<div *ngIf="choices" class="panel-box">
+<div *ngIf="choices" class="panel-box panel-ribbon">
+  <div class="ribbon">
+    What's the price
+  </div>
   <ion-row>
     <ion-col>
       <answer-button [choice]="choices[0]" (picked)="onChoice($event)"></answer-button>

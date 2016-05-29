@@ -40,11 +40,31 @@ body {
   border-image-slice: 44;
   border-image-width: 16px;
   border-image-source: url('../../images/border_simple.png');
+  position: relative;
+
+  &.panel-ribbon {
+    margin-top: 10px;
+    padding-top: 20px;
+  }
+
+  .ribbon {
+    width: 100%;
+    position: absolute;
+    height: 50px;
+    background: url('../../images/ribbon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: -20px;
+    color: wheat;
+    text-align: center;
+    padding-top: 9px;
+  }
 }
 
 .divider {
   margin: 0 40px;
-  border-top: 1px solid #8f7d69;
+  border-top: 1px solid color($colors, secondary);
 }
 
 .champion-avatar-background {
