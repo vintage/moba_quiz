@@ -1,20 +1,20 @@
 <ion-row class="game-stats panel-box">
-  <ion-col>
+  <ion-col class="no-padding">
     <ion-row center class="no-padding" style="padding-bottom: 2px">
-      <ion-col class="points-bar align-left">
-        <div class="icon"></div> {{ gameplay.points|points }}
+      <ion-col class="align-left">
+        <div class="time-bar">
+          <div class="icon"></div> {{ progressCur|timeLeft }}
+        </div>
+
+        <div class="points-bar">
+          <div class="icon"></div> {{ gameplay.points|points }}
+        </div>
       </ion-col>
 
       <ion-col class="chances-bar align-right">
         <ion-icon name="heart" *ngIf="gameplay.chances > 3"></ion-icon>
         <ion-icon name="heart" *ngIf="gameplay.chances > 2"></ion-icon>
         <ion-icon name="heart" *ngIf="gameplay.chances > 1"></ion-icon>
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="no-padding">
-      <ion-col class="no-padding">
-        <progress value="{{ currentProgress() }}" max="{{ progressMax }}"></progress>
       </ion-col>
     </ion-row>
   </ion-col>
