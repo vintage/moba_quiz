@@ -114,7 +114,7 @@ export class GamePage {
         this.playSound("sfx/choice_invalid.wav");
 
         if (window.navigator.vibrate) {
-          window.navigator.vibrate(1000);
+          window.navigator.vibrate(100);
         }
 
         this.isPerfect = false;
