@@ -186,7 +186,7 @@ def setup_settings():
         },
         'urls': {
             'ios': 'itms-apps://itunes.apple.com/app/id1109019404',
-            'android': 'market://details?id=com.YOUR.PACKAGENAME',
+            'android': 'market://details?id=com.puppybox.quizhon',
             'windows': '',
         },
         'legal_disclaimer': 'This application is not created, sponsored or endorsed by Frostburn Studios and doesn’t reflect the views or opinions of Frostburn Studios or anyone officially involved in producing or managing Heroes of Newerth. Heroes of Newerth is a registered trademark of Frostburn Studios. All in-game descriptions, characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',

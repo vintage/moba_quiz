@@ -144,7 +144,7 @@ def setup_settings():
         },
         'urls': {
             'ios': 'itms-apps://itunes.apple.com/app/id1107274781',
-            'android': 'market://details?id=com.YOUR.PACKAGENAME',
+            'android': 'market://details?id=com.puppybox.quizlol',
             'windows': '',
         },
         'legal_disclaimer': 'This application is not created, sponsored or endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends is a registered trademark of Riot Games. All in-game descriptions, characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
