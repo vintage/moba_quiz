@@ -3,6 +3,10 @@
     ion-item {
       color: #fff;
       background: transparent;
+
+      &.locked {
+        opacity: 0.4;
+      }
     }
   }
 
