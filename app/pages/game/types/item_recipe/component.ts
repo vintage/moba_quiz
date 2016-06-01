@@ -46,7 +46,9 @@ export class ItemRecipeGame extends BaseGame {
   }
 
   getInvalidOptions() {
-    return this.itemService.getInvalidComponents(this.question);
+    return this.itemService.getInvalidComponents(
+      this.question, this.getChoicesLimit()
+    );
   }
 
   getAnswersLimit() {

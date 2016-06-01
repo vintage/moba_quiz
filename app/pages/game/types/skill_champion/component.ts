@@ -37,7 +37,9 @@ export class SkillChampionGame extends BaseGame {
   }
 
   getInvalidOptions() {
-    return this.skillService.getInvalidComponents(this.question);
+    return this.skillService.getInvalidComponents(
+      this.question, this.getChoicesLimit()
+    );
   }
 
   getAnswersLimit() {

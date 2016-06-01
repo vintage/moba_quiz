@@ -1,6 +1,6 @@
 import {Injectable} from "angular2/core";
 import {Http} from "angular2/http";
-import {shuffle, random} from "lodash";
+import {random} from "lodash";
 
 import {ItemModel} from "./model";
 
@@ -51,9 +51,19 @@ export class ItemService {
     return components;
   }
 
-  getInvalidComponents(item: ItemModel) {
-    return shuffle(this.items).filter(node => {
-      return item.id !== node.id && item.from.indexOf(node.id) === -1;
-    });
+  getInvalidComponents(item: ItemModel, limit: number) {
+    let result: ItemModel[] = [];
+    let container = this.items;
+
+    while (result.length < limit) {
+      let index = random(0, container.length - 1);
+      let node = container[index];
+
+      if (item.id !== node.id && item.from.indexOf(node.id) === -1) {
+        result.push(node);
+      }
+    }
+
+    return result;
   }
 }

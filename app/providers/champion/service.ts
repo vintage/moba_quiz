@@ -1,6 +1,6 @@
 import {Injectable} from "angular2/core";
 import {Http} from "angular2/http";
-import {shuffle, filter, random} from "lodash";
+import {random} from "lodash";
 
 import {ChampionModel, SkillModel} from "./model";
 
@@ -42,15 +42,25 @@ export class ChampionService {
   }
 
   getValidComponents(champion: ChampionModel) {
-    return filter(this.skills, node => {
+    return this.skills.filter(node => {
       return champion.skills.indexOf(node) !== -1;
     });
   }
 
-  getInvalidComponents(champion: ChampionModel) {
-    return filter(shuffle(this.skills), node => {
-      return champion.skills.indexOf(node) === -1;
-    });
+  getInvalidComponents(champion: ChampionModel, limit: number) {
+    let result: SkillModel[] = [];
+    let container = this.skills;
+
+    while (result.length < limit) {
+      let index = random(0, container.length - 1);
+      let node = container[index];
+
+      if (champion.skills.indexOf(node) === -1 && result.indexOf(node) === -1) {
+        result.push(node);
+      }
+    }
+
+    return result;
   }
 }
 
@@ -75,9 +85,19 @@ export class SkillService {
     return [this.getChampion(skill)];
   }
 
-  getInvalidComponents(skill: SkillModel) {
-    return shuffle(this.championService.champions).filter(node => {
-      return node.id !== skill.championId;
-    });
+  getInvalidComponents(skill: SkillModel, limit: number) {
+    let result: ChampionModel[] = [];
+    let container = this.championService.champions;
+
+    while (result.length < limit) {
+      let index = random(0, container.length - 1);
+      let node = container[index];
+
+      if (node.id !== skill.championId && result.indexOf(node) === -1) {
+        result.push(node);
+      }
+    }
+
+    return result;
   }
 }

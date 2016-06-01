@@ -46,7 +46,9 @@ export class ChampionSkillsGame extends BaseGame {
   }
 
   getInvalidOptions() {
-    return this.championService.getInvalidComponents(this.question);
+    return this.championService.getInvalidComponents(
+      this.question, this.getChoicesLimit()
+    );
   }
 
   getAnswersLimit() {
