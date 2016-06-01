@@ -1,0 +1,39 @@
+<ion-row>
+  <ion-col>
+    <div class="align-center">
+      <img #questionImage [src]="question.getImageSource()" class="question-image">
+    </div>
+  </ion-col>
+</ion-row>
+
+<div *ngIf="choices" class="panel-box panel-ribbon">
+  <div class="ribbon">
+    Hero name
+  </div>
+  <ion-row>
+    <ion-col>
+      <answer-button [choice]="choices[0]" (picked)="onChoice($event)"></answer-button>
+    </ion-col>
+    <ion-col>
+      <answer-button [choice]="choices[1]" (picked)="onChoice($event)"></answer-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <answer-button [choice]="choices[2]" (picked)="onChoice($event)"></answer-button>
+    </ion-col>
+    <ion-col>
+      <answer-button [choice]="choices[3]" (picked)="onChoice($event)"></answer-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <answer-button [choice]="choices[4]" (picked)="onChoice($event)"></answer-button>
+    </ion-col>
+    <ion-col>
+      <answer-button [choice]="choices[5]" (picked)="onChoice($event)"></answer-button>
+    </ion-col>
+  </ion-row>
+</div>
