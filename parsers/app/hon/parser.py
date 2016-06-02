@@ -191,6 +191,8 @@ def setup_settings():
         },
         'legal_disclaimer': 'This application is not created, sponsored or endorsed by Frostburn Studios and doesn’t reflect the views or opinions of Frostburn Studios or anyone officially involved in producing or managing Heroes of Newerth. Heroes of Newerth is a registered trademark of Frostburn Studios. All in-game descriptions, characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
         'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/hon/scores/',
+        'source_name': 'Heroes of Newerth',
+        'source_url': 'http://www.heroesofnewerth.com/',
     }
 
     with open('./data/settings.json', 'w') as outfile:

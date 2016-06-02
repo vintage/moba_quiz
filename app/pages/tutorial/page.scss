@@ -1,4 +1,4 @@
-.about-page {
+.tutorial-page {
   ion-card {
     box-shadow: none;
     background: transparent;
@@ -17,6 +17,10 @@
 
           ion-icon {
             color: color($colors, primary);
+          }
+
+          h2 {
+            color: color($colors, secondary);
           }
         }
       }

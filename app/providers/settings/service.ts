@@ -12,6 +12,8 @@ export class SettingsService {
   legalDisclaimer: string;
   highscoreUrl: string;
   appUrl: string;
+  sourceName: string;
+  sourceUrl: string;
 
   constructor(public platform: Platform, public http: Http) {
     this.isLoaded = false;
@@ -28,6 +30,8 @@ export class SettingsService {
 
         this.legalDisclaimer = json["legal_disclaimer"];
         this.highscoreUrl = json["highscore_url"];
+        this.sourceName = json["source_name"];
+        this.sourceUrl = json["source_url"];
 
         let adData = {};
         if (this.platform.is("ios")) {

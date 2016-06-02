@@ -149,6 +149,8 @@ def setup_settings():
         },
         'legal_disclaimer': 'This application is not created, sponsored or endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends is a registered trademark of Riot Games. All in-game descriptions, characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
         'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/lol/scores/',
+        'source_name': 'League of Legends',
+        'source_url': 'http://leagueoflegends.com/',
     }
 
     with open('./data/settings.json', 'w') as outfile:

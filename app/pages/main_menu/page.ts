@@ -11,6 +11,7 @@ import {GamePage} from "../game/page";
 import {HighscorePage} from "../highscore/page";
 import {AchievementListPage} from "../achievement_list/page";
 import {AboutPage} from "../about/page";
+import {TutorialPage} from "../tutorial/page";
 
 @Page({
   templateUrl: "build/pages/main_menu/page.html",
@@ -54,6 +55,10 @@ export class MainMenuPage {
 
   openAbout() {
     this.nav.push(AboutPage);
+  }
+
+  openTutorial() {
+    this.nav.push(TutorialPage);
   }
 
   openRating() {
