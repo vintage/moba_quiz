@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit} from "angular2/core";
+import {Component, EventEmitter, OnInit} from "@angular/core";
 import {Icon} from "ionic-angular";
 
 import {GameplayService} from "../../../providers/gameplay/service";

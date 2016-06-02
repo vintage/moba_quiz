@@ -1,4 +1,4 @@
-import {Component} from "angular2/core";
+import {Component} from "@angular/core";
 
 import {ChampionService} from "../../../../providers/champion/service";
 import {AchievementService} from "../../../../providers/achievement/service";

@@ -1,4 +1,4 @@
-import {Component} from "angular2/core";
+import {Component} from "@angular/core";
 import {random, sample, shuffle} from "lodash";
 
 import {ItemService} from "../../../../providers/item/service";

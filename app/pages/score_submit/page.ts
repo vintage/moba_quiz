@@ -1,4 +1,4 @@
-import {OnInit} from "angular2/core";
+import {OnInit} from "@angular/core";
 import {Button, Page, NavController, Alert, ViewController, Platform} from "ionic-angular";
 
 import {GameplayService} from "../../providers/gameplay/service";

@@ -1,5 +1,5 @@
 import {Page, NavController, Alert, ViewController} from "ionic-angular";
-import {DynamicComponentLoader, ElementRef} from "angular2/core";
+import {DynamicComponentLoader, ViewChild, ViewContainerRef} from "@angular/core";
 
 import {ItemService} from "../../providers/item/service";
 import {ChampionService} from "../../providers/champion/service";
@@ -25,12 +25,12 @@ export class GamePage {
   showAd: boolean;
   isPerfect: boolean;
   isLocked: boolean;
+  @ViewChild("gameType", {read: ViewContainerRef}) typeContainer;
 
   constructor(
       public nav: NavController,
       public viewCtrl: ViewController,
       public dcl: DynamicComponentLoader,
-      public elementRef: ElementRef,
       public gameplay: GameplayService,
       public itemService: ItemService,
       public championService: ChampionService,
@@ -79,7 +79,7 @@ export class GamePage {
   openLevel() {
     this.isPerfect = true;
     this.gameType = this.gameTypeService.getAny();
-    this.dcl.loadIntoLocation(this.gameType.component, this.elementRef, "child").then((componentRef) => {
+    this.dcl.loadNextToLocation(this.gameType.component, this.typeContainer).then((componentRef) => {
       let component = componentRef.instance;
 
       component.questionFinished.subscribe(() => {
@@ -87,7 +87,7 @@ export class GamePage {
 
         this.playSound("sfx/next_level.wav");
         this.openLevelStats().then(() => {
-          componentRef.dispose();
+          componentRef.destroy();
           this.gameplay.levelPassed(this.isPerfect);
 
           let strike = this.gameplay.strike;

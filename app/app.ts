@@ -1,4 +1,4 @@
-import {HTTP_PROVIDERS} from "angular2/http";
+import {HTTP_PROVIDERS} from "@angular/http";
 import {App, IonicApp, Platform} from "ionic-angular";
 
 import {ItemService} from "./providers/item/service";

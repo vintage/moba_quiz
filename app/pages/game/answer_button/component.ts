@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from "angular2/core";
+import {Component, EventEmitter, Output} from "@angular/core";
 import {Button} from "ionic-angular";
 
 import {GameChoice} from "../types/model";

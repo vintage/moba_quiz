@@ -1,4 +1,4 @@
-import {OnInit} from "angular2/core";
+import {OnInit} from "@angular/core";
 import {Button, Page, NavController, Platform} from "ionic-angular";
 
 import {ScoreService} from "../../providers/score/service";

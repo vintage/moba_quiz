@@ -1,4 +1,4 @@
-import {OnInit, EventEmitter, Output} from "angular2/core";
+import {OnInit, EventEmitter, Output} from "@angular/core";
 import {shuffle} from "lodash";
 
 import {GameChoice} from "../model";
