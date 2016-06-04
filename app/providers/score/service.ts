@@ -26,7 +26,7 @@ export class ScoreService {
     return JSON.stringify(output).toLowerCase().replace(/[^a-z0-9]/gi, "");
   }
 
-  create(player: string, score: number, country: string, platform: string, meta: Object) {
+  create(player: string, score: number, country: string, platform: string, metadata: Object) {
     let data = {
       "player_name": player,
       "value": score,
@@ -34,7 +34,7 @@ export class ScoreService {
       "platform": platform
     };
     data["hash"] = window.CryptoJS.SHA1(this.hashObject(data)).toString();
-    data["meta"] = meta;
+    data["metadata"] = metadata;
 
     return new Promise(resolve => {
       let headers = new Headers();
