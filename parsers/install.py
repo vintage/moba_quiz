@@ -29,6 +29,8 @@ def setup(provider):
     config_src = '{}/config_{}.xml'.format(app_dir, provider)
     config_dest = '{}/config.xml'.format(app_dir)
 
+    shutil.copy(config_src, config_dest)
+
     # Copy data files
     data_src = '{}/data/'.format(src_dir)
     data_dest = '{}/www/data/'.format(app_dir)
