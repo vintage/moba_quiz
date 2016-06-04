@@ -78,7 +78,10 @@ def setup_champions():
         image_path = champion_image_path
         os.makedirs(image_path, exist_ok=True)
 
-        is_range = data['stats']['attackrange'] > 250
+        if champion_id.lower() in ('gnar', 'jayce', 'elise'):
+            is_range = None
+        else:
+            is_range = data['stats']['attackrange'] > 250
 
         spells = []
 

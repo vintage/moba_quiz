@@ -41,6 +41,15 @@ export class ChampionService {
     return champions[index];
   }
 
+  getAnyWithAttackType() {
+    let champion = this.getAny();
+    while (champion.is_range === null) {
+      champion = this.getAny();
+    }
+
+    return champion;
+  }
+
   getValidComponents(champion: ChampionModel) {
     return this.skills.filter(node => {
       return champion.skills.indexOf(node) !== -1;
