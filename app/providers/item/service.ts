@@ -37,6 +37,15 @@ export class ItemService {
     return items[index];
   }
 
+  getBase() {
+    let items = this.items.filter(node => {
+      return node.from.length == 0 && node.price > 0;
+    });
+    let index = random(0, items.length - 1);
+
+    return items[index];
+  }
+
   getValidComponents(item: ItemModel) {
     let components = [];
 

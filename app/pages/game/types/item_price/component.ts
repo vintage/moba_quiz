@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {random, sample, shuffle} from "lodash";
 
 import {ItemService} from "../../../../providers/item/service";
+import {GameplayService} from "../../../../providers/gameplay/service";
 
 import {BaseGame} from "../base/component";
 import {AnswerButton} from "../../answer_button/component";
@@ -13,12 +14,16 @@ import {GameChoice} from "../model";
   directives: [AnswerButton]
 })
 export class ItemPriceGame extends BaseGame {
-  constructor(public itemService: ItemService) {
+  constructor(private items: ItemService, private gameplay: GameplayService) {
     super();
   }
 
   getQuestion() {
-    return this.itemService.getAny();
+    if (this.gameplay.level > 80) {
+      return this.items.getAny();
+    } else {
+      return this.items.getBase();
+    }
   }
 
   getChoices() {
