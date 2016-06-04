@@ -22,7 +22,7 @@ export class AboutPage {
   }
 
   openHomepage() {
-    let url: string = "https://www.facebook.com/puppy.box.studio/";
+    let url: string = "http://facebook.com/puppy.box.studio/";
 
     if (window.cordova) {
       window.cordova.InAppBrowser.open(url, "_system", "location=no");
