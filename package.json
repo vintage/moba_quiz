@@ -42,7 +42,8 @@
     "cordova-plugin-media",
     "cordova-plugin-network-information",
     "cordova-plugin-inappbrowser",
-    "cordova-plugin-crosswalk-webview"
+    "cordova-plugin-crosswalk-webview",
+    "cordova-plugin-globalization"
   ],
   "cordovaPlatforms": [
     "android",

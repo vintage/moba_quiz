@@ -1,5 +1,6 @@
 import {OnInit} from "@angular/core";
 import {Button, Page, NavController, Alert, ViewController, Platform} from "ionic-angular";
+import {Globalization} from "ionic-native";
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {CountryService} from "../../providers/country/service";
@@ -29,7 +30,7 @@ export class ScoreSubmitPage implements OnInit {
       public viewCtrl: ViewController,
       public platform: Platform,
       public gameplay: GameplayService,
-      public countryService: CountryService,
+      public countries: CountryService,
       public scoreService: ScoreService) {
     this.isPending = false;
     this.isSubmitted = false;
@@ -52,9 +53,14 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   onPageWillEnter() {
-    this.countryService.load().then(() => {
-      this.countryService.getCurrent().then(country => {
-        this.country = country;
+    this.countries.load().then(() => {
+      this.countries.getCurrent().then(country => {
+        if (country === null) {
+          this.setDefaultCountry();
+        }
+        else {
+          this.country = country;
+        }
       });
     });
   }
@@ -164,5 +170,25 @@ export class ScoreSubmitPage implements OnInit {
     //   let sfx = new window.Media(src);
     //   sfx.play();
     // }
+  }
+
+  setDefaultCountry() {
+    Globalization.getLocaleName().then(locale => {
+      let countryCode = locale.value.toUpperCase();
+      if (countryCode == null) {
+        return;
+      }
+
+      // Get only last 2 letters
+      if (countryCode.length > 2) {
+        countryCode = countryCode.slice(-2);
+      }
+
+      let country = this.countries.getById(countryCode);
+      if (country !== null) {
+        this.country = country;
+        this.countries.setCurrent(country);
+      }
+    });
   }
 }

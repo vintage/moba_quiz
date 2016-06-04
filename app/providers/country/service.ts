@@ -40,18 +40,27 @@ export class CountryService {
     this.storage.set("current_country", country.id);
   }
 
+  getById(id: string) {
+    let countries = this.objects.filter(country => {
+      return country.id === id;
+    });
+
+    let country = null;
+    if (countries.length > 0) {
+      country = countries[0];
+    }
+
+    return country;
+  }
+
   getCurrent() {
     if (this.current) {
       return Promise.resolve(this.current);
     }
 
     return this.storage.get("current_country").then(currentId => {
-      let current = this.objects.filter(country => {
-        return country.id === currentId;
-      })[0];
-
-      this.current = current;
-      return current;
+      this.current = this.getById(currentId);
+      return this.current;
     });
   }
 }
