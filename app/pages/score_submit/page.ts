@@ -141,7 +141,10 @@ export class ScoreSubmitPage implements OnInit {
       platform = "windows";
     }
 
-    this.scoreService.create(this.playerName, this.score, countryID, platform).then((is_success) => {
+    this.scoreService.create(this.playerName, this.score, countryID, platform, {
+      "level": this.gameplay.level,
+      "max_strike": this.gameplay.maxStrike
+    }).then((is_success) => {
       this.isPending = false;
 
       if (is_success) {
