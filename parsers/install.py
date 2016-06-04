@@ -26,7 +26,7 @@ def setup(provider):
     app_dir = '..'
 
     # Copy config file
-    config_src = '{}/config_{}.xml'.format(app_dir, provider)
+    config_src = '{}/config.xml'.format(src_dir)
     config_dest = '{}/config.xml'.format(app_dir)
 
     shutil.copy(config_src, config_dest)
@@ -66,7 +66,7 @@ def build(provider):
     call(["ionic", "resources"])
 
     # Build android package
-    call(["ionic", "build", "--release", "android"])
+    # call(["ionic", "build", "--release", "android"])
 
     # Build ios package
     call(["ionic", "build", "ios"])
