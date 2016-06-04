@@ -45,6 +45,12 @@ def setup_items():
         name = data['name']
 
         if name.startswith('Enchantment'):
+            print('Skip {} because of enchantment'.format(name))
+            continue
+
+        maps = data['maps']
+        if not maps.get('11'):
+            print('Skip {} because of invalid map'.format(name))
             continue
 
         image_name = data['image']['full']
