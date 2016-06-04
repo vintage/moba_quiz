@@ -22,6 +22,10 @@
           h2 {
             color: color($colors, secondary);
           }
+
+          p {
+            white-space: normal !important;
+          }
         }
       }
     }
