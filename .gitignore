@@ -24,3 +24,4 @@ resources/
 /config.xml
 www/lib/
 puppybox-release.keystore
+/*.apk
