@@ -83,7 +83,11 @@ def build(provider):
         ])
 
     def zipalign(src_apk, dest_apk):
-        print(src_apk, dest_apk)
+        try:
+            os.remove(dest_apk)
+        except:
+            pass
+
         call([
             "zipalign",
             "-v", "4",
@@ -92,22 +96,12 @@ def build(provider):
         ])
 
     src_apk = "android-armv7-release-unsigned.apk"
-    dest_apk = "{}_arm.apk".format(provider)
-    try:
-        os.remove(dest_apk)
-    except:
-        pass
     jarsigner(src_apk)
-    zipalign(src_apk, dest_apk)
+    zipalign(src_apk, "{}_arm.apk".format(provider))
 
     src_apk = "android-x86-release-unsigned.apk"
-    dest_apk = "{}_x86.apk".format(provider)
-    try:
-        os.remove(dest_apk)
-    except:
-        pass
     jarsigner(src_apk)
-    zipalign(src_apk, dest_apk)
+    zipalign(src_apk, "{}_x86.apk".format(provider))
 
 
 if __name__ == '__main__':
