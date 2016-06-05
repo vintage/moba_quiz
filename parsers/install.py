@@ -1,4 +1,5 @@
 import os
+import sys
 import shutil
 from subprocess import call
 
@@ -65,11 +66,48 @@ def build(provider):
 
     call(["ionic", "resources"])
 
-    # Build android package
-    # call(["ionic", "build", "--release", "android"])
-
     # Build ios package
     call(["ionic", "build", "ios"])
+
+    # Build android package
+    call(["ionic", "build", "--release", "android"])
+
+    def jarsigner(apk_name):
+        call([
+            "jarsigner", "-verbose",
+            "-sigalg", "SHA1withRSA",
+            "-digestalg", "SHA1",
+            "-keystore", "puppybox-release.keystore",
+            "platforms/android/build/outputs/apk/{}".format(apk_name),
+            "puppybox-release"
+        ])
+
+    def zipalign(src_apk, dest_apk):
+        print(src_apk, dest_apk)
+        call([
+            "zipalign",
+            "-v", "4",
+            "platforms/android/build/outputs/apk/{}".format(src_apk),
+            "{}".format(dest_apk)
+        ])
+
+    src_apk = "android-armv7-release-unsigned.apk"
+    dest_apk = "{}_arm.apk".format(provider)
+    try:
+        os.remove(dest_apk)
+    except:
+        pass
+    jarsigner(src_apk)
+    zipalign(src_apk, dest_apk)
+
+    src_apk = "android-x86-release-unsigned.apk"
+    dest_apk = "{}_x86.apk".format(provider)
+    try:
+        os.remove(dest_apk)
+    except:
+        pass
+    jarsigner(src_apk)
+    zipalign(src_apk, dest_apk)
 
 
 if __name__ == '__main__':
