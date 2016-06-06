@@ -19,7 +19,7 @@ os.makedirs(item_image_path, exist_ok=True)
 os.makedirs(champion_image_path, exist_ok=True)
 
 def clean_filename(filename):
-    return ''.join(filename.split()).lower()
+    return ''.join(filename.split()).lower().replace('(passive)', '')
 
 
 def download_image(url, path, filename):
