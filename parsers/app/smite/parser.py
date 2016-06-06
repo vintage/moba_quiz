@@ -2,6 +2,7 @@ import json
 import os
 import shutil
 import functools
+import re
 
 from PIL import Image
 import requests
@@ -18,8 +19,17 @@ champions_url = 'https://www.smitegame.com/gods/'
 os.makedirs(item_image_path, exist_ok=True)
 os.makedirs(champion_image_path, exist_ok=True)
 
+
 def clean_filename(filename):
-    return ''.join(filename.split()).lower().replace('(passive)', '')
+    filename = ''.join(filename.split()).lower()
+    extension_dot = filename.rindex('.')
+
+    left_part = filename[:extension_dot]
+    right_part = filename[extension_dot:]
+    # Characters after last . can be [a-z] only
+    right_part = " ".join(re.findall("[a-zA-Z]+", right_part))
+
+    return "{}.{}".format(left_part, right_part)
 
 
 def download_image(url, path, filename):

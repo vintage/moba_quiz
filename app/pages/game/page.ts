@@ -34,7 +34,7 @@ export class GamePage {
       public gameplay: GameplayService,
       public itemService: ItemService,
       public championService: ChampionService,
-      public gameTypeService: GameTypeService,
+      public gameTypes: GameTypeService,
       public ads: AdService,
       public achievements: AchievementService
   ) {
@@ -49,6 +49,7 @@ export class GamePage {
     });
 
     Promise.all([itemService.load(), championService.load()]).then(() => {
+      this.gameTypes.load();
       this.gameplay.start();
       this.achievements.update("gameplay_small_play_count");
       this.achievements.update("gameplay_medium_play_count");
@@ -78,7 +79,7 @@ export class GamePage {
 
   openLevel() {
     this.isPerfect = true;
-    this.gameType = this.gameTypeService.getAny();
+    this.gameType = this.gameTypes.getAny();
     this.dcl.loadNextToLocation(this.gameType.component, this.typeContainer).then((componentRef) => {
       let component = componentRef.instance;
 
