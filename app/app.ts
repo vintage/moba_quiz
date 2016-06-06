@@ -47,6 +47,17 @@ class MobaApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      if (window.Media) {
+        if (this.platform.is("android")) {
+          window.backgroundMusic = new window.Media('/android_asset/www/sfx/background.mp3');
+        }
+        else {
+          window.backgroundMusic = new window.Media('sfx/background.mp3');
+        }
+
+        window.playMusic(window.backgroundMusic);
+      }
+
       window.navigator.splashscreen.hide();
 
       if (typeof StatusBar !== "undefined") {
