@@ -26,8 +26,9 @@ def clean_filename(filename):
 
     left_part = filename[:extension_dot]
     right_part = filename[extension_dot:]
-    # Characters after last . can be [a-z] only
-    right_part = " ".join(re.findall("[a-zA-Z]+", right_part))
+
+    left_part = ''.join([c for c in left_part if c.isalnum()])
+    right_part = ''.join([c for c in right_part if c.isalpha()])
 
     return "{}.{}".format(left_part, right_part)
 
@@ -79,6 +80,8 @@ def setup_champions():
     dom = pq(url=champions_url)
     container = dom('.god-container')
 
+    god_rows = pq(url='http://smite.gamepedia.com/List_of_gods').items('table tr')
+
     result = []
     for item in tqdm(container.items('.god-package'), desc='Parsing champions'):
         detail_url = item.find('a').attr('href')
@@ -88,9 +91,23 @@ def setup_champions():
         image_url = item.find('img.icon').attr('src')
         image_name = '{}.png'.format(name).lower()
 
+        print("Parsing ", name)
         detail_dom = pq(url=detail_url)
 
-        is_range = True
+        is_range = None
+        for row in god_rows:
+            cells = row.find('td')
+            if not cells:
+                continue
+
+            name_cell = cells[1]
+
+            if name_cell.text_content().strip().lower() == name.lower():
+                is_range = cells[3].text_content().strip() == 'Ranged'
+                break
+
+        if is_range is None:
+            raise Exception('Invalid `is_range` option.')
 
         image_path = champion_image_path
         os.makedirs(image_path, exist_ok=True)
