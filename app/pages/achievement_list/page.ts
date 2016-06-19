@@ -1,10 +1,11 @@
-import {Page, NavController} from "ionic-angular";
+import {Component} from "@angular/core";
+import {NavController} from "ionic-angular";
 import {filter} from "lodash";
 
 import {AchievementService} from "../../providers/achievement/service";
 import {AbstractAchievementModel} from "../../providers/achievement/model";
 
-@Page({
+@Component({
   templateUrl: "build/pages/achievement_list/page.html"
 })
 export class AchievementListPage {

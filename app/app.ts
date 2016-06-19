@@ -1,5 +1,6 @@
 import {HTTP_PROVIDERS} from "@angular/http";
-import {App, IonicApp, Platform} from "ionic-angular";
+import {Component} from "@angular/core";
+import {App, ionicBootstrap, Platform} from 'ionic-angular';
 
 import {ItemService} from "./providers/item/service";
 import {ChampionService, SkillService} from "./providers/champion/service";
@@ -12,30 +13,14 @@ import {SettingsService} from "./providers/settings/service";
 
 import {MainMenuPage} from "./pages/main_menu/page";
 
-@App({
-  prodMode: true,
-  config: {
-    statusbarPadding: false
-  },
+@Component({
   templateUrl: "build/app.html",
-  providers: [
-    ItemService,
-    ChampionService,
-    SkillService,
-    GameplayService,
-    CountryService,
-    ScoreService,
-    AdService,
-    AchievementService,
-    SettingsService,
-    HTTP_PROVIDERS,
-  ]
 })
 class MobaApp {
   root: any;
 
   constructor(
-    public app: IonicApp,
+    private app: App,
     public platform: Platform,
     private ads: AdService,
     private settings: SettingsService
@@ -72,3 +57,20 @@ class MobaApp {
     });
   }
 }
+
+ionicBootstrap(MobaApp, [
+    ItemService,
+    ChampionService,
+    SkillService,
+    GameplayService,
+    CountryService,
+    ScoreService,
+    AdService,
+    AchievementService,
+    SettingsService,
+    HTTP_PROVIDERS,
+  ], {
+    statusbarPadding: false,
+    prodMode: true
+  }
+);

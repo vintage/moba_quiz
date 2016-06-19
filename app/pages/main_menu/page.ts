@@ -1,4 +1,4 @@
-import {OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Button, Page, NavController, Platform, Alert} from "ionic-angular";
 
 import {GameplayService} from "../../providers/gameplay/service";
@@ -13,7 +13,7 @@ import {AchievementListPage} from "../achievement_list/page";
 import {AboutPage} from "../about/page";
 import {TutorialPage} from "../tutorial/page";
 
-@Page({
+@Component({
   templateUrl: "build/pages/main_menu/page.html",
   directives: [Button],
   pipes: [PointsPipe]

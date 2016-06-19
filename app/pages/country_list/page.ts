@@ -1,10 +1,11 @@
-import {Page, NavController} from "ionic-angular";
+import {Component} from "@angular/core";
+import {NavController} from "ionic-angular";
 import {filter} from "lodash";
 
 import {CountryService} from "../../providers/country/service";
 import {CountryModel} from "../../providers/country/model";
 
-@Page({
+@Component({
   templateUrl: "build/pages/country_list/page.html"
 })
 export class CountryListPage {

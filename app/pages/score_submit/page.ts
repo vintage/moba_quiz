@@ -1,4 +1,4 @@
-import {OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Button, Page, NavController, Alert, ViewController, Platform} from "ionic-angular";
 import {Globalization} from "ionic-native";
 
@@ -12,7 +12,7 @@ import {CountryListPage} from "../country_list/page";
 import {GamePage} from "../game/page";
 import {MainMenuPage} from "../main_menu/page";
 
-@Page({
+@Component({
   templateUrl: "build/pages/score_submit/page.html",
   directives: [Button],
   pipes: [PointsPipe]
@@ -52,7 +52,7 @@ export class ScoreSubmitPage implements OnInit {
     });
   }
 
-  onPageWillEnter() {
+  ionViewWillEnter() {
     this.countries.load().then(() => {
       this.countries.getCurrent().then(country => {
         if (country === null) {
@@ -176,6 +176,10 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   setDefaultCountry() {
+    if (!window.cordova) {
+      return;
+    }
+
     Globalization.getLocaleName().then(locale => {
       let countryCode = locale.value.toUpperCase();
       if (countryCode == null) {

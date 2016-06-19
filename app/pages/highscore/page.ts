@@ -1,11 +1,11 @@
-import {OnInit} from "@angular/core";
-import {Button, Page, NavController, Platform} from "ionic-angular";
+import {Component, OnInit} from "@angular/core";
+import {Button, NavController, Platform} from "ionic-angular";
 
 import {ScoreService} from "../../providers/score/service";
 import {ScoreModel} from "../../providers/score/model";
 import {PointsPipe} from "../../pipes/numbers";
 
-@Page({
+@Component({
   templateUrl: "build/pages/highscore/highscore_list.html",
   pipes: [PointsPipe]
 })
@@ -40,7 +40,7 @@ class HighscoreGeneralPage implements OnInit {
   }
 }
 
-@Page({
+@Component({
   templateUrl: "build/pages/highscore/highscore_list.html",
   pipes: [PointsPipe]
 })
@@ -58,7 +58,7 @@ class HighscoreMonthlyPage extends HighscoreGeneralPage {
   }
 }
 
-@Page({
+@Component({
   templateUrl: "build/pages/highscore/highscore_list.html",
   pipes: [PointsPipe]
 })
@@ -76,7 +76,7 @@ class HighscoreWeeklyPage extends HighscoreGeneralPage {
   }
 }
 
-@Page({
+@Component({
   templateUrl: "build/pages/highscore/highscore_list.html",
   pipes: [PointsPipe]
 })
@@ -94,7 +94,7 @@ class HighscoreDailyPage extends HighscoreGeneralPage {
   }
 }
 
-@Page({
+@Component({
   templateUrl: "build/pages/highscore/page.html",
   directives: [Button]
 })

@@ -1,4 +1,5 @@
-import {Page, NavController, Alert, ViewController} from "ionic-angular";
+import {Component} from "@angular/core";
+import {NavController, Alert, ViewController} from "ionic-angular";
 import {DynamicComponentLoader, ViewChild, ViewContainerRef} from "@angular/core";
 
 import {ItemService} from "../../providers/item/service";
@@ -13,7 +14,7 @@ import {GameTypeService} from "./types/service";
 import {GameTypeModel} from "./types/model";
 import {ScoreSubmitPage} from "../score_submit/page";
 
-@Page({
+@Component({
   templateUrl: "build/pages/game/page.html",
   directives: [Stats],
   providers: [GameTypeService],

@@ -13,16 +13,6 @@ Moba Quiz is an application skeleton for building mobile app quizes for Moba gam
 
 Moba Quiz is built using [Angular 2] & [Ionic 2].
 
-### Showcase demo
-
-Applications are available for both Android (Google Play) and iOS (Apple Store) devices. Port for Windows Mobile devices will be released somewhere in Q3.
-
-- [Android] https://play.google.com/store/apps/details?id=com.puppybox.quizhon
-- [Android] https://play.google.com/store/apps/details?id=com.puppybox.quizlol
-- [iOS] https://itunes.apple.com/us/app/quiz-for-league-legends-ultimate/id1107274781
-- [iOS] https://itunes.apple.com/us/app/quiz-for-heroes-newerth-ultimate/id1109019404
-- [iOS] https://itunes.apple.com/us/app/quiz-for-dota-2-ultimate/id1109010695
-
 ### Installation
 
 Moba Quiz requires [Node.js](https://nodejs.org/) v3.7+ to run.
