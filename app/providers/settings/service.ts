@@ -42,7 +42,7 @@ export class SettingsService {
         }
         else if (this.platform.is("android")) {
           this.appUrl = json["urls"]["android"];
-          this.trackingId = json["tracking"]["android];
+          this.trackingId = json["tracking"]["android"];
           adData = json["ads"]["android"];
         }
         else {
