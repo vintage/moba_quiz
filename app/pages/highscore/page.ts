@@ -117,4 +117,10 @@ export class HighscorePage {
     this.monthlyTab = HighscoreMonthlyPage;
     this.generalTab = HighscoreGeneralPage;
   }
+
+  ionViewDidEnter() {
+    if (window["analytics"]) {
+      window["analytics"].trackView("Highscore");
+    }
+  }
 }

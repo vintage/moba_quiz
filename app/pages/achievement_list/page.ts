@@ -16,4 +16,10 @@ export class AchievementListPage {
       this.achievements = achievements;
     });
   }
+
+  ionViewDidEnter() {
+    if (window["analytics"]) {
+      window["analytics"].trackView("Achievement List");
+    }
+  }
 }

@@ -198,4 +198,10 @@ export class ScoreSubmitPage implements OnInit {
       }
     });
   }
+
+  ionViewDidEnter() {
+    if (window["analytics"]) {
+      window["analytics"].trackView("Score Submit");
+    }
+  }
 }

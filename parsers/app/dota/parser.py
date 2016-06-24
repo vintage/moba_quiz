@@ -186,6 +186,11 @@ def setup_settings():
                 'full_screen': 'ca-app-pub-4764697513834958/7744046068',
             },
         },
+        'tracking': {
+            'ios': 'UA-77793311-4',
+            'android': 'UA-77793311-5',
+            'windows': '',
+        },
         'urls': {
             'ios': 'itms-apps://itunes.apple.com/app/id1109010695',
             'android': 'market://details?id=com.puppybox.quizdota',

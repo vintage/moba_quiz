@@ -158,6 +158,11 @@ def setup_settings():
                 'full_screen': 'ca-app-pub-4764697513834958/7744046068',
             },
         },
+        'tracking': {
+            'ios': 'UA-77793311-8',
+            'android': 'UA-77793311-9',
+            'windows': '',
+        },
         'urls': {
             'ios': 'itms-apps://itunes.apple.com/app/id1121065896',
             'android': 'market://details?id=com.puppybox.quizsmite',

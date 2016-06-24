@@ -14,6 +14,7 @@ export class SettingsService {
   appUrl: string;
   sourceName: string;
   sourceUrl: string;
+  trackingId: string;
 
   constructor(public platform: Platform, public http: Http) {
     this.isLoaded = false;
@@ -36,14 +37,17 @@ export class SettingsService {
         let adData = {};
         if (this.platform.is("ios")) {
           this.appUrl = json["urls"]["ios"];
+          this.trackingId = json["tracking"]["ios"];
           adData = json["ads"]["ios"];
         }
         else if (this.platform.is("android")) {
           this.appUrl = json["urls"]["android"];
+          this.trackingId = json["tracking"]["android];
           adData = json["ads"]["android"];
         }
         else {
           this.appUrl = json["urls"]["windows"];
+          this.trackingId = json["tracking"]["windows"];
           adData = json["ads"]["default"];
         }
 

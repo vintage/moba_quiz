@@ -162,4 +162,10 @@ export class GamePage {
     //   sfx.play();
     // }
   }
+
+  ionViewDidEnter() {
+    if (window["analytics"]) {
+      window["analytics"].trackView("Game");
+    }
+  }
 }

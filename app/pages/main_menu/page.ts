@@ -71,4 +71,10 @@ export class MainMenuPage {
 
     this.achievements.update("rate_app");
   }
+  
+  ionViewDidEnter() {
+    if (window["analytics"]) {
+      window["analytics"].trackView("Main Menu");
+    }
+  }
 }

@@ -13,6 +13,12 @@ export class AboutPage {
     this.disclaimer = settings.legalDisclaimer;
   }
 
+  ionViewDidEnter() {
+    if (window["analytics"]) {
+      window["analytics"].trackView("About");
+    }
+  }
+
   showContactAlert() {
     let alert = Alert.create({
       title: "Missing email client",

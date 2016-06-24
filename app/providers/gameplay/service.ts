@@ -18,7 +18,7 @@ export class GameplayService {
   // Minimum amount of time given for providing answer
   private timeLimitMin: number = 6 * 1000;
   // Level count after the timer is decreased
-  private timeLimitUpdateInterval = 8;
+  private timeLimitUpdateInterval = 6;
 
   constructor() {
     this.storage = new Storage(SqlStorage);
@@ -55,7 +55,7 @@ export class GameplayService {
   private refreshTimer() {
     let levelPenalty = Math.round(this.level / this.timeLimitUpdateInterval) * 1000;
 
-    this.timeLimit = 20 * 1000 - levelPenalty;
+    this.timeLimit = 16 * 1000 - levelPenalty;
 
     // Enforce the minimum time limit
     this.timeLimit = Math.max(this.timeLimit, this.timeLimitMin);
@@ -72,7 +72,7 @@ export class GameplayService {
 
   getLevelPoints() {
     // Base points
-    let points = 16000;
+    let points = 19000;
 
     // Time bonus
     points += Math.round((this.timeLeft / this.timeLimit) * (points * 2));

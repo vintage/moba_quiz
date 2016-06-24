@@ -23,4 +23,10 @@ export class TutorialPage {
       window.open(this.sourceUrl, "_blank");
     }
   }
+
+  ionViewDidEnter() {
+    if (window["analytics"]) {
+      window["analytics"].trackView("Tutorial");
+    }
+  }
 }

@@ -51,6 +51,7 @@ class MobaApp {
 
       this.settings.load().then(() => {
         this.ads.showBanner();
+        window.analytics.startTrackerWithId(this.settings.trackingId);
       });
     }).catch(() => {
       this.settings.load();

@@ -22,4 +22,10 @@ export class CountryListPage {
 
     this.nav.pop();
   }
+
+  ionViewDidEnter() {
+    if (window["analytics"]) {
+      window["analytics"].trackView("Country List");
+    }
+  }
 }
