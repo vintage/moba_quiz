@@ -23,6 +23,8 @@ export class PremiumUnlockPage {
       return;
     }
 
+    store.verbosity = store.INFO;
+
     store.register({
       id: "com.puppybox.purchase.premium_version",
       alias: "Premium version",
@@ -32,10 +34,13 @@ export class PremiumUnlockPage {
     store.when("Premium version")
       .approved(order => {
         console.log(order);
-        order.finish();
+
+        this.settings.enablePremium().then(() => {
+          order.finish();
+        });
       })
       .refunded(() => {
-        // app.lock();
+        this.settings.disablePremium();
       });
 
     store.refresh();

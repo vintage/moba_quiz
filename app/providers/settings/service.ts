@@ -59,4 +59,22 @@ export class SettingsService {
       });
     });
   }
+
+  isPremium() {
+    return new Promise(resolve => {
+      resolve(true);
+    });
+  }
+
+  enablePremium() {
+    return new Promise(resolve => {
+      resolve(null);
+    });
+  }
+
+  disablePremium() {
+    return new Promise(resolve => {
+      resolve(null);
+    });
+  }
 }

@@ -12,6 +12,7 @@
       </ion-col>
 
       <ion-col class="chances-bar align-right">
+        <ion-icon name="heart" *ngIf="gameplay.chances > 4"></ion-icon>
         <ion-icon name="heart" *ngIf="gameplay.chances > 3"></ion-icon>
         <ion-icon name="heart" *ngIf="gameplay.chances > 2"></ion-icon>
         <ion-icon name="heart" *ngIf="gameplay.chances > 1"></ion-icon>

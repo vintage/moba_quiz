@@ -1,5 +1,10 @@
 <ion-content>
   <game-stats (timeOver)="onTimeOver()" [timerEnabled]="!isLocked"></game-stats>
 
+  <button block secondary (click)="skipLevel()" *ngIf="skipLeft > 0" class="skip-button">
+    <ion-icon name="redo"></ion-icon>
+    Skip ({{ skipLeft }} left)
+  </button>
+
   <div #gameType></div>
 </ion-content>

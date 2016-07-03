@@ -70,6 +70,10 @@ export class GameplayService {
     this.strike = 0;
   }
 
+  addChance() {
+    this.chances += 1;
+  }
+
   getLevelPoints() {
     // Base points
     let points = 25000;

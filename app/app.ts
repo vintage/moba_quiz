@@ -50,10 +50,17 @@ class MobaApp {
       }
 
       this.settings.load().then(() => {
-        this.ads.showBanner();
         if (window["analytics"]) {
           window["analytics"].startTrackerWithId(this.settings.trackingId);
         }
+
+        this.settings.isPremium().then(isPremium => {
+          if (!isPremium) {
+            this.ads.showBanner();
+          }
+        }).catch(() => {
+          this.ads.showBanner();
+        });
       });
     }).catch(() => {
       this.settings.load();

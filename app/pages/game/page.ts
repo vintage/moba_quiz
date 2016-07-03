@@ -7,6 +7,7 @@ import {ChampionService} from "../../providers/champion/service";
 import {GameplayService} from "../../providers/gameplay/service";
 import {AdService} from "../../providers/ads/service";
 import {AchievementService} from "../../providers/achievement/service";
+import {SettingsService} from "../../providers/settings/service";
 import {PointsPipe} from "../../pipes/numbers";
 
 import {Stats} from "./stats/component";
@@ -26,6 +27,8 @@ export class GamePage {
   showAd: boolean;
   isPerfect: boolean;
   isLocked: boolean;
+  skipLeft: number;
+  gameComponent: any;
   @ViewChild("gameType", {read: ViewContainerRef}) typeContainer;
 
   constructor(
@@ -37,15 +40,23 @@ export class GamePage {
       public championService: ChampionService,
       public gameTypes: GameTypeService,
       public ads: AdService,
+      private settings: SettingsService,
       public achievements: AchievementService
   ) {
     this.isLocked = false;
     this.showAd = false;
+    this.skipLeft = 0;
 
-    gameplay.getTimesPlayed().then((timesPlayed) => {
-      if (timesPlayed && timesPlayed % 6 === 0) {
-        this.showAd = true;
-        this.ads.prepareFullScreen();
+    settings.isPremium().then(isPremium => {
+      if (!isPremium) {
+        gameplay.getTimesPlayed().then((timesPlayed) => {
+          if (timesPlayed % 5 === 0) {
+            this.showAd = true;
+            this.ads.prepareFullScreen();
+          }
+        });
+      } else {
+        this.skipLeft = 3;
       }
     });
 
@@ -56,6 +67,12 @@ export class GamePage {
       this.achievements.update("gameplay_medium_play_count");
       this.achievements.update("gameplay_big_play_count");
       this.openLevel();
+
+      settings.isPremium().then(isPremium => {
+        if (isPremium) {
+          this.gameplay.addChance();
+        }
+      });
     });
   }
 
@@ -82,6 +99,8 @@ export class GamePage {
     this.isPerfect = true;
     this.gameType = this.gameTypes.getAny();
     this.dcl.loadNextToLocation(this.gameType.component, this.typeContainer).then((componentRef) => {
+      this.gameComponent = componentRef;
+
       let component = componentRef.instance;
 
       component.questionFinished.subscribe(() => {
@@ -127,6 +146,18 @@ export class GamePage {
         }
       });
     });
+  }
+
+  skipLevel() {
+    if (this.skipLeft <= 0) {
+      return;
+    }
+
+    this.skipLeft -= 1;
+
+    this.gameComponent.destroy();
+    this.openLevel();
+    this.isLocked = false;
   }
 
   onTimeOver() {
