@@ -12,6 +12,7 @@ import {HighscorePage} from "../highscore/page";
 import {AchievementListPage} from "../achievement_list/page";
 import {AboutPage} from "../about/page";
 import {TutorialPage} from "../tutorial/page";
+import {PremiumUnlockPage} from "../premium_unlock/page";
 
 @Component({
   templateUrl: "build/pages/main_menu/page.html",
@@ -71,7 +72,11 @@ export class MainMenuPage {
 
     this.achievements.update("rate_app");
   }
-  
+
+  unlockPremium() {
+    this.nav.push(PremiumUnlockPage);
+  }
+
   ionViewDidEnter() {
     if (window["analytics"]) {
       window["analytics"].trackView("Main Menu");

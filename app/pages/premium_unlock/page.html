@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Buy premium</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="panel-box">
+    <ion-card>
+      <ion-card-header>
+        <button block primary (click)="getPremium()">
+          <ion-icon name="book"></ion-icon>
+          Buy premium
+        </button>
+      </ion-card-header>
+
+      <ion-card-content>
+        
+        Unlock premium version of the game which removes all ads & brings several 
+        features that makes it more fun to play. Here you will find a full list of premium
+        version benefits:
+
+        <ion-list no-lines>
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Ad-free</h2>
+              <p>
+                no more ads in the game
+              </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Skip question</h2>
+              <p>
+                skip up a questions without loosing a life
+              </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Extra life</h2>
+              <p>
+                start the game with one extra life
+              </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Custom avatar</h2>
+              <p>
+                upload your own avatar when making a new score
+              </p>
+          </ion-item>
+        </ion-list>
+
+        <button block primary (click)="getPremium()">
+          <ion-icon name="book"></ion-icon>
+          Buy premium
+        </button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
