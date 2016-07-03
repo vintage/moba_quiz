@@ -33,8 +33,6 @@ export class PremiumUnlockPage {
 
     store.when("Premium version")
       .approved(order => {
-        console.log(order);
-
         this.settings.enablePremium().then(() => {
           order.finish();
         });
@@ -51,7 +49,6 @@ export class PremiumUnlockPage {
     }
 
     store.error(e => {
-      console.log(e);
       this.showStoreError(e);
     });
   }

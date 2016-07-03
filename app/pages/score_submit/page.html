@@ -61,6 +61,13 @@
           <ion-col>
             <button block dark (click)="openMenu()">Back to menu</button>
           </ion-col>
+
+          <ion-col *ngIf="score > 1000000">
+            <button block primary (click)="openRating()">
+              <ion-icon name="star"></ion-icon>
+              Rate APP
+            </button>
+          </ion-col>
         </ion-row>
       </ion-col>
     </ion-row>

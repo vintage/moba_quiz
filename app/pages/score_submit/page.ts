@@ -6,6 +6,7 @@ import {GameplayService} from "../../providers/gameplay/service";
 import {CountryService} from "../../providers/country/service";
 import {CountryModel} from "../../providers/country/model";
 import {ScoreService} from "../../providers/score/service";
+import {SettingsService} from "../../providers/settings/service";
 import {PointsPipe} from "../../pipes/numbers";
 
 import {CountryListPage} from "../country_list/page";
@@ -31,6 +32,7 @@ export class ScoreSubmitPage implements OnInit {
       public platform: Platform,
       public gameplay: GameplayService,
       public countries: CountryService,
+      private settings: SettingsService,
       public scoreService: ScoreService) {
     this.isPending = false;
     this.isSubmitted = false;
@@ -202,6 +204,15 @@ export class ScoreSubmitPage implements OnInit {
   ionViewDidEnter() {
     if (window["analytics"]) {
       window["analytics"].trackView("Score Submit");
+    }
+  }
+
+  openRating() {
+    if (window.cordova) {
+      window.cordova.InAppBrowser.open(this.settings.appUrl, "_system", "location=no");
+    }
+    else {
+      window.open(this.settings.appUrl, "_blank");
     }
   }
 }

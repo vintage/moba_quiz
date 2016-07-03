@@ -300,13 +300,6 @@ def setup_achievements(items, champions):
         "type": "increment",
         "goal": 1000
       },
-      {
-        "id": "rate_app",
-        "name": "Active civic attitude",
-        "description": "Rate the application",
-        "type": "boolean",
-        "goal": 1,
-      },
     ]
 
     with open('./data/achievements.json', 'w') as outfile:

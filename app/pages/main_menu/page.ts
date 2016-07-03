@@ -62,17 +62,6 @@ export class MainMenuPage {
     this.nav.push(TutorialPage);
   }
 
-  openRating() {
-    if (window.cordova) {
-      window.cordova.InAppBrowser.open(this.settings.appUrl, "_system", "location=no");
-    }
-    else {
-      window.open(this.settings.appUrl, "_blank");
-    }
-
-    this.achievements.update("rate_app");
-  }
-
   unlockPremium() {
     this.nav.push(PremiumUnlockPage);
   }
