@@ -1,11 +1,13 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {Platform} from "ionic-angular";
-
+import {Storage, SqlStorage} from "ionic-angular";
 
 @Injectable()
 export class SettingsService {
   isLoaded: boolean;
+  storage: Storage;
+  premiumKey: string = "premium_key";
 
   smallBanner: string;
   bigBanner: string;
@@ -18,6 +20,7 @@ export class SettingsService {
 
   constructor(public platform: Platform, public http: Http) {
     this.isLoaded = false;
+    this.storage = new Storage(SqlStorage);
   }
 
   load() {
@@ -60,21 +63,21 @@ export class SettingsService {
     });
   }
 
-  isPremium() {
+  isPremium(): Promise<boolean> {
     return new Promise(resolve => {
-      resolve(true);
+      return this.storage.get(this.premiumKey).then(isPremium => {
+        resolve(!!isPremium);
+      }).catch(() => {
+        resolve(false);
+      });
     });
   }
 
   enablePremium() {
-    return new Promise(resolve => {
-      resolve(null);
-    });
+    return this.storage.set(this.premiumKey, JSON.stringify(true));
   }
 
   disablePremium() {
-    return new Promise(resolve => {
-      resolve(null);
-    });
+    return this.storage.remove(this.premiumKey);
   }
 }

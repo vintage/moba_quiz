@@ -22,6 +22,7 @@ import {PremiumUnlockPage} from "../premium_unlock/page";
 export class MainMenuPage {
   timesPlayed: number;
   bestScore: number;
+  hasPremium: boolean;
 
   constructor(
     public nav: NavController,
@@ -39,6 +40,10 @@ export class MainMenuPage {
 
     this.scoreService.getBestScore().then(bestScore => {
       this.bestScore = bestScore;
+    });
+
+    this.settings.isPremium().then(isPremium => {
+      this.hasPremium = isPremium;
     });
   }
 

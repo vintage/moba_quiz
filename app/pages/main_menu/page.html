@@ -46,7 +46,7 @@
             </button>
           </ion-col>
 
-          <ion-col>
+          <ion-col *ngIf="!hasPremium">
             <button block default (click)="unlockPremium()">
               <ion-icon name="cart"></ion-icon>
               Unlock premium

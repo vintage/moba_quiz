@@ -65,4 +65,13 @@ export class PremiumUnlockPage {
 
     this.nav.present(alert);
   }
+
+  makeOrder() {
+    let store = window["store"];
+    if (!store) {
+      return;
+    }
+
+    store.order("Premium version");
+  }
 }
