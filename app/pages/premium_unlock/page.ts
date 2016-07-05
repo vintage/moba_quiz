@@ -1,13 +1,18 @@
 import {Component} from "@angular/core";
 import {NavController, Alert} from "ionic-angular";
 
+import {AdService} from "../../providers/ads/service";
 import {SettingsService} from "../../providers/settings/service";
 
 @Component({
   templateUrl: "build/pages/premium_unlock/page.html",
 })
 export class PremiumUnlockPage {
-  constructor(public nav: NavController, private settings: SettingsService) {
+  constructor(
+    public nav: NavController,
+    private settings: SettingsService,
+    private ads: AdService
+  ) {
 
   }
 
@@ -26,7 +31,7 @@ export class PremiumUnlockPage {
     store.verbosity = store.INFO;
 
     store.register({
-      id: "com.puppybox.purchase.premium_version",
+      id: "com.puppybox.quizlol.premium_version",
       alias: "Premium version",
       type: store.NON_CONSUMABLE
     });
@@ -35,6 +40,7 @@ export class PremiumUnlockPage {
       .approved(order => {
         this.settings.enablePremium().then(() => {
           order.finish();
+          this.ads.removeBanner();
         });
       })
       .refunded(() => {
@@ -69,6 +75,7 @@ export class PremiumUnlockPage {
   makeOrder() {
     let store = window["store"];
     if (!store) {
+      this.showStoreError();
       return;
     }
 

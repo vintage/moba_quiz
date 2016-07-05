@@ -4,7 +4,6 @@ import {Button, Page, NavController, Platform, Alert} from "ionic-angular";
 import {GameplayService} from "../../providers/gameplay/service";
 import {ScoreService} from "../../providers/score/service";
 import {AchievementService} from "../../providers/achievement/service";
-import {SettingsService} from "../../providers/settings/service";
 import {PointsPipe} from "../../pipes/numbers";
 
 import {GamePage} from "../game/page";
@@ -29,7 +28,6 @@ export class MainMenuPage {
     public gameplay: GameplayService,
     public scoreService: ScoreService,
     public achievements: AchievementService,
-    private settings: SettingsService,
     public platform: Platform) {
   }
 
@@ -40,10 +38,6 @@ export class MainMenuPage {
 
     this.scoreService.getBestScore().then(bestScore => {
       this.bestScore = bestScore;
-    });
-
-    this.settings.isPremium().then(isPremium => {
-      this.hasPremium = isPremium;
     });
   }
 

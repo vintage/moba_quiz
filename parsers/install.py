@@ -66,6 +66,14 @@ def build(provider):
 
     call(["ionic", "resources"])
 
+    billing_key = input("Billing key for android purchases: ")
+
+    call(["ionic", "plugin", "remove", "cc.fovea.cordova.purchase"])
+    call([
+        "ionic", "plugin", "add", "cc.fovea.cordova.purchase",
+        "--variable", 'BILLING_KEY="{}"'.format(billing_key)
+    ])
+
     # Build ios package
     call(["ionic", "build", "ios"])
 

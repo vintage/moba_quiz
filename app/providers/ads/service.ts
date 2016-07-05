@@ -7,35 +7,52 @@ export class AdService {
   constructor(private settings: SettingsService) {
   }
 
+  getEngine() {
+    let engine = window["AdMob"];
+    return engine;
+  }
+
   showBanner() {
-    if (!window.AdMob) {
+    let engine = this.getEngine();
+    if (engine) {
       return;
     }
 
-    window.AdMob.createBanner({
+    engine.createBanner({
       adId: this.getConfiguration().banner,
-      position: window.AdMob.AD_POSITION.BOTTOM_CENTER,
+      position: engine.AD_POSITION.BOTTOM_CENTER,
       autoShow: true
     });
   }
 
-  prepareFullScreen() {
-    if (!window.AdMob) {
+  removeBanner() {
+    let engine = this.getEngine();
+    if (engine) {
       return;
     }
 
-    window.AdMob.prepareInterstitial({
+    engine.removeBanner();
+  }
+
+  prepareFullScreen() {
+    let engine = this.getEngine();
+    if (engine) {
+      return;
+    }
+
+    engine.prepareInterstitial({
       adId: this.getConfiguration().full_screen,
       autoShow: false
     });
   }
 
   showFullScreen() {
-    if (!window.AdMob) {
+    let engine = this.getEngine();
+    if (engine) {
       return;
     }
 
-    window.AdMob.showInterstitial();
+    engine.showInterstitial();
   }
 
   getConfiguration() {
