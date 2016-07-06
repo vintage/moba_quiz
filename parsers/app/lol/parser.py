@@ -142,12 +142,14 @@ def setup_settings():
             'ad_big': 'ca-app-pub-4764697513834958/2123794461',
             'tracking': 'UA-77793311-2',
             'store': 'itms-apps://itunes.apple.com/app/id1107274781',
+            'store_premium': 'com.puppybox.quizlol.premium_version',
         },
         'android': {
             'ad_small': 'ca-app-pub-4764697513834958/9308984069',
             'ad_big': 'ca-app-pub-4764697513834958/4599582865',
             'tracking': 'UA-77793311-3',
             'store': 'market://details?id=com.puppybox.quizlol',
+            'store_premium': 'com.puppybox.quizlol.premium_version',
         },
         'windows': {
             'ad_small': 'ca-app-pub-4764697513834958/7883646863',

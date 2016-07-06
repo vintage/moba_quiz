@@ -31,7 +31,7 @@ export class PremiumUnlockPage {
     store.verbosity = store.INFO;
 
     store.register({
-      id: "com.puppybox.quizlol.premium_version",
+      id: this.settings.storeProduct,
       alias: "Premium version",
       type: store.NON_CONSUMABLE
     });
@@ -49,12 +49,12 @@ export class PremiumUnlockPage {
 
     store.refresh();
 
-    store.error(e => {
-      this.showStoreError(e);
+    store.error(() => {
+      this.showStoreError();
     });
   }
 
-  showStoreError(error: any = null) {
+  showStoreError() {
     let alert = Alert.create({
       title: "Purchase Error",
       message: `

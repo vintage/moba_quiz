@@ -17,6 +17,7 @@ export class SettingsService {
   sourceName: string;
   sourceUrl: string;
   trackingId: string;
+  storeProduct: string;
 
   constructor(public platform: Platform, public http: Http) {
     this.isLoaded = false;
@@ -52,6 +53,7 @@ export class SettingsService {
         this.bigBanner = platformSettings["ad_big"];
         this.trackingId = platformSettings["tracking"];
         this.appUrl = platformSettings["store"];
+        this.storeProduct = platformSettings["store_premium"];
 
         this.isLoaded = true;
         resolve(null);
