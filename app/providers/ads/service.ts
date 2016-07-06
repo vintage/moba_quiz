@@ -14,7 +14,7 @@ export class AdService {
 
   showBanner() {
     let engine = this.getEngine();
-    if (engine) {
+    if (!engine) {
       return;
     }
 
@@ -27,7 +27,7 @@ export class AdService {
 
   removeBanner() {
     let engine = this.getEngine();
-    if (engine) {
+    if (!engine) {
       return;
     }
 
@@ -36,7 +36,7 @@ export class AdService {
 
   prepareFullScreen() {
     let engine = this.getEngine();
-    if (engine) {
+    if (!engine) {
       return;
     }
 
@@ -48,7 +48,7 @@ export class AdService {
 
   showFullScreen() {
     let engine = this.getEngine();
-    if (engine) {
+    if (!engine) {
       return;
     }
 
