@@ -50,7 +50,7 @@ export class GamePage {
     settings.isPremium().then(isPremium => {
       if (!isPremium) {
         gameplay.getTimesPlayed().then((timesPlayed) => {
-          if (timesPlayed % 5 === 0) {
+          if (timesPlayed % 2 === 0) {
             this.showAd = true;
             this.ads.prepareFullScreen();
           }

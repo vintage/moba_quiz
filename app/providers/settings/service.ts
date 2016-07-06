@@ -37,8 +37,7 @@ export class SettingsService {
         this.sourceName = json["source_name"];
         this.sourceUrl = json["source_url"];
 
-        let platformSettings = {}
-
+        let platformSettings = {};
         if (this.platform.is("ios")) {
           platformSettings = json["ios"];
         }
