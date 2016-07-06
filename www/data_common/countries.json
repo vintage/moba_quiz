@@ -4,9 +4,17 @@
     "iso": "BD"
   },
   {
+    "name": "United Emirates",
+    "iso": "AE"
+  },
+  {
     "name": "Belgium",
     "iso": "BE"
   },
+  {
+    "name": "Bosnia",
+    "iso": "BA",
+  }
   {
     "name": "Bulgaria",
     "iso": "BG"
@@ -14,6 +22,10 @@
   {
     "name": "Barbados",
     "iso": "BB"
+  },
+  {
+    "name": "Burkina Faso",
+    "iso": "BF"
   },
   {
     "name": "Bermuda",
@@ -616,6 +628,10 @@
     "iso": "AD"
   },
   {
+    "name": "Czech Republic",
+    "iso": "CZ"
+  },
+  {
     "name": "Afghanistan",
     "iso": "AF"
   },
@@ -694,5 +710,61 @@
   {
     "name": "Mozambique",
     "iso": "MZ"
+  },
+  {
+    "name": "United States",
+    "iso": "US"
+  },
+  {
+    "name": "United Kingdom",
+    "iso": "GB"
+  },
+  {
+    "name": "Hong Kong",
+    "iso": "HK"
+  },
+  {
+    "name": "North Korea",
+    "iso": "KP"
+  },
+  {
+    "name": "South Korea",
+    "iso": "KR"
+  },
+  {
+    "name": "Sri Lanka",
+    "iso": "LK"
+  },
+  {
+    "name": "New Zealand",
+    "iso": "NZ"
+  },
+  {
+    "name": "Papua New Guinea",
+    "iso": "PG"
+  },
+  {
+    "name": "Puerto Rico",
+    "iso": "PR"
+  },
+  {
+    "name": "Palestine",
+    "iso": "PS"
+  },
+  {
+    "name": "Saudi Arabia",
+    "iso": "SA"
+  },
+  {
+    "name": "Sierra Leone",
+    "iso": "SL"
+  },
+  {
+    "name": "San Marino",
+    "iso": "SM"
+  },
+  {
+    "name": "South Africa",
+    "iso": "ZA"
   }
 ]
