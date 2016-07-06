@@ -137,29 +137,23 @@ def setup_champions():
 
 def setup_settings():
     result = {
-        'ads': {
-            'ios': {
-                'small': 'ca-app-pub-4764697513834958/6693594860',
-                'full_screen': 'ca-app-pub-4764697513834958/2123794461',
-            },
-            'android': {
-                'small': 'ca-app-pub-4764697513834958/9308984069',
-                'full_screen': 'ca-app-pub-4764697513834958/4599582865',
-            },
-            'default': {
-                'small': 'ca-app-pub-4764697513834958/7883646863',
-                'full_screen': 'ca-app-pub-4764697513834958/7744046068',
-            },
+        'ios': {
+            'ad_small': 'ca-app-pub-4764697513834958/6693594860',
+            'ad_big': 'ca-app-pub-4764697513834958/2123794461',
+            'tracking': 'UA-77793311-2',
+            'store': 'itms-apps://itunes.apple.com/app/id1107274781',
         },
-        'tracking': {
-            'ios': 'UA-77793311-2',
-            'android': 'UA-77793311-3',
-            'windows': '',
+        'android': {
+            'ad_small': 'ca-app-pub-4764697513834958/9308984069',
+            'ad_big': 'ca-app-pub-4764697513834958/4599582865',
+            'tracking': 'UA-77793311-3',
+            'store': 'market://details?id=com.puppybox.quizlol',
         },
-        'urls': {
-            'ios': 'itms-apps://itunes.apple.com/app/id1107274781',
-            'android': 'market://details?id=com.puppybox.quizlol',
-            'windows': '',
+        'windows': {
+            'ad_small': 'ca-app-pub-4764697513834958/7883646863',
+            'ad_big': 'ca-app-pub-4764697513834958/7744046068',
+            'tracking': '',
+            'store': '',
         },
         'legal_disclaimer': 'This application is not created, sponsored or endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends is a registered trademark of Riot Games. All in-game descriptions, characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
         'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/lol/scores/',

@@ -172,29 +172,23 @@ def setup_champions():
 
 def setup_settings():
     result = {
-        'ads': {
-            'ios': {
-                'small': 'ca-app-pub-4764697513834958/2182670065',
-                'full_screen': 'ca-app-pub-4764697513834958/9566336061',
-            },
-            'android': {
-                'small': 'ca-app-pub-4764697513834958/8868332069',
-                'full_screen': 'ca-app-pub-4764697513834958/8728731260',
-            },
-            'default': {
-                'small': 'ca-app-pub-4764697513834958/7883646863',
-                'full_screen': 'ca-app-pub-4764697513834958/7744046068',
-            },
+        'ios': {
+            'ad_small': 'ca-app-pub-4764697513834958/2182670065',
+            'ad_big': 'ca-app-pub-4764697513834958/9566336061',
+            'tracking': 'UA-77793311-4',
+            'store': 'itms-apps://itunes.apple.com/app/id1109010695',
         },
-        'tracking': {
-            'ios': 'UA-77793311-4',
-            'android': 'UA-77793311-5',
-            'windows': '',
+        'android': {
+            'ad_small': 'ca-app-pub-4764697513834958/8868332069',
+            'ad_big': 'ca-app-pub-4764697513834958/8728731260',
+            'tracking': 'UA-77793311-5',
+            'store': 'market://details?id=com.puppybox.quizdota',
         },
-        'urls': {
-            'ios': 'itms-apps://itunes.apple.com/app/id1109010695',
-            'android': 'market://details?id=com.puppybox.quizdota',
-            'windows': '',
+        'windows': {
+            'ad_small': 'ca-app-pub-4764697513834958/7883646863',
+            'ad_big': 'ca-app-pub-4764697513834958/7744046068',
+            'tracking': '',
+            'store': '',
         },
         'legal_disclaimer': 'This application is not created, sponsored or endorsed by Valve Corporation and doesn’t reflect the views or opinions of Valve Corporation or anyone officially involved in producing or managing Dota 2. Dota 2 is a registered trademark of Valve Corporation. All in-game descriptions, characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
         'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/dota/scores/',

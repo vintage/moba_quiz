@@ -144,29 +144,23 @@ def setup_champions():
 
 def setup_settings():
     result = {
-        'ads': {
-            'ios': {
-                'small': 'ca-app-pub-4764697513834958/5120930069',
-                'full_screen': 'ca-app-pub-4764697513834958/7934795665',
-            },
-            'android': {
-                'small': 'ca-app-pub-4764697513834958/5480856869',
-                'full_screen': 'ca-app-pub-4764697513834958/5062054468',
-            },
-            'default': {
-                'small': 'ca-app-pub-4764697513834958/7883646863',
-                'full_screen': 'ca-app-pub-4764697513834958/7744046068',
-            },
+        'ios': {
+            'ad_small': 'ca-app-pub-4764697513834958/5120930069',
+            'ad_big': 'ca-app-pub-4764697513834958/7934795665',
+            'tracking': 'UA-77793311-8',
+            'store': 'itms-apps://itunes.apple.com/app/id1121065896',
         },
-        'tracking': {
-            'ios': 'UA-77793311-8',
-            'android': 'UA-77793311-9',
-            'windows': '',
+        'android': {
+            'ad_small': 'ca-app-pub-4764697513834958/5480856869',
+            'ad_big': 'ca-app-pub-4764697513834958/5062054468',
+            'tracking': 'UA-77793311-9',
+            'store': 'market://details?id=com.puppybox.quizsmite',
         },
-        'urls': {
-            'ios': 'itms-apps://itunes.apple.com/app/id1121065896',
-            'android': 'market://details?id=com.puppybox.quizsmite',
-            'windows': '',
+        'windows': {
+            'ad_small': 'ca-app-pub-4764697513834958/7883646863',
+            'ad_big': 'ca-app-pub-4764697513834958/7744046068',
+            'tracking': '',
+            'store': '',
         },
         'legal_disclaimer': 'This application is not created, sponsored or endorsed by Hi-Rez Studios and doesn’t reflect the views or opinions of Hi-Rez Studios or anyone officially involved in producing or managing SMITE. SMITE is a registered trademark of Hi-Rez Studios. All in-game descriptions, characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
         'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/smite/scores/',

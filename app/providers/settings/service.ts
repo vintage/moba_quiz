@@ -37,25 +37,22 @@ export class SettingsService {
         this.sourceName = json["source_name"];
         this.sourceUrl = json["source_url"];
 
-        let adData = {};
+        let platformSettings = {}
+
         if (this.platform.is("ios")) {
-          this.appUrl = json["urls"]["ios"];
-          this.trackingId = json["tracking"]["ios"];
-          adData = json["ads"]["ios"];
+          platformSettings = json["ios"];
         }
         else if (this.platform.is("android")) {
-          this.appUrl = json["urls"]["android"];
-          this.trackingId = json["tracking"]["android"];
-          adData = json["ads"]["android"];
+          platformSettings = json["android"];
         }
         else {
-          this.appUrl = json["urls"]["windows"];
-          this.trackingId = json["tracking"]["windows"];
-          adData = json["ads"]["default"];
+          platformSettings = json["windows"];
         }
 
-        this.smallBanner = adData["small"];
-        this.bigBanner = adData["full_screen"];
+        this.smallBanner = platformSettings["ad_small"];
+        this.bigBanner = platformSettings["ad_big"];
+        this.trackingId = platformSettings["tracking"];
+        this.appUrl = platformSettings["store"];
 
         this.isLoaded = true;
         resolve(null);
