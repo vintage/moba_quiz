@@ -8,6 +8,10 @@
   <div class="panel-box">
     <ion-card>
       <ion-card-header>
+        <button block primary (click)="makeOrder()">
+          <ion-icon name="book"></ion-icon>
+          Buy premium
+        </button>
       </ion-card-header>
 
       <ion-card-content>
@@ -42,9 +46,9 @@
           </ion-item>
         </ion-list>
 
-        <button block primary (click)="makeOrder()">
+        <button block primary (click)="restoreOrder()">
           <ion-icon name="book"></ion-icon>
-          Buy premium
+          Restore purchase
         </button>
       </ion-card-content>
     </ion-card>

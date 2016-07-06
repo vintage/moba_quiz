@@ -49,11 +49,6 @@ export class PremiumUnlockPage {
 
     store.refresh();
 
-    // Call restore if supported
-    if (store.restore) {
-      store.restore();
-    }
-
     store.error(e => {
       this.showStoreError(e);
     });
@@ -80,5 +75,25 @@ export class PremiumUnlockPage {
     }
 
     store.order("Premium version");
+  }
+
+  restoreOrder() {
+    let store = window["store"];
+    if (!store) {
+      this.showStoreError();
+      return;
+    }
+
+    if (!store.restore) {
+      let alert = Alert.create({
+        title: "Restore not supported",
+        buttons: ["OK"]
+      });
+
+      this.nav.present(alert);
+      return;
+    }
+
+    store.restore();
   }
 }
