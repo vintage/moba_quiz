@@ -88,7 +88,7 @@ export class GameplayService {
   }
 
   levelPassed(isPerfect: boolean) {
-    this.level += 1;
+    this.levelNext();
 
     if (isPerfect) {
       this.strike += 1;
@@ -99,6 +99,10 @@ export class GameplayService {
     }
 
     this.points += this.getLevelPoints();
+  }
+
+  levelNext() {
+    this.level += 1;
     this.refreshTimer();
   }
 

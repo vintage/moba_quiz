@@ -83,7 +83,7 @@ export class GamePage {
       let alert = Alert.create({
         title: "+ " + points + " points",
         enableBackdropDismiss: false,
-        cssClass: 'game-alert'
+        cssClass: "game-alert"
       });
 
       this.nav.present(alert);
@@ -157,6 +157,7 @@ export class GamePage {
     this.skipLeft -= 1;
 
     this.gameComponent.destroy();
+    this.gameplay.levelNext();
     this.openLevel();
     this.isLocked = false;
   }
@@ -171,7 +172,7 @@ export class GamePage {
     let alert = Alert.create({
       title: "Game Over",
       enableBackdropDismiss: false,
-      cssClass: 'game-alert'
+      cssClass: "game-alert"
     });
 
     this.nav.present(alert);

@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {NavController, Alert} from "ionic-angular";
 
-import {AdService} from "../../providers/ads/service";
 import {SettingsService} from "../../providers/settings/service";
 
 @Component({
@@ -10,8 +9,7 @@ import {SettingsService} from "../../providers/settings/service";
 export class PremiumUnlockPage {
   constructor(
     public nav: NavController,
-    private settings: SettingsService,
-    private ads: AdService
+    private settings: SettingsService
   ) {
 
   }
@@ -27,27 +25,6 @@ export class PremiumUnlockPage {
     if (!store) {
       return;
     }
-
-    store.verbosity = store.INFO;
-
-    store.register({
-      id: this.settings.storeProduct,
-      alias: "Premium version",
-      type: store.NON_CONSUMABLE
-    });
-
-    store.when("Premium version")
-      .approved(order => {
-        this.settings.enablePremium().then(() => {
-          order.finish();
-          this.ads.removeBanner();
-        });
-      })
-      .refunded(() => {
-        this.settings.disablePremium();
-      });
-
-    store.refresh();
 
     store.error(() => {
       this.showStoreError();
@@ -74,7 +51,7 @@ export class PremiumUnlockPage {
       return;
     }
 
-    store.order("Premium version");
+    store.order(this.settings.storeProduct);
   }
 
   restoreOrder() {

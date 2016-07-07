@@ -30,6 +30,34 @@ class MobaApp {
     this.initializeApp();
   }
 
+  initializeStore() {
+    let store = window["store"];
+    if (!store) {
+      return;
+    }
+
+    store.verbosity = store.INFO;
+
+    store.register({
+      id: this.settings.storeProduct,
+      alias: "Premium version",
+      type: store.NON_CONSUMABLE
+    });
+
+    store.when(this.settings.storeProduct)
+      .approved(order => {
+        this.settings.enablePremium().then(() => {
+          order.finish();
+          this.ads.removeBanner();
+        });
+      })
+      .refunded(() => {
+        this.settings.disablePremium();
+      });
+
+    store.refresh();
+  }
+
   initializeApp() {
     this.platform.ready().then(() => {
       if (window.Media) {
@@ -50,6 +78,8 @@ class MobaApp {
       }
 
       this.settings.load().then(() => {
+        this.initializeStore();
+
         if (window["analytics"]) {
           window["analytics"].startTrackerWithId(this.settings.trackingId);
         }
@@ -63,7 +93,9 @@ class MobaApp {
         });
       });
     }).catch(() => {
-      this.settings.load();
+      this.settings.load().then(() => {
+        this.initializeStore();
+      });
     });
   }
 }
