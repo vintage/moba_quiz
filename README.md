@@ -22,7 +22,7 @@ Few applications has been made using this skeleton. Here is the showcase:
  - [SMITE - iOS](https://itunes.apple.com/us/app/quiz-for-smite-ultimate/id1121065896?mt=8)
 
 ### Version
-1.3.8
+1.5.0
 
 ### Tech
 
