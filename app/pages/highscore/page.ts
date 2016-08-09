@@ -38,6 +38,14 @@ class HighscoreGeneralPage implements OnInit {
   getTitle() {
     return "General";
   }
+
+  getScorePlatformImage(score: ScoreModel) {
+    if (this.platform.is("ios") && score.platform !== "apple") {
+      return "data_common/platforms/unknown.png";
+    }
+
+    return score.getPlatformImage();
+  }
 }
 
 @Component({
