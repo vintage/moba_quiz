@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {NavController, Alert} from "ionic-angular";
+import {AlertController} from "ionic-angular";
 
 import {SettingsService} from "../../providers/settings/service";
 
@@ -8,7 +8,7 @@ import {SettingsService} from "../../providers/settings/service";
 })
 export class PremiumUnlockPage {
   constructor(
-    public nav: NavController,
+    private alertCtrl: AlertController,
     private settings: SettingsService
   ) {
 
@@ -20,19 +20,8 @@ export class PremiumUnlockPage {
     }
   }
 
-  ionViewLoaded() {
-    let store = window["store"];
-    if (!store) {
-      return;
-    }
-
-    store.error(() => {
-      this.showStoreError();
-    });
-  }
-
   showStoreError() {
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: "Purchase Error",
       message: `
         We could not reach the Store ordering server.
@@ -41,33 +30,46 @@ export class PremiumUnlockPage {
       buttons: ["OK"]
     });
 
-    this.nav.present(alert);
+    alert.present();
+  }
+
+  isStoreAvailable() {
+    let store = window["store"];
+    if (!store) {
+      return false;
+    }
+
+    if (window.navigator.connection && window.navigator.connection.type === window.Connection.NONE) {
+      return false;
+    }
+
+    return true;
   }
 
   makeOrder() {
-    let store = window["store"];
-    if (!store) {
+    if (!this.isStoreAvailable()) {
       this.showStoreError();
       return;
     }
 
+    let store = window["store"];
     store.order(this.settings.storeProduct);
   }
 
   restoreOrder() {
-    let store = window["store"];
-    if (!store) {
+    if (!this.isStoreAvailable()) {
       this.showStoreError();
       return;
     }
 
+    let store = window["store"];
     if (!store.restore) {
-      let alert = Alert.create({
+      let alert = this.alertCtrl.create({
         title: "Restore not supported",
         buttons: ["OK"]
       });
 
-      this.nav.present(alert);
+      alert.present();
       return;
     }
 

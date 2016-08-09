@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {NavController, Alert} from "ionic-angular";
+import {AlertController} from "ionic-angular";
 
 import {SettingsService} from "../../providers/settings/service";
 
@@ -9,7 +9,9 @@ import {SettingsService} from "../../providers/settings/service";
 export class AboutPage {
   disclaimer: string;
 
-  constructor(public nav: NavController, private settings: SettingsService) {
+  constructor(
+    private alertCtrl: AlertController,
+    private settings: SettingsService) {
     this.disclaimer = settings.legalDisclaimer;
   }
 
@@ -20,12 +22,12 @@ export class AboutPage {
   }
 
   showContactAlert() {
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: "Missing email client",
       message: "Contact us at puppy.box@outlook.com"
     });
 
-    this.nav.present(alert);
+    alert.present();
   }
 
   openHomepage() {

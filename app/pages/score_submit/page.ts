@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Button, Page, NavController, Alert, ViewController, Platform} from "ionic-angular";
+import {Button, Page, NavController, AlertController, ViewController, Platform} from "ionic-angular";
 import {Globalization} from "ionic-native";
 
 import {GameplayService} from "../../providers/gameplay/service";
@@ -30,6 +30,7 @@ export class ScoreSubmitPage implements OnInit {
       public nav: NavController,
       public viewCtrl: ViewController,
       public platform: Platform,
+      private alertCtrl: AlertController,
       public gameplay: GameplayService,
       public countries: CountryService,
       private settings: SettingsService,
@@ -104,11 +105,11 @@ export class ScoreSubmitPage implements OnInit {
     }
 
     if (!valid) {
-      let alert = Alert.create({
+      let alert = this.alertCtrl.create({
         title: message,
         buttons: ["OK"]
       });
-      this.nav.present(alert);
+      alert.present();
     }
 
     return valid;
@@ -153,20 +154,20 @@ export class ScoreSubmitPage implements OnInit {
         this.isSubmitted = true;
       }
       else {
-        let alert = Alert.create({
+        let alert = this.alertCtrl.create({
           title: "Score hasn't been saved",
           subTitle: "Check your internet connection and try again.",
           buttons: ["OK"]
         });
-        this.nav.present(alert);
+        alert.present();
       }
     }).catch(() => {
-      let alert = Alert.create({
+      let alert = this.alertCtrl.create({
         title: "Score hasn't been saved",
         subTitle: "Check your internet connection and try again.",
         buttons: ["OK"]
       });
-      this.nav.present(alert);
+      alert.present();
     });
   }
 

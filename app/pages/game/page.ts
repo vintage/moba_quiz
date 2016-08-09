@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {NavController, Alert, ViewController} from "ionic-angular";
+import {NavController, Alert, ViewController, AlertController} from "ionic-angular";
 import {DynamicComponentLoader, ViewChild, ViewContainerRef} from "@angular/core";
 
 import {ItemService} from "../../providers/item/service";
@@ -35,6 +35,7 @@ export class GamePage {
       public nav: NavController,
       public viewCtrl: ViewController,
       public dcl: DynamicComponentLoader,
+      private alertCtrl: AlertController,
       public gameplay: GameplayService,
       public itemService: ItemService,
       public championService: ChampionService,
@@ -80,13 +81,13 @@ export class GamePage {
     return new Promise(resolve => {
       let points: string = new PointsPipe().transform(this.gameplay.getLevelPoints(), []);
 
-      let alert = Alert.create({
+      let alert = this.alertCtrl.create({
         title: "+ " + points + " points",
         enableBackdropDismiss: false,
         cssClass: "game-alert"
       });
 
-      this.nav.present(alert);
+      alert.present();
 
       setTimeout(() => {
         alert.dismiss(null).then(() => {
@@ -169,13 +170,13 @@ export class GamePage {
   finishGame() {
     this.isLocked = true;
 
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: "Game Over",
       enableBackdropDismiss: false,
       cssClass: "game-alert"
     });
 
-    this.nav.present(alert);
+    alert.present();
 
     setTimeout(() => {
       alert.dismiss(null).then(() => {
