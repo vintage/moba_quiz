@@ -4,8 +4,16 @@
     "iso": "BD"
   },
   {
+    "name": "United Emirates",
+    "iso": "AE"
+  },
+  {
     "name": "Belgium",
     "iso": "BE"
+  },
+  {
+    "name": "Bosnia",
+    "iso": "BA"
   },
   {
     "name": "Bulgaria",
@@ -16,8 +24,8 @@
     "iso": "BB"
   },
   {
-    "name": "Bermuda",
-    "iso": "BM"
+    "name": "Burkina Faso",
+    "iso": "BF"
   },
   {
     "name": "Brunei",
@@ -64,10 +72,6 @@
     "iso": "BS"
   },
   {
-    "name": "Jersey",
-    "iso": "JE"
-  },
-  {
     "name": "Belarus",
     "iso": "BY"
   },
@@ -104,10 +108,6 @@
     "iso": "RO"
   },
   {
-    "name": "Tokelau",
-    "iso": "TK"
-  },
-  {
     "name": "Guinea-Bissau",
     "iso": "GW"
   },
@@ -132,16 +132,8 @@
     "iso": "GY"
   },
   {
-    "name": "Guernsey",
-    "iso": "GG"
-  },
-  {
     "name": "Georgia",
     "iso": "GE"
-  },
-  {
-    "name": "Grenada",
-    "iso": "GD"
   },
   {
     "name": "Gabon",
@@ -158,10 +150,6 @@
   {
     "name": "Greenland",
     "iso": "GL"
-  },
-  {
-    "name": "Gibraltar",
-    "iso": "GI"
   },
   {
     "name": "Ghana",
@@ -198,10 +186,6 @@
   {
     "name": "Venezuela",
     "iso": "VE"
-  },
-  {
-    "name": "Palau",
-    "iso": "PW"
   },
   {
     "name": "Portugal",
@@ -332,14 +316,6 @@
     "iso": "MV"
   },
   {
-    "name": "Martinique",
-    "iso": "MQ"
-  },
-  {
-    "name": "Montserrat",
-    "iso": "MS"
-  },
-  {
     "name": "Mauritania",
     "iso": "MR"
   },
@@ -372,10 +348,6 @@
     "iso": "FJ"
   },
   {
-    "name": "Micronesia",
-    "iso": "FM"
-  },
-  {
     "name": "Nicaragua",
     "iso": "NI"
   },
@@ -406,14 +378,6 @@
   {
     "name": "Nepal",
     "iso": "NP"
-  },
-  {
-    "name": "Nauru",
-    "iso": "NR"
-  },
-  {
-    "name": "Niue",
-    "iso": "NU"
   },
   {
     "name": "Switzerland",
@@ -472,10 +436,6 @@
     "iso": "SR"
   },
   {
-    "name": "Kiribati",
-    "iso": "KI"
-  },
-  {
     "name": "Cambodia",
     "iso": "KH"
   },
@@ -498,10 +458,6 @@
   {
     "name": "Senegal",
     "iso": "SN"
-  },
-  {
-    "name": "Seychelles",
-    "iso": "SC"
   },
   {
     "name": "Kazakhstan",
@@ -544,20 +500,12 @@
     "iso": "DZ"
   },
   {
-    "name": "Mayotte",
-    "iso": "YT"
-  },
-  {
     "name": "Lebanon",
     "iso": "LB"
   },
   {
     "name": "Laos",
     "iso": "LA"
-  },
-  {
-    "name": "Tuvalu",
-    "iso": "TV"
   },
   {
     "name": "Taiwan",
@@ -574,10 +522,6 @@
   {
     "name": "Latvia",
     "iso": "LV"
-  },
-  {
-    "name": "Tonga",
-    "iso": "TO"
   },
   {
     "name": "Lithuania",
@@ -612,16 +556,12 @@
     "iso": "LY"
   },
   {
-    "name": "Andorra",
-    "iso": "AD"
+    "name": "Czech Republic",
+    "iso": "CZ"
   },
   {
     "name": "Afghanistan",
     "iso": "AF"
-  },
-  {
-    "name": "Anguilla",
-    "iso": "AI"
   },
   {
     "name": "Iceland",
@@ -644,10 +584,6 @@
     "iso": "AO"
   },
   {
-    "name": "Antarctica",
-    "iso": "AQ"
-  },
-  {
     "name": "Argentina",
     "iso": "AR"
   },
@@ -658,10 +594,6 @@
   {
     "name": "Austria",
     "iso": "AT"
-  },
-  {
-    "name": "Aruba",
-    "iso": "AW"
   },
   {
     "name": "India",
@@ -694,5 +626,61 @@
   {
     "name": "Mozambique",
     "iso": "MZ"
+  },
+  {
+    "name": "United States",
+    "iso": "US"
+  },
+  {
+    "name": "United Kingdom",
+    "iso": "GB"
+  },
+  {
+    "name": "Hong Kong",
+    "iso": "HK"
+  },
+  {
+    "name": "North Korea",
+    "iso": "KP"
+  },
+  {
+    "name": "South Korea",
+    "iso": "KR"
+  },
+  {
+    "name": "Sri Lanka",
+    "iso": "LK"
+  },
+  {
+    "name": "New Zealand",
+    "iso": "NZ"
+  },
+  {
+    "name": "Papua New Guinea",
+    "iso": "PG"
+  },
+  {
+    "name": "Puerto Rico",
+    "iso": "PR"
+  },
+  {
+    "name": "Palestine",
+    "iso": "PS"
+  },
+  {
+    "name": "Saudi Arabia",
+    "iso": "SA"
+  },
+  {
+    "name": "Sierra Leone",
+    "iso": "SL"
+  },
+  {
+    "name": "San Marino",
+    "iso": "SM"
+  },
+  {
+    "name": "South Africa",
+    "iso": "ZA"
   }
 ]
