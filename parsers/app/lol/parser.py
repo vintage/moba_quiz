@@ -10,7 +10,7 @@ from tqdm import tqdm
 item_image_path = './data/images/items/'
 champion_image_path = './data/images/champions/'
 
-base_url = 'http://ddragon.leagueoflegends.com/cdn/5.24.2'
+base_url = 'http://ddragon.leagueoflegends.com/cdn/6.12.1'
 items_url = '{}/data/en_US/item.json'.format(base_url)
 champions_url = '{}/data/en_US/champion.json'.format(base_url)
 

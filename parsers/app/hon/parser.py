@@ -66,10 +66,7 @@ def get_api_data(url):
         print('URL {} is broken'.format(url))
         return None
 
-    try:
-        return response.json()
-    except:
-        import ipdb; ipdb.set_trace()
+    return response.json()
 
 
 def setup_items():
