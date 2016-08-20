@@ -17,8 +17,7 @@ export class TutorialPage {
   }
 
   openSourcePage() {
-    // let browser = new InAppBrowser(this.sourceUrl, '_system');
-    // browser.open();
+    InAppBrowser.open(this.sourceUrl, "_blank");
   }
 
   ionViewDidEnter() {

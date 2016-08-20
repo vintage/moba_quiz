@@ -1,6 +1,6 @@
 {
     "extends": "tslint-ionic-rules",
     "rules" : {
-
+        "quotemark": [true, "double"]
     }
 }

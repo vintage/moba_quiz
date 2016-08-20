@@ -204,7 +204,6 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   openRating() {
-    // let browser = new InAppBrowser(this.settings.appUrl, '_system');
-    // browser.open();
+    InAppBrowser.open(this.settings.appUrl, "_blank");
   }
 }

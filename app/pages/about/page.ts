@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {AlertController} from "ionic-angular";
-import {EmailComposer, InAppBrowser} from 'ionic-native';
+import {EmailComposer, InAppBrowser} from "ionic-native";
 
 import {SettingsService} from "../../providers/settings/service";
 
@@ -32,10 +32,9 @@ export class AboutPage {
   }
 
   openHomepage() {
-    // let url: string = "http://facebook.com/puppy.box.studio/";
+    let url: string = "http://facebook.com/puppy.box.studio/";
 
-    // let browser = new InAppBrowser(url, '_system');
-    // browser.open();
+    InAppBrowser.open(url, "_blank");
   }
 
   openContact() {
