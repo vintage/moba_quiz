@@ -39,7 +39,7 @@ export class PremiumUnlockPage {
       return false;
     }
 
-    if (window.navigator.connection && window.navigator.connection.type === window.Connection.NONE) {
+    if (window['navigator']['connection'] && window['navigator']['connection']['type'] === window['Connection']['NONE']) {
       return false;
     }
 

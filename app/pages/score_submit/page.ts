@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {Button, Page, NavController, AlertController, ViewController, Platform} from "ionic-angular";
-import {Globalization} from "ionic-native";
+import {Button, NavController, AlertController, ViewController, Platform} from "ionic-angular";
+import {Globalization, InAppBrowser} from "ionic-native";
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {CountryService} from "../../providers/country/service";
@@ -89,17 +89,15 @@ export class ScoreSubmitPage implements OnInit {
     if (!this.playerName) {
       valid = false;
       message = "You need to enter your player name to submit the score.";
-    }
-    else if (this.playerName.length > 16) {
+    } else if (this.playerName.length > 16) {
       valid = false;
       message = "Player name can be 16 characters only.";
-    }
-    else if (!/^[a-zA-Z0-9]+$/.test(this.playerName)) {
+    } else if (!/^[a-zA-Z0-9]+$/.test(this.playerName)) {
       valid = false;
       message = "Player name can contain only letters and digits. No special characters are allowed.";
     }
 
-    if (window.navigator.connection && window.navigator.connection.type === window.Connection.NONE) {
+    if (window['navigator']['connection'] && window['navigator']['connection']['type'] === window['Connection']['NONE']) {
       valid = false;
       message = "Can't submit the score. Check your internet connection.";
     }
@@ -136,11 +134,9 @@ export class ScoreSubmitPage implements OnInit {
     let platform: string;
     if (this.platform.is("ios")) {
       platform = "apple";
-    }
-    else if (this.platform.is("android")) {
+    } else if (this.platform.is("android")) {
       platform = "android";
-    }
-    else {
+    } else {
       platform = "windows";
     }
 
@@ -152,8 +148,7 @@ export class ScoreSubmitPage implements OnInit {
 
       if (is_success) {
         this.isSubmitted = true;
-      }
-      else {
+      } else {
         let alert = this.alertCtrl.create({
           title: "Score hasn't been saved",
           subTitle: "Check your internet connection and try again.",
@@ -209,11 +204,7 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   openRating() {
-    if (window.cordova) {
-      window.cordova.InAppBrowser.open(this.settings.appUrl, "_system", "location=no");
-    }
-    else {
-      window.open(this.settings.appUrl, "_blank");
-    }
+    // let browser = new InAppBrowser(this.settings.appUrl, '_system');
+    // browser.open();
   }
 }

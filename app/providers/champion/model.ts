@@ -8,10 +8,10 @@ export class ChampionModel {
   private image: string;
 
   constructor(json: Object) {
-    this.id = get(json, "id");
-    this.name = get(json, "name");
-    this.image = get(json, "image");
-    this.is_range = get(json, "is_range");
+    this.id = get(json, "id", "");
+    this.name = get(json, "name", "");
+    this.image = get(json, "image", "");
+    this.is_range = get(json, "is_range", null);
     this.skills = [];
 
     let spells = get(json, "spells", []);
@@ -32,9 +32,9 @@ export class SkillModel {
   private image: string;
 
   constructor(json: Object, championId: string) {
-    this.id = get(json, "id");
-    this.name = get(json, "name");
-    this.image = get(json, "image");
+    this.id = get(json, "id", "");
+    this.name = get(json, "name", "");
+    this.image = get(json, "image", "");
     this.championId = championId;
   }
 

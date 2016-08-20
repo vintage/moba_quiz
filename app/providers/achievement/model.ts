@@ -34,8 +34,7 @@ class BooleanAchievementModel extends AbstractAchievementModel {
   setProgress(current: boolean) {
     if (current) {
       this.progress = 1;
-    }
-    else {
+    } else {
       this.progress = 0;
     }
   }
@@ -102,12 +101,12 @@ export class AchievementFactory {
   };
 
   public static createAchievement(json: Object): AbstractAchievementModel {
-    let id: string = get(json, "id");
-    let name: string = get(json, "name");
-    let description: string = get(json, "description");
+    let id: string = get(json, "id", "");
+    let name: string = get(json, "name", "");
+    let description: string = get(json, "description", "");
     let goal: number = get(json, "goal", null);
 
-    let type: string = get(json, "type");
+    let type: string = get(json, "type", "");
 
     let factory = this.factoryMap[type];
     return new factory(id, name, description, goal);

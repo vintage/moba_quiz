@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {NavController, Alert} from "ionic-angular";
+import {InAppBrowser} from 'ionic-native';
 
 import {SettingsService} from "../../providers/settings/service";
 
@@ -16,12 +17,8 @@ export class TutorialPage {
   }
 
   openSourcePage() {
-    if (window.cordova) {
-      window.cordova.InAppBrowser.open(this.sourceUrl, "_system", "location=no");
-    }
-    else {
-      window.open(this.sourceUrl, "_blank");
-    }
+    // let browser = new InAppBrowser(this.sourceUrl, '_system');
+    // browser.open();
   }
 
   ionViewDidEnter() {

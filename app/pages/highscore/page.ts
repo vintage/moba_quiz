@@ -21,10 +21,9 @@ class HighscoreGeneralPage implements OnInit {
     this.title = this.getTitle();
     this.isOnline = true;
 
-    if (window.navigator.connection && window.navigator.connection.type === window.Connection.NONE) {
+    if (window['navigator']['connection'] && window['navigator']['connection']['type'] === window['Connection']['NONE']) {
       this.isOnline = false;
-    }
-    else {
+    } else {
       this.getScores().then(scores => {
         this.scores = scores;
       });

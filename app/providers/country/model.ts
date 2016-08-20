@@ -5,8 +5,8 @@ export class CountryModel {
   name: string;
 
   constructor(json: Object) {
-    this.id = get(json, "iso");
-    this.name = get(json, "name");
+    this.id = get(json, "iso", "");
+    this.name = get(json, "name", "");
   }
 
   getImageSource() {

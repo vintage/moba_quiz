@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {AlertController} from "ionic-angular";
+import {EmailComposer, InAppBrowser} from 'ionic-native';
 
 import {SettingsService} from "../../providers/settings/service";
 
@@ -31,31 +32,23 @@ export class AboutPage {
   }
 
   openHomepage() {
-    let url: string = "http://facebook.com/puppy.box.studio/";
+    // let url: string = "http://facebook.com/puppy.box.studio/";
 
-    if (window.cordova) {
-      window.cordova.InAppBrowser.open(url, "_system", "location=no");
-    }
-    else {
-      window.open(url, "_blank");
-    }
+    // let browser = new InAppBrowser(url, '_system');
+    // browser.open();
   }
 
   openContact() {
-    if (window.cordova) {
-      window.cordova.plugins.email.isAvailable(isAvailable => {
-        if (isAvailable) {
-          window.cordova.plugins.email.open({
-            to: "puppy.box@outlook.com",
-            subject: "Contact form"
-          });
-        } else {
-          this.showContactAlert();
-        }
-      });
-    }
-    else {
-      this.showContactAlert();
-    }
+    EmailComposer.isAvailable().then((available: boolean) => {
+      if (available) {
+        let email = {
+          to: "puppy.box@outlook.com",
+          subject: "Contact form"
+        };
+        EmailComposer.open(email);
+      } else {
+        this.showContactAlert();
+      }
+    });
   }
 }

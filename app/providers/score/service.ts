@@ -33,7 +33,7 @@ export class ScoreService {
       "country_code": country,
       "platform": platform
     };
-    data["hash"] = window.CryptoJS.SHA1(this.hashObject(data)).toString();
+    data["hash"] = window['CryptoJS']['SHA1'](this.hashObject(data)).toString();
     data["metadata"] = metadata;
 
     return new Promise(resolve => {
@@ -49,7 +49,7 @@ export class ScoreService {
     });
   }
 
-  list(mode: string) {
+  list(mode: string): Promise<ScoreModel[]> {
     return new Promise(resolve => {
       this.http.get(this.settings.highscoreUrl + "?mode=" + mode).subscribe(res => {
         let json = res.json();

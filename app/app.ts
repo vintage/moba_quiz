@@ -1,6 +1,7 @@
 import {HTTP_PROVIDERS} from "@angular/http";
 import {Component} from "@angular/core";
 import {App, ionicBootstrap, Platform} from 'ionic-angular';
+import { MediaPlugin, Splashscreen, StatusBar } from 'ionic-native';
 
 import {ItemService} from "./providers/item/service";
 import {ChampionService, SkillService} from "./providers/champion/service";
@@ -60,22 +61,18 @@ class MobaApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      if (window.Media) {
-        if (this.platform.is("android")) {
-          window.backgroundMusic = new window.Media('/android_asset/www/sfx/background.mp3');
-        }
-        else {
-          window.backgroundMusic = new window.Media('sfx/background.mp3');
-        }
-
-        window.playMusic(window.backgroundMusic);
+      let musicPath: string;
+      if (this.platform.is("android")) {
+        musicPath = '/android_asset/www/sfx/background.mp3';
+      } else {
+        musicPath = 'sfx/background.mp3';
       }
 
-      window.navigator.splashscreen.hide();
+      window['backgroundMusic'] = new MediaPlugin(musicPath);
+      window['playMusic'](window['backgroundMusic']);
 
-      if (typeof StatusBar !== "undefined") {
-        StatusBar.styleDefault();
-      }
+      Splashscreen.hide();
+      StatusBar.styleDefault();
 
       this.settings.load().then(() => {
         this.initializeStore();
