@@ -179,12 +179,12 @@ export class GamePage {
 
     setTimeout(() => {
       alert.dismiss(null).then(() => {
-        if (this.showAd) {
-          this.ads.showFullScreen();
-        }
-
         this.nav.push(ScoreSubmitPage).then(() => {
-          this.nav.remove(this.nav.indexOf(this.viewCtrl));
+          this.nav.remove(this.nav.indexOf(this.viewCtrl)).then(() => {
+            if (this.showAd) {
+              this.ads.showFullScreen();
+            }
+          });
         });
       });
     }, 1000);
