@@ -8,6 +8,8 @@ export class SettingsService {
   isLoaded: boolean;
   storage: Storage;
   premiumKey: string = "premium_key";
+  musicEnabledKey: string = "settings_music_enabled";
+  vibrationEnabledKey: string = "settings_vibration_enabled";
 
   smallBanner: string;
   bigBanner: string;
@@ -41,11 +43,9 @@ export class SettingsService {
         let platformSettings = {};
         if (this.platform.is("ios")) {
           platformSettings = json["ios"];
-        }
-        else if (this.platform.is("android")) {
+        } else if (this.platform.is("android")) {
           platformSettings = json["android"];
-        }
-        else {
+        } else {
           platformSettings = json["windows"];
         }
 
@@ -77,5 +77,35 @@ export class SettingsService {
 
   disablePremium() {
     return this.storage.remove(this.premiumKey);
+  }
+
+  isSettingsEnabled(key: string): Promise<boolean> {
+    return new Promise(resolve => {
+      return this.storage.get(key).then(isEnabled => {
+        resolve(!!isEnabled);
+      }).catch(() => {
+        resolve(true);
+      });
+    });
+  }
+
+  setSettings(key: string, value: any) {
+    return this.storage.set(key, JSON.stringify(value));
+  }
+
+  isMusicEnabled() {
+    return this.isSettingsEnabled(this.musicEnabledKey);
+  }
+
+  setMusic(enabled: boolean) {
+    return this.setSettings(this.musicEnabledKey, enabled);
+  }
+
+  isVibrationEnabled() {
+    return this.isSettingsEnabled(this.vibrationEnabledKey);
+  }
+
+  setVibration(enabled: boolean) {
+    return this.setSettings(this.vibrationEnabledKey, enabled);
   }
 }

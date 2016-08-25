@@ -1,5 +1,5 @@
-import {Component, OnInit} from "@angular/core";
-import {Button, Page, NavController, Platform, Alert} from "ionic-angular";
+import {Component} from "@angular/core";
+import {Button, NavController, Platform} from "ionic-angular";
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {ScoreService} from "../../providers/score/service";
@@ -9,7 +9,7 @@ import {PointsPipe} from "../../pipes/numbers";
 import {GamePage} from "../game/page";
 import {HighscorePage} from "../highscore/page";
 import {AchievementListPage} from "../achievement_list/page";
-import {AboutPage} from "../about/page";
+import {SettingsPage} from "../settings/page";
 import {TutorialPage} from "../tutorial/page";
 import {PremiumUnlockPage} from "../premium_unlock/page";
 
@@ -53,8 +53,8 @@ export class MainMenuPage {
     this.nav.push(AchievementListPage);
   }
 
-  openAbout() {
-    this.nav.push(AboutPage);
+  openSettings() {
+    this.nav.push(SettingsPage);
   }
 
   openTutorial() {
