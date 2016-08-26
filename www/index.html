@@ -35,27 +35,5 @@
   <script src="build/js/Reflect.js"></script>
   <!-- the bundle which is built from the app's source code -->
   <script src="build/js/app.bundle.js"></script>
-
-  <script type="text/javascript">
-    function playMusic(media) {
-      media.play({
-        playAudioWhenScreenIsLocked: false,
-        numberOfLoops: 9999,
-      });
-    }
-    window.playMusic = playMusic;
-
-    document.addEventListener("pause", function() {
-      if(window.backgroundMusic) {
-        window.backgroundMusic.pause();
-      }
-    }, false);
-
-    document.addEventListener("resume", function() {
-      if(window.backgroundMusic) {
-        playMusic(window.backgroundMusic);
-      }
-    }, false);
-  </script>
 </body>
 </html>

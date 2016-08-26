@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
-import {NavController, Alert, ViewController, AlertController} from "ionic-angular";
+import {NavController, ViewController, AlertController} from "ionic-angular";
 import {DynamicComponentLoader, ViewChild, ViewContainerRef} from "@angular/core";
-import { Vibration } from 'ionic-native';
+import {Vibration} from "ionic-native";
 
 import {ItemService} from "../../providers/item/service";
 import {ChampionService} from "../../providers/champion/service";
@@ -137,7 +137,11 @@ export class GamePage {
 
         this.playSound("sfx/choice_invalid.wav");
 
-        Vibration.vibrate(100);
+        this.settings.isVibrationEnabled().then(isEnabled => {
+          if (isEnabled) {
+            Vibration.vibrate(100);
+          }
+        });
 
         this.isPerfect = false;
         this.gameplay.invalidMove();

@@ -1,7 +1,7 @@
 import {HTTP_PROVIDERS} from "@angular/http";
 import {Component} from "@angular/core";
-import {App, ionicBootstrap, Platform} from 'ionic-angular';
-import { MediaPlugin, Splashscreen, StatusBar } from 'ionic-native';
+import {App, ionicBootstrap, Platform} from "ionic-angular";
+import {Splashscreen, StatusBar} from "ionic-native";
 
 import {ItemService} from "./providers/item/service";
 import {ChampionService, SkillService} from "./providers/champion/service";
@@ -11,6 +11,7 @@ import {ScoreService} from "./providers/score/service";
 import {AdService} from "./providers/ads/service";
 import {AchievementService} from "./providers/achievement/service";
 import {SettingsService} from "./providers/settings/service";
+import {MusicService} from "./providers/music/service";
 
 import {MainMenuPage} from "./pages/main_menu/page";
 
@@ -24,7 +25,8 @@ class MobaApp {
     private app: App,
     public platform: Platform,
     private ads: AdService,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private music: MusicService
   ) {
     this.root = MainMenuPage;
 
@@ -61,15 +63,15 @@ class MobaApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      let musicPath: string;
-      if (this.platform.is("android")) {
-        musicPath = '/android_asset/www/sfx/background.mp3';
-      } else {
-        musicPath = 'sfx/background.mp3';
-      }
+      this.music.start();
 
-      window['backgroundMusic'] = new MediaPlugin(musicPath);
-      window['playMusic'](window['backgroundMusic']);
+      this.settings.isMusicEnabled().then(isEnabled => {
+        if (isEnabled) {
+          this.music.enable();
+        } else {
+          this.music.disable();
+        }
+      });
 
       Splashscreen.hide();
       StatusBar.styleDefault();
@@ -107,6 +109,7 @@ ionicBootstrap(MobaApp, [
     AdService,
     AchievementService,
     SettingsService,
+    MusicService,
     HTTP_PROVIDERS,
   ], {
     statusbarPadding: false,

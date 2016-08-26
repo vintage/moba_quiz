@@ -4,6 +4,7 @@ import {AppVersion} from "ionic-native";
 
 import {AboutPage} from "../about/page";
 import {SettingsService} from "../../providers/settings/service";
+import {MusicService} from "../../providers/music/service";
 
 @Component({
   templateUrl: "build/pages/settings/page.html",
@@ -17,7 +18,8 @@ export class SettingsPage implements OnInit {
   constructor(
     public nav: NavController,
     private alertCtrl: AlertController,
-    public settings: SettingsService) {
+    public settings: SettingsService,
+    public music: MusicService) {
     
   }
 
@@ -55,7 +57,13 @@ export class SettingsPage implements OnInit {
 
   changeMusic(event: any) {
     let isEnabled = event.checked;
-    this.settings.setMusic(isEnabled);
+    this.settings.setMusic(isEnabled).then(() => {
+      if (isEnabled) {
+        this.music.enable();
+      } else {
+        this.music.disable();
+      }
+    });
   }
 
   changeVibration(event: any) {
