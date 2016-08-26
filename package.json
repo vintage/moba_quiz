@@ -44,7 +44,8 @@
     "cordova-plugin-network-information",
     "cordova-plugin-inappbrowser",
     "cordova-plugin-crosswalk-webview@1.7",
-    "cordova-plugin-globalization"
+    "cordova-plugin-globalization",
+    "cordova-plugin-app-version"
   ],
   "cordovaPlatforms": [
     "android",

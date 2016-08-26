@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {AlertController, NavController} from "ionic-angular";
+import {AppVersion} from "ionic-native";
 
 import {AboutPage} from "../about/page";
 import {SettingsService} from "../../providers/settings/service";
@@ -10,6 +11,8 @@ import {SettingsService} from "../../providers/settings/service";
 export class SettingsPage implements OnInit {
   public isMusic: boolean = true;
   public isVibration: boolean = true;
+  public appVersion: string;
+  public appName: string;
 
   constructor(
     public nav: NavController,
@@ -19,6 +22,18 @@ export class SettingsPage implements OnInit {
   }
 
   ngOnInit() {
+    AppVersion.getVersionNumber().then(version => {
+      this.appVersion = version;
+    }).catch(() => {
+      this.appVersion = "1.0.0";
+    });
+
+    AppVersion.getAppName().then(name => {
+      this.appName = name;
+    }).catch(() => {
+      this.appName = "Application";
+    });
+    
     this.settings.isMusicEnabled().then(isEnabled => {
       this.isMusic = isEnabled;
     });
