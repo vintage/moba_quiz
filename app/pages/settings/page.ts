@@ -20,7 +20,6 @@ export class SettingsPage implements OnInit {
 
   ngOnInit() {
     this.settings.isMusicEnabled().then(isEnabled => {
-      console.log(isEnabled);
       this.isMusic = isEnabled;
     });
 
