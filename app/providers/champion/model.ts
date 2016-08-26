@@ -3,6 +3,7 @@ import {get} from "lodash";
 export class ChampionModel {
   id: string;
   name: string;
+  title: string;
   is_range: boolean;
   skills: SkillModel[];
   private image: string;
@@ -10,6 +11,7 @@ export class ChampionModel {
   constructor(json: Object) {
     this.id = get(json, "id", "");
     this.name = get(json, "name", "");
+    this.title = get(json, "title", "");
     this.image = get(json, "image", "");
     this.is_range = get(json, "is_range", null);
     this.skills = [];

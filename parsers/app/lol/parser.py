@@ -121,6 +121,7 @@ def setup_champions():
         result.append({
             'id': champion_id,
             'name': data['name'],
+            'title': data['title'],
             'image': download_image(
                 '{}/img/champion/{}'.format(base_url, image_name),
                 image_path, small_avatar

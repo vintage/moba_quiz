@@ -41,6 +41,12 @@ export class ChampionService {
     return champions[index];
   }
 
+  hasTitle() {
+    return this.champions.filter(node => {
+      return !!node.title && node.title.length > 0;
+    }).length > 0;
+  }
+
   getAnyWithAttackType() {
     let champion = this.getAny();
     while (champion.is_range === null) {

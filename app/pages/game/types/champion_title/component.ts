@@ -8,11 +8,11 @@ import {AnswerButton} from "../../answer_button/component";
 import {GameChoice} from "../model";
 
 @Component({
-  selector: "game-champion-name",
-  templateUrl: "build/pages/game/types/champion_name/template.html",
+  selector: "game-champion-title",
+  templateUrl: "build/pages/game/types/champion_title/template.html",
   directives: [AnswerButton]
 })
-export class ChampionNameGame extends BaseGame {
+export class ChampionTitleGame extends BaseGame {
   constructor(public championService: ChampionService) {
     super();
   }
@@ -22,13 +22,13 @@ export class ChampionNameGame extends BaseGame {
   }
 
   getChoices() {
-    let correct = this.question.name;
+    let correct = this.question.title;
     let choices = [correct];
 
     while (choices.length < 6) {
-      let championName = this.championService.getAny().name;
-      if (choices.indexOf(championName) === -1) {
-        choices.push(championName);
+      let championTitle = this.championService.getAny().title;
+      if (choices.indexOf(championTitle) === -1) {
+        choices.push(championTitle);
       }
     }
 

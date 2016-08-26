@@ -94,6 +94,8 @@ def setup_champions():
         print("Parsing ", name)
         detail_dom = pq(url=detail_url)
 
+        title = detail_dom.find('.god-info .title').text()
+
         is_range = None
         for row in god_rows:
             cells = row.find('td')
@@ -108,6 +110,10 @@ def setup_champions():
 
         if is_range is None:
             raise Exception('Invalid `is_range` option.')
+
+        # ullr is both melee & range
+        if name.lower() == 'ullr':
+          is_range = None
 
         image_path = champion_image_path
         os.makedirs(image_path, exist_ok=True)
@@ -129,6 +135,7 @@ def setup_champions():
         result.append({
             'id': name.lower(),
             'name': name,
+            'title': title,
             'image': download_image(
                image_url, image_path, image_name
             ),
@@ -276,7 +283,7 @@ def setup_achievements(items, champions):
 
     return result
 
-items = setup_items()
+# items = setup_items()
 champions = setup_champions()
-setup_achievements(items, champions)
+# setup_achievements(items, champions)
 setup_settings()
