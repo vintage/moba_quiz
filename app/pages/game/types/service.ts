@@ -12,6 +12,7 @@ import {ChampionAttackTypeGame} from "./champion_attack_type/component";
 import {SkillChampionGame} from "./skill_champion/component";
 import {ChampionNameGame} from "./champion_name/component";
 import {ChampionTitleGame} from "./champion_title/component";
+import {ChampionNationGame} from "./champion_nation/component";
 
 @Injectable()
 export class GameTypeService {
@@ -33,12 +34,16 @@ export class GameTypeService {
       new GameTypeModel("champion_name", ChampionNameGame)
     ];
 
-    if (this.items.getAny()) {
+    if (this.items.supportRecipe()) {
       this.gameTypes.push(new GameTypeModel("item_recipe", ItemRecipeGame));
     }
 
-    if (this.champions.hasTitle()) {
+    if (this.champions.supportTitle()) {
       this.gameTypes.push(new GameTypeModel("champion_title", ChampionTitleGame));
+    }
+
+    if (this.champions.supportNation()) {
+      this.gameTypes.push(new GameTypeModel("champion_nation", ChampionNationGame));
     }
   }
 

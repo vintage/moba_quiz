@@ -37,9 +37,15 @@ export class ItemService {
     return items[index];
   }
 
+  supportRecipe() {
+    return this.items.filter(node => {
+      return node.from.length > 0;
+    }).length > 0;
+  }
+
   getBase() {
     let items = this.items.filter(node => {
-      return node.from.length == 0 && node.price > 0;
+      return node.from.length === 0 && node.price > 0;
     });
     let index = random(0, items.length - 1);
 

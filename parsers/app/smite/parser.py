@@ -3,6 +3,7 @@ import os
 import shutil
 import functools
 import re
+import time
 
 from PIL import Image
 import requests
@@ -92,11 +93,16 @@ def setup_champions():
         image_name = '{}.png'.format(name).lower()
 
         print("Parsing ", name)
-        detail_dom = pq(url=detail_url)
+        try:
+            detail_dom = pq(url=detail_url)
+        except:
+            time.sleep(1)
+            detail_dom = pq(url=detail_url)
 
         title = detail_dom.find('.god-info .title').text()
 
         is_range = None
+        nation = None
         for row in god_rows:
             cells = row.find('td')
             if not cells:
@@ -106,6 +112,7 @@ def setup_champions():
 
             if name_cell.text_content().strip().lower() == name.lower():
                 is_range = cells[3].text_content().strip() == 'Ranged'
+                nation = cells[2].text_content().strip()
                 break
 
         if is_range is None:
@@ -136,6 +143,7 @@ def setup_champions():
             'id': name.lower(),
             'name': name,
             'title': title,
+            'nation': nation,
             'image': download_image(
                image_url, image_path, image_name
             ),
@@ -283,7 +291,7 @@ def setup_achievements(items, champions):
 
     return result
 
-# items = setup_items()
+items = setup_items()
 champions = setup_champions()
-# setup_achievements(items, champions)
+setup_achievements(items, champions)
 setup_settings()

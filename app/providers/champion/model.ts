@@ -4,6 +4,7 @@ export class ChampionModel {
   id: string;
   name: string;
   title: string;
+  nation: string;
   is_range: boolean;
   skills: SkillModel[];
   private image: string;
@@ -12,6 +13,7 @@ export class ChampionModel {
     this.id = get(json, "id", "");
     this.name = get(json, "name", "");
     this.title = get(json, "title", "");
+    this.nation = get(json, "nation", "");
     this.image = get(json, "image", "");
     this.is_range = get(json, "is_range", null);
     this.skills = [];

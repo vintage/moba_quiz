@@ -8,6 +8,7 @@ import {ChampionModel, SkillModel} from "./model";
 export class ChampionService {
   champions: ChampionModel[];
   skills: SkillModel[];
+  private nations: string[];
 
   constructor(public http: Http) {
   }
@@ -21,10 +22,15 @@ export class ChampionService {
       this.http.get("data/champions.json").subscribe(res => {
         this.champions = [];
         this.skills = [];
+        this.nations = [];
 
         let json = res.json();
         json.map(data => {
           let champion = new ChampionModel(data);
+
+          if (champion.nation && this.nations.indexOf(champion.nation) === -1) {
+            this.nations.push(champion.nation);
+          }
 
           this.champions.push(champion);
           this.skills = this.skills.concat(champion.skills);
@@ -41,9 +47,15 @@ export class ChampionService {
     return champions[index];
   }
 
-  hasTitle() {
+  supportTitle() {
     return this.champions.filter(node => {
       return !!node.title && node.title.length > 0;
+    }).length > 0;
+  }
+
+  supportNation() {
+    return this.champions.filter(node => {
+      return !!node.nation && node.nation.length > 0;
     }).length > 0;
   }
 
@@ -76,6 +88,10 @@ export class ChampionService {
     }
 
     return result;
+  }
+
+  getNations(): string[] {
+    return this.nations;
   }
 }
 

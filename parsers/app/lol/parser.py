@@ -10,7 +10,7 @@ from tqdm import tqdm
 item_image_path = './data/images/items/'
 champion_image_path = './data/images/champions/'
 
-base_url = 'http://ddragon.leagueoflegends.com/cdn/6.12.1'
+base_url = 'http://ddragon.leagueoflegends.com/cdn/6.16.2'
 items_url = '{}/data/en_US/item.json'.format(base_url)
 champions_url = '{}/data/en_US/champion.json'.format(base_url)
 
@@ -59,13 +59,18 @@ def setup_items():
         image_name = data['image']['full']
         image_url = '{}/img/item/{}'.format(base_url, image_name)
 
+
+        price = data['gold']['total']
+        if not data['gold']['purchasable']:
+          price = 0
+
         result.append({
             'id': item_id,
             'name': name,
             'image': download_image(image_url, item_image_path, image_name),
             'into': data.get('into', []),
             'from': data.get('from', []),
-            'price': data['gold']['total'],
+            'price': price,
         })
 
     # Validate if all recipe items exist in main array
