@@ -19,14 +19,7 @@ export class ItemPriceGame extends BaseGame {
   }
 
   getQuestion() {
-    let item = null;
-    if (this.gameplay.level > 150) {
-      item = this.items.getAny();
-    }
-
-    if (!item) {
-      item = this.items.getBase();
-    }
+    let item = this.items.getBase();
 
     return item;
   }
