@@ -22,7 +22,7 @@ Few applications has been made using this skeleton. Here is the showcase:
  - [SMITE - iOS](https://itunes.apple.com/us/app/quiz-for-smite-ultimate/id1121065896?mt=8)
 
 ### Version
-1.5.0
+1.7.0
 
 ### Tech
 
@@ -52,7 +52,7 @@ First thing which you need to perform is to enable one of the provided plugins. 
 
 ```sh
 $ python parsers/app/lol/parser.py
-$ python parsers/install.py install.py (in prompt enter `lol`)
+$ python parsers/install.py setup (in prompt enter `lol`)
 ```
 
 Open your favorite Terminal and run following command.
@@ -69,13 +69,13 @@ http://localhost:8100/
 
 ### Todos
 
- - [ ] Make the README readable & useful
+ - [x] Make the README readable & useful
  - [x] Redesign frontends (use custom UI, not the default one from Ionic)
  - [x] Improve performance for Android platform
  - [x] Write custom scripts for installing supported providers (eg. moba install league_of_legends)
- - [ ] Integrate in-app purchases
+ - [x] Integrate in-app purchases
  - [ ] Integrate facebook sharing for content (scores)
- - [ ] Integrate with Google Analytics (Firebase?)
+ - [x] Integrate with Google Analytics (Firebase?)
 
 License
 ----
