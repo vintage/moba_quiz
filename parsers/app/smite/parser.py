@@ -58,6 +58,11 @@ def setup_items():
     for item in tqdm(container.items('.item-package'), desc='Parsing items'):
         name = item.find('.title').text()
         price = int(item.find('.cost').text())
+        start_from = item.find('.starting-item-name').text()
+
+        # For SMITE we want to import only base items (tier 1)
+        if name not in start_from:
+            continue
 
         image_url = item.find('img.icon').attr('src')
         image_name = image_url.split('/')[-1]

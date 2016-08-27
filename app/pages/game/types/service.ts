@@ -6,7 +6,7 @@ import {ChampionService} from "../../../providers/champion/service";
 
 import {GameTypeModel} from "./model";
 import {ItemRecipeGame} from "./item_recipe/component";
-// import {ItemPriceGame} from "./item_price/component";
+import {ItemPriceGame} from "./item_price/component";
 import {ChampionSkillsGame} from "./champion_skills/component";
 import {ChampionAttackTypeGame} from "./champion_attack_type/component";
 import {SkillChampionGame} from "./skill_champion/component";
@@ -27,7 +27,7 @@ export class GameTypeService {
 
   load() {
     this.gameTypes = [
-      // new GameTypeModel("item_price", ItemPriceGame),
+      new GameTypeModel("item_price", ItemPriceGame),
       new GameTypeModel("champion_skills", ChampionSkillsGame),
       new GameTypeModel("champion_attack_type", ChampionAttackTypeGame),
       new GameTypeModel("skill_champion", SkillChampionGame),
