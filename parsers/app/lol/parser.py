@@ -53,6 +53,9 @@ def setup_items():
             print('Skip {} because of invalid map'.format(name))
             continue
 
+        if item_id in ['3043', '3048']:
+            continue
+
         image_name = data['image']['full']
         image_url = '{}/img/item/{}'.format(base_url, image_name)
 
@@ -64,6 +67,20 @@ def setup_items():
             'from': data.get('from', []),
             'price': data['gold']['total'],
         })
+
+    # Validate if all recipe items exist in main array
+    flat_ids = [i['id'] for i in result]
+    for item in result:
+        components = item['from']
+
+        if not components:
+            continue
+
+        if not set(components).issubset(flat_ids):
+            raise Exception('Item {} contains invalid recipe: {}'.format(
+                item['id'], components
+            ))
+
 
     with open('./data/items.json', 'w') as outfile:
         json.dump(result, outfile)
