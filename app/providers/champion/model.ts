@@ -4,23 +4,25 @@ export class ChampionModel {
   id: string;
   name: string;
   title: string;
-  nation: string;
+  type: string;
   is_range: boolean;
+  tags: string[];
   skills: SkillModel[];
-  private image: string;
+  image: string;
 
   constructor(json: Object) {
     this.id = get(json, "id", "");
     this.name = get(json, "name", "");
     this.title = get(json, "title", "");
-    this.nation = get(json, "nation", "");
+    this.type = get(json, "type", "");
     this.image = get(json, "image", "");
     this.is_range = get(json, "is_range", null);
+    this.tags = get(json, "tags", []);
     this.skills = [];
 
-    let spells = get(json, "spells", []);
-    for (let spell of spells) {
-      this.skills.push(new SkillModel(spell, this.id));
+    let skills = get(json, "skills", []);
+    for (let skill of skills) {
+      this.skills.push(new SkillModel(skill, this.id));
     }
   }
 
@@ -32,12 +34,17 @@ export class ChampionModel {
 export class SkillModel {
   id: string;
   name: string;
+  type: string;
+  value: string;
   championId: string;
-  private image: string;
+
+  image: string;
 
   constructor(json: Object, championId: string) {
     this.id = get(json, "id", "");
     this.name = get(json, "name", "");
+    this.type = get(json, "type", "");
+    this.value = get(json, "value", "");
     this.image = get(json, "image", "");
     this.championId = championId;
   }

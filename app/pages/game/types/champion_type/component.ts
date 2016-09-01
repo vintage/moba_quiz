@@ -8,11 +8,11 @@ import {AnswerButton} from "../../answer_button/component";
 import {GameChoice} from "../model";
 
 @Component({
-  selector: "game-champion-nation",
-  templateUrl: "build/pages/game/types/champion_nation/template.html",
+  selector: "game-champion-type",
+  templateUrl: "build/pages/game/types/champion_type/template.html",
   directives: [AnswerButton]
 })
-export class ChampionNationGame extends BaseGame {
+export class ChampionTypeGame extends BaseGame {
   constructor(public championService: ChampionService) {
     super();
   }
@@ -22,8 +22,8 @@ export class ChampionNationGame extends BaseGame {
   }
 
   getChoices() {
-    let correct = this.question.nation;
-    let choices = this.championService.getNations().filter(node => {
+    let correct = this.question.type;
+    let choices = this.championService.getTypes().filter(node => {
       return node !== correct;
     }).slice(0, 5);
     choices.push(correct);

@@ -6,7 +6,7 @@ export class ItemModel {
   from: string[];
   into: string[];
   price: number;
-  private image: string;
+  image: string;
 
   constructor(json: Object) {
     this.id = get(json, "id", "");

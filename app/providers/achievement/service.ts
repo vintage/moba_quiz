@@ -19,6 +19,10 @@ export class AchievementService {
         return item.id === achievementId;
       })[0];
 
+      if (!achievement) {
+        return false;
+      }
+
       return this.getProgress(achievement).then(progress => {
         let newValue = achievement.update(progress, value);
 

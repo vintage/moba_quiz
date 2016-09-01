@@ -37,6 +37,12 @@ export class ItemService {
     return items[index];
   }
 
+  supportPrice() {
+    return this.items.filter(node => {
+      return node.price > 0;
+    }).length > 0;
+  }
+
   supportRecipe() {
     return this.items.filter(node => {
       return node.from.length > 0;

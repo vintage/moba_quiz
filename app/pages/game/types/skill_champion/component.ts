@@ -4,7 +4,6 @@ import {SkillService} from "../../../../providers/champion/service";
 import {AchievementService} from "../../../../providers/achievement/service";
 import {Slot} from "../../slot/component";
 import {BaseGame} from "../base/component";
-import {GameChoice} from "../model";
 
 @Component({
   selector: "game-skill-champion",

@@ -12,7 +12,7 @@ import {ChampionAttackTypeGame} from "./champion_attack_type/component";
 import {SkillChampionGame} from "./skill_champion/component";
 import {ChampionNameGame} from "./champion_name/component";
 import {ChampionTitleGame} from "./champion_title/component";
-import {ChampionNationGame} from "./champion_nation/component";
+import {ChampionTypeGame} from "./champion_type/component";
 
 @Injectable()
 export class GameTypeService {
@@ -27,12 +27,19 @@ export class GameTypeService {
 
   load() {
     this.gameTypes = [
-      new GameTypeModel("item_price", ItemPriceGame),
+      // TODO: champion_skills need to be adjusted
       new GameTypeModel("champion_skills", ChampionSkillsGame),
-      new GameTypeModel("champion_attack_type", ChampionAttackTypeGame),
-      new GameTypeModel("skill_champion", SkillChampionGame),
-      new GameTypeModel("champion_name", ChampionNameGame)
+      new GameTypeModel("champion_name", ChampionNameGame),
+      new GameTypeModel("skill_champion", SkillChampionGame)
     ];
+
+    if (this.champions.supportAttackType()) {
+      this.gameTypes.push(new GameTypeModel("champion_attack_type", ChampionAttackTypeGame));
+    }
+
+    if (this.items.supportPrice()) {
+      this.gameTypes.push(new GameTypeModel("item_price", ItemPriceGame));
+    }
 
     if (this.items.supportRecipe()) {
       this.gameTypes.push(new GameTypeModel("item_recipe", ItemRecipeGame));
@@ -42,12 +49,13 @@ export class GameTypeService {
       this.gameTypes.push(new GameTypeModel("champion_title", ChampionTitleGame));
     }
 
-    if (this.champions.supportNation()) {
-      this.gameTypes.push(new GameTypeModel("champion_nation", ChampionNationGame));
+    if (this.champions.supportType()) {
+      this.gameTypes.push(new GameTypeModel("champion_type", ChampionTypeGame));
     }
   }
 
   getAny() {
-    return sample(this.gameTypes);
+    let type = sample(this.gameTypes);
+    return type;
   }
 }

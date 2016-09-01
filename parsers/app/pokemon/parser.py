@@ -91,7 +91,7 @@ class ItemImporter(base.ItemImporter):
         return []
 
 
-class SettingsImporter(base.ItemImporter):
+class SettingsImporter(base.SettingsImporter):
     def get_objects(self):
         return {
             'ios': {

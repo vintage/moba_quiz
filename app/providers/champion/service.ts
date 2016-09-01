@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
-import {random} from "lodash";
+import {random, uniq} from "lodash";
 
 import {ChampionModel, SkillModel} from "./model";
 
@@ -8,7 +8,9 @@ import {ChampionModel, SkillModel} from "./model";
 export class ChampionService {
   champions: ChampionModel[];
   skills: SkillModel[];
-  private nations: string[];
+  private types: string[];
+  private skillTypes: string[];
+  private tags: string[];
 
   constructor(public http: Http) {
   }
@@ -22,20 +24,31 @@ export class ChampionService {
       this.http.get("data/champions.json").subscribe(res => {
         this.champions = [];
         this.skills = [];
-        this.nations = [];
+        this.types = [];
+        this.skillTypes = [];
+        this.tags = [];
 
         let json = res.json();
         json.map(data => {
           let champion = new ChampionModel(data);
 
-          if (champion.nation && this.nations.indexOf(champion.nation) === -1) {
-            this.nations.push(champion.nation);
+          if (champion.type) {
+            this.types.push(champion.type);
           }
+          this.tags = this.tags.concat(champion.tags);
 
           this.champions.push(champion);
           this.skills = this.skills.concat(champion.skills);
         });
 
+        this.tags = uniq(this.tags);
+        this.types = uniq(this.types);
+        this.skillTypes = uniq(this.skills.map(skill => {
+          return skill.type;
+        }));
+
+        console.log(this.champions);
+        console.log(this.skills);
         resolve([this.champions, this.skills]);
       });
     });
@@ -53,10 +66,18 @@ export class ChampionService {
     }).length > 0;
   }
 
-  supportNation() {
+  supportAttackType() {
     return this.champions.filter(node => {
-      return !!node.nation && node.nation.length > 0;
+      return node.is_range !== null;
     }).length > 0;
+  }
+
+  supportType() {
+    return this.types.length > 0;
+  }
+
+  supportTags() {
+    return this.tags.length > 0;
   }
 
   getAnyWithAttackType() {
@@ -90,8 +111,12 @@ export class ChampionService {
     return result;
   }
 
-  getNations(): string[] {
-    return this.nations;
+  getTypes(): string[] {
+    return this.types;
+  }
+
+  getTags(): string[] {
+    return this.tags;
   }
 }
 
@@ -118,7 +143,13 @@ export class SkillService {
 
   getInvalidComponents(skill: SkillModel, limit: number) {
     let result: ChampionModel[] = [];
-    let container = this.championService.champions;
+    let container = this.championService.champions.filter(ch => {
+      let hasSameSkill = ch.skills.filter(s => {
+        return s.id === skill.id;
+      }).length > 0;
+
+      return !hasSameSkill; 
+    });
 
     while (result.length < limit) {
       let index = random(0, container.length - 1);
