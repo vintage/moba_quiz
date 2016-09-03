@@ -44,7 +44,7 @@ body {
 
   &.panel-ribbon {
     margin-top: 10px;
-    padding-top: 20px;
+    padding-top: 25px;
   }
 
   .ribbon {
@@ -55,10 +55,10 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    top: -20px;
-    color: wheat;
+    top: -25px;
+    color: #171512;
     text-align: center;
-    padding-top: 9px;
+    padding-top: 6px;
   }
 }
 
@@ -89,7 +89,7 @@ ion-content {
 
   scroll-content {
     padding: 5px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.4);
   }
 }
 

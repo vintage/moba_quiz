@@ -32,7 +32,7 @@ export class Stats implements OnInit {
 
     setTimeout(() => {
       if (this.timerEnabled) {
-        this.gameplay.timeLeft -= interval;
+        // this.gameplay.timeLeft -= interval;
       }
 
       this.progressCur = Math.max(this.gameplay.timeLeft / 1000, 0);

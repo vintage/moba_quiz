@@ -1,15 +1,14 @@
 <ion-row>
   <ion-col>
     <div class="align-center">
-      <img #questionImage [src]="question.getImageSource()" class="question-image" *ngIf="question.image">
-      <h1 class="question-text" *ngIf="!question.image">{{ question.name }}</h1>
+      <h1 class="question-text">{{ question }}</h1>
     </div>
   </ion-col>
 </ion-row>
 
 <div *ngIf="choices" class="panel-box panel-ribbon">
   <div class="ribbon">
-    Moveset
+    Type pokemon
   </div>
 
   <ion-row>

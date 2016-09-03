@@ -54,6 +54,10 @@ export class ChampionService {
     });
   }
 
+  getAll() {
+    return this.champions;
+  }
+
   getAny() {
     let champions = this.champions;
     let index = random(0, champions.length - 1);
@@ -83,6 +87,15 @@ export class ChampionService {
   getAnyWithAttackType() {
     let champion = this.getAny();
     while (champion.is_range === null) {
+      champion = this.getAny();
+    }
+
+    return champion;
+  }
+
+  getAnyWithTag() {
+    let champion = this.getAny();
+    while (!champion.tags) {
       champion = this.getAny();
     }
 

@@ -13,6 +13,8 @@ import {SkillChampionGame} from "./skill_champion/component";
 import {ChampionNameGame} from "./champion_name/component";
 import {ChampionTitleGame} from "./champion_title/component";
 import {ChampionTypeGame} from "./champion_type/component";
+import {ChampionTagGame} from "./champion_tag/component";
+import {TagChampionGame} from "./tag_champion/component";
 
 @Injectable()
 export class GameTypeService {
@@ -27,30 +29,33 @@ export class GameTypeService {
 
   load() {
     this.gameTypes = [
-      // TODO: champion_skills need to be adjusted
-      new GameTypeModel("champion_skills", ChampionSkillsGame),
-      new GameTypeModel("champion_name", ChampionNameGame),
-      new GameTypeModel("skill_champion", SkillChampionGame)
+     new GameTypeModel("champion_name", ChampionNameGame),
+     new GameTypeModel("skill_champion", SkillChampionGame)
     ];
-
+    
     if (this.champions.supportAttackType()) {
-      this.gameTypes.push(new GameTypeModel("champion_attack_type", ChampionAttackTypeGame));
+     this.gameTypes.push(new GameTypeModel("champion_attack_type", ChampionAttackTypeGame));
     }
-
+    
     if (this.items.supportPrice()) {
-      this.gameTypes.push(new GameTypeModel("item_price", ItemPriceGame));
+     this.gameTypes.push(new GameTypeModel("item_price", ItemPriceGame));
     }
-
+    
     if (this.items.supportRecipe()) {
-      this.gameTypes.push(new GameTypeModel("item_recipe", ItemRecipeGame));
+     this.gameTypes.push(new GameTypeModel("item_recipe", ItemRecipeGame));
     }
-
+    
     if (this.champions.supportTitle()) {
-      this.gameTypes.push(new GameTypeModel("champion_title", ChampionTitleGame));
+     this.gameTypes.push(new GameTypeModel("champion_title", ChampionTitleGame));
+    }
+    
+    if (this.champions.supportType()) {
+     this.gameTypes.push(new GameTypeModel("champion_type", ChampionTypeGame));
     }
 
-    if (this.champions.supportType()) {
-      this.gameTypes.push(new GameTypeModel("champion_type", ChampionTypeGame));
+    if (this.champions.supportTags()) {
+      this.gameTypes.push(new GameTypeModel("tag_champion", TagChampionGame));
+      this.gameTypes.push(new GameTypeModel("champion_tag", ChampionTagGame));
     }
   }
 
