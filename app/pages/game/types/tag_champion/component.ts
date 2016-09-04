@@ -1,5 +1,4 @@
 import {Component} from "@angular/core";
-import {sampleSize} from "lodash";
 
 import {ChampionService} from "../../../../providers/champion/service";
 import {AnswerButton} from "../../answer_button/component";
@@ -23,7 +22,7 @@ export class TagChampionGame extends BaseGame {
   }
 
   getValidOptions() {
-    return sampleSize(this.question.tags, 1);
+    return this.question.tags;
   }
 
   getInvalidOptions() {
@@ -31,7 +30,15 @@ export class TagChampionGame extends BaseGame {
       return this.question.tags.indexOf(tag) === -1;
     });
 
-    return sampleSize(options, 6);
+    return options;
+  }
+
+  getAnswersLimit() {
+    return 1;
+  }
+
+  getChoicesLimit() {
+    return 6;
   }
 
   isFinished() {

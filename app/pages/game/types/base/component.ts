@@ -1,5 +1,5 @@
 import {OnInit, EventEmitter, Output} from "@angular/core";
-import {shuffle} from "lodash";
+import {shuffle, sampleSize} from "lodash";
 
 import {GameChoice} from "../model";
 
@@ -32,13 +32,13 @@ export class BaseGame implements OnInit {
     let answersLimit = this.getAnswersLimit();
     let choicesLimit = this.getChoicesLimit();
 
-    let validChoices = shuffle(this.getValidOptions().map(option => {
+    let validChoices = sampleSize(this.getValidOptions().map(option => {
       return new GameChoice(option, true);
-    })).slice(0, answersLimit);
+    }), answersLimit);
 
-    let invalidChoices = shuffle(this.getInvalidOptions().map(option => {
+    let invalidChoices = sampleSize(this.getInvalidOptions().map(option => {
       return new GameChoice(option, false);
-    })).slice(0, choicesLimit - validChoices.length);
+    }), choicesLimit - validChoices.length);
 
     return shuffle(validChoices.concat(invalidChoices));
   }
@@ -90,8 +90,7 @@ export class BaseGame implements OnInit {
 
     if (is_valid) {
       this.choiceValid(choice);
-    }
-    else {
+    } else {
       this.choiceInvalid(choice);
     }
 

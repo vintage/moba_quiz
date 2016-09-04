@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 
-import {SkillService} from "../../../../providers/champion/service";
+import {SkillService, ChampionService} from "../../../../providers/champion/service";
 import {AchievementService} from "../../../../providers/achievement/service";
 import {Slot} from "../../slot/component";
 import {BaseGame} from "../base/component";
@@ -13,6 +13,7 @@ import {BaseGame} from "../base/component";
 export class SkillChampionGame extends BaseGame {
   constructor(
     public skillService: SkillService,
+    public championService: ChampionService,
     public achievements: AchievementService) {
     super();
   }
@@ -32,13 +33,23 @@ export class SkillChampionGame extends BaseGame {
   }
 
   getValidOptions() {
-    return this.skillService.getValidComponents(this.question);
+    let options = this.championService.getAll().filter(champion => {
+      return champion.skills.filter(skill => {
+        return skill.name === this.question.name;
+      }).length > 0;
+    });
+
+    return options;
   }
 
   getInvalidOptions() {
-    return this.skillService.getInvalidComponents(
-      this.question, this.getChoicesLimit()
-    );
+    let options = this.championService.getAll().filter(champion => {
+      return champion.skills.filter(skill => {
+        return skill.name === this.question.name;
+      }).length === 0;
+    });
+
+    return options;
   }
 
   getAnswersLimit() {

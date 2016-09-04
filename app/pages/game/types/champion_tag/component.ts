@@ -27,7 +27,7 @@ export class ChampionTagGame extends BaseGame {
       return champion.tags.indexOf(this.question) !== -1;
     });
 
-    return sampleSize(options, 1);
+    return options;
   }
 
   getInvalidOptions() {
@@ -35,7 +35,15 @@ export class ChampionTagGame extends BaseGame {
       return champion.tags.indexOf(this.question) === -1;
     });
 
-    return sampleSize(options, 8);
+    return options;
+  }
+
+  getAnswersLimit() {
+    return 1;
+  }
+
+  getChoicesLimit() {
+    return 9;
   }
 
   isFinished() {

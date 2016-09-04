@@ -47,8 +47,6 @@ export class ChampionService {
           return skill.type;
         }));
 
-        console.log(this.champions);
-        console.log(this.skills);
         resolve([this.champions, this.skills]);
       });
     });
@@ -95,7 +93,7 @@ export class ChampionService {
 
   getAnyWithTag() {
     let champion = this.getAny();
-    while (!champion.tags) {
+    while (!champion.tags || champion.tags.indexOf("Dark") !== -1) {
       champion = this.getAny();
     }
 
