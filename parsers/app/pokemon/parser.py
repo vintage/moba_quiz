@@ -95,16 +95,16 @@ class SettingsImporter(base.SettingsImporter):
     def get_objects(self):
         return {
             'ios': {
-                'ad_small': 'ca-app-pub-4764697513834958/5120930069',
-                'ad_big': 'ca-app-pub-4764697513834958/7934795665',
-                'tracking': 'UA-77793311-8',
-                'store': 'itms-apps://itunes.apple.com/app/id1121065896',
+                'ad_small': 'ca-app-pub-4764697513834958/2742356061',
+                'ad_big': 'ca-app-pub-4764697513834958/7172555663',
+                'tracking': 'UA-77793311-11',
+                'store': 'itms-apps://itunes.apple.com/app/id1150879975',
                 'store_premium': 'com.puppybox.quizpokemon.premium_version',
             },
             'android': {
-                'ad_small': 'ca-app-pub-4764697513834958/5480856869',
-                'ad_big': 'ca-app-pub-4764697513834958/5062054468',
-                'tracking': 'UA-77793311-9',
+                'ad_small': 'ca-app-pub-4764697513834958/9905696063',
+                'ad_big': 'ca-app-pub-4764697513834958/9626494467',
+                'tracking': 'UA-77793311-10',
                 'store': 'market://details?id=com.puppybox.quizpokemon',
                 'store_premium': 'com.puppybox.quizpokemon.premium_version',
             },
@@ -115,9 +115,9 @@ class SettingsImporter(base.SettingsImporter):
                 'store': '',
                 'store_premium': '',
             },
-            'legal_disclaimer': 'This application is not created, sponsored or endorsed by Niantic and doesn’t reflect the views or opinions of Niantic or anyone officially involved in producing or managing Pokemon GO. Pokemon GO is a registered trademark of Niantic. All in-game characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
+            'legal_disclaimer': 'This application is not created, sponsored or endorsed by Niantic and doesn’t reflect the views or opinions of Niantic or anyone officially involved in producing or managing Pokemon Go. Pokemon Go is a registered trademark of Niantic. All in-game characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
             'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/pokemon/scores/',
-            'source_name': 'Pokemon GO',
+            'source_name': 'Pokemon Go',
             'source_url': 'http://www.pokemongo.com/',
         }
 
