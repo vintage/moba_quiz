@@ -39,11 +39,11 @@ def setup(provider):
     shutil.rmtree(data_dest, ignore_errors=True)
     shutil.copytree(data_src, data_dest)
 
-    # Copy background image
-    background_src = '{}/static/background.jpg'.format(src_dir)
-    background_dest = '{}/www/data/background.jpg'.format(app_dir)
+    # [DEPRECATED] Copy background image
+    # background_src = '{}/static/background.jpg'.format(src_dir)
+    # background_dest = '{}/www/data/background.jpg'.format(app_dir)
 
-    shutil.copy(background_src, background_dest)
+    # shutil.copy(background_src, background_dest)
 
     # Remove existing resources (splashscreen & icon)
     shutil.rmtree('{}/resources/android/'.format(app_dir), ignore_errors=True)
