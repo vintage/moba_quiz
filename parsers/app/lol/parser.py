@@ -10,7 +10,9 @@ from tqdm import tqdm
 item_image_path = './data/images/items/'
 champion_image_path = './data/images/champions/'
 
-base_url = 'http://ddragon.leagueoflegends.com/cdn/6.16.2'
+# Check http://gameinfo.eune.leagueoflegends.com/en/game-info/champions/
+# XHR request to get current API version
+base_url = 'http://ddragon.leagueoflegends.com/cdn/6.17.1'
 items_url = '{}/data/en_US/item.json'.format(base_url)
 champions_url = '{}/data/en_US/champion.json'.format(base_url)
 
@@ -46,6 +48,10 @@ def setup_items():
 
         if name.startswith('Enchantment'):
             print('Skip {} because of enchantment'.format(name))
+            continue
+
+        if 'trinket' in name.lower():
+            print('Skip {} because of trinket type'.format(name))
             continue
 
         maps = data['maps']
