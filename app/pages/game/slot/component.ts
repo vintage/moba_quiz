@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Output} from "@angular/core";
 
-import {ItemModel} from "../../../providers/item/model";
 import {GameChoice} from "../types/model";
 
 @Component({
