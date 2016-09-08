@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Quiz for LoL</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
 
@@ -13,6 +13,7 @@
 </head>
 <body>
   <script src="extra_js/sha1.js"></script>
+  <script src="extra_js/jquery.js"></script>
   <script>
     var _rollbarConfig = {
         accessToken: "51ddff7ba7554a288d814b02836a2e69",
@@ -35,5 +36,13 @@
   <script src="build/js/Reflect.js"></script>
   <!-- the bundle which is built from the app's source code -->
   <script src="build/js/app.bundle.js"></script>
+
+  <script type="text/javascript">
+      window.addEventListener('load', function() {
+        $('body').on('touchmove', '.disable-drag', function(e) {
+          e.preventDefault();
+        });
+      }, false);
+  </script>
 </body>
 </html>

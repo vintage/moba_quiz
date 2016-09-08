@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content class="disable-drag" scroll="false">
   <game-stats (timeOver)="onTimeOver()" [timerEnabled]="!isLocked"></game-stats>
 
   <button block secondary (click)="skipLevel()" *ngIf="skipLeft > 0" class="skip-button">
