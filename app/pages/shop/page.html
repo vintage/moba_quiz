@@ -33,7 +33,7 @@
                 Watch short video ad to get 1000 coins:
               </p>
               
-              <button outline block primary (click)="getFreeCoins()">
+              <button outline block primary (click)="getFreeCoins()" [disabled]="!isVideoReady">
                 Get free coins
               </button>
             </ion-col>
@@ -77,21 +77,15 @@
           </ion-item>
         </ion-list>
 
-        <ion-row>
-          <ion-col>
-            <button block primary (click)="makeOrder()">
-              <ion-icon name="book"></ion-icon>
-              Buy premium
-            </button>
-          </ion-col>
+        <button block primary (click)="makeOrder()">
+          <ion-icon name="book"></ion-icon>
+          Buy premium
+        </button>
 
-          <ion-col>
-            <button block secondary (click)="restoreOrder()">
-              <ion-icon name="book"></ion-icon>
-              Restore purchase
-            </button>
-          </ion-col>
-        </ion-row>
+        <button block secondary (click)="restoreOrder()">
+          <ion-icon name="book"></ion-icon>
+          Restore purchase
+        </button>
       </ion-card-content>
     </ion-card>
   </div>

@@ -7,13 +7,31 @@ export class AdService {
   constructor(private settings: SettingsService) {
   }
 
+  initialize() {
+    let config = this.getConfiguration();
+
+    let engine = this.getEngine();
+    engine.setOptions({
+      bannerId: config.banner,
+      interstitialId: config.full_screen,
+      adSize: "SMART_BANNER",
+      position: engine.AD_POSITION.BOTTOM_CENTER
+    });
+
+    let video = this.getVideoEngine();
+    video.setOptions({
+      appId: config.rewardVideoId,
+      appKey: config.rewardVideoKey
+    });
+  }
+
   getEngine() {
     let engine = window["AdMob"];
     return engine;
   }
 
   getVideoEngine() {
-    let engine = window["unityads"];
+    let engine = window["Chartboost"];
     return engine;
   }
 
@@ -24,8 +42,6 @@ export class AdService {
     }
 
     engine.createBanner({
-      adId: this.getConfiguration().banner,
-      position: engine.AD_POSITION.BOTTOM_CENTER,
       autoShow: true
     });
   }
@@ -46,7 +62,6 @@ export class AdService {
     }
 
     engine.prepareInterstitial({
-      adId: this.getConfiguration().full_screen,
       autoShow: false
     });
   }
@@ -61,28 +76,32 @@ export class AdService {
   }
 
   prepareRewardVideo() {
-    // let engine = this.getVideoEngine();
-    // if (!engine) {
-    //   return;
-    // }
+    let engine = this.getVideoEngine();
+    if (!engine) {
+      return;
+    }
 
-    // engine.showRewardedVideoAd();
+    engine.prepareInterstitial({
+      adId: "video/Item Store",
+      autoShow: false
+    });
   }
 
   showRewardVideo() {
-    // let engine = this.getVideoEngine();
-    // if (!engine) {
-    //   return;
-    // }
+    let engine = this.getVideoEngine();
+    if (!engine) {
+      return;
+    }
 
-    // engine.showRewardVideoAd();
+    engine.showInterstitial();
   }
 
   getConfiguration() {
     return {
       banner: this.settings.smallBanner,
       full_screen: this.settings.bigBanner,
-      reward_video: this.settings.videoBanner
+      rewardVideoId: "57b9fa5243150f79f2a509f5",
+      rewardVideoKey: "4c0a685045ec2ea625ac4e00bfd52e894e11b90e"
     };
   }
 }

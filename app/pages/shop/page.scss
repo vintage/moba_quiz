@@ -2,6 +2,7 @@
   ion-card {
     box-shadow: none;
     background: transparent;
+    margin: 0;
 
     ion-card-content {
       color: color($colors, secondary);
@@ -90,6 +91,9 @@
 
       .item-price {
         margin-top: 10px;
+        height: 2em;
+        padding: 4px;
+        border-style: dotted;
 
         .icon {
           display: inline-block;

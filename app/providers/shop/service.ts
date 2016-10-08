@@ -15,21 +15,25 @@ export class ShopService {
     ];
   }
 
-  addCoins(amount: number) {
-    return this.getCoins().then(coins => {
-      return this.storage.set("shop_coins", coins + amount);
+  addCoins(amount: number): Promise<number> {
+    return new Promise(resolve => {
+      return this.getCoins().then(coins => {
+        let newCoins = coins + amount;
+        this.storage.set("shop_coins", newCoins);
+        resolve(newCoins);
+      });
     });
   }
 
-  spendCoins(amount: number) {
-    return this.getCoins().then(coins => {
-      return this.storage.set("shop_coins", coins - amount);
-    });
+  spendCoins(amount: number): Promise<number> {
+    return this.addCoins(amount * -1);
   }
 
-  getCoins() {
-    return this.storage.get("shop_coins").then(coins => {
-      return parseInt(coins) || 0;
+  getCoins(): Promise<number> {
+    return new Promise(resolve => {
+      this.storage.get("shop_coins").then(coins => {
+        resolve(parseInt(coins) || 0);
+      });
     });
   }
 

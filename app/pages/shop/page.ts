@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, ApplicationRef} from "@angular/core";
 import {AlertController} from "ionic-angular";
 
 import {SettingsService} from "../../providers/settings/service";
@@ -6,20 +6,23 @@ import {AdService} from "../../providers/ads/service";
 import {ShopService} from "../../providers/shop/service";
 import {ShopItem} from "../../providers/shop/model";
 
+
 @Component({
   templateUrl: "build/pages/shop/page.html",
 })
 export class ShopPage {
   coins: number;
+  isVideoReady: boolean;
   items: ShopItem[];
 
   constructor(
+    private appRef: ApplicationRef,
     private alertCtrl: AlertController,
     private settings: SettingsService,
     private shop: ShopService,
     private ads: AdService
   ) {
-
+    this.isVideoReady = false;
   }
 
   ionViewDidEnter() {
@@ -27,15 +30,33 @@ export class ShopPage {
       window["analytics"].trackView("Shop");
     }
 
+    this.items = this.shop.items;
+    this.updateCoins();
+
     this.ads.prepareRewardVideo();
 
-    this.items = this.shop.items;
-
-    this.updateCoins();
+    document.addEventListener("onAdLoaded", data => {
+      if (data["adNetwork"] === "Chartboost") {
+        this.isVideoReady = true;
+        this.appRef.tick();
+      }
+    });
+    document.addEventListener("onAdDismiss", data => {
+      if (data["adNetwork"] === "Chartboost") {
+        this.isVideoReady = false;
+        
+        this.shop.addCoins(1000).then(coins => {
+          return this.updateCoins();
+        }).then(() => {
+          this.appRef.tick();
+          this.ads.prepareRewardVideo();
+        });
+      }
+    });
   }
 
   updateCoins() {
-    this.shop.getCoins().then(coins => {
+    return this.shop.getCoins().then(coins => {
       this.coins = coins;
     });
   }
@@ -59,7 +80,7 @@ export class ShopPage {
       return false;
     }
 
-    if (window['navigator']['connection'] && window['navigator']['connection']['type'] === window['Connection']['NONE']) {
+    if (window["navigator"]["connection"] && window["navigator"]["connection"]["type"] === window["Connection"]["NONE"]) {
       return false;
     }
 
@@ -103,10 +124,6 @@ export class ShopPage {
   }
 
   getFreeCoins() {
-    window["unityads"].onRewardedVideoAdCompleted = function() {
-        this.shop.addCoins(1000);
-        this.updateCoins();
-    };
     this.ads.showRewardVideo();
   }
 }

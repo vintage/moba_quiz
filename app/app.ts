@@ -83,7 +83,8 @@ class MobaApp {
         if (window["analytics"]) {
           window["analytics"].startTrackerWithId(this.settings.trackingId);
         }
-
+        
+        this.ads.initialize();
         this.settings.isPremium().then(isPremium => {
           if (!isPremium) {
             this.ads.showBanner();
