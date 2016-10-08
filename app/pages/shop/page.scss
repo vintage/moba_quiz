@@ -1,0 +1,109 @@
+.shop-page {
+  ion-card {
+    box-shadow: none;
+    background: transparent;
+
+    ion-card-content {
+      color: color($colors, secondary);
+
+      p {
+        margin-top: 8px;
+        color: color($colors, secondary);
+      }
+
+      ion-list {
+        ion-item {
+          color: color($colors, secondary);
+          background: transparent;
+
+          ion-icon {
+            color: color($colors, primary);
+          }
+
+          h2 {
+            color: color($colors, secondary);
+          }
+
+          p {
+            white-space: normal !important;
+          }
+        }
+      }
+    }
+  }
+
+  .coins-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 0 20px 0;
+
+    .icon {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url('../../images/coin_pro.png');
+    }
+
+    .text {
+      display: inline-block;
+      padding: 3px 0 0 6px;
+      font-size: 2.5rem;
+    }
+  }
+  .shop-items {
+    ion-row {
+      margin-bottom: 10px;
+    }
+
+    ion-col {
+      text-align: center;
+    }
+
+    .shop-item {
+      .item-image {
+        text-align: center;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        &.extra_life {
+          background-image: url('../../images/S_Holy03.png');
+        }
+
+        &.skip_questions {
+          background-image: url('../../images/I_Key01.png');
+        }
+
+        &.hardcore_ticket {
+          background-image: url('../../images/S_Death02.png');
+        }
+      }
+
+      .item-name {
+        height: 40px;
+      }
+
+      .item-price {
+        margin-top: 10px;
+
+        .icon {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-image: url('../../images/coin_pro.png');
+        }
+
+        .text {
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+}

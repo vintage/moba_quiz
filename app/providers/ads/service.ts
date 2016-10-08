@@ -12,6 +12,11 @@ export class AdService {
     return engine;
   }
 
+  getVideoEngine() {
+    let engine = window["unityads"];
+    return engine;
+  }
+
   showBanner() {
     let engine = this.getEngine();
     if (!engine) {
@@ -55,10 +60,29 @@ export class AdService {
     engine.showInterstitial();
   }
 
+  prepareRewardVideo() {
+    // let engine = this.getVideoEngine();
+    // if (!engine) {
+    //   return;
+    // }
+
+    // engine.showRewardedVideoAd();
+  }
+
+  showRewardVideo() {
+    // let engine = this.getVideoEngine();
+    // if (!engine) {
+    //   return;
+    // }
+
+    // engine.showRewardVideoAd();
+  }
+
   getConfiguration() {
     return {
       banner: this.settings.smallBanner,
-      full_screen: this.settings.bigBanner
+      full_screen: this.settings.bigBanner,
+      reward_video: this.settings.videoBanner
     };
   }
 }

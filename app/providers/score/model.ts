@@ -16,8 +16,7 @@ export class ScoreModel {
   getImageSource() {
     if (this.flag && this.flag.length === 2) {
       return "data_common/flags/" + this.flag + ".png";
-    }
-    else {
+    } else {
       return "data_common/flags/_unknown.png";
     }
   }
@@ -25,11 +24,9 @@ export class ScoreModel {
   getPlatformImage() {
     if (this.platform === "windows") {
       return "data_common/platforms/windows.png";
-    }
-    else if (this.platform === "android") {
+    } else if (this.platform === "android") {
       return "data_common/platforms/android.png";
-    }
-    else {
+    } else {
       return "data_common/platforms/apple.png";
     }
   }

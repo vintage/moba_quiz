@@ -13,6 +13,7 @@ export class SettingsService {
 
   smallBanner: string;
   bigBanner: string;
+  videoBanner: string;
   legalDisclaimer: string;
   highscoreUrl: string;
   appUrl: string;
@@ -51,6 +52,9 @@ export class SettingsService {
 
         this.smallBanner = platformSettings["ad_small"];
         this.bigBanner = platformSettings["ad_big"];
+        // this.videoBanner = platformSettings["ad_video"];
+        this.videoBanner = "1157886";
+
         this.trackingId = platformSettings["tracking"];
         this.appUrl = platformSettings["store"];
         this.storeProduct = platformSettings["store_premium"];

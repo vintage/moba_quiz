@@ -38,6 +38,10 @@ export class AboutPage {
   }
 
   openContact() {
+    if (!window['cordova']) {
+      return this.showContactAlert();
+    }
+
     EmailComposer.isAvailable().then((available: boolean) => {
       if (available) {
         let email = {

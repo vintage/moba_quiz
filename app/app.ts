@@ -12,6 +12,7 @@ import {AdService} from "./providers/ads/service";
 import {AchievementService} from "./providers/achievement/service";
 import {SettingsService} from "./providers/settings/service";
 import {MusicService} from "./providers/music/service";
+import {ShopService} from "./providers/shop/service";
 
 import {MainMenuPage} from "./pages/main_menu/page";
 
@@ -110,6 +111,7 @@ ionicBootstrap(MobaApp, [
     AchievementService,
     SettingsService,
     MusicService,
+    ShopService,
     HTTP_PROVIDERS,
   ], {
     statusbarPadding: false,

@@ -9,6 +9,7 @@ import {GameplayService} from "../../providers/gameplay/service";
 import {AdService} from "../../providers/ads/service";
 import {AchievementService} from "../../providers/achievement/service";
 import {SettingsService} from "../../providers/settings/service";
+import {ShopService} from "../../providers/shop/service";
 import {PointsPipe} from "../../pipes/numbers";
 
 import {Stats} from "./stats/component";
@@ -43,7 +44,8 @@ export class GamePage {
       public gameTypes: GameTypeService,
       public ads: AdService,
       private settings: SettingsService,
-      public achievements: AchievementService
+      public achievements: AchievementService,
+      private shop: ShopService
   ) {
     this.isLocked = false;
     this.showAd = false;
@@ -82,8 +84,20 @@ export class GamePage {
     return new Promise(resolve => {
       let points: string = new PointsPipe().transform(this.gameplay.getLevelPoints(), []);
 
+      let title = `
+        <div class="alert-line">
+          <div class='icon point'></div>
+      ` + points + " points </div>";
+      if (this.isCoinLevel()) {
+        title += `
+          <div class="alert-line">
+            <div class="icon coin"></div> 10 coins
+          </div>
+        `;
+      }
+
       let alert = this.alertCtrl.create({
-        title: "+ " + points + " points",
+        title: title,
         enableBackdropDismiss: false,
         cssClass: "game-alert"
       });
@@ -98,9 +112,17 @@ export class GamePage {
     });
   }
 
+  isCoinLevel(): boolean {
+    return this.gameplay.level !== 0 && this.gameplay.level % 10 === 0;
+  }
+
+  getGameType() {
+    return this.gameTypes.getAny();
+  }
+
   openLevel() {
     this.isPerfect = true;
-    this.gameType = this.gameTypes.getAny();
+    this.gameType = this.getGameType();
     this.dcl.loadNextToLocation(this.gameType.component, this.typeContainer).then((componentRef) => {
       this.gameComponent = componentRef;
 
@@ -110,6 +132,11 @@ export class GamePage {
         this.isLocked = true;
 
         this.playSound("sfx/next_level.wav");
+        
+        if (this.isCoinLevel()) {
+          this.shop.addCoins(10);
+        }
+
         this.openLevelStats().then(() => {
           componentRef.destroy();
           this.gameplay.levelPassed(this.isPerfect);

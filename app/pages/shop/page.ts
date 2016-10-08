@@ -2,22 +2,42 @@ import {Component} from "@angular/core";
 import {AlertController} from "ionic-angular";
 
 import {SettingsService} from "../../providers/settings/service";
+import {AdService} from "../../providers/ads/service";
+import {ShopService} from "../../providers/shop/service";
+import {ShopItem} from "../../providers/shop/model";
 
 @Component({
-  templateUrl: "build/pages/premium_unlock/page.html",
+  templateUrl: "build/pages/shop/page.html",
 })
-export class PremiumUnlockPage {
+export class ShopPage {
+  coins: number;
+  items: ShopItem[];
+
   constructor(
     private alertCtrl: AlertController,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private shop: ShopService,
+    private ads: AdService
   ) {
 
   }
 
   ionViewDidEnter() {
     if (window["analytics"]) {
-      window["analytics"].trackView("Premium Unlock");
+      window["analytics"].trackView("Shop");
     }
+
+    this.ads.prepareRewardVideo();
+
+    this.items = this.shop.items;
+
+    this.updateCoins();
+  }
+
+  updateCoins() {
+    this.shop.getCoins().then(coins => {
+      this.coins = coins;
+    });
   }
 
   showStoreError() {
@@ -74,5 +94,19 @@ export class PremiumUnlockPage {
     }
 
     store.restore();
+  }
+
+  unlockItem(item: ShopItem) {
+    this.shop.buyItem(item).then(isValid => {
+      this.updateCoins();
+    });
+  }
+
+  getFreeCoins() {
+    window["unityads"].onRewardedVideoAdCompleted = function() {
+        this.shop.addCoins(1000);
+        this.updateCoins();
+    };
+    this.ads.showRewardVideo();
   }
 }

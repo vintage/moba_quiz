@@ -10,6 +10,34 @@
   margin: 10px 0;
 }
 
-.game-alert .alert-head {
-  text-align: center;
+.game-alert {
+  .alert-button-group {
+    display: none;
+  }
+
+  .alert-head {
+    color: color($colors, secondary);
+    text-align: center;
+
+    .alert-line {
+      margin-top: 10px;
+    }
+
+    .icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      background-repeat: no-repeat;
+      background-size: contain;
+
+      &.coin {
+        background-image: url('../../images/coin_pro.png');
+      }
+
+      &.point {
+        background-image: url('../../images/coin.png');
+      }
+    }
+  }
 }

@@ -11,7 +11,7 @@ import {HighscorePage} from "../highscore/page";
 import {AchievementListPage} from "../achievement_list/page";
 import {SettingsPage} from "../settings/page";
 import {TutorialPage} from "../tutorial/page";
-import {PremiumUnlockPage} from "../premium_unlock/page";
+import {ShopPage} from "../shop/page";
 
 @Component({
   templateUrl: "build/pages/main_menu/page.html",
@@ -61,8 +61,8 @@ export class MainMenuPage {
     this.nav.push(TutorialPage);
   }
 
-  unlockPremium() {
-    this.nav.push(PremiumUnlockPage);
+  openShop() {
+    this.nav.push(ShopPage);
   }
 
   ionViewDidEnter() {

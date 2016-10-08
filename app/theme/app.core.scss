@@ -93,6 +93,26 @@ ion-content {
   }
 }
 
+.toolbar {
+  .toolbar-background {
+    background: #171512;
+    border-color: color($colors, primary);
+  }
+
+  .toolbar-title {
+    color: color($colors, secondary);
+  }
+
+  .back-button {
+    color: color($colors, secondary);
+  }
+}
+
+ion-tabbar {
+  background: #171512;
+  border-top: 3px solid color($colors, secondary);
+}
+
 .alert-wrapper {
   color: color($colors, primary);
   background-color: rgba(23, 21, 18, 0.9);
@@ -122,4 +142,4 @@ ion-content {
 @import "../pages/game/answer_button/style";
 @import "../pages/achievement_list/page";
 @import "../pages/highscore/page";
-@import "../pages/premium_unlock/page";
+@import "../pages/shop/page";

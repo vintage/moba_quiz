@@ -1,7 +1,5 @@
 import {Storage, SqlStorage} from "ionic-angular";
 
-import {sample} from "lodash";
-
 export class GameplayService {
   playerName: string;
   points: number;
