@@ -14,6 +14,7 @@ export class ShopPage {
   coins: number;
   isVideoReady: boolean;
   items: ShopItem[];
+  itemsAvailability: Object;
 
   constructor(
     private appRef: ApplicationRef,
@@ -23,6 +24,7 @@ export class ShopPage {
     private ads: AdService
   ) {
     this.isVideoReady = false;
+    this.itemsAvailability = {};
   }
 
   ionViewDidEnter() {
@@ -31,7 +33,7 @@ export class ShopPage {
     }
 
     this.items = this.shop.items;
-    this.updateCoins();
+    this.updateState();
 
     this.ads.prepareRewardVideo();
 
@@ -46,7 +48,7 @@ export class ShopPage {
         this.isVideoReady = false;
         
         this.shop.addCoins(1000).then(coins => {
-          return this.updateCoins();
+          return this.updateState();
         }).then(() => {
           this.appRef.tick();
           this.ads.prepareRewardVideo();
@@ -55,9 +57,22 @@ export class ShopPage {
     });
   }
 
+  updateState() {
+    this.updateCoins();
+    this.updateItemsAvailability();
+  }
+
   updateCoins() {
     return this.shop.getCoins().then(coins => {
       this.coins = coins;
+    });
+  }
+
+  updateItemsAvailability() {
+    this.items.forEach(item => {
+      this.shop.isPurchasable(item).then(isPurchasable => {
+        this.itemsAvailability[item.id] = isPurchasable;
+      });
     });
   }
 
@@ -119,7 +134,7 @@ export class ShopPage {
 
   unlockItem(item: ShopItem) {
     this.shop.buyItem(item).then(isValid => {
-      this.updateCoins();
+      this.updateState();
     });
   }
 

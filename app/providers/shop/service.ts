@@ -9,9 +9,9 @@ export class ShopService {
   constructor() {
     this.storage = new Storage(SqlStorage);
     this.items = [
-      new ShopItem("Extra Life", 1000, "extra_life"),
-      new ShopItem("Skip 3 Questions", 1400, "skip_questions"),
-      new ShopItem("Hardcore Ticket", 2000, "hardcore_ticket"),
+      new ShopItem("extra_life", "Extra Life", 1000, 1),
+      new ShopItem("skip_questions", "Skip 3 Questions", 1400, 3),
+      new ShopItem("hardcore_ticket", "Hardcore Ticket", 2000, 1),
     ];
   }
 
@@ -37,33 +37,82 @@ export class ShopService {
     });
   }
 
-  buyItem(item: ShopItem) {
-    console.log("trying to buy item ", item.name);
+  private getStorageKey(item: ShopItem): string {
+    return "shop_item_" + item.id;
+  }
+
+  private getItemById(id: string): ShopItem {
+    return this.items.filter(item => {
+      return item.id === id;
+    })[0];
+  }
+
+  getItemAmount(itemId: string): Promise<number> {
+    let item = this.getItemById(itemId);
 
     return new Promise(resolve => {
-      return this.getCoins().then(coins => {
+      let storageKey = this.getStorageKey(item);
+      this.storage.get(storageKey).then(amount => {
+        resolve(parseInt(amount || 0));
+      });
+    });
+  }
+
+  setItemAmount(itemId: string, amount: number): Promise<number> {
+    let item = this.getItemById(itemId);
+
+    return new Promise(resolve => {
+      let storageKey = this.getStorageKey(item);
+      
+      if (amount < 0) {
+        amount = 0;
+      }
+
+      this.storage.set(storageKey, amount).then(() => {
+        resolve(amount);
+      });
+    });
+  }
+
+  decreaseItemAmount(itemId: string): Promise<number> {
+    return new Promise(resolve => {
+      this.getItemAmount(itemId).then(amount => {
+        let decreased = amount - 1;
+        this.setItemAmount(itemId, decreased).then(() => {
+          resolve(decreased);
+        });
+      });
+    });
+  }
+
+  isPurchasable(item: ShopItem) {
+    return new Promise(resolve => {
+      this.getCoins().then(coins => {
         if (coins < item.price) {
-          console.log("not enough coins");
           return resolve(false);
         }
 
-        let itemKey = "shopitem_" + item.id;
+        this.getItemAmount(item.id).then(amount => {
+          resolve(amount === 0);
+        });
+      });
+    });
+  }
 
-        return this.storage.get(itemKey).then(isPurchased => {
-          // Item has been purchased previously, and only unique items
-          // can be buy for now.
-          if (isPurchased) {
-            console.log("item already purchased");
-            return resolve(false);
-          }
+  buyItem(item: ShopItem) {
+    return new Promise(resolve => {
+      this.isPurchasable(item).then(isPurchasable => {
+        if (isPurchasable) {
+          let storageKey = this.getStorageKey(item);
 
-          this.storage.set(itemKey, true).then(() => {
+          this.storage.set(storageKey, item.amount).then(() => {
             this.spendCoins(item.price).then(() => {
-              console.log("item successfuly purchased");
               resolve(true);
             });
           });
-        });
+        } else {
+          resolve(false);
+        }
       });
     });
   }

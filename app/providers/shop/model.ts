@@ -1,8 +1,9 @@
 export class ShopItem {
   constructor(
+    public id: string,
     public name: string,
     public price: number,
-    public id: string
+    public amount: number
   ) {
 
   }

@@ -19,7 +19,7 @@
               <div class="shop-item">
                 <div class="item-image {{ item.id }}"></div>
                 <div class="item-name">{{ item.name }}</div>
-                <button primary block outline class="item-price" [disabled]="coins < item.price" (click)="unlockItem(item)">
+                <button primary block outline class="item-price" [disabled]="!itemsAvailability[item.id]" (click)="unlockItem(item)">
                   <div class="icon"></div>
                   <div class="text">{{ item.price }}</div>
                 </button>

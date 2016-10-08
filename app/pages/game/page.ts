@@ -51,19 +51,6 @@ export class GamePage {
     this.showAd = false;
     this.skipLeft = 0;
 
-    settings.isPremium().then(isPremium => {
-      if (!isPremium) {
-        gameplay.getTimesPlayed().then((timesPlayed) => {
-          if (timesPlayed % 2 === 0) {
-            this.showAd = true;
-            this.ads.prepareFullScreen();
-          }
-        });
-      } else {
-        this.skipLeft = 3;
-      }
-    });
-
     Promise.all([itemService.load(), championService.load()]).then(() => {
       this.gameTypes.load();
       this.gameplay.start();
@@ -73,9 +60,25 @@ export class GamePage {
       this.openLevel();
 
       settings.isPremium().then(isPremium => {
-        if (isPremium) {
-          this.gameplay.addChance();
+        if (!isPremium) {
+          gameplay.getTimesPlayed().then((timesPlayed) => {
+            if (timesPlayed % 2 === 0) {
+              this.showAd = true;
+              this.ads.prepareFullScreen();
+            }
+          });
+        } else {
+          this.gameplay.chances += 1;
+          this.skipLeft += 3;
         }
+      });
+
+      shop.getItemAmount("extra_life").then(lifeCount => {
+        this.gameplay.chances += lifeCount;
+      });
+      
+      shop.getItemAmount("skip_questions").then(skipCount => {
+        this.skipLeft += skipCount;
       });
     });
   }
@@ -113,7 +116,7 @@ export class GamePage {
   }
 
   isCoinLevel(): boolean {
-    return this.gameplay.level !== 0 && this.gameplay.level % 10 === 0;
+    return this.gameplay.level !== 0 && this.gameplay.level % 8 === 0;
   }
 
   getGameType() {
@@ -172,6 +175,7 @@ export class GamePage {
 
         this.isPerfect = false;
         this.gameplay.invalidMove();
+        this.shop.decreaseItemAmount("extra_life");
 
         if (this.gameplay.isOver()) {
           this.finishGame();
@@ -186,6 +190,7 @@ export class GamePage {
     }
 
     this.skipLeft -= 1;
+    this.shop.decreaseItemAmount("skip_questions");
 
     this.gameComponent.destroy();
     this.gameplay.levelNext();
