@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Shop</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="panel-box">
+    <ion-card>
+      <ion-card-content>
+        <div class="coins-bar">
+          <div class="icon"></div>
+          <div class="text">{{ coins }}</div>
+        </div>
+
+        <div class="shop-items">
+          <ion-row>
+            <ion-col *ngFor="let item of items">
+              <div class="shop-item">
+                <div class="item-image {{ item.id }}"></div>
+                <div class="item-name">{{ item.name }}</div>
+                <button ion-button color="primary" block outline class="item-price" [disabled]="!itemsAvailability[item.id]" (click)="unlockItem(item)">
+                  <div class="icon"></div>
+                  <div class="text">{{ item.price }}</div>
+                </button>
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p>
+                Watch short video ad to get 1000 coins:
+              </p>
+              
+              <button ion-button outline block color="primary" (click)="getFreeCoins()" [disabled]="!isVideoReady">
+                Get free coins
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="divider"></div>
+
+    <ion-card>
+      <ion-card-content>
+        <p>
+          Buy premium version of the game to removes all ads & unlock several 
+          unlimited features.
+        </p>
+
+        <ion-list no-lines>
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Ad-free</h2>
+              <p>
+                remove all ads from the game
+              </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Skip question</h2>
+              <p>
+                skip up to 3 questions during every play
+              </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Extra life</h2>
+              <p>
+                start every game with one extra life
+              </p>
+          </ion-item>
+        </ion-list>
+
+        <button ion-button icon-left block color="primary" (click)="makeOrder()">
+          <ion-icon name="book"></ion-icon>
+          Buy premium
+        </button>
+
+        <button ion-button icon-left block color="secondary" (click)="restoreOrder()">
+          <ion-icon name="book"></ion-icon>
+          Restore purchase
+        </button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

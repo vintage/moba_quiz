@@ -1,0 +1,11 @@
+page-score-submit {
+  .score-overview {
+    text-align: center;
+    color: color($colors, primary);
+  }
+
+  .score-overview-value {
+    margin-top: 0px;
+    color: color($colors, secondary);
+  }
+}

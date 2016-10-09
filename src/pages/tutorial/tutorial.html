@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Tutorial</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="panel-box">
+    <ion-card>
+      <ion-card-header>
+        Player requirements
+      </ion-card-header>
+
+      <ion-card-content>
+        In order to successfully solve all type of questions you have to be
+        familiar with the {{ sourceName }} game. All of that is because this quiz
+        contains questions about items, heroes and skills which are tightly connected
+        with the world of {{ sourceName }}. You can learn more at:
+
+        <button ion-button block color="primary" (click)="openSourcePage()">
+          <ion-icon name="book"></ion-icon>
+          Official page
+        </button>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="divider"></div>
+
+    <ion-card>
+      <ion-card-header>
+        Highscore
+      </ion-card-header>
+
+      <ion-card-content>
+        Online leaderboard contains scores of best players divided into four categories:
+        daily, weekly, monthly and overall. The most important part is that only single best score
+        of the player will be shown in each of the categories to prevent score flooding.
+      </ion-card-content>
+    </ion-card>
+
+    <div class="divider"></div>
+
+    <ion-card>
+      <ion-card-header>
+        Game modes
+      </ion-card-header>
+
+      <ion-card-content>
+        During playing the game you will have to answer different type of questions.
+        Providing valid answers gives you points which are essential to put your
+        score at the top of the highscore table. Here are the type of questions
+        which you have to be aware of:
+
+        <ion-list no-lines>
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Skill hero</h2>
+              <p>
+                guess which hero is using this ability
+              </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Hero name</h2>
+              <p>
+                choose the name for the hero
+              </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Hero skills</h2>
+              <p>
+                pick all skills which can be used by this hero
+              </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Attack type</h2>
+              <p>
+                choose if hero is using melee or range type of base attack
+              </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Item price</h2>
+              <p>
+                pick the right price which is needed to buy this item
+              </p>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="checkmark" item-left></ion-icon>
+              <h2>Item recipe</h2>
+              <p>
+                remind yourself all components which needs to be used to craft the item
+              </p>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

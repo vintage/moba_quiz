@@ -1,0 +1,23 @@
+<ion-content>
+  <ion-navbar>
+    <ion-title>Achievements</ion-title>
+  </ion-navbar>
+
+  <div class="panel-box">
+    <ion-list no-lines class="achievement-list">
+      <ion-item *ngFor="let achievement of achievements" [ngClass]="{locked: achievement.isLocked()}">
+        <ion-avatar item-left>
+          <img src="{{ achievement.getImageSource() }}">
+        </ion-avatar>
+
+        <h2>{{ achievement.name }}</h2>
+        <p>
+          {{ achievement.description }}
+        </p>
+        <button ion-button color="dark" item-right>
+          {{ achievement.progress }}/{{ achievement.goal }}
+        </button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

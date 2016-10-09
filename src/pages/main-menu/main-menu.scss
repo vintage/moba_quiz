@@ -1,0 +1,15 @@
+page-main-menu {
+  .stats {
+    .label {
+      padding-right: 15px;
+      font-size: 21px;
+      color: #fff;
+    }
+
+    .value {
+      font-size: 26px;
+      font-weight: bold;
+      color: color($colors, secondary);
+    }
+  }
+}

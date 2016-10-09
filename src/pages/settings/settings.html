@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="panel-box">
+    <ion-card>
+      <ion-card-content>
+        <ion-list no-lines>
+          <ion-item>
+            <ion-label>Music</ion-label>
+            <ion-checkbox [checked]="isMusic" (ionChange)="changeMusic($event)" item-right></ion-checkbox>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Vibration</ion-label>
+            <ion-checkbox [checked]="isVibration" (ionChange)="changeVibration($event)" item-right></ion-checkbox>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="divider"></div>
+
+    <ion-card>
+      <ion-card-content>
+        <ion-list no-lines>
+          <ion-item>
+            <button ion-button block clear (click)="openAbout()">
+              <ion-icon name="contact"></ion-icon>
+              About {{ appName }} (v {{ appVersion }})
+            </button>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

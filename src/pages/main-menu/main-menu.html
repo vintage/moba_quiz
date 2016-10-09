@@ -1,0 +1,79 @@
+<ion-content class="disable-drag" scroll="false">
+  <div class="panel-box">
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left block color="default" (click)="openGame()">
+              <ion-icon name="play"></ion-icon>
+              Play
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left block color="secondary" (click)="openHighscore()">
+              <ion-icon name="podium"></ion-icon>
+              Highscore
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left block color="secondary" (click)="openAchievements()">
+              <ion-icon name="ribbon"></ion-icon>
+              Achievements
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left block color="secondary" (click)="openTutorial()">
+              <ion-icon name="book"></ion-icon>
+              Tutorial
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left block color="secondary" (click)="openSettings()">
+              <ion-icon name="settings"></ion-icon>
+              Settings
+            </button>
+          </ion-col>
+
+          <ion-col>
+            <button ion-button icon-left block color="default" (click)="openShop()">
+              <ion-icon name="cart"></ion-icon>
+              Shop
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <div class="divider"></div>
+
+    <ion-row>
+      <ion-col>
+        <ion-row class="stats">
+          <ion-col class="align-center">
+            <span class="label">Best score</span>
+            <span class="value">{{ bestScore|points }}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="stats">
+          <ion-col class="align-center">
+            <span class="label">Times played</span>
+            <span class="value">{{ timesPlayed }}</span>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

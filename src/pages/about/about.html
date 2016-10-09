@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>About</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="panel-box">
+    <ion-card>
+      <ion-card-header>
+        If you just
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list no-lines>
+          <ion-item>
+            <ion-icon name="bug" item-left></ion-icon>
+              found a bug
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="flame" item-left></ion-icon>
+              have any suggestion
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="hand" item-left></ion-icon>
+              want to say <b>Hi</b>
+          </ion-item>
+        </ion-list>
+
+        <button ion-button block color="primary" (click)="openContact()">
+          <ion-icon name="chatboxes"></ion-icon>
+          Contact Us
+        </button>
+
+        <button ion-button block color="secondary" (click)="openHomepage()">
+          <ion-icon name="contact"></ion-icon>
+          Visit Facebook
+        </button>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="divider"></div>
+
+    <ion-card>
+      <ion-card-header>
+        Authors
+      </ion-card-header>
+
+      <ion-card-content>
+        The game has been made by the <b>PuppyBox</b> studio (one-man army).
+        Big thanks to the <b>Lorc</b> who has made the icons used in the achievement
+        system.
+      </ion-card-content>
+    </ion-card>
+
+    <div class="divider"></div>
+
+    <ion-card>
+      <ion-card-header>
+        Legal disclaimer
+      </ion-card-header>
+
+      <ion-card-content>
+        {{ disclaimer }}
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
