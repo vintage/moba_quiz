@@ -29,14 +29,14 @@ import { GameSlot } from '../components/game-slot/game-slot';
 import { GameStats } from '../components/game-stats/game-stats';
 
 // Components (game types)
-import {ItemRecipeGame} from "../components/game-types/item-recipe/item-recipe";
-import {ItemPriceGame} from "../components/game-types/item-price/item-price";
-import {ChampionSkillsGame} from "../components/game-types/champion-skills/champion-skills";
-import {ChampionAttackTypeGame} from "../components/game-types/champion-attack-type/champion-attack-type";
-import {SkillChampionGame} from "../components/game-types/skill-champion/skill-champion";
-import {ChampionNameGame} from "../components/game-types/champion-name/champion-name";
-import {ChampionTitleGame} from "../components/game-types/champion-title/champion-title";
-import {ChampionNationGame} from "../components/game-types/champion-nation/champion-nation";
+import { ItemRecipeGame } from "../components/game-types/item-recipe/item-recipe";
+import { ItemPriceGame } from "../components/game-types/item-price/item-price";
+import { ChampionSkillsGame } from "../components/game-types/champion-skills/champion-skills";
+import { ChampionAttackTypeGame } from "../components/game-types/champion-attack-type/champion-attack-type";
+import { SkillChampionGame } from "../components/game-types/skill-champion/skill-champion";
+import { ChampionNameGame } from "../components/game-types/champion-name/champion-name";
+import { ChampionTitleGame } from "../components/game-types/champion-title/champion-title";
+import { ChampionNationGame } from "../components/game-types/champion-nation/champion-nation";
 
 // Pipes
 import { PointsPipe } from '../pipes/points';

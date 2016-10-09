@@ -172,7 +172,7 @@ export class ScoreSubmitPage implements OnInit {
   }
 
   setDefaultCountry() {
-    if (!window.cordova) {
+    if (!window['cordova']) {
       return;
     }
 

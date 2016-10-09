@@ -85,7 +85,7 @@ export class GamePage {
 
   openLevelStats() {
     return new Promise(resolve => {
-      let points: string = new PointsPipe().transform(this.gameplay.getLevelPoints(), []);
+      let points: string = new PointsPipe().transform(this.gameplay.getLevelPoints());
 
       let title = `
         <div class="alert-line">

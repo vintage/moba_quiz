@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from "@angular/core";
 
 @Pipe({name: "points"})
 export class PointsPipe implements PipeTransform {
-  transform(value: number, args: string[]): any {
+  transform(value: number): any {
     if (!value) {
       return value;
     }

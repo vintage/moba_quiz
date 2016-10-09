@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from "@angular/core";
 
 @Pipe({name: "timeLeft"})
 export class TimeLeftPipe implements PipeTransform {
-  transform(value: number, args: string[]): any {
+  transform(value: number): any {
     if (isNaN(value)) {
       return value;
     }
