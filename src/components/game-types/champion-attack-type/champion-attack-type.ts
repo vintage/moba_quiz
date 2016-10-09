@@ -1,24 +1,25 @@
 import {Component} from "@angular/core";
 
-import {ChampionService} from "../../../../providers/champion/service";
+import {ChampionModel} from "../../../providers/champion/model";
+import {ChampionService} from "../../../providers/champion/service";
+import {GameChoice} from "../../../providers/game-type/model";
 
 import {BaseGame} from "../base/component";
-import {GameChoice} from "../model";
 
 @Component({
   selector: "game-champion-attack-type",
-  templateUrl: "build/pages/game/types/champion_attack_type/template.html",
+  templateUrl: "champion-attack-type.html",
 })
 export class ChampionAttackTypeGame extends BaseGame {
   constructor(public championService: ChampionService) {
     super();
   }
 
-  getQuestion() {
+  getQuestion(): ChampionModel {
     return this.championService.getAnyWithAttackType();
   }
 
-  getChoices() {
+  getChoices(): GameChoice[] {
     let is_range = this.question.is_range;
 
     return [
@@ -27,7 +28,7 @@ export class ChampionAttackTypeGame extends BaseGame {
     ];
   }
 
-  isFinished() {
+  isFinished(): boolean {
     return this.answers.length > 0;
   }
 }

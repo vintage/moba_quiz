@@ -50,6 +50,15 @@ $card-ios-text-color: $card-base-text-color;
 $card-md-text-color: $card-base-text-color;
 $card-wp-text-color: $card-base-text-color;
 
+$alert-base-background: rgba(23, 21, 18, 0.9);
+$alert-ios-background: $alert-base-background;
+$alert-md-background-color: $alert-base-background;
+$alert-wp-background: $alert-base-background;
+
+$alert-base-message-text-color: color($colors, secondary);
+$alert-ios-message-text-color: $alert-base-message-text-color;
+$alert-md-message-text-color: $alert-base-message-text-color;
+$alert-wp-message-text-color: $alert-base-message-text-color;
 
 // App Theme
 // --------------------------------------------------

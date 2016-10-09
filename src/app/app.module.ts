@@ -21,8 +21,22 @@ import { ScoreSubmitPage } from '../pages/score-submit/score-submit';
 import { SettingsPage } from '../pages/settings/settings';
 import { ShopPage } from '../pages/shop/shop';
 import { TutorialPage } from '../pages/tutorial/tutorial';
+import { GamePage } from '../pages/game/game';
 
 // Components
+import { AnswerButton } from '../components/answer-button/answer-button';
+import { GameSlot } from '../components/game-slot/game-slot';
+import { GameStats } from '../components/game-stats/game-stats';
+
+// Components (game types)
+import {ItemRecipeGame} from "../components/game-types/item-recipe/item-recipe";
+import {ItemPriceGame} from "../components/game-types/item-price/item-price";
+import {ChampionSkillsGame} from "../components/game-types/champion-skills/champion-skills";
+import {ChampionAttackTypeGame} from "../components/game-types/champion-attack-type/champion-attack-type";
+import {SkillChampionGame} from "../components/game-types/skill-champion/skill-champion";
+import {ChampionNameGame} from "../components/game-types/champion-name/champion-name";
+import {ChampionTitleGame} from "../components/game-types/champion-title/champion-title";
+import {ChampionNationGame} from "../components/game-types/champion-nation/champion-nation";
 
 // Pipes
 import { PointsPipe } from '../pipes/points';
@@ -49,6 +63,8 @@ let appConfig = {
 @NgModule({
   declarations: [
     MyApp,
+
+    // Pages
     AboutPage,
     AchievementListPage,
     CountryListPage,
@@ -62,8 +78,26 @@ let appConfig = {
     SettingsPage,
     ShopPage,
     TutorialPage,
+    GamePage,
+
+    // Pipes
     PointsPipe,
-    TimeLeftPipe
+    TimeLeftPipe,
+
+    // Components
+    AnswerButton,
+    GameSlot,
+    GameStats,
+
+    // Components (game types)
+    ItemRecipeGame,
+    ItemPriceGame,
+    ChampionSkillsGame,
+    ChampionAttackTypeGame,
+    SkillChampionGame,
+    ChampionNameGame,
+    ChampionTitleGame,
+    ChampionNationGame
   ],
   imports: [
     IonicModule.forRoot(MyApp, appConfig),
@@ -84,7 +118,18 @@ let appConfig = {
     ScoreSubmitPage,
     SettingsPage,
     ShopPage,
-    TutorialPage
+    TutorialPage,
+    GamePage,
+
+    // Game types
+    ItemRecipeGame,
+    ItemPriceGame,
+    ChampionSkillsGame,
+    ChampionAttackTypeGame,
+    SkillChampionGame,
+    ChampionNameGame,
+    ChampionTitleGame,
+    ChampionNationGame
   ],
   providers: [
     Storage,

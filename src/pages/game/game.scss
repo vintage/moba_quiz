@@ -33,11 +33,11 @@ page-game {
         background-size: contain;
 
         &.coin {
-          background-image: url('../../images/coin_pro.png');
+          background-image: url('../../assets/images/coin_pro.png');
         }
 
         &.point {
-          background-image: url('../../images/coin.png');
+          background-image: url('../../assets/images/coin.png');
         }
       }
     }

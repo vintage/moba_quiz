@@ -1,13 +1,15 @@
 import {Component} from "@angular/core";
 
-import {ItemService} from "../../../../providers/item/service";
-import {AchievementService} from "../../../../providers/achievement/service";
+import {AchievementService} from "../../../providers/achievement/service";
+import {ItemModel} from "../../../providers/item/model";
+import {ItemService} from "../../../providers/item/service";
+import {GameChoice} from "../../../providers/game-type/model";
+
 import {BaseGame} from "../base/component";
-import {GameChoice} from "../model";
 
 @Component({
   selector: "game-item-recipe",
-  templateUrl: "build/pages/game/types/item_recipe/template.html",
+  templateUrl: "item-recipe.html",
 })
 export class ItemRecipeGame extends BaseGame {
   constructor(
@@ -25,7 +27,7 @@ export class ItemRecipeGame extends BaseGame {
     this.choices[position] = null;
   }
 
-  getQuestion() {
+  getQuestion(): ItemModel {
     let question = this.itemService.getAny();
 
     this.achievements.update("seen_all_items", question.id);
@@ -39,21 +41,21 @@ export class ItemRecipeGame extends BaseGame {
     this.achievements.update("solved_all_items", this.question.id);
   }
 
-  getValidOptions() {
+  getValidOptions(): ItemModel[] {
     return this.itemService.getValidComponents(this.question);
   }
 
-  getInvalidOptions() {
+  getInvalidOptions(): ItemModel[] {
     return this.itemService.getInvalidComponents(
       this.question, this.getChoicesLimit()
     );
   }
 
-  getAnswersLimit() {
+  getAnswersLimit(): number {
     return 5;
   }
 
-  getChoicesLimit() {
+  getChoicesLimit(): number {
     return 12;
   }
 }

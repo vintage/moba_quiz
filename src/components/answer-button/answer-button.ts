@@ -1,13 +1,13 @@
 import {Component, EventEmitter, Output} from "@angular/core";
 
-import {GameChoice} from "../types/model";
+import {GameChoice} from "../../providers/game-type/model";
 
 @Component({
-  selector: "game-slot",
-  templateUrl: "build/pages/game/slot/template.html",
+  selector: "answer-button",
+  templateUrl: "answer-button.html",
   inputs: ["choice"]
 })
-export class Slot {
+export class AnswerButton {
   @Output() picked: EventEmitter<any> = new EventEmitter(false);
 
   choice: GameChoice;

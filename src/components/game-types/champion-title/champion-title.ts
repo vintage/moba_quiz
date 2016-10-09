@@ -1,25 +1,26 @@
 import {Component} from "@angular/core";
 import _ from "lodash";
 
-import {ChampionService} from "../../../../providers/champion/service";
+import {ChampionModel} from "../../../providers/champion/model";
+import {ChampionService} from "../../../providers/champion/service";
+import {GameChoice} from "../../../providers/game-type/model";
 
 import {BaseGame} from "../base/component";
-import {GameChoice} from "../model";
 
 @Component({
   selector: "game-champion-title",
-  templateUrl: "build/pages/game/types/champion_title/template.html",
+  templateUrl: "champion-title.html",
 })
 export class ChampionTitleGame extends BaseGame {
   constructor(public championService: ChampionService) {
     super();
   }
 
-  getQuestion() {
+  getQuestion(): ChampionModel {
     return this.championService.getAny();
   }
 
-  getChoices() {
+  getChoices(): GameChoice[] {
     let correct = this.question.title;
     let choices = [correct];
 
@@ -35,7 +36,7 @@ export class ChampionTitleGame extends BaseGame {
     }));
   }
 
-  isFinished() {
+  isFinished(): boolean {
     return this.answers.length > 0;
   }
 }

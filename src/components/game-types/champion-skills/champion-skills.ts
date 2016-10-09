@@ -1,15 +1,15 @@
 import {Component} from "@angular/core";
 
-import {ChampionService} from "../../../../providers/champion/service";
-import {AchievementService} from "../../../../providers/achievement/service";
+import {AchievementService} from "../../../providers/achievement/service";
+import {ChampionModel, SkillModel} from "../../../providers/champion/model";
+import {ChampionService} from "../../../providers/champion/service";
+import {GameChoice} from "../../../providers/game-type/model";
 
-import {Slot} from "../../slot/component";
 import {BaseGame} from "../base/component";
-import {GameChoice} from "../model";
 
 @Component({
   selector: "game-champion-skills",
-  templateUrl: "build/pages/game/types/champion_skills/template.html",
+  templateUrl: "champion-skills.html",
 })
 export class ChampionSkillsGame extends BaseGame {
   constructor(
@@ -26,7 +26,7 @@ export class ChampionSkillsGame extends BaseGame {
     this.choices[position] = null;
   }
 
-  getQuestion() {
+  getQuestion(): ChampionModel {
     let question = this.championService.getAny();
 
     this.achievements.update("seen_all_champions", question.id);
@@ -40,21 +40,21 @@ export class ChampionSkillsGame extends BaseGame {
     this.achievements.update("solved_all_champions", this.question.id);
   }
 
-  getValidOptions() {
+  getValidOptions(): SkillModel[] {
     return this.championService.getValidComponents(this.question);
   }
 
-  getInvalidOptions() {
+  getInvalidOptions(): SkillModel[] {
     return this.championService.getInvalidComponents(
       this.question, this.getChoicesLimit()
     );
   }
 
-  getAnswersLimit() {
+  getAnswersLimit(): number {
     return 5;
   }
 
-  getChoicesLimit() {
+  getChoicesLimit(): number {
     return 12;
   }
 }

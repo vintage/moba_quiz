@@ -5,14 +5,14 @@ import {ItemService} from "../item/service";
 import {ChampionService} from "../champion/service";
 
 import {GameTypeModel} from "./model";
-// import {ItemRecipeGame} from "./item_recipe/component";
-// import {ItemPriceGame} from "./item_price/component";
-// import {ChampionSkillsGame} from "./champion_skills/component";
-// import {ChampionAttackTypeGame} from "./champion_attack_type/component";
-// import {SkillChampionGame} from "./skill_champion/component";
-// import {ChampionNameGame} from "./champion_name/component";
-// import {ChampionTitleGame} from "./champion_title/component";
-// import {ChampionNationGame} from "./champion_nation/component";
+import {ItemRecipeGame} from "../../components/game-types/item-recipe/item-recipe";
+import {ItemPriceGame} from "../../components/game-types/item-price/item-price";
+import {ChampionSkillsGame} from "../../components/game-types/champion-skills/champion-skills";
+import {ChampionAttackTypeGame} from "../../components/game-types/champion-attack-type/champion-attack-type";
+import {SkillChampionGame} from "../../components/game-types/skill-champion/skill-champion";
+import {ChampionNameGame} from "../../components/game-types/champion-name/champion-name";
+import {ChampionTitleGame} from "../../components/game-types/champion-title/champion-title";
+import {ChampionNationGame} from "../../components/game-types/champion-nation/champion-nation";
 
 @Injectable()
 export class GameTypeService {
@@ -26,25 +26,25 @@ export class GameTypeService {
   }
 
   load() {
-    // this.gameTypes = [
-    //   new GameTypeModel("item_price", ItemPriceGame),
-    //   new GameTypeModel("champion_skills", ChampionSkillsGame),
-    //   new GameTypeModel("champion_attack_type", ChampionAttackTypeGame),
-    //   new GameTypeModel("skill_champion", SkillChampionGame),
-    //   new GameTypeModel("champion_name", ChampionNameGame)
-    // ];
+    this.gameTypes = [
+      new GameTypeModel("item_price", ItemPriceGame),
+      new GameTypeModel("champion_skills", ChampionSkillsGame),
+      new GameTypeModel("champion_attack_type", ChampionAttackTypeGame),
+      new GameTypeModel("skill_champion", SkillChampionGame),
+      new GameTypeModel("champion_name", ChampionNameGame)
+    ];
 
-    // if (this.items.supportRecipe()) {
-    //   this.gameTypes.push(new GameTypeModel("item_recipe", ItemRecipeGame));
-    // }
+    if (this.items.supportRecipe()) {
+      this.gameTypes.push(new GameTypeModel("item_recipe", ItemRecipeGame));
+    }
 
-    // if (this.champions.supportTitle()) {
-    //   this.gameTypes.push(new GameTypeModel("champion_title", ChampionTitleGame));
-    // }
+    if (this.champions.supportTitle()) {
+      this.gameTypes.push(new GameTypeModel("champion_title", ChampionTitleGame));
+    }
 
-    // if (this.champions.supportNation()) {
-    //   this.gameTypes.push(new GameTypeModel("champion_nation", ChampionNationGame));
-    // }
+    if (this.champions.supportNation()) {
+      this.gameTypes.push(new GameTypeModel("champion_nation", ChampionNationGame));
+    }
   }
 
   getAny() {

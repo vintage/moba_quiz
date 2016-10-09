@@ -1,28 +1,28 @@
 import {Component} from "@angular/core";
 import _ from "lodash";
 
-import {ItemService} from "../../../../providers/item/service";
-import {GameplayService} from "../../../../providers/gameplay/service";
+import {ItemModel} from "../../../providers/item/model";
+import {ItemService} from "../../../providers/item/service";
+import {GameChoice} from "../../../providers/game-type/model";
 
 import {BaseGame} from "../base/component";
-import {GameChoice} from "../model";
 
 @Component({
   selector: "game-item-price",
-  templateUrl: "build/pages/game/types/item_price/template.html",
+  templateUrl: "item-price.html",
 })
 export class ItemPriceGame extends BaseGame {
-  constructor(private items: ItemService, private gameplay: GameplayService) {
+  constructor(private items: ItemService) {
     super();
   }
 
-  getQuestion() {
+  getQuestion(): ItemModel {
     let item = this.items.getBase();
 
     return item;
   }
 
-  getChoices() {
+  getChoices(): GameChoice[] {
     let choiceDifferences = [
       100, 200, 250, 300, 400
     ];
@@ -54,7 +54,7 @@ export class ItemPriceGame extends BaseGame {
     }));
   }
 
-  isFinished() {
+  isFinished(): boolean {
     return this.answers.length > 0;
   }
 }

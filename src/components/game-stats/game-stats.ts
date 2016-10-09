@@ -1,14 +1,14 @@
 import {Component, EventEmitter, OnInit} from "@angular/core";
 
-import {GameplayService} from "../../../providers/gameplay/service";
+import {GameplayService} from "../../providers/gameplay/service";
 
 @Component({
   selector: "game-stats",
-  templateUrl: "build/pages/game/stats/template.html",
+  templateUrl: "game-stats.html",
   inputs: ["timerEnabled"],
   outputs: ["timeOver"],
 })
-export class Stats implements OnInit {
+export class GameStats implements OnInit {
   timeOver = new EventEmitter();
 
   progressCur: number;
@@ -28,8 +28,6 @@ export class Stats implements OnInit {
   ngOnDestroy() {
     this.isDestroyed = true;
   }
-
-  
 
   updateTimer() {
     let interval = 1000;

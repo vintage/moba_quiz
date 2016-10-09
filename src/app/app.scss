@@ -114,13 +114,9 @@ ion-tabbar {
   border-top: 3px solid color($colors, secondary);
 }
 
-.alert-wrapper {
-  color: color($colors, primary);
-  background-color: rgba(23, 21, 18, 0.9);
-
-  .alert-message {
-    color: color($colors, secondary);
-  }
+// Alert title can't be set currently using ionic variables
+.alert-title {
+  color: color($colors, primary) !important;
 }
 
 .admob-bar {

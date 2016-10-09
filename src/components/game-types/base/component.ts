@@ -1,7 +1,7 @@
 import {OnInit, EventEmitter, Output} from "@angular/core";
 import _ from "lodash";
 
-import {GameChoice} from "../model";
+import {GameChoice} from "../../../providers/game-type/model";
 
 export class BaseGame implements OnInit {
   @Output() answerInvalid: EventEmitter<any> = new EventEmitter(false);
@@ -28,26 +28,26 @@ export class BaseGame implements OnInit {
     return [];
   }
 
-  getChoices() {
+  getChoices(): GameChoice[] {
     let answersLimit = this.getAnswersLimit();
     let choicesLimit = this.getChoicesLimit();
 
-    let validChoices = shuffle(this.getValidOptions().map(option => {
+    let validChoices = _.shuffle(this.getValidOptions().map(option => {
       return new GameChoice(option, true);
     })).slice(0, answersLimit);
 
-    let invalidChoices = shuffle(this.getInvalidOptions().map(option => {
+    let invalidChoices = _.shuffle(this.getInvalidOptions().map(option => {
       return new GameChoice(option, false);
     })).slice(0, choicesLimit - validChoices.length);
 
     return _.shuffle(validChoices.concat(invalidChoices));
   }
 
-  getAnswersLimit() {
+  getAnswersLimit(): number {
     return 5;
   }
 
-  getChoicesLimit() {
+  getChoicesLimit(): number {
     return 12;
   }
 
@@ -67,11 +67,11 @@ export class BaseGame implements OnInit {
     this.answerInvalid.emit(null);
   }
 
-  isValid(choice: GameChoice) {
+  isValid(choice: GameChoice): boolean {
     return choice.isValid;
   }
 
-  isFinished() {
+  isFinished(): boolean {
     return this.choices.filter(choice => {
       return choice && choice.isValid;
     }).length === 0;
