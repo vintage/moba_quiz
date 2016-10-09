@@ -88,7 +88,7 @@ ion-content {
   background-size: cover;
   background-position: center;
 
-  scroll-content {
+  .scroll-content {
     padding: 5px;
     background-color: rgba(0, 0, 0, 0.4);
   }
@@ -114,7 +114,10 @@ ion-tabbar {
   border-top: 3px solid color($colors, secondary);
 }
 
-// Alert title can't be set currently using ionic variables
+ion-card-content {
+  color: color($colors, secondary) !important;
+}
+
 .alert-title {
   color: color($colors, primary) !important;
 }

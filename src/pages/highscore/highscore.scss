@@ -10,6 +10,10 @@
     margin-right: 8px;
   }
 
+  p {
+    color: color($colors, primary);
+  }
+
   .position-box {
     .zero-prefix {
       visibility: hidden;
