@@ -80,6 +80,9 @@ export class ShopPage {
     this.items.forEach(item => {
       this.shop.isPurchasable(item).then(isPurchasable => {
         this.itemsAvailability[item.id] = isPurchasable;
+
+        // TODO: Remove it from here and return Promise instead
+        this.appRef.tick();
       });
     });
   }
