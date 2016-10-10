@@ -32,20 +32,23 @@ export class ShopPage {
     if (window["analytics"]) {
       window["analytics"].trackView("Shop");
     }
+  }
 
+  ionViewWillEnter() {
     this.items = this.shop.items;
     this.updateState();
 
     this.ads.prepareRewardVideo();
 
     document.addEventListener("onAdLoaded", data => {
-      if (data["adNetwork"] === "Chartboost") {
+      if (data["adNetwork"] === "Chartboost" && !this.isVideoReady) {
         this.isVideoReady = true;
         this.appRef.tick();
       }
     });
+
     document.addEventListener("onAdDismiss", data => {
-      if (data["adNetwork"] === "Chartboost") {
+      if (data["adNetwork"] === "Chartboost" && this.isVideoReady) {
         this.isVideoReady = false;
         
         this.shop.addCoins(1000).then(coins => {

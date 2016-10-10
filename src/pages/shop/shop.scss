@@ -41,7 +41,7 @@ page-shop {
       height: 40px;
       background-repeat: no-repeat;
       background-size: contain;
-      background-image: url('../../assets/images/coin_pro.png');
+      background-image: url('../assets/images/coin_pro.png');
     }
 
     .text {
@@ -69,15 +69,15 @@ page-shop {
         background-size: contain;
 
         &.extra_life {
-          background-image: url('../../assets/images/S_Holy03.png');
+          background-image: url('../assets/images/S_Holy03.png');
         }
 
         &.skip_questions {
-          background-image: url('../../assets/images/I_Key01.png');
+          background-image: url('../assets/images/I_Key01.png');
         }
 
         &.hardcore_ticket {
-          background-image: url('../../assets/images/S_Death02.png');
+          background-image: url('../assets/images/S_Death02.png');
         }
       }
 
@@ -97,7 +97,7 @@ page-shop {
           height: 20px;
           background-repeat: no-repeat;
           background-size: contain;
-          background-image: url('../../assets/images/coin_pro.png');
+          background-image: url('../assets/images/coin_pro.png');
         }
 
         .text {

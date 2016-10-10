@@ -1,11 +1,13 @@
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let country of countries" (click)="selectCountry(country)">
-      <ion-thumbnail item-left>
-        <img src="{{ country.getImageSource() }}">
-      </ion-thumbnail>
+  <div class="panel-box">
+    <ion-list no-lines>
+      <ion-item *ngFor="let country of countries" (click)="selectCountry(country)">
+        <ion-avatar item-left>
+          <img src="{{ country.getImageSource() }}">
+        </ion-avatar>
 
-      <h2>{{ country.name }}</h2>
-    </ion-item>
-  </ion-list>
+        <h2>{{ country.name }}</h2>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

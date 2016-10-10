@@ -4,41 +4,37 @@ page-game {
     max-width: 100px;
     margin-left: 5px;
     margin-right: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   .skip-button {
     margin: 10px 0;
   }
+}
 
-  .game-alert {
-    .alert-button-group {
-      display: none;
-    }
+.game-alert {
+  .alert-button-group {
+    display: none;
+  }
 
-    .alert-head {
-      color: color($colors, secondary);
-      text-align: center;
+  .alert-head {
+    color: color($colors, secondary);
+    text-align: center;
 
-      .alert-line {
-        margin-top: 10px;
+    .icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      background-repeat: no-repeat;
+      background-size: contain;
+
+      &.coin {
+        background-image: url('../assets/images/coin_pro.png');
       }
 
-      .icon {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        margin-right: 5px;
-        background-repeat: no-repeat;
-        background-size: contain;
-
-        &.coin {
-          background-image: url('../../assets/images/coin_pro.png');
-        }
-
-        &.point {
-          background-image: url('../../assets/images/coin.png');
-        }
+      &.point {
+        background-image: url('../assets/images/coin.png');
       }
     }
   }

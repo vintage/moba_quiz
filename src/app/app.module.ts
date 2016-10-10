@@ -9,13 +9,10 @@ import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { AchievementListPage } from '../pages/achievement-list/achievement-list';
 import { CountryListPage } from '../pages/country-list/country-list';
-import {
-  HighscorePage,
-  HighscoreGeneralPage,
-  HighscoreMonthlyPage,
-  HighscoreWeeklyPage,
-  HighscoreDailyPage
-} from '../pages/highscore/highscore';
+import { HighscorePage } from '../pages/highscore/highscore';
+import { HighscoreGeneralPage } from '../pages/highscore/highscore-general/highscore-general';
+import { HighscoreMonthlyPage } from '../pages/highscore/highscore-monthly/highscore-monthly';
+import { HighscoreDailyPage } from '../pages/highscore/highscore-daily/highscore-daily';
 import { MainMenuPage } from '../pages/main-menu/main-menu';
 import { ScoreSubmitPage } from '../pages/score-submit/score-submit';
 import { SettingsPage } from '../pages/settings/settings';
@@ -71,7 +68,6 @@ let appConfig = {
     HighscorePage,
     HighscoreGeneralPage,
     HighscoreMonthlyPage,
-    HighscoreWeeklyPage,
     HighscoreDailyPage,
     MainMenuPage,
     ScoreSubmitPage,
@@ -112,7 +108,6 @@ let appConfig = {
     HighscorePage,
     HighscoreGeneralPage,
     HighscoreMonthlyPage,
-    HighscoreWeeklyPage,
     HighscoreDailyPage,
     MainMenuPage,
     ScoreSubmitPage,

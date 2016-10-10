@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {NavController, AlertController, ViewController, Platform} from "ionic-angular";
 import {Globalization, InAppBrowser} from "ionic-native";
 
@@ -16,7 +16,7 @@ import {MainMenuPage} from "../main-menu/main-menu";
   selector: 'page-score-submit',
   templateUrl: "score-submit.html",
 })
-export class ScoreSubmitPage implements OnInit {
+export class ScoreSubmitPage {
   country: CountryModel;
   playerName: string;
   isPending: boolean;
@@ -39,20 +39,6 @@ export class ScoreSubmitPage implements OnInit {
     this.score = gameplay.points;
   }
 
-  ngOnInit() {
-    this.scoreService.getBestScore().then(bestScore => {
-      if (this.score > bestScore) {
-        this.isNewHighscore = true;
-        this.playSound("sfx/new_best_score.mp3");
-        this.scoreService.setBestScore(this.score);
-      }
-    });
-
-    this.gameplay.getPlayerName().then(playerName => {
-      this.playerName = playerName;
-    });
-  }
-
   ionViewWillEnter() {
     this.countries.load().then(() => {
       this.countries.getCurrent().then(country => {
@@ -63,6 +49,18 @@ export class ScoreSubmitPage implements OnInit {
           this.country = country;
         }
       });
+    });
+
+    this.scoreService.getBestScore().then(bestScore => {
+      if (this.score > bestScore) {
+        this.isNewHighscore = true;
+        this.playSound("sfx/new_best_score.mp3");
+        this.scoreService.setBestScore(this.score);
+      }
+    });
+
+    this.gameplay.getPlayerName().then(playerName => {
+      this.playerName = playerName;
     });
   }
 

@@ -9,14 +9,6 @@ export class AdService {
   initialize() {
     let config = this.getConfiguration();
 
-    let engine = this.getEngine();
-    engine.setOptions({
-      bannerId: config.banner,
-      interstitialId: config.full_screen,
-      adSize: "SMART_BANNER",
-      position: engine.AD_POSITION.BOTTOM_CENTER
-    });
-
     let video = this.getVideoEngine();
     video.setOptions({
       appId: config.rewardVideoId,
@@ -50,6 +42,9 @@ export class AdService {
     }
 
     engine.createBanner({
+      adId: this.getConfiguration().banner,
+      position: engine.AD_POSITION.BOTTOM_CENTER,
+      adSize: "SMART_BANNER",
       autoShow: true
     });
   }
@@ -70,6 +65,7 @@ export class AdService {
     }
 
     engine.prepareInterstitial({
+      adId: this.getConfiguration().full_screen,
       autoShow: false
     });
   }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {AlertController, NavController} from "ionic-angular";
 import {AppVersion} from "ionic-native";
 
@@ -10,7 +10,7 @@ import {MusicService} from "../../providers/music/service";
   selector: 'page-settings',
   templateUrl: "settings.html",
 })
-export class SettingsPage implements OnInit {
+export class SettingsPage {
   public isMusic: boolean = true;
   public isVibration: boolean = true;
   public appVersion: string;
@@ -24,7 +24,13 @@ export class SettingsPage implements OnInit {
     
   }
 
-  ngOnInit() {
+  ionViewDidEnter() {
+    if (window["analytics"]) {
+      window["analytics"].trackView("Settings");
+    }
+  }
+
+  ionViewWillEnter() {
     AppVersion.getVersionNumber().then(version => {
       this.appVersion = version;
     }).catch(() => {
@@ -44,12 +50,6 @@ export class SettingsPage implements OnInit {
     this.settings.isVibrationEnabled().then(isEnabled => {
       this.isVibration = isEnabled;
     });
-  }
-
-  ionViewDidEnter() {
-    if (window["analytics"]) {
-      window["analytics"].trackView("Settings");
-    }
   }
 
   openAbout() {

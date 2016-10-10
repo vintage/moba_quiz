@@ -128,11 +128,10 @@ export class GamePage {
     this.gameType = this.getGameType();
 
     let factory = this.componentFactoryResolver.resolveComponentFactory(this.gameType.component);
-    this.gameComponent = this.typeContainer.createComponent(factory)
-
-    this.gameComponent = this.gameComponent;
-
+    this.gameComponent = this.typeContainer.createComponent(factory);
+    
     let component = this.gameComponent.instance;
+    component.initializeGame();
 
     component.questionFinished.subscribe(() => {
       this.isLocked = true;

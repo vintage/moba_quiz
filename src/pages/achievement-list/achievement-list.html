@@ -1,8 +1,10 @@
-<ion-content>
+<ion-header>
   <ion-navbar>
     <ion-title>Achievements</ion-title>
   </ion-navbar>
+</ion-header>
 
+<ion-content>
   <div class="panel-box">
     <ion-list no-lines class="achievement-list">
       <ion-item *ngFor="let achievement of achievements" [ngClass]="{locked: achievement.isLocked()}">

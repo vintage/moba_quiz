@@ -34,16 +34,10 @@ def setup(provider):
 
     # Copy data files
     data_src = '{}/data/'.format(src_dir)
-    data_dest = '{}/www/data/'.format(app_dir)
+    data_dest = '{}/src/assets/data/'.format(app_dir)
 
     shutil.rmtree(data_dest, ignore_errors=True)
     shutil.copytree(data_src, data_dest)
-
-    # [DEPRECATED] Copy background image
-    # background_src = '{}/static/background.jpg'.format(src_dir)
-    # background_dest = '{}/www/data/background.jpg'.format(app_dir)
-
-    # shutil.copy(background_src, background_dest)
 
     # Remove existing resources (splashscreen & icon)
     shutil.rmtree('{}/resources/android/'.format(app_dir), ignore_errors=True)

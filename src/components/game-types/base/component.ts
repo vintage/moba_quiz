@@ -1,20 +1,16 @@
-import {OnInit, EventEmitter, Output} from "@angular/core";
+import {EventEmitter, Output} from "@angular/core";
 import _ from "lodash";
 
 import {GameChoice} from "../../../providers/game-type/model";
 
-export class BaseGame implements OnInit {
+export class BaseGame {
   @Output() answerInvalid: EventEmitter<any> = new EventEmitter(false);
   @Output() answerValid: EventEmitter<any> = new EventEmitter(false);
   @Output() questionFinished: EventEmitter<any> = new EventEmitter(false);
 
   question: any;
-  answers: GameChoice[];
-  choices: GameChoice[];
-
-  ngOnInit() {
-    this.initializeGame();
-  }
+  answers: GameChoice[] = [];
+  choices: GameChoice[] = [];
 
   getQuestion() {
 

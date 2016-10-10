@@ -29,16 +29,6 @@ export class MainMenuPage {
     public platform: Platform) {
   }
 
-  ngOnInit() {
-    this.gameplay.getTimesPlayed().then(timesPlayed => {
-      this.timesPlayed = timesPlayed;
-    });
-
-    this.scoreService.getBestScore().then(bestScore => {
-      this.bestScore = bestScore;
-    });
-  }
-
   openGame() {
     this.nav.push(GamePage);
   }
@@ -67,5 +57,15 @@ export class MainMenuPage {
     if (window["analytics"]) {
       window["analytics"].trackView("Main Menu");
     }
+  }
+
+  ionViewWillEnter() {
+    this.gameplay.getTimesPlayed().then(timesPlayed => {
+      this.timesPlayed = timesPlayed;
+    });
+
+    this.scoreService.getBestScore().then(bestScore => {
+      this.bestScore = bestScore;
+    });
   }
 }

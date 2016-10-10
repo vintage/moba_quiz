@@ -63,9 +63,9 @@
 }
 
 .divider {
-  margin: 0 40px;
-  border-top: 1px solid transparent;
-  opacity: 0.1;
+  margin: 0 25px;
+  border-top: 1px dashed color($colors, primary);
+  opacity: 0.2;
 }
 
 .champion-avatar-background {

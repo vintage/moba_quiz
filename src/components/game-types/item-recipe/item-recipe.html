@@ -1,6 +1,6 @@
 <ion-row>
   <ion-col>
-    <div class="align-center">
+    <div class="align-center" *ngIf="question">
       <game-slot [choice]="answers[0]" class="non-interactive"></game-slot>
       <game-slot [choice]="answers[1]" class="non-interactive"></game-slot>
       <game-slot [choice]="answers[2]" class="non-interactive"></game-slot>

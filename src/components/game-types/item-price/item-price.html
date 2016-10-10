@@ -1,6 +1,6 @@
 <ion-row>
   <ion-col>
-    <div class="align-center">
+    <div class="align-center" *ngIf="question">
       <img #questionImage [src]="question.getImageSource()" class="question-image">
     </div>
   </ion-col>
