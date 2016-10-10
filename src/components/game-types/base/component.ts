@@ -4,9 +4,9 @@ import _ from "lodash";
 import {GameChoice} from "../../../providers/game-type/model";
 
 export class BaseGame {
-  @Output() answerInvalid: EventEmitter<any> = new EventEmitter(false);
-  @Output() answerValid: EventEmitter<any> = new EventEmitter(false);
-  @Output() questionFinished: EventEmitter<any> = new EventEmitter(false);
+  @Output() answerInvalid: EventEmitter<any> = new EventEmitter();
+  @Output() answerValid: EventEmitter<any> = new EventEmitter();
+  @Output() questionFinished: EventEmitter<any> = new EventEmitter();
 
   question: any;
   answers: GameChoice[] = [];

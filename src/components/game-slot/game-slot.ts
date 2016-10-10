@@ -8,7 +8,7 @@ import {GameChoice} from "../../providers/game-type/model";
   inputs: ["choice"]
 })
 export class GameSlot {
-  @Output() picked: EventEmitter<any> = new EventEmitter(false);
+  @Output() picked: EventEmitter<any> = new EventEmitter();
 
   choice: GameChoice;
 

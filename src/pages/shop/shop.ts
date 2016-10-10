@@ -62,8 +62,12 @@ export class ShopPage {
   }
 
   updateState() {
-    this.updateCoins();
-    this.updateItemsAvailability();
+    return new Promise(resolve => {
+      this.updateCoins().then(() => {
+        this.updateItemsAvailability();
+        resolve();
+      });
+    });
   }
 
   updateCoins() {
