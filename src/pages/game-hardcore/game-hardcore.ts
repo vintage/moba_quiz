@@ -25,29 +25,26 @@ export class GameHardcorePage extends GamePage {
   constructor(
       public nav: NavController,
       public viewCtrl: ViewController,
-      private componentFactoryResolver: ComponentFactoryResolver,
-      private compiler: Compiler,
-      private alertCtrl: AlertController,
+      public componentFactoryResolver: ComponentFactoryResolver,
+      public compiler: Compiler,
+      public alertCtrl: AlertController,
       public gameplay: GameplayService,
       public itemService: ItemService,
       public championService: ChampionService,
       public gameTypes: GameTypeService,
       public ads: AdService,
-      private settings: SettingsService,
+      public settings: SettingsService,
       public achievements: AchievementService,
-      private shop: ShopService
+      public shop: ShopService
   ) {
     super(nav, viewCtrl, componentFactoryResolver, compiler, alertCtrl, gameplay,
     itemService, championService, gameTypes, ads, settings, achievements, shop);
   }
 
-  addExtraLife(count: number) {
-    // Do nothing - hardcore mode is just hardcore 
-  }
-
-  addExtraSkips(count: number) {
-    // Do nothing - hardcore mode is just hardcore
-  }
+   // Do nothing - hardcore mode is just hardcore
+  addExtraLife(count: number) {}
+  addExtraSkips(count: number) {}
+  removeExtraLife() {}
 
   isCoinLevel(): boolean {
     // Every level is a coin level

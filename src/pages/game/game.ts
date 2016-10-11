@@ -35,17 +35,17 @@ export class GamePage {
   constructor(
       public nav: NavController,
       public viewCtrl: ViewController,
-      private componentFactoryResolver: ComponentFactoryResolver,
-      private compiler: Compiler,
-      private alertCtrl: AlertController,
+      public componentFactoryResolver: ComponentFactoryResolver,
+      public compiler: Compiler,
+      public alertCtrl: AlertController,
       public gameplay: GameplayService,
       public itemService: ItemService,
       public championService: ChampionService,
       public gameTypes: GameTypeService,
       public ads: AdService,
-      private settings: SettingsService,
+      public settings: SettingsService,
       public achievements: AchievementService,
-      private shop: ShopService
+      public shop: ShopService
   ) {
     this.isLocked = false;
     this.showAd = false;
@@ -85,6 +85,10 @@ export class GamePage {
 
   addExtraLife(count: number) {
     this.gameplay.chances += count;
+  }
+
+  removeExtraLife() {
+    this.shop.decreaseItemAmount("extra_life");
   }
 
   addExtraSkips(count: number) {
@@ -185,7 +189,7 @@ export class GamePage {
 
       this.isPerfect = false;
       this.gameplay.invalidMove();
-      this.shop.decreaseItemAmount("extra_life");
+      this.removeExtraLife();
 
       if (this.gameplay.isOver()) {
         this.finishGame();
