@@ -12,7 +12,8 @@ export class SettingsService {
 
   smallBanner: string;
   bigBanner: string;
-  videoBanner: string;
+  videoBannerId: string;
+  videoBannerKey: string;
   legalDisclaimer: string;
   highscoreUrl: string;
   appUrl: string;
@@ -50,8 +51,8 @@ export class SettingsService {
 
         this.smallBanner = platformSettings["ad_small"];
         this.bigBanner = platformSettings["ad_big"];
-        // this.videoBanner = platformSettings["ad_video"];
-        this.videoBanner = "1157886";
+        this.videoBannerId = platformSettings["ad_video_id"];
+        this.videoBannerKey = platformSettings["ad_video_key"];
 
         this.trackingId = platformSettings["tracking"];
         this.appUrl = platformSettings["store"];

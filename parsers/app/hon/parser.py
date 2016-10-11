@@ -170,6 +170,8 @@ def setup_settings():
         'ios': {
             'ad_small': 'ca-app-pub-4764697513834958/5819579664',
             'ad_big': 'ca-app-pub-4764697513834958/1249779260',
+            'ad_video_id': '57b9fa7b43150f79f2a50a18',
+            'ad_video_key': 'ab9ffe592cd5f812c2732cc42fdfa5ecf6656265',
             'tracking': 'UA-77793311-6',
             'store': 'itms-apps://itunes.apple.com/app/id1109019404',
             'store_premium': 'com.puppybox.quizhon.premium_version',
@@ -177,6 +179,8 @@ def setup_settings():
         'android': {
             'ad_small': 'ca-app-pub-4764697513834958/3145314865',
             'ad_big': 'ca-app-pub-4764697513834958/5959180465',
+            'ad_video_id': '57b9f9c543150f3dae9a77b8',
+            'ad_video_key': '6f7fbf0d533c2d2f2a0a3bed85f585c7929c7c1c',
             'tracking': 'UA-77793311-7',
             'store': 'market://details?id=com.puppybox.quizhon',
             'store_premium': 'com.puppybox.quizhon.premium_version',
@@ -184,6 +188,8 @@ def setup_settings():
         'windows': {
             'ad_small': 'ca-app-pub-4764697513834958/7883646863',
             'ad_big': 'ca-app-pub-4764697513834958/7744046068',
+            'ad_video_id': '',
+            'ad_video_key': '',
             'tracking': '',
             'store': '',
             'store_premium': '',

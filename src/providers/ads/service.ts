@@ -20,8 +20,8 @@ export class AdService {
     return {
       banner: this.settings.smallBanner,
       full_screen: this.settings.bigBanner,
-      rewardVideoId: "57b9fa5243150f79f2a509f5",
-      rewardVideoKey: "4c0a685045ec2ea625ac4e00bfd52e894e11b90e"
+      rewardVideoId: this.settings.videoBannerId,
+      rewardVideoKey: this.settings.videoBannerKey
     };
   }
 
