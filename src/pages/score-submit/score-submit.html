@@ -51,7 +51,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row>
+        <ion-row *ngIf="!isHardcore">
           <ion-col>
             <button ion-button block color="secondary" (click)="playAgain()">Play again</button>
           </ion-col>

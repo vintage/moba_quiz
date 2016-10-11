@@ -1,9 +1,10 @@
 import {Component} from "@angular/core";
-import {NavController, Platform} from "ionic-angular";
+import {NavController, Platform, AlertController} from "ionic-angular";
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {ScoreService} from "../../providers/score/service";
 import {AchievementService} from "../../providers/achievement/service";
+import {ShopService} from "../../providers/shop/service";
 
 import {GamePage} from "../game/game";
 import {GameHardcorePage} from "../game-hardcore/game-hardcore";
@@ -24,9 +25,11 @@ export class MainMenuPage {
 
   constructor(
     public nav: NavController,
+    private alertCtrl: AlertController,
     public gameplay: GameplayService,
     public scoreService: ScoreService,
     public achievements: AchievementService,
+    private shop: ShopService,
     public platform: Platform) {
   }
 
@@ -35,7 +38,35 @@ export class MainMenuPage {
   }
 
   openGameHardcore() {
-    this.nav.push(GameHardcorePage);
+    this.shop.getItemAmount("hardcore_ticket").then(tickets => {
+      if (tickets > 0) {
+        this.shop.decreaseItemAmount("hardcore_ticket");
+        this.nav.push(GameHardcorePage);
+      } else {
+        this.missingHardcoreTicket();
+      }
+    });
+  }
+
+  missingHardcoreTicket() {
+    let alert = this.alertCtrl.create({
+      title: "Ticket required",
+      message: "You have to buy the Hardcore Ticket in order to play this mode.",
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Open shop',
+          handler: () => {
+            this.openShop();
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
   openHighscore() {
