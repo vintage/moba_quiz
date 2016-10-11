@@ -5,7 +5,7 @@ import {SettingsService} from "../../providers/settings/service";
 import {AdService} from "../../providers/ads/service";
 import {ShopService} from "../../providers/shop/service";
 import {ShopItem} from "../../providers/shop/model";
-
+import {MusicService} from "../../providers/music/service";
 
 @Component({
   selector: 'page-shop',
@@ -22,7 +22,8 @@ export class ShopPage {
     private alertCtrl: AlertController,
     private settings: SettingsService,
     private shop: ShopService,
-    private ads: AdService
+    private ads: AdService,
+    private music: MusicService
   ) {
     this.isVideoReady = false;
     this.itemsAvailability = {};
@@ -40,6 +41,12 @@ export class ShopPage {
 
     this.ads.prepareRewardVideo();
 
+    document.addEventListener("onAdPresent", data => {
+      if (data["adNetwork"] === "Chartboost") {
+        this.music.pause();
+      }
+    });
+
     document.addEventListener("onAdLoaded", data => {
       if (data["adNetwork"] === "Chartboost" && !this.isVideoReady) {
         this.isVideoReady = true;
@@ -50,6 +57,7 @@ export class ShopPage {
     document.addEventListener("onAdDismiss", data => {
       if (data["adNetwork"] === "Chartboost" && this.isVideoReady) {
         this.isVideoReady = false;
+        this.music.start();
         
         this.shop.addCoins(1000).then(coins => {
           return this.updateState();

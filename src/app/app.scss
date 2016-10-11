@@ -110,7 +110,7 @@ ion-content {
 }
 
 .tabbar {
-  border-top: 2px solid color($colors, secondary);
+  border-top: 2px solid color($colors, secondary) !important;
 }
 
 ion-card-content {
