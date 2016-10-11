@@ -68,19 +68,27 @@ export class GamePage {
             }
           });
         } else {
-          this.gameplay.chances += 1;
-          this.skipLeft += 3;
+          this.addExtraLife(1);
+          this.addExtraSkips(3);
         }
       });
 
       shop.getItemAmount("extra_life").then(lifeCount => {
-        this.gameplay.chances += lifeCount;
+        this.addExtraLife(lifeCount);
       });
       
       shop.getItemAmount("skip_questions").then(skipCount => {
-        this.skipLeft += skipCount;
+        this.addExtraSkips(skipCount);
       });
     });
+  }
+
+  addExtraLife(count: number) {
+    this.gameplay.chances += count;
+  }
+
+  addExtraSkips(count: number) {
+    this.skipLeft += count;
   }
 
   openLevelStats() {
@@ -216,15 +224,19 @@ export class GamePage {
 
     setTimeout(() => {
       alert.dismiss(null).then(() => {
-        this.nav.push(ScoreSubmitPage).then(() => {
-          this.nav.remove(this.nav.indexOf(this.viewCtrl)).then(() => {
-            if (this.showAd) {
-              this.ads.showFullScreen();
-            }
-          });
-        });
+        this.openScoreSubmit();
       });
     }, 1000);
+  }
+
+  openScoreSubmit() {
+    this.nav.push(ScoreSubmitPage).then(() => {
+      this.nav.remove(this.nav.indexOf(this.viewCtrl)).then(() => {
+        if (this.showAd) {
+          this.ads.showFullScreen();
+        }
+      });
+    });
   }
 
   playSound(src: string) {

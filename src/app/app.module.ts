@@ -13,12 +13,14 @@ import { HighscorePage } from '../pages/highscore/highscore';
 import { HighscoreGeneralPage } from '../pages/highscore/highscore-general/highscore-general';
 import { HighscoreMonthlyPage } from '../pages/highscore/highscore-monthly/highscore-monthly';
 import { HighscoreDailyPage } from '../pages/highscore/highscore-daily/highscore-daily';
+import { HighscoreHardcorePage } from '../pages/highscore/highscore-hardcore/highscore-hardcore';
 import { MainMenuPage } from '../pages/main-menu/main-menu';
 import { ScoreSubmitPage } from '../pages/score-submit/score-submit';
 import { SettingsPage } from '../pages/settings/settings';
 import { ShopPage } from '../pages/shop/shop';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { GamePage } from '../pages/game/game';
+import { GameHardcorePage } from '../pages/game-hardcore/game-hardcore';
 
 // Components
 import { AnswerButton } from '../components/answer-button/answer-button';
@@ -69,12 +71,14 @@ let appConfig = {
     HighscoreGeneralPage,
     HighscoreMonthlyPage,
     HighscoreDailyPage,
+    HighscoreHardcorePage,
     MainMenuPage,
     ScoreSubmitPage,
     SettingsPage,
     ShopPage,
     TutorialPage,
     GamePage,
+    GameHardcorePage,
 
     // Pipes
     PointsPipe,
@@ -109,12 +113,14 @@ let appConfig = {
     HighscoreGeneralPage,
     HighscoreMonthlyPage,
     HighscoreDailyPage,
+    HighscoreHardcorePage,
     MainMenuPage,
     ScoreSubmitPage,
     SettingsPage,
     ShopPage,
     TutorialPage,
     GamePage,
+    GameHardcorePage,
 
     // Game types
     ItemRecipeGame,

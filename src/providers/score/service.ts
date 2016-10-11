@@ -23,12 +23,13 @@ export class ScoreService {
     return JSON.stringify(output).toLowerCase().replace(/[^a-z0-9]/gi, "");
   }
 
-  create(player: string, score: number, country: string, platform: string, metadata: Object) {
+  create(player: string, score: number, country: string, platform: string, isHardcore: boolean, metadata: Object) {
     let data = {
       "player_name": player,
       "value": score,
       "country_code": country,
-      "platform": platform
+      "platform": platform,
+      "is_hardcore": isHardcore,
     };
     data["hash"] = window['CryptoJS']['SHA1'](this.hashObject(data)).toString();
     data["metadata"] = metadata;
@@ -73,6 +74,10 @@ export class ScoreService {
 
   getWeekly() {
     return this.list("weekly");
+  }
+
+  getHardcore() {
+    return this.list("hardcore");
   }
 
   setBestScore(score: number) {

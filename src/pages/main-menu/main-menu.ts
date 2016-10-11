@@ -6,6 +6,7 @@ import {ScoreService} from "../../providers/score/service";
 import {AchievementService} from "../../providers/achievement/service";
 
 import {GamePage} from "../game/game";
+import {GameHardcorePage} from "../game-hardcore/game-hardcore";
 import {HighscorePage} from "../highscore/highscore";
 import {AchievementListPage} from "../achievement-list/achievement-list";
 import {SettingsPage} from "../settings/settings";
@@ -31,6 +32,10 @@ export class MainMenuPage {
 
   openGame() {
     this.nav.push(GamePage);
+  }
+
+  openGameHardcore() {
+    this.nav.push(GameHardcorePage);
   }
 
   openHighscore() {

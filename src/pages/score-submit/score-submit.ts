@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {NavController, AlertController, ViewController, Platform} from "ionic-angular";
+import {NavController, NavParams, AlertController, ViewController, Platform} from "ionic-angular";
 import {Globalization, InAppBrowser} from "ionic-native";
 
 import {GameplayService} from "../../providers/gameplay/service";
@@ -23,9 +23,11 @@ export class ScoreSubmitPage {
   isSubmitted: boolean;
   isNewHighscore: boolean;
   score: number;
+  isHardcore: boolean;
 
   constructor(
       public nav: NavController,
+      private params: NavParams,
       public viewCtrl: ViewController,
       public platform: Platform,
       private alertCtrl: AlertController,
@@ -37,6 +39,7 @@ export class ScoreSubmitPage {
     this.isSubmitted = false;
     this.isNewHighscore = false;
     this.score = gameplay.points;
+    this.isHardcore = params.get('isHardcore') || false;
   }
 
   ionViewWillEnter() {
@@ -78,7 +81,7 @@ export class ScoreSubmitPage {
     this.nav.setRoot(MainMenuPage);
   }
 
-  is_valid() {
+  isValid() {
     let valid = true;
     let message = "";
 
@@ -110,7 +113,7 @@ export class ScoreSubmitPage {
   }
 
   submitScore() {
-    if (!this.is_valid()) {
+    if (!this.isValid()) {
       return false;
     }
 
@@ -136,7 +139,7 @@ export class ScoreSubmitPage {
       platform = "windows";
     }
 
-    this.scoreService.create(this.playerName, this.score, countryID, platform, {
+    this.scoreService.create(this.playerName, this.score, countryID, platform, this.isHardcore, {
       "level": this.gameplay.level,
       "max_strike": this.gameplay.maxStrike
     }).then((is_success) => {
