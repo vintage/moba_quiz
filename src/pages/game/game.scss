@@ -9,6 +9,11 @@ page-game {
 
   .skip-button {
     margin: 10px 0;
+    height: 2.5rem;
+
+    ion-icon {
+      margin-right: 10px;
+    }
   }
 }
 

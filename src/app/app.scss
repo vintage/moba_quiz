@@ -63,7 +63,7 @@
 }
 
 .divider {
-  margin: 0 25px;
+  margin: 10px 25px;
   border-top: 1px dashed color($colors, primary);
   opacity: 0.2;
 }
@@ -109,13 +109,16 @@ ion-content {
   }
 }
 
-ion-tabbar {
-  background: #171512;
-  border-top: 3px solid color($colors, secondary);
+.tabbar {
+  border-top: 2px solid color($colors, secondary);
 }
 
 ion-card-content {
   color: color($colors, secondary) !important;
+}
+
+.spinner-crescent circle {
+  stroke: color($colors, primary) !important;
 }
 
 .alert-title {
