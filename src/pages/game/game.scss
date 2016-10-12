@@ -16,31 +16,3 @@ page-game {
     }
   }
 }
-
-.game-alert {
-  .alert-button-group {
-    display: none;
-  }
-
-  .alert-head {
-    color: color($colors, secondary);
-    text-align: center;
-
-    .icon {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      margin-right: 5px;
-      background-repeat: no-repeat;
-      background-size: contain;
-
-      &.coin {
-        background-image: url('../assets/images/coin_pro.png');
-      }
-
-      &.point {
-        background-image: url('../assets/images/coin.png');
-      }
-    }
-  }
-}

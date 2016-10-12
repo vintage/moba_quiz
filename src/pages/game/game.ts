@@ -52,34 +52,38 @@ export class GamePage {
     this.skipLeft = 0;
 
     Promise.all([itemService.load(), championService.load()]).then(() => {
-      this.gameTypes.load();
-      this.gameplay.start();
-      this.achievements.update("gameplay_small_play_count");
-      this.achievements.update("gameplay_medium_play_count");
-      this.achievements.update("gameplay_big_play_count");
-      this.openLevel();
+      this.startGame();
+    });
+  }
 
-      settings.isPremium().then(isPremium => {
-        if (!isPremium) {
-          gameplay.getTimesPlayed().then((timesPlayed) => {
-            if (timesPlayed % 2 === 0) {
-              this.showAd = true;
-              this.ads.prepareFullScreen();
-            }
-          });
-        } else {
-          this.addExtraLife(1);
-          this.addExtraSkips(3);
-        }
-      });
+  startGame() {
+    this.gameTypes.load();
+    this.gameplay.start();
+    this.achievements.update("gameplay_small_play_count");
+    this.achievements.update("gameplay_medium_play_count");
+    this.achievements.update("gameplay_big_play_count");
+    this.openLevel();
 
-      shop.getItemAmount("extra_life").then(lifeCount => {
-        this.addExtraLife(lifeCount);
-      });
-      
-      shop.getItemAmount("skip_questions").then(skipCount => {
-        this.addExtraSkips(skipCount);
-      });
+    this.settings.isPremium().then(isPremium => {
+      if (!isPremium) {
+        this.gameplay.getTimesPlayed().then((timesPlayed) => {
+          if (timesPlayed % 2 === 0) {
+            this.showAd = true;
+            this.ads.prepareFullScreen();
+          }
+        });
+      } else {
+        this.addExtraLife(1);
+        this.addExtraSkips(3);
+      }
+    });
+
+    this.shop.getItemAmount("extra_life").then(lifeCount => {
+      this.addExtraLife(lifeCount);
+    });
+    
+    this.shop.getItemAmount("skip_questions").then(skipCount => {
+      this.addExtraSkips(skipCount);
     });
   }
 
@@ -106,7 +110,7 @@ export class GamePage {
       if (this.isCoinLevel()) {
         title += `
           <div class="alert-line">
-            <div class="icon coin"></div> 10 coins
+            <div class="icon coin"></div> ` + this.getCoinsAmount() + ` coins
           </div>
         `;
       }
@@ -131,6 +135,10 @@ export class GamePage {
     return this.gameplay.level !== 0 && this.gameplay.level % 8 === 0;
   }
 
+  getCoinsAmount(): number {
+    return 10;
+  }
+
   getGameType() {
     return this.gameTypes.getAny();
   }
@@ -151,7 +159,7 @@ export class GamePage {
       this.playSound("sfx/next_level.wav");
       
       if (this.isCoinLevel()) {
-        this.shop.addCoins(10);
+        this.shop.addCoins(this.getCoinsAmount());
       }
 
       this.openLevelStats().then(() => {

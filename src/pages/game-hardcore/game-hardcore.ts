@@ -41,6 +41,12 @@ export class GameHardcorePage extends GamePage {
     itemService, championService, gameTypes, ads, settings, achievements, shop);
   }
 
+  startGame() {
+    super.startGame();
+
+    this.gameplay.chances = 1;
+  }
+
    // Do nothing - hardcore mode is just hardcore
   addExtraLife(count: number) {}
   addExtraSkips(count: number) {}
@@ -49,6 +55,10 @@ export class GameHardcorePage extends GamePage {
   isCoinLevel(): boolean {
     // Every level is a coin level
     return true;
+  }
+
+  getCoinsAmount(): number {
+    return 15;
   }
 
   openScoreSubmit() {
