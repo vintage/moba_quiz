@@ -12,7 +12,7 @@ champion_image_path = './data/images/champions/'
 
 # Check http://gameinfo.eune.leagueoflegends.com/en/game-info/champions/
 # XHR request to get current API version
-base_url = 'http://ddragon.leagueoflegends.com/cdn/6.17.1'
+base_url = 'http://ddragon.leagueoflegends.com/cdn/6.20.1'
 items_url = '{}/data/en_US/item.json'.format(base_url)
 champions_url = '{}/data/en_US/champion.json'.format(base_url)
 

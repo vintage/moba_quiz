@@ -4,6 +4,7 @@
   "author": "Kamil Rykowski <kamil.rykowski@gmail.com>",
   "homepage": "https://www.facebook.com/puppy.box.studio/",
   "private": true,
+  "version": "1.9.0",
   "scripts": {
     "build": "ionic-app-scripts build",
     "watch": "ionic-app-scripts watch",
@@ -26,6 +27,10 @@
     "typescript": "^2.0.3"
   },
   "cordovaPlugins": [
+    {
+      "locator": "https://github.com/floatinghotpot/cordova-plugin-chartboost",
+      "id": "cordova-plugin-chartboost"
+    },
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
