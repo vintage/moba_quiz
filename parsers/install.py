@@ -5,7 +5,20 @@ from subprocess import call
 
 import click
 
+"""
+In case of problems during building for android (due to the cordova-chartboost library):
 
+Source: http://stackoverflow.com/questions/32511242/cordova-error-on-build-only-for-android-com-android-dex-dexexception-multiple/32559386#32559386
+Adding the following lines to the build.gradle file located in platforms/android did it for me.
+
+configurations {
+   all*.exclude group: 'com.android.support', module: 'support-v4'
+}
+I copied it after the line:
+
+apply plugin: 'android'
+Hope this helps.
+"""
 def validate_provider(ctx, param, value):
     directory = 'app/{}'.format(value)
     if not os.path.isdir(directory):
