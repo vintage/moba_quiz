@@ -28,8 +28,8 @@
   },
   "cordovaPlugins": [
     {
-      "locator": "https://github.com/floatinghotpot/cordova-plugin-chartboost",
-      "id": "cordova-plugin-chartboost"
+      "locator": "https://github.com/cranberrygame/cordova-plugin-ad-chartboost",
+      "id": "cordova-plugin-ad-chartboost"
     },
     "cordova-plugin-device",
     "cordova-plugin-console",
