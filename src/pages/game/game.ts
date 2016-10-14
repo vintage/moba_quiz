@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {NavController, ViewController, AlertController} from "ionic-angular";
 import {ComponentFactoryResolver, Compiler, ViewChild, ViewContainerRef} from "@angular/core";
 import {Vibration} from "ionic-native";
+import _ from "lodash";
 
 import {ItemService} from "../../providers/item/service";
 import {ChampionService} from "../../providers/champion/service";
@@ -132,11 +133,11 @@ export class GamePage {
   }
 
   isCoinLevel(): boolean {
-    return this.gameplay.level !== 0 && this.gameplay.level % 8 === 0;
+    return this.gameplay.level !== 0 && this.gameplay.level % 3 === 0;
   }
 
   getCoinsAmount(): number {
-    return 10;
+    return _.random(4, 8);
   }
 
   getGameType() {

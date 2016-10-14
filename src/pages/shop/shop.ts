@@ -39,23 +39,29 @@ export class ShopPage {
     this.items = this.shop.items;
     this.updateState();
 
+    this.registerAdHandlers();
     this.ads.prepareRewardVideo();
+  }
 
-    document.addEventListener("onAdPresent", data => {
-      if (data["adNetwork"] === "Chartboost") {
-        this.music.pause();
-      }
-    });
+  registerAdHandlers() {
+    let chartboost = window['chartboost'];
+    if (!chartboost) {
+      return false;
+    }
 
-    document.addEventListener("onAdLoaded", data => {
-      if (data["adNetwork"] === "Chartboost" && !this.isVideoReady) {
+    chartboost.onRewardedVideoAdShown = (location) => {
+      this.music.pause();
+    };
+
+    chartboost.onRewardedVideoAdLoaded = (location) => {
+      if (!this.isVideoReady) {
         this.isVideoReady = true;
         this.appRef.tick();
       }
-    });
+    };
 
-    document.addEventListener("onAdDismiss", data => {
-      if (data["adNetwork"] === "Chartboost" && this.isVideoReady) {
+    chartboost.onRewardedVideoAdCompleted = (location) => {
+      if (this.isVideoReady) {
         this.isVideoReady = false;
         this.music.start();
         
@@ -66,7 +72,13 @@ export class ShopPage {
           this.ads.prepareRewardVideo();
         });
       }
-    });
+    };
+
+    if (chartboost.loadedRewardedVideoAd()) {
+      this.isVideoReady = true;
+    }
+
+    return true;
   }
 
   updateState() {

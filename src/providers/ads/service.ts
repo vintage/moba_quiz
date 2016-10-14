@@ -10,10 +10,7 @@ export class AdService {
     let config = this.getConfiguration();
 
     let video = this.getVideoEngine();
-    video.setOptions({
-      appId: config.rewardVideoId,
-      appKey: config.rewardVideoKey
-    });
+    video.setUp(config.rewardVideoId, config.rewardVideoKey);
   }
 
   getConfiguration() {
@@ -31,7 +28,7 @@ export class AdService {
   }
 
   getVideoEngine() {
-    let engine = window["Chartboost"];
+    let engine = window["chartboost"];
     return engine;
   }
 
@@ -85,10 +82,7 @@ export class AdService {
       return;
     }
 
-    engine.prepareInterstitial({
-      adId: "video/Item Store",
-      autoShow: false
-    });
+    engine.preloadRewardedVideoAd('Item Store');
   }
 
   showRewardVideo() {
@@ -97,6 +91,6 @@ export class AdService {
       return;
     }
 
-    engine.showInterstitial();
+    engine.showRewardedVideoAd('Item Store');
   }
 }

@@ -32,8 +32,12 @@
               <p>
                 Watch short video ad to get 1000 coins:
               </p>
+
+              <button ion-button outline block color="primary" *ngIf="!isVideoReady" disabled>
+                Loading video ...
+              </button>
               
-              <button ion-button outline block color="primary" (click)="getFreeCoins()" [disabled]="!isVideoReady">
+              <button ion-button outline block color="primary" (click)="getFreeCoins()" *ngIf="isVideoReady">
                 Get free coins
               </button>
             </ion-col>
