@@ -99,11 +99,11 @@ def build(provider):
 
     src_apk = "android-armv7-release-unsigned.apk"
     jarsigner(src_apk)
-    zipalign(src_apk, "{}_arm.apk".format(provider))
+    zipalign(src_apk, "builds/{}_arm.apk".format(provider))
 
     src_apk = "android-x86-release-unsigned.apk"
     jarsigner(src_apk)
-    zipalign(src_apk, "{}_x86.apk".format(provider))
+    zipalign(src_apk, "builds/{}_x86.apk".format(provider))
 
 
 if __name__ == '__main__':

@@ -8,6 +8,7 @@
 /www/lib/
 /platforms/
 /plugins/
+/builds/
 *.swp
 .DS_Store
 Thumbs.db
@@ -25,5 +26,4 @@ npm-debug.log
 /resources/
 /config.xml
 puppybox-release.keystore
-/*.apk
 /.tmp/
