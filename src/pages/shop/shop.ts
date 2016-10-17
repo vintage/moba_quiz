@@ -1,5 +1,6 @@
 import {Component, ApplicationRef} from "@angular/core";
 import {AlertController} from "ionic-angular";
+import {InAppBrowser} from "ionic-native";
 
 import {SettingsService} from "../../providers/settings/service";
 import {AdService} from "../../providers/ads/service";
@@ -14,6 +15,9 @@ import {MusicService} from "../../providers/music/service";
 export class ShopPage {
   coins: number;
   isVideoReady: boolean;
+  isVideoPlayed: boolean;
+  isAppRated: boolean;
+  isAppLiked: boolean;
   items: ShopItem[];
   itemsAvailability: Object;
 
@@ -26,6 +30,9 @@ export class ShopPage {
     private music: MusicService
   ) {
     this.isVideoReady = false;
+    this.isVideoPlayed = false;
+    this.isAppRated = true;
+    this.isAppLiked = true;
     this.itemsAvailability = {};
   }
 
@@ -39,6 +46,9 @@ export class ShopPage {
     this.items = this.shop.items;
     this.updateState();
 
+    this.settings.isAppRated().then(v => this.isAppRated = v);
+    this.settings.isAppLiked().then(v => this.isAppLiked = v);
+
     this.registerAdHandlers();
     this.ads.prepareRewardVideo();
   }
@@ -50,6 +60,7 @@ export class ShopPage {
     }
 
     chartboost.onRewardedVideoAdShown = (location) => {
+      this.isVideoPlayed = true;
       this.music.pause();
     };
 
@@ -61,7 +72,8 @@ export class ShopPage {
     };
 
     chartboost.onRewardedVideoAdCompleted = (location) => {
-      if (this.isVideoReady) {
+      if (this.isVideoReady && this.isVideoPlayed) {
+        this.isVideoPlayed = false;
         this.isVideoReady = false;
         this.music.start();
         
@@ -171,5 +183,29 @@ export class ShopPage {
 
   getFreeCoins() {
     this.ads.showRewardVideo();
+  }
+
+  rateApp() {
+    this.isAppRated = true;
+
+    let url: string = this.settings.appUrl;
+
+    this.settings.rateApp().then(() => {
+      return this.shop.addCoins(5000);
+    }).then(() => {
+      InAppBrowser.open(url, "_system");
+    });
+  }
+
+  likeApp() {
+    this.isAppLiked = true;
+
+    let url: string = "http://facebook.com/puppy.box.studio/";
+
+    this.settings.likeApp().then(() => {
+      return this.shop.addCoins(5000);
+    }).then(() => {
+      InAppBrowser.open(url, "_system");
+    });
   }
 }

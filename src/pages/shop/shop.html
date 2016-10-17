@@ -42,6 +42,30 @@
               </button>
             </ion-col>
           </ion-row>
+
+          <ion-row *ngIf="!isAppRated || !isAppLiked">
+            <ion-col>
+              <p>
+                Rate application or like us on Facebook to get <b>5000</b> coins.
+              </p>
+
+              <ion-row>
+                <ion-col>
+                  <button ion-button icon-left outline block color="primary" (click)="rateApp()" *ngIf="!isAppRated">
+                    <ion-icon name="appstore"></ion-icon>
+                    Rate app
+                  </button>
+                </ion-col>
+
+                <ion-col>
+                  <button ion-button icon-left outline block color="primary" (click)="likeApp()" *ngIf="!isAppLiked">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                    Like us
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
         </div>
       </ion-card-content>
     </ion-card>

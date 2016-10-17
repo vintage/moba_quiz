@@ -9,6 +9,8 @@ export class SettingsService {
   premiumKey: string = "premium_key";
   musicEnabledKey: string = "settings_music_enabled";
   vibrationEnabledKey: string = "settings_vibration_enabled";
+  rateAppKey: string = "settings_rate_app";
+  likeAppKey: string = "settings_like_app";
 
   smallBanner: string;
   bigBanner: string;
@@ -74,11 +76,11 @@ export class SettingsService {
     });
   }
 
-  enablePremium() {
+  enablePremium(): Promise<any> {
     return this.storage.set(this.premiumKey, JSON.stringify(true));
   }
 
-  disablePremium() {
+  disablePremium(): Promise<any> {
     return this.storage.remove(this.premiumKey);
   }
 
@@ -92,23 +94,39 @@ export class SettingsService {
     });
   }
 
-  setSettings(key: string, value: any) {
+  setSettings(key: string, value: any): Promise<any> {
     return this.storage.set(key, JSON.stringify(value));
   }
 
-  isMusicEnabled() {
+  isMusicEnabled(): Promise<boolean> {
     return this.isSettingsEnabled(this.musicEnabledKey);
   }
 
-  setMusic(enabled: boolean) {
+  setMusic(enabled: boolean): Promise<any> {
     return this.setSettings(this.musicEnabledKey, enabled);
   }
 
-  isVibrationEnabled() {
+  isVibrationEnabled(): Promise<boolean> {
     return this.isSettingsEnabled(this.vibrationEnabledKey);
   }
 
-  setVibration(enabled: boolean) {
+  setVibration(enabled: boolean): Promise<any> {
     return this.setSettings(this.vibrationEnabledKey, enabled);
+  }
+
+  isAppRated(): Promise<boolean> {
+    return this.isSettingsEnabled(this.rateAppKey);
+  }
+
+  rateApp(): Promise<any> {
+    return this.setSettings(this.rateAppKey, true);
+  }
+
+  isAppLiked(): Promise<boolean> {
+    return this.isSettingsEnabled(this.likeAppKey);
+  }
+
+  likeApp(): Promise<any> {
+    return this.setSettings(this.likeAppKey, true);
   }
 }
