@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {App, Platform} from "ionic-angular";
 import {Splashscreen, StatusBar} from "ionic-native";
+import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import {AdService} from "../providers/ads/service";
 import {SettingsService} from "../providers/settings/service";
@@ -17,6 +18,7 @@ export class MyApp {
   constructor(
     private app: App,
     public platform: Platform,
+    private translate: TranslateService,
     private ads: AdService,
     private settings: SettingsService,
     private music: MusicService
@@ -53,6 +55,8 @@ export class MyApp {
   }
 
   initializeApp() {
+    this.translate.use('pl');
+
     this.platform.ready().then(() => {
       this.music.start();
 

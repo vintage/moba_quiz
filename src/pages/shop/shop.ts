@@ -1,6 +1,7 @@
 import {Component, ApplicationRef} from "@angular/core";
 import {AlertController} from "ionic-angular";
 import {InAppBrowser} from "ionic-native";
+import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import {SettingsService} from "../../providers/settings/service";
 import {AdService} from "../../providers/ads/service";
@@ -24,6 +25,7 @@ export class ShopPage {
   constructor(
     private appRef: ApplicationRef,
     private alertCtrl: AlertController,
+    private translate: TranslateService,
     private settings: SettingsService,
     private shop: ShopService,
     private ads: AdService,
@@ -121,11 +123,8 @@ export class ShopPage {
 
   showStoreError() {
     let alert = this.alertCtrl.create({
-      title: "Purchase Error",
-      message: `
-        We could not reach the Store ordering server.
-        Please ensure you are connected to the Internet and try again.
-      `,
+      title: this.translate.instant('Purchase error'),
+      message: this.translate.instant('We could not reach the Store ordering server. Please ensure you are connected to the Internet and try again.'),
       buttons: ["OK"]
     });
 
@@ -164,7 +163,7 @@ export class ShopPage {
     let store = window["store"];
     if (!store.restore) {
       let alert = this.alertCtrl.create({
-        title: "Restore not supported",
+        title: this.translate.instant('Restore not supported'),
         buttons: ["OK"]
       });
 

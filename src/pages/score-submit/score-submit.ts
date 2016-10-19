@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {NavController, NavParams, AlertController, ViewController, Platform} from "ionic-angular";
 import {Globalization, InAppBrowser} from "ionic-native";
+import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {CountryService} from "../../providers/country/service";
@@ -32,6 +33,7 @@ export class ScoreSubmitPage {
       public viewCtrl: ViewController,
       public platform: Platform,
       private alertCtrl: AlertController,
+      private translate: TranslateService,
       public gameplay: GameplayService,
       public countries: CountryService,
       private settings: SettingsService,
@@ -89,23 +91,23 @@ export class ScoreSubmitPage {
 
     if (!this.playerName) {
       valid = false;
-      message = "You need to enter your player name to submit the score.";
+      message = this.translate.instant("You need to enter your player name to submit the score");
     } else if (this.playerName.length > 16) {
       valid = false;
-      message = "Player name can be 16 characters only.";
+      message = this.translate.instant("Player name can be 16 characters only");
     } else if (!/^[a-zA-Z0-9]+$/.test(this.playerName)) {
       valid = false;
-      message = "Player name can contain only letters and digits. No special characters are allowed.";
+      message = this.translate.instant("Player name can contain only letters and digits");
     }
 
     if (window['navigator']['connection'] && window['navigator']['connection']['type'] === window['Connection']['NONE']) {
       valid = false;
-      message = "Can't submit the score. Check your internet connection.";
+      message = this.translate.instant("Unable to submit the score. Check your internet connection");
     }
 
     if (!valid) {
       let alert = this.alertCtrl.create({
-        title: message,
+        title: message + '.',
         buttons: ["OK"]
       });
       alert.present();
@@ -150,21 +152,20 @@ export class ScoreSubmitPage {
       if (is_success) {
         this.isSubmitted = true;
       } else {
-        let alert = this.alertCtrl.create({
-          title: "Score hasn't been saved",
-          subTitle: "Check your internet connection and try again.",
-          buttons: ["OK"]
-        });
-        alert.present();
+        this.scoreSubmitFailed();
       }
     }).catch(() => {
-      let alert = this.alertCtrl.create({
-        title: "Score hasn't been saved",
-        subTitle: "Check your internet connection and try again.",
-        buttons: ["OK"]
-      });
-      alert.present();
+      this.scoreSubmitFailed();
     });
+  }
+
+  scoreSubmitFailed() {
+    let alert = this.alertCtrl.create({
+      title: this.translate.instant("Score hasn't been saved"),
+      subTitle: this.translate.instant("Check your internet connection and try again"),
+      buttons: ["OK"]
+    });
+    alert.present();
   }
 
   playSound(src: string) {

@@ -1,5 +1,4 @@
 {
-  // Main menu
   "Play": "Play",
   "Hardcore mode": "Hardcore mode",
   "Highscore": "Highscore",
@@ -8,8 +7,12 @@
   "Shop": "Shop",
   "Best score": "Best score",
   "Times played": "Times played",
+  "Ticket required": "Ticket required",
+  "You have to buy the Hardcore Ticket in order to play this mode": "You have to buy the Hardcore Ticket in order to play this mode",
+  "Cancel": "Cancel",
+  "Open shop": "Open shop",
+  "Hardcore Ticket": "Hardcore Ticket",
 
-  // Score submit
   "New Highscore": "New Highscore",
   "Total score": "Total score",
   "Player name": "Player name",
@@ -19,13 +22,17 @@
   "Play again": "Play again",
   "Back to menu": "Back to menu",
   "Rate app": "Rate app",
-
-  // Settings
+  "You need to enter your player name to submit the score": "You need to enter your player name to submit the score",
+  "Player name can be 16 characters only": "Player name can be 16 characters only",
+  "Player name can contain only letters and digits": "Player name can contain only letters and digits",
+  "Unable to submit the score. Check your internet connection": "Unable to submit the score. Check your internet connection",
+  "Score hasn't been saved": "Score hasn't been saved",
+  "Check your internet connection and try again": "Check your internet connection and try again",
+  
   "Music": "Music",
   "Vibration": "Vibration",
   "About application": "About application",
 
-  // Shop
   "Watch short video ad to get coins": "Watch short video ad to get {{amount}} coins",
   "Rate application or like us on Facebook to get coins": "Rate application or like us on Facebook to get {{amount}} coins",
   "Loading video": "Loading video",
@@ -40,26 +47,29 @@
   "start every game with one extra life": "start every game with one extra life",
   "Buy premium": "Buy premium",
   "Restore purchase": "Restore purchase",
+  "Purchase error": "Purchase error",
+  "We could not reach the Store ordering server. Please ensure you are connected to the Internet and try again.": "We could not reach the Store ordering server. Please ensure you are connected to the Internet and try again.",
+  "Restore not supported": "Restore not supported",
 
-  // Highscore
   "Daily": "Daily",
   "Monthly": "Monthly",
   "Best ever": "Best ever",
   "Good news": "Good news",
   "It seems there are no score for this leaderboard": "It seems there are no score for this leaderboard",
-  "Play your first game and be the best one": "Play your <b>first game</b> and be the best one",
+  "Play your first game and be the best one": "Play your first game and be the best one",
   "Unable to fetch scores": "Unable to fetch scores",
   "It seems that you are not connected to the Internet": "It seems that you are not connected to the Internet",
-  "Check your connection and try again to see the best players scores": "Check your connection and try again to see the <b>best players</b> scores",
+  "Check your connection and try again to see the best players scores": "Check your connection and try again to see the best players scores",
 
-  // About
   "About": "About",
   "If you just": "If you just",
   "found a bug": "found a bug",
   "have any suggestion": "have any suggestion",
-  "want to say Hi": "want to say <b>Hi</b>",
+  "want to say Hi": "want to say Hi",
   "Contact us": "Contact us",
   "Visit Facebook": "Visit Facebook",
   "Authors": "Authors",
-  "Legal disclaimer": "Legal disclaimer"
+  "Legal disclaimer": "Legal disclaimer",
+  "Missing email client": "Missing email client",
+  "Contact us at puppy.box@outlook.com": "Contact us at puppy.box@outlook.com"
 }

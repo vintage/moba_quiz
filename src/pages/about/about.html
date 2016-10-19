@@ -8,35 +8,35 @@
   <div class="panel-box">
     <ion-card>
       <ion-card-header>
-        If you just
+        {{ 'If you just' | translate }}
       </ion-card-header>
 
       <ion-card-content>
         <ion-list no-lines>
           <ion-item>
             <ion-icon name="bug" item-left></ion-icon>
-              found a bug
+              {{ 'found a bug' | translate }}
           </ion-item>
 
           <ion-item>
             <ion-icon name="flame" item-left></ion-icon>
-              have any suggestion
+              {{ 'have any suggestion' | translate }}
           </ion-item>
 
           <ion-item>
             <ion-icon name="hand" item-left></ion-icon>
-              want to say <b>Hi</b>
+              {{ 'want to say Hi' | translate }}
           </ion-item>
         </ion-list>
 
-        <button ion-button block color="primary" (click)="openContact()">
+        <button ion-button icon-left block color="primary" (click)="openContact()">
           <ion-icon name="chatboxes"></ion-icon>
-          Contact us
+          {{ 'Contact us' | translate }}
         </button>
 
-        <button ion-button block color="secondary" (click)="openHomepage()">
+        <button ion-button icon-left block color="secondary" (click)="openHomepage()">
           <ion-icon name="contact"></ion-icon>
-          Visit Facebook
+          {{ 'Visit Facebook' | translate }}
         </button>
       </ion-card-content>
     </ion-card>
@@ -45,7 +45,7 @@
 
     <ion-card>
       <ion-card-header>
-        Authors
+        {{ 'Authors' | translate }}
       </ion-card-header>
 
       <ion-card-content>
@@ -59,7 +59,7 @@
 
     <ion-card>
       <ion-card-header>
-        Legal disclaimer
+        {{ 'Legal disclaimer' | translate }}
       </ion-card-header>
 
       <ion-card-content>

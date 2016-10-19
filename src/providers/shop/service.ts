@@ -9,8 +9,8 @@ export class ShopService {
 
   constructor(public storage: Storage) {
     this.items = [
-      new ShopItem("extra_life", "Extra Life", 1000, 1),
-      new ShopItem("skip_questions", "Skip 3 Questions", 1400, 3),
+      new ShopItem("extra_life", "Extra life", 1000, 1),
+      new ShopItem("skip_questions", "Skip question", 1400, 3),
       new ShopItem("hardcore_ticket", "Hardcore Ticket", 2000, 1),
     ];
   }

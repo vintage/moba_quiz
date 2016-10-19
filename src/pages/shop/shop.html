@@ -18,7 +18,7 @@
             <ion-col *ngFor="let item of items">
               <div class="shop-item">
                 <div class="item-image {{ item.id }}"></div>
-                <div class="item-name">{{ item.name }}</div>
+                <div class="item-name">{{ item.name | translate }}</div>
                 <button ion-button color="primary" block outline class="item-price" [disabled]="!itemsAvailability[item.id]" (click)="unlockItem(item)">
                   <div class="icon"></div>
                   <div class="text">{{ item.price }}</div>
@@ -99,7 +99,7 @@
             <ion-icon name="checkmark" item-left></ion-icon>
               <h2>{{ 'Extra life' | translate }}</h2>
               <p>
-                start every game with one extra life
+                {{ 'start every game with one extra life' | translate }}
               </p>
           </ion-item>
         </ion-list>

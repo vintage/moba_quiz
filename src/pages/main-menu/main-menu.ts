@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {NavController, Platform, AlertController} from "ionic-angular";
+import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {ScoreService} from "../../providers/score/service";
@@ -30,7 +31,8 @@ export class MainMenuPage {
     public scoreService: ScoreService,
     public achievements: AchievementService,
     private shop: ShopService,
-    public platform: Platform) {
+    public platform: Platform,
+    private translate: TranslateService) {
   }
 
   openGame() {
@@ -50,15 +52,15 @@ export class MainMenuPage {
 
   missingHardcoreTicket() {
     let alert = this.alertCtrl.create({
-      title: "Ticket required",
-      message: "You have to buy the Hardcore Ticket in order to play this mode.",
+      title: this.translate.instant('Ticket required'),
+      message: this.translate.instant('You have to buy the Hardcore Ticket in order to play this mode') + '.',
       buttons: [
         {
-          text: 'Cancel',
+          text: this.translate.instant('Cancel'),
           role: 'cancel',
         },
         {
-          text: 'Open shop',
+          text: this.translate.instant('Open shop'),
           handler: () => {
             this.openShop();
           }
