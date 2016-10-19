@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Highscore</ion-title>
+    <ion-title>{{ 'Highscore' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -32,12 +32,12 @@
 
       <ion-card *ngIf="scores && !scores.length">
         <ion-card-header>
-          Good news,
+          {{ 'Good news' | translate }},
         </ion-card-header>
 
         <ion-card-content>
-          It seems there are no score for this leaderboard.
-          Play your <b>first game</b> and be the best one!
+          {{ 'It seems there are no score for this leaderboard' | translate }}.
+          {{ 'Play your first game and be the best one' | translate }}!
         </ion-card-content>
       </ion-card>
     </div>
@@ -45,12 +45,12 @@
     <div *ngIf="!isOnline">
       <ion-card>
         <ion-card-header>
-          Unable to fetch scores,
+          {{ 'Unable to fetch scores' | translate }},
         </ion-card-header>
 
         <ion-card-content>
-          It seems that you are not connected to the Internet.
-          Check your connection and try again to see the <b>best players</b> scores!
+          {{ 'It seems that you are not connected to the Internet' | translate }}.
+          {{ 'Check your connection and try again to see the best players scores' | translate }}!
         </ion-card-content>
       </ion-card>
     </div>

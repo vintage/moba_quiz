@@ -14,7 +14,6 @@ export class SettingsPage {
   public isMusic: boolean = true;
   public isVibration: boolean = true;
   public appVersion: string;
-  public appName: string;
 
   constructor(
     public nav: NavController,
@@ -35,12 +34,6 @@ export class SettingsPage {
       this.appVersion = version;
     }).catch(() => {
       this.appVersion = "1.0.0";
-    });
-
-    AppVersion.getAppName().then(name => {
-      this.appName = name;
-    }).catch(() => {
-      this.appName = "Application";
     });
     
     this.settings.isMusicEnabled().then(isEnabled => {

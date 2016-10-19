@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Shop</ion-title>
+    <ion-title>{{ 'Shop' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -30,15 +30,15 @@
           <ion-row>
             <ion-col>
               <p>
-                Watch short video ad to get 1000 coins:
+                {{ 'Watch short video ad to get coins' | translate:{amount: 1000} }}:
               </p>
 
               <button ion-button outline block color="primary" *ngIf="!isVideoReady" disabled>
-                Loading video ...
+                {{ 'Loading video' | translate }} ...
               </button>
               
               <button ion-button outline block color="primary" (click)="getFreeCoins()" *ngIf="isVideoReady">
-                Get free coins
+                {{ 'Get free coins' | translate }}
               </button>
             </ion-col>
           </ion-row>
@@ -46,21 +46,21 @@
           <ion-row *ngIf="!isAppRated || !isAppLiked">
             <ion-col>
               <p>
-                Rate application or like us on Facebook to get <b>5000</b> coins.
+                {{ 'Rate application or like us on Facebook to get coins' | translate }}.
               </p>
 
               <ion-row>
-                <ion-col>
-                  <button ion-button icon-left outline block color="primary" (click)="rateApp()" *ngIf="!isAppRated">
+                <ion-col *ngIf="!isAppRated">
+                  <button ion-button icon-left outline block color="primary" (click)="rateApp()">
                     <ion-icon name="appstore"></ion-icon>
-                    Rate app
+                    {{ 'Rate app' | translate }}
                   </button>
                 </ion-col>
 
-                <ion-col>
-                  <button ion-button icon-left outline block color="primary" (click)="likeApp()" *ngIf="!isAppLiked">
+                <ion-col *ngIf="!isAppLiked">
+                  <button ion-button icon-left outline block color="primary" (click)="likeApp()">
                     <ion-icon name="logo-facebook"></ion-icon>
-                    Like us
+                    {{ 'Like us' | translate }}
                   </button>
                 </ion-col>
               </ion-row>
@@ -75,30 +75,29 @@
     <ion-card>
       <ion-card-content>
         <p>
-          Buy premium version of the game to removes all ads & unlock several 
-          unlimited features.
+          {{ 'Buy premium version of the game to removes all ads and unlock several unlimited features' | translate }}.
         </p>
 
         <ion-list no-lines>
           <ion-item>
             <ion-icon name="checkmark" item-left></ion-icon>
-              <h2>Ad-free</h2>
+              <h2>{{ 'Ad-free' | translate }}</h2>
               <p>
-                remove all ads from the game
+                {{ 'remove all ads from the game' | translate }}
               </p>
           </ion-item>
 
           <ion-item>
             <ion-icon name="checkmark" item-left></ion-icon>
-              <h2>Skip question</h2>
+              <h2>{{ 'Skip question' | translate }}</h2>
               <p>
-                skip up to 3 questions during every play
+                {{ 'skip up to X questions during every play' | translate:{amount: 3} }}
               </p>
           </ion-item>
 
           <ion-item>
             <ion-icon name="checkmark" item-left></ion-icon>
-              <h2>Extra life</h2>
+              <h2>{{ 'Extra life' | translate }}</h2>
               <p>
                 start every game with one extra life
               </p>
@@ -107,12 +106,12 @@
 
         <button ion-button icon-left block color="primary" (click)="makeOrder()">
           <ion-icon name="book"></ion-icon>
-          Buy premium
+          {{ 'Buy premium' | translate }}
         </button>
 
         <button ion-button icon-left block color="secondary" (click)="restoreOrder()">
           <ion-icon name="book"></ion-icon>
-          Restore purchase
+          {{ 'Restore purchase' | translate }}
         </button>
       </ion-card-content>
     </ion-card>

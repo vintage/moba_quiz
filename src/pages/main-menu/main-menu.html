@@ -6,7 +6,7 @@
           <ion-col>
             <button ion-button icon-left block color="default" (click)="openGame()">
               <ion-icon name="play"></ion-icon>
-              Play
+              {{ 'Play' | translate }}
             </button>
           </ion-col>
         </ion-row>
@@ -15,7 +15,7 @@
           <ion-col>
             <button ion-button icon-left block color="danger" (click)="openGameHardcore()">
               <ion-icon name="nuclear"></ion-icon>
-              Hardcore mode
+              {{ 'Hardcore mode' | translate }}
             </button>
           </ion-col>
         </ion-row>
@@ -24,7 +24,7 @@
           <ion-col>
             <button ion-button icon-left block color="secondary" (click)="openHighscore()">
               <ion-icon name="podium"></ion-icon>
-              Highscore
+              {{ 'Highscore' | translate }}
             </button>
           </ion-col>
         </ion-row>
@@ -33,7 +33,7 @@
           <ion-col>
             <button ion-button icon-left block color="secondary" (click)="openAchievements()">
               <ion-icon name="ribbon"></ion-icon>
-              Achievements
+              {{ 'Achievements' | translate }}
             </button>
           </ion-col>
         </ion-row>
@@ -53,14 +53,14 @@
           <ion-col>
             <button ion-button icon-left block color="secondary" (click)="openSettings()">
               <ion-icon name="settings"></ion-icon>
-              Settings
+              {{ 'Settings' | translate }}
             </button>
           </ion-col>
 
           <ion-col>
             <button ion-button icon-left block color="default" (click)="openShop()">
               <ion-icon name="cart"></ion-icon>
-              Shop
+              {{ 'Shop' | translate }}
             </button>
           </ion-col>
         </ion-row>
@@ -73,14 +73,14 @@
       <ion-col>
         <ion-row class="stats">
           <ion-col class="align-center">
-            <span class="label">Best score</span>
+            <span class="label">{{ 'Best score' | translate }}</span>
             <span class="value">{{ bestScore|points }}</span>
           </ion-col>
         </ion-row>
 
         <ion-row class="stats">
           <ion-col class="align-center">
-            <span class="label">Times played</span>
+            <span class="label">{{ 'Times played' | translate }}</span>
             <span class="value">{{ timesPlayed }}</span>
           </ion-col>
         </ion-row>

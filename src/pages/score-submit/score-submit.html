@@ -4,10 +4,10 @@
       <ion-col>
         <h2 class="score-overview">
           <span *ngIf="isNewHighscore">
-            <ion-icon name="trophy"></ion-icon> New Highscore!
+            <ion-icon name="trophy"></ion-icon> {{ 'New Highscore' | translate }}!
           </span>
           <span *ngIf="!isNewHighscore">
-            Total score
+            {{ 'Total score' | translate }}
           </span>
         </h2>
       </ion-col>
@@ -26,22 +26,22 @@
         <ion-row center *ngIf="score > 0">
           <ion-col width-75>
             <ion-item>
-              <ion-input maxlength="16" type="text" placeholder="Player name" [(ngModel)]="playerName"></ion-input>
+              <ion-input maxlength="16" type="text" [placeholder]="'Player name' | translate" [(ngModel)]="playerName"></ion-input>
             </ion-item>
           </ion-col>
 
           <ion-col width-25>
             <span (click)="showCountryList()">
               <img *ngIf="country" src="{{ country.getImageSource() }}" />
-              <a *ngIf="!country">Pick your country</a>
+              <a *ngIf="!country">{{ 'Pick your country' | translate }}</a>
             </span>
           </ion-col>
         </ion-row>
 
         <ion-row *ngIf="score > 0">
           <ion-col *ngIf="!isPending">
-            <button ion-button *ngIf="!isSubmitted" block color="primary" (click)="submitScore()">Submit</button>
-            <button ion-button *ngIf="isSubmitted" block color="primary" disabled>Score submitted</button>
+            <button ion-button *ngIf="!isSubmitted" block color="primary" (click)="submitScore()">{{ 'Submit' | translate }}</button>
+            <button ion-button *ngIf="isSubmitted" block color="primary" disabled>{{ 'Score submitted' | translate }}</button>
           </ion-col>
 
           <ion-col *ngIf="isPending">
@@ -53,19 +53,19 @@
 
         <ion-row *ngIf="!isHardcore">
           <ion-col>
-            <button ion-button block color="secondary" (click)="playAgain()">Play again</button>
+            <button ion-button block color="secondary" (click)="playAgain()">{{ 'Play again' | translate }}</button>
           </ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col>
-            <button ion-button block color="dark" (click)="openMenu()">Back to menu</button>
+            <button ion-button block color="dark" (click)="openMenu()">{{ 'Back to menu' | translate }}</button>
           </ion-col>
 
           <ion-col *ngIf="score > 1000000">
             <button ion-button block color="primary" (click)="openRating()">
               <ion-icon name="star"></ion-icon>
-              Rate APP
+              {{ 'Rate app' | translate }}
             </button>
           </ion-col>
         </ion-row>

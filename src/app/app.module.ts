@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { Http, HttpModule } from '@angular/http';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
 import { MyApp } from './app.component';
 
@@ -59,6 +60,10 @@ let appConfig = {
   prodMode: true
 };
 
+export function createTranslateLoader(http: Http) {
+  return new TranslateStaticLoader(http, './assets/i18n', '.json');
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -101,7 +106,12 @@ let appConfig = {
   ],
   imports: [
     IonicModule.forRoot(MyApp, appConfig),
-    HttpModule
+    HttpModule,
+    TranslateModule.forRoot({ 
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [Http]
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

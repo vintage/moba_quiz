@@ -7,6 +7,7 @@ import {CountryService} from "../../providers/country/service";
 import {CountryModel} from "../../providers/country/model";
 import {ScoreService} from "../../providers/score/service";
 import {SettingsService} from "../../providers/settings/service";
+import {ShopService} from "../../providers/shop/service";
 
 import {CountryListPage} from "../country-list/country-list";
 import {GamePage} from "../game/game";
@@ -34,6 +35,7 @@ export class ScoreSubmitPage {
       public gameplay: GameplayService,
       public countries: CountryService,
       private settings: SettingsService,
+      private shop: ShopService,
       public scoreService: ScoreService) {
     this.isPending = false;
     this.isSubmitted = false;
@@ -203,6 +205,12 @@ export class ScoreSubmitPage {
   }
 
   openRating() {
-    InAppBrowser.open(this.settings.appUrl, "_blank");
+    let url: string = this.settings.appUrl;
+
+    this.settings.rateApp().then(() => {
+      return this.shop.addCoins(5000);
+    }).then(() => {
+      InAppBrowser.open(url, "_blank");
+    });
   }
 }

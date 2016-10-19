@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Highscore</ion-title>
+    <ion-title>{{ 'Highscore' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-tabs>
-  <ion-tab tabTitle="Daily" [root]="dailyTab"></ion-tab>
-  <ion-tab tabTitle="Monthly" [root]="monthlyTab"></ion-tab>
-  <ion-tab tabTitle="Best ever" [root]="generalTab"></ion-tab>
+  <ion-tab [tabTitle]="'Daily' | translate" [root]="dailyTab"></ion-tab>
+  <ion-tab [tabTitle]="'Monthly' | translate" [root]="monthlyTab"></ion-tab>
+  <ion-tab [tabTitle]="'Best ever' | translate" [root]="generalTab"></ion-tab>
   <ion-tab tabIcon="nuclear" [root]="hardcoreTab"></ion-tab>
 </ion-tabs>

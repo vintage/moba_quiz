@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Settings</ion-title>
+    <ion-title>{{ 'Settings' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -10,12 +10,12 @@
       <ion-card-content>
         <ion-list no-lines>
           <ion-item>
-            <ion-label>Music</ion-label>
+            <ion-label>{{ 'Music' | translate }}</ion-label>
             <ion-checkbox [checked]="isMusic" (ionChange)="changeMusic($event)" item-right></ion-checkbox>
           </ion-item>
 
           <ion-item>
-            <ion-label>Vibration</ion-label>
+            <ion-label>{{ 'Vibration' | translate }}</ion-label>
             <ion-checkbox [checked]="isVibration" (ionChange)="changeVibration($event)" item-right></ion-checkbox>
           </ion-item>
         </ion-list>
@@ -30,7 +30,7 @@
           <ion-item>
             <button ion-button block clear (click)="openAbout()">
               <ion-icon name="contact"></ion-icon>
-              About {{ appName }} (v {{ appVersion }})
+              {{ 'About application' | translate }} ({{ appVersion }})
             </button>
           </ion-item>
         </ion-list>
