@@ -12,9 +12,9 @@
           <img src="{{ achievement.getImageSource() }}">
         </ion-avatar>
 
-        <h2>{{ achievement.name }}</h2>
+        <h2>{{ achievement.name | translate }}</h2>
         <p>
-          {{ achievement.description }}
+          {{ achievement.description | translate }}
         </p>
         <button ion-button color="dark" item-right>
           {{ achievement.progress }}/{{ achievement.goal }}
