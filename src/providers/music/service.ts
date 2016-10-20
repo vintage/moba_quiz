@@ -2,9 +2,14 @@ import { Injectable } from "@angular/core";
 import { Platform } from "ionic-angular";
 import { NativeAudio } from 'ionic-native';
 
+import { SettingsService } from '../settings/service';
+
 @Injectable()
 export class MusicService {
-  constructor(public platform: Platform) {
+  constructor(
+    public platform: Platform,
+    private settings: SettingsService
+  ) {
     this.platform.pause.subscribe(() => {
       this.pause();
     });
@@ -25,7 +30,11 @@ export class MusicService {
   }
 
   play(name: string) {
-    return NativeAudio.play(name, () => {});
+    this.settings.isSoundEnabled().then(isEnabled => {
+      if (isEnabled) {
+        NativeAudio.play(name, () => {});
+      }
+    });
   }
 
   start() {

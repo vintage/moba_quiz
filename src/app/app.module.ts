@@ -68,6 +68,7 @@ export class RavenErrorHandler implements ErrorHandler {
 
 let appConfig = {
   statusbarPadding: false,
+  backButtonText: '',
   prodMode: true
 };
 

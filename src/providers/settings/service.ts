@@ -8,7 +8,9 @@ export class SettingsService {
   isLoaded: boolean;
   premiumKey: string = "premium_key";
   musicEnabledKey: string = "settings_music_enabled";
+  soundEnabledKey: string = "settings_sound_enabled";
   vibrationEnabledKey: string = "settings_vibration_enabled";
+  languageKey: string = "settings_language";
   rateAppKey: string = "settings_rate_app";
   likeAppKey: string = "settings_like_app";
 
@@ -106,12 +108,28 @@ export class SettingsService {
     return this.setSettings(this.musicEnabledKey, enabled);
   }
 
+  isSoundEnabled(): Promise<boolean> {
+    return this.isSettingsEnabled(this.soundEnabledKey);
+  }
+
+  setSound(enabled: boolean): Promise<any> {
+    return this.setSettings(this.soundEnabledKey, enabled);
+  }
+
   isVibrationEnabled(): Promise<boolean> {
     return this.isSettingsEnabled(this.vibrationEnabledKey);
   }
 
   setVibration(enabled: boolean): Promise<any> {
     return this.setSettings(this.vibrationEnabledKey, enabled);
+  }
+
+  getLanguage(): Promise<string> {
+    return this.storage.get(this.languageKey);
+  }
+
+  setLanguage(code: string): Promise<any> {
+    return this.storage.set(this.languageKey, code);
   }
 
   isAppRated(): Promise<boolean> {

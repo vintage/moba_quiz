@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {App, Platform, Config} from "ionic-angular";
-import {Splashscreen, StatusBar} from "ionic-native";
+import {Splashscreen, StatusBar, Globalization} from "ionic-native";
 import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import {AdService} from "../providers/ads/service";
@@ -28,11 +28,27 @@ export class MyApp {
   }
 
   initializeApp() {
-    this.translate.use('pl');
+    this.translate.setDefaultLang('en');
+
+    this.settings.getLanguage().then(code => {
+      if (!code) {
+        Globalization.getPreferredLanguage().then(language => {
+          let code = language.value.substring(0, 2).toLowerCase();
+          let supportedCodes = ['en', 'pl'];
+
+          if (supportedCodes.indexOf(code) === -1) {
+            code = 'en';
+          }
+
+          this.settings.setLanguage(code);
+          this.translate.use(code);
+        });
+      } else {
+        this.translate.use(code);
+      }
+    });
 
     this.platform.ready().then(() => {
-      this.config.set('backButtonText', this.translate.instant('Back'));
-
       this.music.load().then(() => {
         this.settings.isMusicEnabled().then(isEnabled => {
           this.music.start();

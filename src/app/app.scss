@@ -125,6 +125,14 @@ ion-card-content {
   color: color($colors, primary) !important;
 }
 
+.item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+  color: color($colors, secondary) !important;
+}
+
+.alert-md .alert-radio-label {
+  color: #999;
+}
+
 .game-alert {
   .alert-button-group {
     display: none;

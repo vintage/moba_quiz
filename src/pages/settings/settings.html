@@ -15,9 +15,23 @@
           </ion-item>
 
           <ion-item>
+            <ion-label>{{ 'Sound effects' | translate }}</ion-label>
+            <ion-checkbox [checked]="isSound" (ionChange)="changeSound($event)" item-right></ion-checkbox>
+          </ion-item>
+
+          <ion-item>
             <ion-label>{{ 'Vibration' | translate }}</ion-label>
             <ion-checkbox [checked]="isVibration" (ionChange)="changeVibration($event)" item-right></ion-checkbox>
           </ion-item>
+          
+          <ion-list *ngIf="currentLanguage && languages">
+            <ion-item>
+              <ion-label>{{ 'Language' | translate }}</ion-label>
+              <ion-select [(ngModel)]="currentLanguage" (ionChange)="changeLanguage($event)" [cancelText]="'Cancel' | translate">
+                <ion-option *ngFor="let language of languages" [value]="language.code">{{ language.name }}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
         </ion-list>
       </ion-card-content>
     </ion-card>

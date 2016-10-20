@@ -6,7 +6,7 @@
   "Settings": "Ustawienia",
   "Shop": "Sklep",
   "Best score": "Rekord",
-  "Times played": "Rozgrywek",
+  "Times played": "Rozgrywki",
   "Ticket required": "Potrzebny bilet",
   "You have to buy the Hardcore Ticket in order to play this mode": "Musisz kupić Bilet Twardziela, aby zagrać w tym trybie",
   "Cancel": "Anuluj",
@@ -31,8 +31,10 @@
   "Score hasn't been saved": "Wynik nie został zapisany",
   "Check your internet connection and try again": "Sprawdź połączenie z internetem i spróbuj ponownie",
   
-  "Music": "Dźwięk",
+  "Music": "Muzyka",
+  "Sound effects": "Efekty dźwiękowe",
   "Vibration": "Wibracje",
+  "Language": "Język",
   "About application": "O aplikacji",
 
   "Watch short video ad to get coins": "Obejrzyj krótką reklamę aby otrzymać {{amount}} monet",
