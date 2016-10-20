@@ -46,21 +46,21 @@
           <ion-row *ngIf="!isAppRated || !isAppLiked">
             <ion-col>
               <p>
-                {{ 'Rate application or like us on Facebook to get coins' | translate }}.
+                {{ 'Rate application or like us on Facebook to get coins' | translate:{amount: 5000} }}.
               </p>
 
               <ion-row>
                 <ion-col *ngIf="!isAppRated">
                   <button ion-button icon-left outline block color="primary" (click)="rateApp()">
                     <ion-icon name="appstore"></ion-icon>
-                    {{ 'Rate app' | translate }}
+                    {{ 'Rate' | translate }}
                   </button>
                 </ion-col>
 
                 <ion-col *ngIf="!isAppLiked">
                   <button ion-button icon-left outline block color="primary" (click)="likeApp()">
                     <ion-icon name="logo-facebook"></ion-icon>
-                    {{ 'Like us' | translate }}
+                    {{ 'Like' | translate }}
                   </button>
                 </ion-col>
               </ion-row>
@@ -104,7 +104,7 @@
           </ion-item>
         </ion-list>
 
-        <button ion-button icon-left block color="primary" (click)="makeOrder()">
+        <button ion-button icon-left block color="primary" (click)="makeOrder()" *ngIf="!isPremium">
           <ion-icon name="book"></ion-icon>
           {{ 'Buy premium' | translate }}
         </button>

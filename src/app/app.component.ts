@@ -26,34 +26,6 @@ export class MyApp {
     this.initializeApp();
   }
 
-  initializeStore() {
-    let store = window["store"];
-    if (!store) {
-      return;
-    }
-
-    store.verbosity = store.INFO;
-
-    store.register({
-      id: this.settings.storeProduct,
-      alias: "Premium version",
-      type: store.NON_CONSUMABLE
-    });
-
-    store.when(this.settings.storeProduct)
-      .approved(order => {
-        this.settings.enablePremium().then(() => {
-          order.finish();
-          this.ads.removeBanner();
-        });
-      })
-      .refunded(() => {
-        this.settings.disablePremium();
-      });
-
-    store.refresh();
-  }
-
   initializeApp() {
     this.translate.use('pl');
 
@@ -72,8 +44,6 @@ export class MyApp {
       StatusBar.styleDefault();
 
       this.settings.load().then(() => {
-        this.initializeStore();
-
         if (window["analytics"]) {
           window["analytics"].startTrackerWithId(this.settings.trackingId);
         }
@@ -88,9 +58,7 @@ export class MyApp {
         });
       });
     }).catch(() => {
-      this.settings.load().then(() => {
-        this.initializeStore();
-      });
+      this.settings.load();
     });
   }
 }

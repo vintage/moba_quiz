@@ -1,6 +1,6 @@
 import {Component, ApplicationRef} from "@angular/core";
-import {AlertController} from "ionic-angular";
-import {InAppBrowser} from "ionic-native";
+import {AlertController, ToastController} from "ionic-angular";
+import {InAppBrowser, InAppPurchase} from "ionic-native";
 import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import {SettingsService} from "../../providers/settings/service";
@@ -19,12 +19,14 @@ export class ShopPage {
   isVideoPlayed: boolean;
   isAppRated: boolean;
   isAppLiked: boolean;
+  isPremium: boolean;
   items: ShopItem[];
   itemsAvailability: Object;
 
   constructor(
     private appRef: ApplicationRef,
     private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
     private translate: TranslateService,
     private settings: SettingsService,
     private shop: ShopService,
@@ -50,6 +52,7 @@ export class ShopPage {
 
     this.settings.isAppRated().then(v => this.isAppRated = v);
     this.settings.isAppLiked().then(v => this.isAppLiked = v);
+    this.settings.isPremium().then(v => this.isPremium = v);
 
     this.registerAdHandlers();
     this.ads.prepareRewardVideo();
@@ -132,8 +135,7 @@ export class ShopPage {
   }
 
   isStoreAvailable() {
-    let store = window["store"];
-    if (!store) {
+    if (!window['cordova']) {
       return false;
     }
 
@@ -144,14 +146,33 @@ export class ShopPage {
     return true;
   }
 
+  enablePremium() {
+    this.settings.enablePremium().then(() => {
+      this.ads.removeBanner();
+
+      let toast = this.toastCtrl.create({
+        message: 'You are premium player',
+        duration: 3000
+      });
+      toast.present();
+    });
+  }
+
   makeOrder() {
     if (!this.isStoreAvailable()) {
       this.showStoreError();
       return;
     }
 
-    let store = window["store"];
-    store.order(this.settings.storeProduct);
+    InAppPurchase
+      .buy(this.settings.storeProduct)
+      .then(data => {
+        console.log('buy: ', data);
+        this.enablePremium();
+      })
+      .catch(err => {
+        this.showStoreError();
+      });
   }
 
   restoreOrder() {
@@ -160,18 +181,21 @@ export class ShopPage {
       return;
     }
 
-    let store = window["store"];
-    if (!store.restore) {
-      let alert = this.alertCtrl.create({
-        title: this.translate.instant('Restore not supported'),
-        buttons: ["OK"]
+    InAppPurchase
+      .restorePurchases()
+      .then(data => {
+        console.log('restore: ', data);
+        let premiumProduct = data.filter(d => {
+          d.productId === this.settings.storeProduct
+        })[0];
+
+        if (premiumProduct) {
+          this.enablePremium();
+        }
+      })
+      .catch(function (err) {
+        console.log(err);
       });
-
-      alert.present();
-      return;
-    }
-
-    store.restore();
   }
 
   unlockItem(item: ShopItem) {

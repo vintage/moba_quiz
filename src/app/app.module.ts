@@ -60,7 +60,7 @@ Raven
   .config('https://a34e22c7f29e4e3e8b70d86230e98179@sentry.io/107612')
   .install();
 
-class RavenErrorHandler implements ErrorHandler {
+export class RavenErrorHandler implements ErrorHandler {
   handleError(err:any) : void {
     Raven.captureException(err.originalError);
   }

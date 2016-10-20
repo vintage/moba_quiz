@@ -59,7 +59,9 @@
     "cordova-plugin-inappbrowser",
     "cordova-plugin-crosswalk-webview@1.7",
     "cordova-plugin-globalization",
-    "cordova-plugin-app-version"
+    "cordova-plugin-app-version",
+    "cordova-sqlite-storage",
+    "cordova-plugin-inapppurchase"
   ],
   "cordovaPlatforms": [
     "android",
