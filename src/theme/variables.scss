@@ -60,6 +60,14 @@ $alert-ios-message-text-color: $alert-base-message-text-color;
 $alert-md-message-text-color: $alert-base-message-text-color;
 $alert-wp-message-text-color: $alert-base-message-text-color;
 
+$card-ios-margin-left: 0;
+$card-ios-margin-right: 0;
+$card-md-margin-left: 0;
+$card-md-margin-right: 0;
+
+$label-md-text-color: color($colors, secondary);
+$label-ios-text-color: color($colors, secondary);
+
 $toolbar-background: #171512;
 // App Theme
 // --------------------------------------------------
