@@ -54,7 +54,7 @@
     "cordova-plugin-email",
     "cordova-plugin-vibration",
     "cordova-plugin-admobpro",
-    "cordova-plugin-media",
+    "cordova-plugin-nativeaudio",
     "cordova-plugin-network-information",
     "cordova-plugin-inappbrowser",
     "cordova-plugin-crosswalk-webview@1.7",

@@ -171,6 +171,7 @@ export class ShopPage {
         this.enablePremium();
       })
       .catch(err => {
+        console.log('buy error: ', err);
         this.showStoreError();
       });
   }
@@ -193,7 +194,8 @@ export class ShopPage {
           this.enablePremium();
         }
       })
-      .catch(function (err) {
+      .catch(err => {
+        console.log('restore error: ', err);
         console.log(err);
       });
   }
@@ -216,6 +218,7 @@ export class ShopPage {
     this.settings.rateApp().then(() => {
       return this.shop.addCoins(5000);
     }).then(() => {
+      this.updateState();
       InAppBrowser.open(url, "_system");
     });
   }
@@ -228,6 +231,7 @@ export class ShopPage {
     this.settings.likeApp().then(() => {
       return this.shop.addCoins(5000);
     }).then(() => {
+      this.updateState();
       InAppBrowser.open(url, "_system");
     });
   }

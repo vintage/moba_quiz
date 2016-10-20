@@ -1,11 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Platform } from "ionic-angular";
-import { MediaPlugin } from "ionic-native";
+import { NativeAudio } from 'ionic-native';
 
 @Injectable()
 export class MusicService {
-  stream: MediaPlugin;
-
   constructor(public platform: Platform) {
     this.platform.pause.subscribe(() => {
       this.pause();
@@ -16,57 +14,37 @@ export class MusicService {
     });
   }
 
-  private getPath(): string {
-    let path: string;
-    if (this.platform.is("android")) {
-      path = "/android_asset/www/assets/sfx/background.mp3";
-    } else {
-      path = "assets/sfx/background.mp3";
-    }
+  load() {
+    NativeAudio.preloadSimple('nextLevel', 'assets/sfx/next_level.wav');
+    NativeAudio.preloadSimple('choiceValid', 'assets/sfx/choice_valid.wav');
+    NativeAudio.preloadSimple('choiceInvalid', 'assets/sfx/choice_invalid.wav');
+    NativeAudio.preloadSimple('skip', 'assets/sfx/skip.wav');
+    NativeAudio.preloadSimple('newHighscore', 'assets/sfx/new_best_score.mp3');
+    
+    return NativeAudio.preloadComplex('background', 'assets/sfx/background.mp3', 1, 1, 0);
+  }
 
-    return path;
+  play(name: string) {
+    return NativeAudio.play(name, () => {});
   }
 
   start() {
-    if (!this.stream && !!window['cordova']) {
-      this.stream = new MediaPlugin(this.getPath());
-    }
-
-    this.stream.play({
-      playAudioWhenScreenIsLocked: false,
-      numberOfLoops: 9999,
-    });
+    return NativeAudio.loop('background');
   }
 
   stop() {
-    if (!this.stream) {
-      return;
-    }
-
-    this.stream.stop();
+    return NativeAudio.stop('background');
   }
 
   pause() {
-    if (!this.stream) {
-      return;
-    }
-
-    this.stream.pause();
+    return NativeAudio.stop('background');
   }
 
   enable() {
-    if (!this.stream) {
-      return;
-    }
-
-    this.stream.setVolume(1);
+    return NativeAudio.setVolumeForComplexAsset('background', 0.5);
   }
 
   disable() {
-    if (!this.stream) {
-      return;
-    }
-
-    this.stream.setVolume(0);
+    return NativeAudio.setVolumeForComplexAsset('background', 0);
   }
 }

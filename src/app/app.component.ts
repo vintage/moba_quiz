@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {App, Platform} from "ionic-angular";
+import {App, Platform, Config} from "ionic-angular";
 import {Splashscreen, StatusBar} from "ionic-native";
 import {TranslateService} from 'ng2-translate/ng2-translate';
 
@@ -18,6 +18,7 @@ export class MyApp {
   constructor(
     private app: App,
     public platform: Platform,
+    private config: Config,
     private translate: TranslateService,
     private ads: AdService,
     private settings: SettingsService,
@@ -30,14 +31,18 @@ export class MyApp {
     this.translate.use('pl');
 
     this.platform.ready().then(() => {
-      this.music.start();
+      this.config.set('backButtonText', this.translate.instant('Back'));
 
-      this.settings.isMusicEnabled().then(isEnabled => {
-        if (isEnabled) {
-          this.music.enable();
-        } else {
-          this.music.disable();
-        }
+      this.music.load().then(() => {
+        this.settings.isMusicEnabled().then(isEnabled => {
+          this.music.start();
+          
+          if (isEnabled) {
+            this.music.enable();
+          } else {
+            this.music.disable();
+          }
+        });
       });
 
       Splashscreen.hide();

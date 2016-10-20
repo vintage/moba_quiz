@@ -12,6 +12,7 @@
   "Cancel": "Cancel",
   "Open shop": "Open shop",
   "Hardcore Ticket": "Hardcore Ticket",
+  "Back": "Back",
 
   "New Highscore": "New Highscore",
   "Total score": "Total score",
@@ -43,6 +44,7 @@
   "Ad-free": "Ad-free",
   "remove all ads from the game": "remove all ads from the game",
   "Skip question": "Skip question",
+  "Skip": "Skip",
   "skip up to X questions during every play": "skip up to {{amount}} questions during every play",
   "Extra life": "Extra life",
   "start every game with one extra life": "start every game with one extra life",
@@ -73,6 +75,7 @@
   "Legal disclaimer": "Legal disclaimer",
   "Missing email client": "Missing email client",
   "Contact us at puppy.box@outlook.com": "Contact us at puppy.box@outlook.com",
+  "Game over": "Game over",
 
   "Watching your every move": "Move watcher",
   "Open all skill levels": "Open all skill levels",

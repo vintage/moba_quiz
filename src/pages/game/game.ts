@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {NavController, ViewController, AlertController} from "ionic-angular";
 import {ComponentFactoryResolver, Compiler, ViewChild, ViewContainerRef} from "@angular/core";
 import {Vibration} from "ionic-native";
+import {TranslateService} from 'ng2-translate/ng2-translate';
 import _ from "lodash";
 
 import {ItemService} from "../../providers/item/service";
@@ -13,6 +14,7 @@ import {SettingsService} from "../../providers/settings/service";
 import {ShopService} from "../../providers/shop/service";
 import {GameTypeService} from "../../providers/game-type/service";
 import {GameTypeModel} from "../../providers/game-type/model";
+import {MusicService} from "../../providers/music/service";
 import {PointsPipe} from "../../pipes/points";
 
 import {ScoreSubmitPage} from "../score-submit/score-submit";
@@ -39,6 +41,7 @@ export class GamePage {
       public componentFactoryResolver: ComponentFactoryResolver,
       public compiler: Compiler,
       public alertCtrl: AlertController,
+      public translate: TranslateService,
       public gameplay: GameplayService,
       public itemService: ItemService,
       public championService: ChampionService,
@@ -46,7 +49,8 @@ export class GamePage {
       public ads: AdService,
       public settings: SettingsService,
       public achievements: AchievementService,
-      public shop: ShopService
+      public shop: ShopService,
+      public music: MusicService
   ) {
     this.isLocked = false;
     this.showAd = false;
@@ -107,11 +111,11 @@ export class GamePage {
       let title = `
         <div class="alert-line">
           <div class='icon point'></div>
-      ` + points + " points </div>";
+      ` + points + " </div>";
       if (this.isCoinLevel()) {
         title += `
           <div class="alert-line">
-            <div class="icon coin"></div> ` + this.getCoinsAmount() + ` coins
+            <div class="icon coin"></div> ` + this.getCoinsAmount() + `
           </div>
         `;
       }
@@ -157,7 +161,7 @@ export class GamePage {
     component.questionFinished.subscribe(() => {
       this.isLocked = true;
 
-      this.playSound("sfx/next_level.wav");
+      this.music.play("nextLevel");
       
       if (this.isCoinLevel()) {
         this.shop.addCoins(this.getCoinsAmount());
@@ -180,7 +184,7 @@ export class GamePage {
     });
 
     component.answerValid.subscribe(() => {
-      this.playSound("sfx/choice_valid.wav");
+      this.music.play("choiceValid");
     });
 
     component.answerInvalid.subscribe(() => {
@@ -188,7 +192,7 @@ export class GamePage {
         return;
       }
 
-      this.playSound("sfx/choice_invalid.wav");
+      this.music.play("choiceInvalid");
 
       this.settings.isVibrationEnabled().then(isEnabled => {
         if (isEnabled) {
@@ -211,6 +215,8 @@ export class GamePage {
       return;
     }
 
+    this.music.play('skip');
+
     this.skipLeft -= 1;
     this.shop.decreaseItemAmount("skip_questions");
 
@@ -228,7 +234,7 @@ export class GamePage {
     this.isLocked = true;
 
     let alert = this.alertCtrl.create({
-      title: "Game Over",
+      title: this.translate.instant("Game over"),
       enableBackdropDismiss: false,
       cssClass: "game-alert"
     });
@@ -250,13 +256,6 @@ export class GamePage {
         }
       });
     });
-  }
-
-  playSound(src: string) {
-    // if (window.Media) {
-    //   let sfx = new window.Media(src);
-    //   sfx.play();
-    // }
   }
 
   ionViewDidEnter() {

@@ -3,7 +3,7 @@
 
   <button ion-button block color="secondary" (click)="skipLevel()" *ngIf="skipLeft > 0" class="skip-button">
     <ion-icon name="redo"></ion-icon>
-    Skip ({{ skipLeft }} left)
+    {{ 'Skip' | translate }} ({{ skipLeft }})
   </button>
 
   <div #gameType></div>

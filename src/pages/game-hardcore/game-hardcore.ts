@@ -10,6 +10,8 @@ import {AchievementService} from "../../providers/achievement/service";
 import {SettingsService} from "../../providers/settings/service";
 import {ShopService} from "../../providers/shop/service";
 import {GameTypeService} from "../../providers/game-type/service";
+import {MusicService} from "../../providers/music/service";
+import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import { GamePage } from "../game/game";
 import { ScoreSubmitPage } from "../score-submit/score-submit";
@@ -28,6 +30,7 @@ export class GameHardcorePage extends GamePage {
       public componentFactoryResolver: ComponentFactoryResolver,
       public compiler: Compiler,
       public alertCtrl: AlertController,
+      public translate: TranslateService,
       public gameplay: GameplayService,
       public itemService: ItemService,
       public championService: ChampionService,
@@ -35,10 +38,11 @@ export class GameHardcorePage extends GamePage {
       public ads: AdService,
       public settings: SettingsService,
       public achievements: AchievementService,
-      public shop: ShopService
+      public shop: ShopService,
+      public music: MusicService
   ) {
-    super(nav, viewCtrl, componentFactoryResolver, compiler, alertCtrl, gameplay,
-    itemService, championService, gameTypes, ads, settings, achievements, shop);
+    super(nav, viewCtrl, componentFactoryResolver, compiler, alertCtrl, translate, gameplay,
+    itemService, championService, gameTypes, ads, settings, achievements, shop, music);
   }
 
   startGame() {

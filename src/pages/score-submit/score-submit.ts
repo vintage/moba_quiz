@@ -9,6 +9,7 @@ import {CountryModel} from "../../providers/country/model";
 import {ScoreService} from "../../providers/score/service";
 import {SettingsService} from "../../providers/settings/service";
 import {ShopService} from "../../providers/shop/service";
+import {MusicService} from "../../providers/music/service";
 
 import {CountryListPage} from "../country-list/country-list";
 import {GamePage} from "../game/game";
@@ -38,7 +39,9 @@ export class ScoreSubmitPage {
       public countries: CountryService,
       private settings: SettingsService,
       private shop: ShopService,
-      public scoreService: ScoreService) {
+      public scoreService: ScoreService,
+      private music: MusicService
+  ) {
     this.isPending = false;
     this.isSubmitted = false;
     this.isNewHighscore = false;
@@ -61,7 +64,7 @@ export class ScoreSubmitPage {
     this.scoreService.getBestScore().then(bestScore => {
       if (this.score > bestScore) {
         this.isNewHighscore = true;
-        this.playSound("sfx/new_best_score.mp3");
+        this.music.play("newHighscore");
         this.scoreService.setBestScore(this.score);
       }
     });
@@ -166,13 +169,6 @@ export class ScoreSubmitPage {
       buttons: ["OK"]
     });
     alert.present();
-  }
-
-  playSound(src: string) {
-    // if (window.Media) {
-    //   let sfx = new window.Media(src);
-    //   sfx.play();
-    // }
   }
 
   setDefaultCountry() {
