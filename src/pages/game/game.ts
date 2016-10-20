@@ -132,7 +132,7 @@ export class GamePage {
         alert.dismiss(null).then(() => {
           resolve(true);
         });
-      }, 500);
+      }, 800);
     });
   }
 

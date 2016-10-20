@@ -100,5 +100,16 @@
   "Hardcore gamer": "Twardzielowiec",
   "Play the game 250 times": "Zagraj 250 razy",
   "True fan": "Miłośnik",
-  "Play the game 1000 times": "Zagraj 1000 razy"
+  "Play the game 1000 times": "Zagraj 1000 razy",
+
+  "Attack type": "Rodzaj ataku",
+  "Hero name": "Nazwa postaci",
+  "Pantheon": "Pantheon",
+  "Hero skills": "Umiejętności",
+  "Hero title": "Tytuł postaci",
+  "Item price": "Cena",
+  "Recipe": "Recepta",
+  "Skill hero": "Posiadacz",
+  "Melee": "Zwarcie",
+  "Range": "Dystans"
 }

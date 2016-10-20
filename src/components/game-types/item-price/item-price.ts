@@ -50,7 +50,7 @@ export class ItemPriceGame extends BaseGame {
     }
 
     return _.shuffle(choices.map(choice => {
-      return new GameChoice(choice, choice === correct);
+      return new GameChoice(choice.toString(), choice === correct);
     }));
   }
 

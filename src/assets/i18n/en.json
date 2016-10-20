@@ -100,5 +100,16 @@
   "Hardcore gamer": "Hardcore gamer",
   "Play the game 250 times": "Play the game 250 times",
   "True fan": "True fan",
-  "Play the game 1000 times": "Play the game 1000 times"
+  "Play the game 1000 times": "Play the game 1000 times",
+
+  "Attack type": "Attack type",
+  "Hero name": "Hero name",
+  "Pantheon": "Pantheon",
+  "Hero skills": "Hero skills",
+  "Hero title": "Hero title",
+  "Item price": "Item price",
+  "Recipe": "Recipe",
+  "Skill hero": "Skill hero",
+  "Melee": "Melee",
+  "Range": "Range"
 }
