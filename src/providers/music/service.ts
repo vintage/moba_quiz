@@ -30,6 +30,10 @@ export class MusicService {
   }
 
   play(name: string) {
+    if (!window['cordova']) {
+      return;
+    }
+
     this.settings.isSoundEnabled().then(isEnabled => {
       if (isEnabled) {
         NativeAudio.play(name, () => {});
@@ -38,22 +42,42 @@ export class MusicService {
   }
 
   start() {
-    return NativeAudio.loop('background');
+    if (!window['cordova']) {
+      return;
+    }
+
+    NativeAudio.loop('background');
   }
 
   stop() {
-    return NativeAudio.stop('background');
+    if (!window['cordova']) {
+      return;
+    }
+
+    NativeAudio.stop('background');
   }
 
   pause() {
-    return NativeAudio.stop('background');
+    if (!window['cordova']) {
+      return;
+    }
+
+    NativeAudio.stop('background');
   }
 
   enable() {
-    return NativeAudio.setVolumeForComplexAsset('background', 0.5);
+    if (!window['cordova']) {
+      return;
+    }
+
+    NativeAudio.setVolumeForComplexAsset('background', 0.5);
   }
 
   disable() {
-    return NativeAudio.setVolumeForComplexAsset('background', 0);
+    if (!window['cordova']) {
+      return;
+    }
+
+    NativeAudio.setVolumeForComplexAsset('background', 0);
   }
 }

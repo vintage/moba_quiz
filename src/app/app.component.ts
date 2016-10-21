@@ -47,25 +47,32 @@ export class MyApp {
     });
   }
 
+  setMusic() {
+    if (!window['cordova']) {
+      return false;
+    }
+
+    this.music.load().then(() => {
+      this.settings.isMusicEnabled().then(isEnabled => {
+        this.music.start();
+        
+        if (isEnabled) {
+          this.music.enable();
+        } else {
+          this.music.disable();
+        }
+      });
+    });
+  }
+
   initializeApp() {
     this.translate.setDefaultLang('en');
 
     this.platform.ready().then(() => {
       Splashscreen.hide();
       StatusBar.styleDefault();
-
-      this.music.load().then(() => {
-        this.settings.isMusicEnabled().then(isEnabled => {
-          this.music.start();
-          
-          if (isEnabled) {
-            this.music.enable();
-          } else {
-            this.music.disable();
-          }
-        });
-      });
-
+      
+      this.setMusic();
       this.setLanguage();
 
       this.settings.load().then(() => {
