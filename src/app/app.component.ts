@@ -27,9 +27,7 @@ export class MyApp {
     this.initializeApp();
   }
 
-  initializeApp() {
-    this.translate.setDefaultLang('en');
-
+  setLanguage() {
     this.settings.getLanguage().then(code => {
       if (!code) {
         Globalization.getPreferredLanguage().then(language => {
@@ -47,6 +45,10 @@ export class MyApp {
         this.translate.use(code);
       }
     });
+  }
+
+  initializeApp() {
+    this.translate.setDefaultLang('en');
 
     this.platform.ready().then(() => {
       this.music.load().then(() => {
@@ -61,8 +63,12 @@ export class MyApp {
         });
       });
 
-      Splashscreen.hide();
-      StatusBar.styleDefault();
+      // Need to find better way to check if storage is ready
+      setTimeout(() => {
+        this.setLanguage();
+        Splashscreen.hide();
+        StatusBar.styleDefault();
+      }, 1000);
 
       this.settings.load().then(() => {
         if (window["analytics"]) {
