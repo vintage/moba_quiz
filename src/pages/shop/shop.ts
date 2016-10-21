@@ -71,6 +71,10 @@ export class ShopPage {
       this.music.pause();
     };
 
+    chartboost.onRewardedVideoAdHidden = (location) => {
+      this.music.start();
+    };
+
     chartboost.onRewardedVideoAdLoaded = (location) => {
       if (!this.isVideoReady) {
         this.isVideoReady = true;
@@ -78,11 +82,10 @@ export class ShopPage {
       }
     };
 
-    chartboost.onRewardedVideoAdCompleted = (location) => {
+    chartboost.onRewardedVideoAdCompleted = (location) => {      
       if (this.isVideoReady && this.isVideoPlayed) {
         this.isVideoPlayed = false;
         this.isVideoReady = false;
-        this.music.start();
         
         this.shop.addCoins(1000).then(coins => {
           return this.updateState();

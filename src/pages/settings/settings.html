@@ -40,14 +40,10 @@
 
     <ion-card>
       <ion-card-content>
-        <ion-list no-lines>
-          <ion-item>
-            <button ion-button icon-left block clear (click)="openAbout()">
-              <ion-icon name="contact"></ion-icon>
-              {{ 'About application' | translate }} ({{ appVersion }})
-            </button>
-          </ion-item>
-        </ion-list>
+        <button ion-button icon-left block outline (click)="openAbout()">
+          <ion-icon name="contact"></ion-icon>
+          {{ 'About application' | translate }} ({{ appVersion }})
+        </button>
       </ion-card-content>
     </ion-card>
   </div>
