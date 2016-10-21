@@ -51,6 +51,9 @@ export class MyApp {
     this.translate.setDefaultLang('en');
 
     this.platform.ready().then(() => {
+      Splashscreen.hide();
+      StatusBar.styleDefault();
+
       this.music.load().then(() => {
         this.settings.isMusicEnabled().then(isEnabled => {
           this.music.start();
@@ -63,12 +66,7 @@ export class MyApp {
         });
       });
 
-      // Need to find better way to check if storage is ready
-      setTimeout(() => {
-        this.setLanguage();
-        Splashscreen.hide();
-        StatusBar.styleDefault();
-      }, 1000);
+      this.setLanguage();
 
       this.settings.load().then(() => {
         if (window["analytics"]) {

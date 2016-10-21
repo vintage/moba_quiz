@@ -89,7 +89,11 @@ export class SettingsService {
   isSettingsEnabled(key: string): Promise<boolean> {
     return new Promise(resolve => {
       return this.storage.get(key).then(isEnabled => {
-        resolve(!!JSON.parse(isEnabled));
+        isEnabled = JSON.parse(isEnabled);
+        if (isEnabled === null) {
+          isEnabled = true;
+        }
+        resolve(!!isEnabled);
       }).catch(() => {
         resolve(true);
       });
