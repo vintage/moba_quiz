@@ -96,4 +96,15 @@ export class BaseGame {
       this.finish();
     }
   }
+
+  gameOver() {
+    this.choices = this.choices.map(ch => {
+      if (ch && ch.isValid) {
+        return ch;
+      }
+      else {
+        return null;
+      }
+    });
+  }
 }

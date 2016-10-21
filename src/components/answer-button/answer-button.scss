@@ -1,5 +1,9 @@
 answer-button {
   .answer {
     height: 3.4rem;
+
+    &.hidden {
+      visibility: hidden;
+    }
   }
 }

@@ -206,6 +206,7 @@ export class GamePage {
 
       if (this.gameplay.isOver()) {
         this.finishGame();
+        component.gameOver();
       }
     });
   }
@@ -235,17 +236,11 @@ export class GamePage {
 
     let alert = this.alertCtrl.create({
       title: this.translate.instant("Game over"),
-      enableBackdropDismiss: false,
+      enableBackdropDismiss: true,
       cssClass: "game-alert"
     });
-
+    alert.didLeave.subscribe(() => this.openScoreSubmit());
     alert.present();
-
-    setTimeout(() => {
-      alert.dismiss(null).then(() => {
-        this.openScoreSubmit();
-      });
-    }, 1000);
   }
 
   openScoreSubmit() {

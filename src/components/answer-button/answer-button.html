@@ -1,1 +1,5 @@
-<button ion-button block color="primary" (click)="onClick()" class="answer" *ngIf="choice">{{ choice.option | translate }}</button>
+<button ion-button block color="primary" (click)="onClick()" class="answer" [ngClass]="{hidden: !choice}">
+  <span *ngIf="choice">
+    {{ choice.option | translate }}
+  </span>
+</button>
