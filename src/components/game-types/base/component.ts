@@ -64,6 +64,10 @@ export class BaseGame {
   }
 
   isValid(choice: GameChoice): boolean {
+    if (!choice) {
+      return false;
+    }
+
     return choice.isValid;
   }
 
