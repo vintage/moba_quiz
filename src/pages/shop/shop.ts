@@ -56,6 +56,8 @@ export class ShopPage {
 
     this.registerAdHandlers();
     this.ads.prepareRewardVideo();
+
+    InAppPurchase.getProducts([this.settings.storeProduct]);
   }
 
   registerAdHandlers() {
@@ -148,6 +150,7 @@ export class ShopPage {
 
   enablePremium() {
     this.settings.enablePremium().then(() => {
+      this.isPremium = true;
       this.ads.removeBanner();
 
       let toast = this.toastCtrl.create({
@@ -167,11 +170,11 @@ export class ShopPage {
     InAppPurchase
       .buy(this.settings.storeProduct)
       .then(data => {
-        console.log('buy: ', data);
+        console.log('buy: ', JSON.stringify(data));
         this.enablePremium();
       })
       .catch(err => {
-        console.log('buy error: ', err);
+        console.log('buy error: ', JSON.stringify(err));
         this.showStoreError();
       });
   }
@@ -185,9 +188,9 @@ export class ShopPage {
     InAppPurchase
       .restorePurchases()
       .then(data => {
-        console.log('restore: ', data);
+        console.log('restore: ', JSON.stringify(data));
         let premiumProduct = data.filter(d => {
-          d.productId === this.settings.storeProduct
+          return d.productId === this.settings.storeProduct && !!d.transactionId;
         })[0];
 
         if (premiumProduct) {
@@ -195,8 +198,7 @@ export class ShopPage {
         }
       })
       .catch(err => {
-        console.log('restore error: ', err);
-        console.log(err);
+        console.log('restore error: ', JSON.stringify(err));
       });
   }
 
