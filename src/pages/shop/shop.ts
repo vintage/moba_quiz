@@ -219,20 +219,20 @@ export class ShopPage {
       return this.shop.addCoins(5000);
     }).then(() => {
       this.updateState();
-      InAppBrowser.open(url, "_system");
+      new InAppBrowser(url, '_system');
     });
   }
 
   likeApp() {
     this.isAppLiked = true;
 
-    let url: string = "http://facebook.com/puppy.box.studio/";
+    let url: string = 'https://www.facebook.com/n/?puppy.box.studio';
 
     this.settings.likeApp().then(() => {
       return this.shop.addCoins(5000);
     }).then(() => {
       this.updateState();
-      InAppBrowser.open(url, "_system");
+      new InAppBrowser(url, '_system');
     });
   }
 }

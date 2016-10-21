@@ -207,7 +207,7 @@ export class ScoreSubmitPage {
     this.settings.rateApp().then(() => {
       return this.shop.addCoins(5000);
     }).then(() => {
-      InAppBrowser.open(url, "_blank");
+      new InAppBrowser(url, '_system');
     });
   }
 }

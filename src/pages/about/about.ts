@@ -35,9 +35,9 @@ export class AboutPage {
   }
 
   openHomepage() {
-    let url: string = "http://facebook.com/puppy.box.studio/";
+    let url: string = 'https://www.facebook.com/n/?puppy.box.studio';
 
-    InAppBrowser.open(url, "_blank");
+    new InAppBrowser(url, '_system');
   }
 
   openContact() {

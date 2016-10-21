@@ -5,7 +5,12 @@ page-achievement-list {
       background: transparent;
 
       &.locked {
-        opacity: 0.4;
+        opacity: 0.6;
+      }
+
+      ion-label {
+        overflow: auto;
+        white-space: normal;
       }
     }
   }
