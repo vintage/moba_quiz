@@ -17,7 +17,7 @@ export class AdService {
       publisherId: config.banner,
       interstitialAdId: config.full_screen,
       bannerAtTop: false,  // set to true, to put banner at top
-      overlap: true,  // set to true, to allow banner overlap webview
+      overlap: false,  // set to true, to allow banner overlap webview
       offsetTopBar: false,  // set to true to avoid ios7 status bar overlap
       isTesting: false,  // receiving test ad
       autoShow: false,  // auto show interstitial ad when loaded
