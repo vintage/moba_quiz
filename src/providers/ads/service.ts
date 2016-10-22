@@ -11,6 +11,17 @@ export class AdService {
 
     let video = this.getVideoEngine();
     video.setUp(config.rewardVideoId, config.rewardVideoKey);
+
+    let engine = this.getEngine();
+    engine.setOptions({
+      publisherId: config.banner,
+      interstitialAdId: config.full_screen,
+      bannerAtTop: false,  // set to true, to put banner at top
+      overlap: true,  // set to true, to allow banner overlap webview
+      offsetTopBar: false,  // set to true to avoid ios7 status bar overlap
+      isTesting: false,  // receiving test ad
+      autoShow: false,  // auto show interstitial ad when loaded
+    });
   }
 
   getConfiguration() {
@@ -38,12 +49,7 @@ export class AdService {
       return;
     }
 
-    engine.createBanner({
-      adId: this.getConfiguration().banner,
-      position: engine.AD_POSITION.BOTTOM_CENTER,
-      adSize: "SMART_BANNER",
-      autoShow: true
-    });
+    engine.createBannerView();
   }
 
   removeBanner() {
@@ -52,7 +58,7 @@ export class AdService {
       return;
     }
 
-    engine.removeBanner();
+    engine.destroyBannerView();
   }
 
   prepareFullScreen() {
@@ -61,10 +67,7 @@ export class AdService {
       return;
     }
 
-    engine.prepareInterstitial({
-      adId: this.getConfiguration().full_screen,
-      autoShow: false
-    });
+    engine.prepareInterstitial();
   }
 
   showFullScreen() {

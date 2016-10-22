@@ -52,7 +52,7 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-email",
     "cordova-plugin-vibration",
-    "cordova-plugin-admobpro",
+    "cordova-plugin-admob-free",
     "cordova-plugin-nativeaudio",
     "cordova-plugin-network-information",
     "cordova-plugin-inappbrowser",
