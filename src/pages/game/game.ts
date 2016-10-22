@@ -233,14 +233,28 @@ export class GamePage {
 
   finishGame() {
     this.isLocked = true;
+    
+    let alertDismissed = false;
 
     let alert = this.alertCtrl.create({
       title: this.translate.instant("Game over"),
+      message: this.translate.instant('Valid answers has been shown on the screen'),
       enableBackdropDismiss: true,
       cssClass: "game-alert"
     });
-    alert.didLeave.subscribe(() => this.openScoreSubmit());
-    alert.present();
+    alert.willLeave.subscribe(() => {
+      alertDismissed = true;
+      this.openScoreSubmit()
+    });
+
+    alert.present().then(() => {
+      // Close the popup after 5 seconds automatically
+      setTimeout(() => {
+        if (!alertDismissed) {
+          alert.dismiss();
+        }
+      }, 5000);
+    });
   }
 
   openScoreSubmit() {
