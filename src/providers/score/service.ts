@@ -56,6 +56,8 @@ export class ScoreService {
         });
 
         resolve(scores);
+      }, err => {
+        resolve(null);
       });
     });
   }

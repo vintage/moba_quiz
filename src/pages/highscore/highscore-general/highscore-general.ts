@@ -24,6 +24,9 @@ export class HighscoreGeneralPage {
     } else {
       this.getScores().then(scores => {
         this.scores = scores;
+        if (scores === null) {
+          this.isOnline = false;
+        }
       });
     }
   }
