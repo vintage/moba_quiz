@@ -4,7 +4,7 @@ export class GameTypeModel {
 }
 
 export class GameChoice {
-  constructor(public option: any, public isValid: boolean) {
+  constructor(public option: any, public isValid: boolean, public isActive: boolean = true) {
 
   }
 }

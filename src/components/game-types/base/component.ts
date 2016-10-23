@@ -60,6 +60,7 @@ export class BaseGame {
   }
 
   choiceInvalid(choice: GameChoice) {
+    choice.isActive = false;
     this.answerInvalid.emit(null);
   }
 
@@ -82,6 +83,10 @@ export class BaseGame {
   }
 
   onChoice(choice: GameChoice) {
+    if (!choice.isActive) {
+      return;
+    }
+
     if (this.isFinished()) {
       return;
     }

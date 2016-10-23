@@ -5,5 +5,9 @@ answer-button {
     &.hidden {
       visibility: hidden;
     }
+
+    &.inactive {
+      opacity: 0.4;
+    }
   }
 }

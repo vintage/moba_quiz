@@ -1,4 +1,4 @@
-<button ion-button block color="primary" (click)="onClick()" class="answer" [ngClass]="{hidden: !choice}">
+<button ion-button block color="primary" (click)="onClick()" class="answer" [ngClass]="{hidden: !choice, 'inactive': choice && !choice.isActive }">
   <span *ngIf="choice">
     {{ choice.option | translate }}
   </span>

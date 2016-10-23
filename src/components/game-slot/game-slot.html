@@ -1,7 +1,7 @@
 <button ion-button clear class="align-center question-slot" (click)="onClick()">
   <div class="background">
 
-    <div *ngIf="choice" class="image" [ngStyle]="{'background-image': 'url(' + choice.option.getImageSource() + ')'}">
+    <div *ngIf="choice" class="image" [ngClass]="{'inactive': !choice.isActive }" [ngStyle]="{'background-image': 'url(' + choice.option.getImageSource() + ')'}">
 
     </div>
   </div>
