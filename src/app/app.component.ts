@@ -70,7 +70,7 @@ export class MyApp {
 
     this.platform.ready().then(() => {
       Splashscreen.hide();
-      StatusBar.styleDefault();
+      StatusBar.hide();
       
       this.setMusic();
       this.setLanguage();
