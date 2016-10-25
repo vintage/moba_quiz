@@ -33,8 +33,7 @@ game-slot {
 
   &.non-interactive {
     .question-slot {
-      margin-top: -55px;
-      display: inline;
+      display: inline-block;
       width: 8vmin;
       height: 8vmin;
     }

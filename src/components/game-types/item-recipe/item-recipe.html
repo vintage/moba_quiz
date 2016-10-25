@@ -1,15 +1,19 @@
 <ion-row>
   <ion-col>
-    <div class="align-center" *ngIf="question">
-      <game-slot [choice]="answers[0]" class="non-interactive"></game-slot>
-      <game-slot [choice]="answers[1]" class="non-interactive"></game-slot>
-      <game-slot [choice]="answers[2]" class="non-interactive"></game-slot>
+    <div class="answers-container" *ngIf="question">
+      <div class="question-slots question-slots-left">
+        <game-slot [choice]="answers[0]" class="non-interactive"></game-slot>
+        <game-slot [choice]="answers[1]" class="non-interactive"></game-slot>
+        <game-slot [choice]="answers[2]" class="non-interactive"></game-slot>
+      </div>
 
       <img #questionImage [src]="question.getImageSource()" class="question-image">
 
-      <game-slot [choice]="answers[3]" class="non-interactive"></game-slot>
-      <game-slot [choice]="answers[4]" class="non-interactive"></game-slot>
-      <game-slot class="non-interactive"></game-slot>
+      <div class="question-slots question-slots-right">
+        <game-slot [choice]="answers[3]" class="non-interactive"></game-slot>
+        <game-slot [choice]="answers[4]" class="non-interactive"></game-slot>
+        <game-slot class="non-interactive"></game-slot>
+      </div>
     </div>
   </ion-col>
 </ion-row>
