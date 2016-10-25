@@ -11,8 +11,13 @@ import {AbstractAchievementModel} from "../../providers/achievement/model";
 export class AchievementListPage {
   achievements: AbstractAchievementModel[];
 
-  constructor(public nav: NavController, public achievementService: AchievementService) {
-    achievementService.loadExtended().then(achievements => {
+  constructor(
+    public nav: NavController,
+    public achievementService: AchievementService
+  ) {}
+
+  ionViewWillEnter() {
+    this.achievementService.loadExtended().then(achievements => {
       this.achievements = achievements;
     });
   }

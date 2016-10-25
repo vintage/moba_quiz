@@ -55,10 +55,6 @@ export class GamePage {
     this.isLocked = false;
     this.showAd = false;
     this.skipLeft = 0;
-
-    Promise.all([itemService.load(), championService.load()]).then(() => {
-      this.startGame();
-    });
   }
 
   startGame() {
@@ -264,6 +260,12 @@ export class GamePage {
           this.ads.showFullScreen();
         }
       });
+    });
+  }
+
+  ionViewWillEnter() {
+    Promise.all([this.itemService.load(), this.championService.load()]).then(() => {
+      this.startGame();
     });
   }
 

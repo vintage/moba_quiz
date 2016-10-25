@@ -12,9 +12,7 @@ export class CountryListPage {
   countries: CountryModel[];
 
   constructor(public nav: NavController, public countryService: CountryService) {
-    countryService.load().then(countries => {
-      this.countries = countries;
-    });
+    
   }
 
   selectCountry(country: CountryModel) {
@@ -27,5 +25,11 @@ export class CountryListPage {
     if (window["analytics"]) {
       window["analytics"].trackView("Country List");
     }
+  }
+
+  ionViewWillEnter() {
+    this.countryService.load().then(countries => {
+      this.countries = countries;
+    });
   }
 }
