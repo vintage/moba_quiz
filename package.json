@@ -53,7 +53,7 @@
     "cordova-plugin-nativeaudio",
     "cordova-plugin-network-information",
     "cordova-plugin-inappbrowser",
-    "cordova-plugin-crosswalk-webview@2.1.0",
+    "cordova-plugin-crosswalk-webview@1.7",
     "cordova-plugin-globalization",
     "cordova-plugin-app-version",
     "cordova-plugin-inapppurchase",
