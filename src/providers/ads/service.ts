@@ -50,6 +50,7 @@ export class AdService {
     }
 
     engine.createBannerView();
+    engine.showAd();
   }
 
   removeBanner() {
