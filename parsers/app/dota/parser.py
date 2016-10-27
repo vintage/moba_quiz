@@ -175,7 +175,7 @@ def setup_settings():
         'ios': {
             'ad_small': 'ca-app-pub-4764697513834958/2182670065',
             'ad_big': 'ca-app-pub-4764697513834958/9566336061',
-            'ad_video_id': '57b9fa5df6cd457f0624162f',
+            'ad_video_id': '1157890',
             'ad_video_key': 'db48f588f6aaccc5cee870162cf656d58d308709',
             'tracking': 'UA-77793311-4',
             'store': 'itms-apps://itunes.apple.com/app/id1109010695',
@@ -184,7 +184,7 @@ def setup_settings():
         'android': {
             'ad_small': 'ca-app-pub-4764697513834958/8868332069',
             'ad_big': 'ca-app-pub-4764697513834958/8728731260',
-            'ad_video_id': '57b9f9a1f6cd457a64ae4160',
+            'ad_video_id': '1157891',
             'ad_video_key': 'b31cc0ddaa08182a6c65e4962e407611a5e7edce',
             'tracking': 'UA-77793311-5',
             'store': 'market://details?id=com.puppybox.quizdota',

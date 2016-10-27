@@ -169,7 +169,7 @@ def setup_settings():
         'ios': {
             'ad_small': 'ca-app-pub-4764697513834958/6693594860',
             'ad_big': 'ca-app-pub-4764697513834958/2123794461',
-            'ad_video_id': '57b9fa5243150f79f2a509f5',
+            'ad_video_id': '1157886',
             'ad_video_key': '4c0a685045ec2ea625ac4e00bfd52e894e11b90e',
             'tracking': 'UA-77793311-2',
             'store': 'itms-apps://itunes.apple.com/app/id1107274781',
@@ -178,7 +178,7 @@ def setup_settings():
         'android': {
             'ad_small': 'ca-app-pub-4764697513834958/9308984069',
             'ad_big': 'ca-app-pub-4764697513834958/4599582865',
-            'ad_video_id': '57b9f8c1f6cd4516cfca8d26',
+            'ad_video_id': '1157887',
             'ad_video_key': 'a04ae4e3efe676b70a3f19695b0f95b448e7bb8c',
             'tracking': 'UA-77793311-3',
             'store': 'market://details?id=com.puppybox.quizlol',

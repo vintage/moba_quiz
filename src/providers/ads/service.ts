@@ -10,7 +10,7 @@ export class AdService {
     let config = this.getConfiguration();
 
     let video = this.getVideoEngine();
-    video.setUp(config.rewardVideoId, config.rewardVideoKey);
+    video.setUp(config.rewardVideoId, "video", "rewardedVideo", false);
 
     let engine = this.getEngine();
     engine.setOptions({
@@ -39,7 +39,7 @@ export class AdService {
   }
 
   getVideoEngine() {
-    let engine = window["chartboost"];
+    let engine = window["unityads"];
     return engine;
   }
 

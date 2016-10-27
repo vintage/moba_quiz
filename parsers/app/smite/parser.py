@@ -167,7 +167,7 @@ def setup_settings():
         'ios': {
             'ad_small': 'ca-app-pub-4764697513834958/5120930069',
             'ad_big': 'ca-app-pub-4764697513834958/7934795665',
-            'ad_video_id': '57b9fa8943150f3dae9a78b5',
+            'ad_video_id': '1157888',
             'ad_video_key': '893a78e3ba345e0e38e78418173e44fd988e9ed7',
             'tracking': 'UA-77793311-8',
             'store': 'itms-apps://itunes.apple.com/app/id1121065896',
@@ -176,7 +176,7 @@ def setup_settings():
         'android': {
             'ad_small': 'ca-app-pub-4764697513834958/5480856869',
             'ad_big': 'ca-app-pub-4764697513834958/5062054468',
-            'ad_video_id': '57b9f9b543150f7a574743d0',
+            'ad_video_id': '1157889',
             'ad_video_key': 'e88ff04fde322e96808f6350e707775d4027bd7a',
             'tracking': 'UA-77793311-9',
             'store': 'market://details?id=com.puppybox.quizsmite',

@@ -61,28 +61,28 @@ export class ShopPage {
   }
 
   registerAdHandlers() {
-    let chartboost = window['chartboost'];
-    if (!chartboost) {
+    let adEngine = window['unityads'];
+    if (!adEngine) {
       return false;
     }
 
-    chartboost.onRewardedVideoAdShown = (location) => {
+    adEngine.onRewardedVideoAdShown = (location) => {
       this.isVideoPlayed = true;
       this.music.pause();
     };
 
-    chartboost.onRewardedVideoAdHidden = (location) => {
+    adEngine.onRewardedVideoAdHidden = (location) => {
       this.music.start();
     };
 
-    chartboost.onRewardedVideoAdLoaded = (location) => {
+    adEngine.onRewardedVideoAdLoaded = (location) => {
       if (!this.isVideoReady) {
         this.isVideoReady = true;
         this.appRef.tick();
       }
     };
 
-    chartboost.onRewardedVideoAdCompleted = (location) => {      
+    adEngine.onRewardedVideoAdCompleted = (location) => {      
       if (this.isVideoReady && this.isVideoPlayed) {
         this.isVideoPlayed = false;
         this.isVideoReady = false;
@@ -96,7 +96,7 @@ export class ShopPage {
       }
     };
 
-    if (chartboost.loadedRewardedVideoAd()) {
+    if (adEngine.loadedRewardedVideoAd()) {
       this.isVideoReady = true;
     }
 

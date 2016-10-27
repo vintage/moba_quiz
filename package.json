@@ -40,10 +40,6 @@
     "@types/lodash": "4.14.37"
   },
   "cordovaPlugins": [
-    {
-      "locator": "https://github.com/cranberrygame/cordova-plugin-ad-chartboost",
-      "id": "cordova-plugin-ad-chartboost"
-    },
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
@@ -61,7 +57,8 @@
     "cordova-plugin-globalization",
     "cordova-plugin-app-version",
     "cordova-plugin-inapppurchase",
-    "cordova-custom-config"
+    "cordova-custom-config",
+    "cordova-plugin-ad-unityads"
   ],
   "cordovaPlatforms": [
     "android",

@@ -56,6 +56,7 @@ export class SettingsService {
         this.smallBanner = platformSettings["ad_small"];
         this.bigBanner = platformSettings["ad_big"];
         this.videoBannerId = platformSettings["ad_video_id"];
+        // Deprecated
         this.videoBannerKey = platformSettings["ad_video_key"];
 
         this.trackingId = platformSettings["tracking"];
