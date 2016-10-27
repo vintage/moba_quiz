@@ -48,7 +48,9 @@ export class ShopPage {
 
   ionViewWillEnter() {
     this.items = this.shop.items;
-    this.updateState();
+    this.shop.getCoins().then(coins => {
+      this.updateState(coins);
+    });
 
     this.settings.isAppRated().then(v => this.isAppRated = v);
     this.settings.isAppLiked().then(v => this.isAppLiked = v);
@@ -88,7 +90,7 @@ export class ShopPage {
         this.isVideoReady = false;
         
         this.shop.addCoins(1000).then(coins => {
-          return this.updateState();
+          return this.updateState(coins);
         }).then(() => {
           this.appRef.tick();
           this.ads.prepareRewardVideo();
@@ -103,19 +105,9 @@ export class ShopPage {
     return true;
   }
 
-  updateState() {
-    return new Promise(resolve => {
-      this.updateCoins().then(() => {
-        this.updateItemsAvailability();
-        resolve();
-      });
-    });
-  }
-
-  updateCoins() {
-    return this.shop.getCoins().then(coins => {
-      this.coins = coins;
-    });
+  updateState(coins: number) {
+    this.coins = coins;
+    this.updateItemsAvailability();
   }
 
   updateItemsAvailability() {
@@ -207,7 +199,7 @@ export class ShopPage {
 
   unlockItem(item: ShopItem) {
     this.shop.buyItem(item).then(isValid => {
-      this.updateState();
+      this.updateState(this.coins - item.amount);
     });
   }
 
@@ -222,8 +214,8 @@ export class ShopPage {
 
     this.settings.rateApp().then(() => {
       return this.shop.addCoins(5000);
-    }).then(() => {
-      this.updateState();
+    }).then(coins => {
+      this.updateState(coins);
       new InAppBrowser(url, '_system');
     });
   }
@@ -235,8 +227,8 @@ export class ShopPage {
 
     this.settings.likeApp().then(() => {
       return this.shop.addCoins(5000);
-    }).then(() => {
-      this.updateState();
+    }).then(coins => {
+      this.updateState(coins);
       new InAppBrowser(url, '_system');
     });
   }

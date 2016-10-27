@@ -49,8 +49,12 @@ export class AdService {
       return;
     }
 
-    engine.createBannerView();
-    engine.showAd();
+    engine.createBannerView({}, () => {
+      // Banner added
+      engine.showAd(true);
+    }, () => {
+      // Failed to add banner
+    });
   }
 
   removeBanner() {
@@ -86,7 +90,8 @@ export class AdService {
       return;
     }
 
-    engine.preloadRewardedVideoAd('Item Store');
+    // unity ads does not support preloading
+    // engine.preloadRewardedVideoAd('Item Store');
   }
 
   showRewardVideo() {
