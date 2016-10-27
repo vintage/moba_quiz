@@ -87,12 +87,12 @@ export class SettingsService {
     return this.storage.remove(this.premiumKey);
   }
 
-  isSettingsEnabled(key: string): Promise<boolean> {
+  isSettingsEnabled(key: string, defaultValue: boolean = true): Promise<boolean> {
     return new Promise(resolve => {
       return this.storage.get(key).then(isEnabled => {
         isEnabled = JSON.parse(isEnabled);
         if (isEnabled === null) {
-          isEnabled = true;
+          isEnabled = defaultValue;
         }
         resolve(!!isEnabled);
       }).catch(() => {
@@ -138,7 +138,7 @@ export class SettingsService {
   }
 
   isAppRated(): Promise<boolean> {
-    return this.isSettingsEnabled(this.rateAppKey);
+    return this.isSettingsEnabled(this.rateAppKey, false);
   }
 
   rateApp(): Promise<any> {
@@ -146,7 +146,7 @@ export class SettingsService {
   }
 
   isAppLiked(): Promise<boolean> {
-    return this.isSettingsEnabled(this.likeAppKey);
+    return this.isSettingsEnabled(this.likeAppKey, false);
   }
 
   likeApp(): Promise<any> {
