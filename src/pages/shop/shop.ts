@@ -216,6 +216,7 @@ export class ShopPage {
       return this.shop.addCoins(5000);
     }).then(coins => {
       this.updateState(coins);
+      console.log('Opening url: ', url);
       new InAppBrowser(url, '_system');
     });
   }
@@ -229,6 +230,7 @@ export class ShopPage {
       return this.shop.addCoins(5000);
     }).then(coins => {
       this.updateState(coins);
+      console.log('Opening url: ', url);
       new InAppBrowser(url, '_system');
     });
   }
