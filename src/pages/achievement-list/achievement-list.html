@@ -9,7 +9,7 @@
     <ion-list no-lines class="achievement-list">
       <ion-item *ngFor="let achievement of achievements" [ngClass]="{locked: achievement.isLocked()}">
         <ion-avatar item-left>
-          <img src="{{ achievement.getImageSource() }}">
+          <img [src]="achievement.getImageSource()">
         </ion-avatar>
 
         <h2>{{ achievement.name | translate }}</h2>

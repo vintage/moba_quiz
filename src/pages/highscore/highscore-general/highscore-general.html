@@ -21,8 +21,8 @@
           </button>
 
           <ion-avatar item-left>
-            <img src="{{ getScorePlatformImage(score) }}" class="platform">
-            <img src="{{ score.getImageSource() }}" class="flag">
+            <img [src]="getScorePlatformImage(score)" class="platform">
+            <img [src]="score.getImageSource()" class="flag">
           </ion-avatar>
 
           <h2>{{ score.score|points }}</h2>

@@ -3,7 +3,7 @@
     <ion-list no-lines>
       <ion-item *ngFor="let country of countries" (click)="selectCountry(country)">
         <ion-avatar item-left>
-          <img src="{{ country.getImageSource() }}">
+          <img [src]="country.getImageSource()">
         </ion-avatar>
 
         <h2>{{ country.name }}</h2>

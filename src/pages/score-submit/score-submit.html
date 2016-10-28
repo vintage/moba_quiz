@@ -32,7 +32,7 @@
 
           <ion-col width-25>
             <span (click)="showCountryList()">
-              <img *ngIf="country" src="{{ country.getImageSource() }}" />
+              <img *ngIf="country" [src]="country.getImageSource()">
               <a *ngIf="!country">{{ 'Pick your country' | translate }}</a>
             </span>
           </ion-col>
