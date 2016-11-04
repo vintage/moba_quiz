@@ -16,7 +16,6 @@ import {MusicService} from "../../providers/music/service";
 export class ShopPage {
   coins: number;
   isVideoReady: boolean;
-  isVideoPlayed: boolean;
   isAppRated: boolean;
   isAppLiked: boolean;
   isPremium: boolean;
@@ -34,7 +33,6 @@ export class ShopPage {
     private music: MusicService
   ) {
     this.isVideoReady = false;
-    this.isVideoPlayed = false;
     this.isAppRated = true;
     this.isAppLiked = true;
     this.itemsAvailability = {};
@@ -57,52 +55,45 @@ export class ShopPage {
     this.settings.isPremium().then(v => this.isPremium = v);
 
     this.registerAdHandlers();
-    this.ads.prepareRewardVideo();
+    this.fetchRewardVideo();
 
     InAppPurchase.getProducts([this.settings.storeProduct]);
   }
 
   registerAdHandlers() {
-    let adEngine = window['unityads'];
-    if (!adEngine) {
+    let adEngine = this.ads.getEngine();
+    adEngine.IncentivizedAd.addEventListener(adEngine.IncentivizedAd.Events.COMPLETE,
+      (tag) => {
+        if (this.isVideoReady) {
+          this.isVideoReady = false;
+
+          this.shop.addCoins(1000).then(coins => {
+            return this.updateState(coins);
+          }).then(() => {
+            this.appRef.tick();
+            this.fetchRewardVideo();
+          });
+        }
+
+        this.music.start();
+    });
+  }
+
+  fetchRewardVideo() {
+    this.ads.prepareRewardVideo().then(() => {
+      this.isVideoReady = true;
+      this.appRef.tick();
+    });
+  }
+
+  getFreeCoins() {
+    if (!this.isVideoReady) {
       return false;
     }
 
-    adEngine.onRewardedVideoAdShown = (location) => {
-      this.isVideoPlayed = true;
+    this.ads.showRewardVideo().then(() => {
       this.music.pause();
-    };
-
-    adEngine.onRewardedVideoAdHidden = (location) => {
-      this.music.start();
-    };
-
-    adEngine.onRewardedVideoAdLoaded = (location) => {
-      if (!this.isVideoReady) {
-        this.isVideoReady = true;
-        this.appRef.tick();
-      }
-    };
-
-    adEngine.onRewardedVideoAdCompleted = (location) => {      
-      if (this.isVideoReady && this.isVideoPlayed) {
-        this.isVideoPlayed = false;
-        this.isVideoReady = false;
-        
-        this.shop.addCoins(1000).then(coins => {
-          return this.updateState(coins);
-        }).then(() => {
-          this.appRef.tick();
-          this.ads.prepareRewardVideo();
-        });
-      }
-    };
-
-    if (adEngine.loadedRewardedVideoAd()) {
-      this.isVideoReady = true;
-    }
-
-    return true;
+    });
   }
 
   updateState(coins: number) {
@@ -201,10 +192,6 @@ export class ShopPage {
     this.shop.buyItem(item).then(isValid => {
       this.updateState(this.coins - item.amount);
     });
-  }
-
-  getFreeCoins() {
-    this.ads.showRewardVideo();
   }
 
   rateApp() {

@@ -2,45 +2,25 @@ import { Injectable } from "@angular/core";
 
 import { SettingsService } from "../settings/service";
 
+declare var HeyzapAds: any;
+
 @Injectable()
 export class AdService {
   constructor(private settings: SettingsService) {}
 
   initialize() {
-    let config = this.getConfiguration();
-
-    let video = this.getVideoEngine();
-    video.setUp(config.rewardVideoId, "video", "rewardedVideo", false);
-
     let engine = this.getEngine();
-    engine.setOptions({
-      publisherId: config.banner,
-      interstitialAdId: config.full_screen,
-      bannerAtTop: false,  // set to true, to put banner at top
-      overlap: false,  // set to true, to allow banner overlap webview
-      offsetTopBar: false,  // set to true to avoid ios7 status bar overlap
-      isTesting: false,  // receiving test ad
-      autoShow: false,  // auto show interstitial ad when loaded
-    });
-  }
 
-  getConfiguration() {
-    return {
-      banner: this.settings.smallBanner,
-      full_screen: this.settings.bigBanner,
-      rewardVideoId: this.settings.videoBannerId,
-      rewardVideoKey: this.settings.videoBannerKey
-    };
+    let key = "34b7beab57eea2e14dc235c33f0343cd";
+    let options = new HeyzapAds.Options({
+      disableAutomaticPrefetch: true
+    });
+
+    return engine.start(key, options);
   }
 
   getEngine() {
-    let engine = window["AdMob"];
-    return engine;
-  }
-
-  getVideoEngine() {
-    let engine = window["unityads"];
-    return engine;
+    return HeyzapAds;
   }
 
   showBanner() {
@@ -49,12 +29,7 @@ export class AdService {
       return;
     }
 
-    engine.createBannerView({}, () => {
-      // Banner added
-      engine.showAd(true);
-    }, () => {
-      // Failed to add banner
-    });
+    return engine.BannerAd.show(HeyzapAds.BannerAd.POSITION_BOTTOM);
   }
 
   removeBanner() {
@@ -63,7 +38,7 @@ export class AdService {
       return;
     }
 
-    engine.destroyBannerView();
+    return engine.BannerAd.destroy();
   }
 
   prepareFullScreen() {
@@ -72,7 +47,7 @@ export class AdService {
       return;
     }
 
-    engine.prepareInterstitial();
+    return engine.InterstitialAd.fetch();
   }
 
   showFullScreen() {
@@ -81,25 +56,24 @@ export class AdService {
       return;
     }
 
-    engine.showInterstitial();
+    return engine.InterstitialAd.show();
   }
 
   prepareRewardVideo() {
-    let engine = this.getVideoEngine();
+    let engine = this.getEngine();
     if (!engine) {
       return;
     }
 
-    // unity ads does not support preloading
-    // engine.preloadRewardedVideoAd('Item Store');
+    return engine.IncentivizedAd.fetch();
   }
 
   showRewardVideo() {
-    let engine = this.getVideoEngine();
+    let engine = this.getEngine();
     if (!engine) {
       return;
     }
 
-    engine.showRewardedVideoAd('Item Store');
+    return engine.IncentivizedAd.show();
   }
 }

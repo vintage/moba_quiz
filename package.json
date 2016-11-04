@@ -35,7 +35,7 @@
     "zone.js": "^0.6.21"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "^0.0.34",
+    "@ionic/app-scripts": "^0.0.39",
     "typescript": "^2.0.3",
     "@types/lodash": "4.14.37"
   },
@@ -49,7 +49,6 @@
     "cordova-plugin-email",
     "cordova-plugin-vibration",
     "cordova-sqlite-storage",
-    "cordova-plugin-admob-free",
     "cordova-plugin-nativeaudio",
     "cordova-plugin-network-information",
     "cordova-plugin-inappbrowser",
@@ -57,8 +56,27 @@
     "cordova-plugin-globalization",
     "cordova-plugin-app-version",
     "cordova-plugin-inapppurchase",
-    "cordova-custom-config",
-    "cordova-plugin-ad-unityads"
+    "heyzap-cordova",
+    {
+      "locator": "https://github.com/Heyzap/heyzap-cordova-extras.git#:heyzap-cordova-unityads",
+      "id": "heyzap-cordova-unityads"
+    },
+    {
+      "locator": "https://github.com/Heyzap/heyzap-cordova-extras.git#:heyzap-cordova-adcolony",
+      "id": "heyzap-cordova-adcolony"
+    },
+    {
+      "locator": "https://github.com/Heyzap/heyzap-cordova-extras.git#:heyzap-cordova-admob",
+      "id": "heyzap-cordova-admob"
+    },
+    {
+      "locator": "https://github.com/Heyzap/heyzap-cordova-extras.git#:heyzap-cordova-chartboost",
+      "id": "heyzap-cordova-chartboost"
+    },
+    {
+      "locator": "https://github.com/Heyzap/heyzap-cordova-extras.git#:heyzap-cordova-facebook_audience_network",
+      "id": "heyzap-cordova-facebook_audience_network"
+    }
   ],
   "cordovaPlatforms": [
     "android",
