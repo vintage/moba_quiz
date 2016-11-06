@@ -24,7 +24,7 @@ export class ChampionAttackTypeGame extends BaseGame {
 
     return [
       new GameChoice("Melee", !is_range),
-      new GameChoice("Range", is_range)
+      new GameChoice("Ranged", is_range)
     ];
   }
 

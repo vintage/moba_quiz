@@ -11,7 +11,7 @@
   "You have to buy the Hardcore Ticket in order to play this mode": "Vous devez acheter le billet hardcore pour jouer à ce mode",
   "Cancel": "Annuler",
   "Close": "Fermer",
-  "Valid answers has been shown on the screen": "Les réponses correctes ont été montrées à l'écran",
+  "Valid answers have been shown on the screen": "Les réponses correctes ont été montrées à l'écran",
   "Open shop": "Ouvrir la boutique",
   "Hardcore Ticket": "Billet hardcore",
   "Back": "Retour",
@@ -62,7 +62,7 @@
   "Monthly": "Du mois",
   "Best ever": "Top",
   "Good news": "Bonnes Nouvelles",
-  "It seems there are no score for this leaderboard": "Il semblerai qu'il n'y ai pas de score pour ce tableau",
+  "It seems there is no score for this leaderboard": "Il semblerai qu'il n'y ai pas de score pour ce tableau",
   "Play your first game and be the best one": "Jouez votre première partie et devenez le meilleur",
   "Unable to fetch scores": "Impossible d'extraire le score",
   "It seems that you are not connected to the Internet": "Il semblerai que vous n'êtes pas connecté à Internet",
@@ -113,7 +113,7 @@
   "Hero title": "Titre du héros",
   "Item price": "Prix de l'item",
   "Recipe": "Recette",
-  "Skill hero": "Compétence héroïque",
+  "Skill owner": "Compétence héroïque",
   "Melee": "Corps à corps",
-  "Range": "Distance"
+  "Ranged": "Rangé"
 }

@@ -251,7 +251,7 @@ export class GamePage {
 
     let alert = this.alertCtrl.create({
       title: this.translate.instant("Game over"),
-      message: this.translate.instant('Valid answers has been shown on the screen'),
+      message: this.translate.instant('Valid answers have been shown on the screen'),
       enableBackdropDismiss: true,
       cssClass: "game-alert"
     });

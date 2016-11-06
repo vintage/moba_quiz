@@ -11,7 +11,7 @@
   "You have to buy the Hardcore Ticket in order to play this mode": "Musisz kupić Bilet Twardziela, aby zagrać w tym trybie",
   "Cancel": "Anuluj",
   "Close": "Zamknij",
-  "Valid answers has been shown on the screen": "Prawidłowe odpowiedzi znajdują się na ekranie",
+  "Valid answers have been shown on the screen": "Prawidłowe odpowiedzi znajdują się na ekranie",
   "Open shop": "Otwórz sklep",
   "Hardcore Ticket": "Bilet Twardziela",
   "Back": "Wstecz",
@@ -62,7 +62,7 @@
   "Monthly": "Miesięczny",
   "Best ever": "Najlepsi",
   "Good news": "Dobra informacja",
-  "It seems there are no score for this leaderboard": "Wygląda na to, że nie ma tu jeszcze żadnego wyniku",
+  "It seems there is no score for this leaderboard": "Wygląda na to, że nie ma tu jeszcze żadnego wyniku",
   "Play your first game and be the best one": "Zagraj swój pierwszy mecz i bądź najlepszy",
   "Unable to fetch scores": "Nie można pobrać wyników",
   "It seems that you are not connected to the Internet": "Wygląda na to, że nie jesteś podłączony do internetu.",
@@ -113,7 +113,7 @@
   "Hero title": "Tytuł postaci",
   "Item price": "Cena",
   "Recipe": "Recepta",
-  "Skill hero": "Posiadacz",
+  "Skill owner": "Posiadacz",
   "Melee": "Zwarcie",
-  "Range": "Dystans"
+  "Ranged": "Dystans"
 }

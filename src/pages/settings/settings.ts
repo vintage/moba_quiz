@@ -28,7 +28,8 @@ export class SettingsPage {
       this.languages = [
         {'code': 'en', 'name': 'English'},
         {'code': 'fr', 'name': 'French'},
-        {'code': 'pl', 'name': 'Polish'}
+        {'code': 'pl', 'name': 'Polish'},
+        {'code': 'pt', 'name': 'Portuguese'},
       ];
   }
 

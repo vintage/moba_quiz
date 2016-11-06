@@ -11,7 +11,7 @@
   "You have to buy the Hardcore Ticket in order to play this mode": "You have to buy the Hardcore Ticket in order to play this mode",
   "Cancel": "Cancel",
   "Close": "Close",
-  "Valid answers has been shown on the screen": "Valid answers has been shown on the screen",
+  "Valid answers have been shown on the screen": "Valid answers have been shown on the screen",
   "Open shop": "Open shop",
   "Hardcore Ticket": "Hardcore Ticket",
   "Back": "Back",
@@ -62,7 +62,7 @@
   "Monthly": "Monthly",
   "Best ever": "Top",
   "Good news": "Good news",
-  "It seems there are no score for this leaderboard": "It seems there are no score for this leaderboard",
+  "It seems there is no score for this leaderboard": "It seems there is no score for this leaderboard",
   "Play your first game and be the best one": "Play your first game and be the best one",
   "Unable to fetch scores": "Unable to fetch scores",
   "It seems that you are not connected to the Internet": "It seems that you are not connected to the Internet",
@@ -113,7 +113,7 @@
   "Hero title": "Hero title",
   "Item price": "Item price",
   "Recipe": "Recipe",
-  "Skill hero": "Skill hero",
+  "Skill owner": "Skill owner",
   "Melee": "Melee",
-  "Range": "Range"
+  "Ranged": "Ranged"
 }
