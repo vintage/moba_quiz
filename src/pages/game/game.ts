@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, ComponentRef} from "@angular/core";
 import {NavController, ViewController, AlertController} from "ionic-angular";
 import {ComponentFactoryResolver, Compiler, ViewChild, ViewContainerRef} from "@angular/core";
 import {Vibration} from "ionic-native";
@@ -21,19 +21,15 @@ import {ScoreSubmitPage} from "../score-submit/score-submit";
 
 @Component({
   selector: 'page-game',
-  templateUrl: "game.html",
-  providers: [GameTypeService],
-  inputs: ["question"]
+  templateUrl: 'game.html'
 })
 export class GamePage {
-  gameType: GameTypeModel;
-
   showAd: boolean;
   isPerfect: boolean;
   isLocked: boolean;
   skipLeft: number;
-  gameComponent: any;
-  @ViewChild("gameType", {read: ViewContainerRef}) typeContainer: ViewContainerRef;
+  gameComponents: ComponentRef<any>[];
+  @ViewChild("gameType", {read: ViewContainerRef}) currentLevel: ViewContainerRef;
 
   constructor(
       public nav: NavController,
@@ -55,6 +51,7 @@ export class GamePage {
     this.isLocked = false;
     this.showAd = false;
     this.skipLeft = 0;
+    this.gameComponents = [];
   }
 
   startGame() {
@@ -144,14 +141,7 @@ export class GamePage {
     return this.gameTypes.getAny();
   }
 
-  openLevel() {
-    this.isPerfect = true;
-    this.gameType = this.getGameType();
-
-    let factory = this.componentFactoryResolver.resolveComponentFactory(this.gameType.component);
-    this.gameComponent = this.typeContainer.createComponent(factory);
-    
-    let component = this.gameComponent.instance;
+  activateGameComponent(component: any) {
     component.initializeGame();
 
     component.questionFinished.subscribe(() => {
@@ -164,7 +154,7 @@ export class GamePage {
       }
 
       this.openLevelStats().then(() => {
-        this.gameComponent.destroy();
+        this.destroyLevel();
         this.gameplay.levelPassed(this.isPerfect);
 
         let strike = this.gameplay.strike;
@@ -207,6 +197,33 @@ export class GamePage {
     });
   }
 
+  createGameComponent(gameType: GameTypeModel, container: ViewContainerRef): ComponentRef<any> {
+    let factory = this.componentFactoryResolver.resolveComponentFactory(gameType.component);
+
+    let gameComponent = container.createComponent(factory);
+
+    this.activateGameComponent(gameComponent.instance);
+    return gameComponent;
+  }
+
+  openLevel() {
+    this.isPerfect = true;
+
+    while (this.currentLevel.length < 2) {
+      let game = this.createGameComponent(this.getGameType(), this.currentLevel);
+      game.location.nativeElement.hidden = true;
+
+      this.gameComponents.push(game);
+    }
+
+    this.gameComponents[0].location.nativeElement.hidden = false;
+  }
+
+  destroyLevel() {
+    this.currentLevel.remove(0);
+    this.gameComponents.shift();
+  }
+
   skipLevel() {
     if (this.skipLeft <= 0) {
       return;
@@ -217,7 +234,7 @@ export class GamePage {
     this.skipLeft -= 1;
     this.shop.decreaseItemAmount("skip_questions");
 
-    this.gameComponent.destroy();
+    this.destroyLevel();
     this.gameplay.levelNext();
     this.openLevel();
     this.isLocked = false;

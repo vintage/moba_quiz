@@ -18,11 +18,10 @@ import { ScoreSubmitPage } from "../score-submit/score-submit";
 
 @Component({
   selector: 'page-game-hardcore',
-  templateUrl: "game-hardcore.html",
-  inputs: ["question"]
+  templateUrl: 'game-hardcore.html'
 })
 export class GameHardcorePage extends GamePage {
-  @ViewChild("gameType", {read: ViewContainerRef}) typeContainer: ViewContainerRef;
+  @ViewChild("gameType", {read: ViewContainerRef}) currentLevel: ViewContainerRef;
 
   constructor(
       public nav: NavController,
