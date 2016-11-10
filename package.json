@@ -5,14 +5,12 @@
   "homepage": "https://www.facebook.com/puppy.box.studio/",
   "private": true,
   "version": "1.9.0",
+  "config": {
+    "ionic_source_map": "source-map"
+  },
   "scripts": {
-    "build": "ionic-app-scripts build",
-    "watch": "ionic-app-scripts watch",
-    "serve:before": "watch",
-    "emulate:before": "build",
-    "deploy:before": "build",
-    "build:before": "build",
-    "run:before": "build"
+    "ionic:build": "ionic-app-scripts build",
+    "ionic:serve": "ionic-app-scripts serve"
   },
   "dependencies": {
     "@angular/common": "2.1.1",
@@ -35,7 +33,7 @@
     "zone.js": "0.6.21"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "0.0.39",
+    "@ionic/app-scripts": "0.0.42",
     "typescript": "2.0.3",
     "@types/lodash": "4.14.37"
   },
