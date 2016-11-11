@@ -13,6 +13,7 @@ export class SettingsService {
   languageKey: string = "settings_language";
   rateAppKey: string = "settings_rate_app";
   likeAppKey: string = "settings_like_app";
+  followAppKey: string = "settings_follow_app";
 
   smallBanner: string;
   bigBanner: string;
@@ -151,5 +152,13 @@ export class SettingsService {
 
   likeApp(): Promise<any> {
     return this.setSettings(this.likeAppKey, true);
+  }
+
+  isAppFollowed(): Promise<boolean> {
+    return this.isSettingsEnabled(this.followAppKey, false);
+  }
+
+  followApp(): Promise<any> {
+    return this.setSettings(this.followAppKey, true);
   }
 }

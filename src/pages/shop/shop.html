@@ -43,7 +43,7 @@
             </ion-col>
           </ion-row>
 
-          <ion-row *ngIf="!isAppRated || !isAppLiked">
+          <ion-row *ngIf="!isAppRated || !isAppLiked || !isAppFollowed">
             <ion-col>
               <p>
                 {{ 'Rate application or like us on Facebook to get coins' | translate:{amount: 5000} }}.
@@ -60,6 +60,13 @@
                 <ion-col *ngIf="!isAppLiked">
                   <button ion-button icon-left outline block color="primary" (click)="likeApp()">
                     <ion-icon name="logo-facebook"></ion-icon>
+                    {{ 'Like' | translate }}
+                  </button>
+                </ion-col>
+
+                <ion-col *ngIf="isAppLiked && !isAppFollowed">
+                  <button ion-button icon-left outline block color="primary" (click)="followApp()">
+                    <ion-icon name="logo-twitter"></ion-icon>
                     {{ 'Like' | translate }}
                   </button>
                 </ion-col>

@@ -18,6 +18,7 @@ export class ShopPage {
   isVideoReady: boolean;
   isAppRated: boolean;
   isAppLiked: boolean;
+  isAppFollowed: boolean;
   isPremium: boolean;
   items: ShopItem[];
   itemsAvailability: Object;
@@ -35,6 +36,7 @@ export class ShopPage {
     this.isVideoReady = false;
     this.isAppRated = true;
     this.isAppLiked = true;
+    this.isAppFollowed = true;
     this.itemsAvailability = {};
   }
 
@@ -52,6 +54,7 @@ export class ShopPage {
 
     this.settings.isAppRated().then(v => this.isAppRated = v);
     this.settings.isAppLiked().then(v => this.isAppLiked = v);
+    this.settings.isAppFollowed().then(v => this.isAppFollowed = v);
     this.settings.isPremium().then(v => this.isPremium = v);
 
     this.registerAdHandlers();
@@ -214,6 +217,20 @@ export class ShopPage {
     let url: string = 'https://www.facebook.com/n/?puppy.box.studio';
 
     this.settings.likeApp().then(() => {
+      return this.shop.addCoins(5000);
+    }).then(coins => {
+      this.updateState(coins);
+      console.log('Opening url: ', url);
+      new InAppBrowser(url, '_system');
+    });
+  }
+
+  followApp() {
+    this.isAppFollowed = true;
+
+    let url: string = 'https://www.twitter.com/puppybox_mobile';
+
+    this.settings.followApp().then(() => {
       return this.shop.addCoins(5000);
     }).then(coins => {
       this.updateState(coins);
