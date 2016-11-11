@@ -32,6 +32,7 @@ import { GameStats } from '../components/game-stats/game-stats';
 // Components (game types)
 import { ItemRecipeGame } from "../components/game-types/item-recipe/item-recipe";
 import { ItemPriceGame } from "../components/game-types/item-price/item-price";
+import { ItemNameGame } from "../components/game-types/item-name/item-name";
 import { ChampionSkillsGame } from "../components/game-types/champion-skills/champion-skills";
 import { ChampionAttackTypeGame } from "../components/game-types/champion-attack-type/champion-attack-type";
 import { SkillChampionGame } from "../components/game-types/skill-champion/skill-champion";
@@ -109,6 +110,7 @@ export function createTranslateLoader(http: Http) {
     // Components (game types)
     ItemRecipeGame,
     ItemPriceGame,
+    ItemNameGame,
     ChampionSkillsGame,
     ChampionAttackTypeGame,
     SkillChampionGame,
@@ -147,6 +149,7 @@ export function createTranslateLoader(http: Http) {
     // Game types
     ItemRecipeGame,
     ItemPriceGame,
+    ItemNameGame,
     ChampionSkillsGame,
     ChampionAttackTypeGame,
     SkillChampionGame,

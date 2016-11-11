@@ -210,7 +210,9 @@ export class GamePage {
     this.isPerfect = true;
 
     while (this.currentLevel.length < 2) {
-      let game = this.createGameComponent(this.getGameType(), this.currentLevel);
+      let gameType = this.getGameType();
+      console.log('Load: ', gameType);
+      let game = this.createGameComponent(gameType, this.currentLevel);
       game.location.nativeElement.hidden = true;
 
       this.gameComponents.push(game);
