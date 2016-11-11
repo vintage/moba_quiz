@@ -13,11 +13,23 @@ champion_image_path = './data/images/champions/'
 # Check http://gameinfo.eune.leagueoflegends.com/en/game-info/champions/
 # XHR request to get current API version
 base_url = 'http://ddragon.leagueoflegends.com/cdn/6.20.1'
-items_url = '{}/data/en_US/item.json'.format(base_url)
-champions_url = '{}/data/en_US/champion.json'.format(base_url)
+base_items_url = base_url + '/data/{}/item.json'
+base_champions_url = base_url + '/data/{}/champion.json'
+
+languages_codes = {
+  'en': 'en_US',
+  'pl': 'pl_PL',
+  'pt': 'pt_BR',
+  'de': 'de_DE',
+  'fr': 'fr_FR',
+  'ru': 'ru_RU',
+  'es': 'es_ES',
+  'tr': 'tr_TR',
+}
 
 os.makedirs(item_image_path, exist_ok=True)
 os.makedirs(champion_image_path, exist_ok=True)
+
 
 def clean_filename(filename):
     return ''.join(filename.split()).lower()
@@ -40,6 +52,14 @@ def download_image(url, path, filename):
 
 
 def setup_items():
+    i18n = {}
+    for lang, code in languages_codes.items():
+        url = base_items_url.format(code)
+
+        i18n[lang] = requests.get(url).json()
+
+    items_url = base_items_url.format('en_US')
+
     json_data = requests.get(items_url).json()
 
     result = []
@@ -65,14 +85,16 @@ def setup_items():
         image_name = data['image']['full']
         image_url = '{}/img/item/{}'.format(base_url, image_name)
 
-
         price = data['gold']['total']
         if not data['gold']['purchasable']:
-          price = 0
+            price = 0
 
         result.append({
             'id': item_id,
             'name': name,
+            'name_i18n': {
+                k: v['data'][item_id]['name'] for k, v in i18n.items()
+            },
             'image': download_image(image_url, item_image_path, image_name),
             'into': data.get('into', []),
             'from': data.get('from', []),
@@ -92,14 +114,21 @@ def setup_items():
                 item['id'], components
             ))
 
-
     with open('./data/items.json', 'w') as outfile:
-        json.dump(result, outfile)
+        json.dump(result, outfile, ensure_ascii=False)
 
     return result
 
 
 def setup_champions():
+    i18n = {}
+    for lang, code in languages_codes.items():
+        url = base_champions_url.format(code)
+
+        i18n[lang] = requests.get(url).json()
+
+    champions_url = base_champions_url.format('en_US')
+
     champion_ids = [ch_id for ch_id in requests.get(champions_url).json()['data'].keys()]
 
     result = []
@@ -149,7 +178,13 @@ def setup_champions():
         result.append({
             'id': champion_id,
             'name': data['name'],
+            'name_i18n': {
+                k: v['data'][champion_id]['name'] for k, v in i18n.items()
+            },
             'title': data['title'],
+            'title_i18n': {
+                k: v['data'][champion_id]['title'] for k, v in i18n.items()
+            },
             'image': download_image(
                 '{}/img/champion/{}'.format(base_url, image_name),
                 image_path, small_avatar
@@ -159,7 +194,7 @@ def setup_champions():
         })
 
     with open('./data/champions.json', 'w') as outfile:
-        json.dump(result, outfile)
+        json.dump(result, outfile, ensure_ascii=False)
 
     return result
 
@@ -199,7 +234,7 @@ def setup_settings():
     }
 
     with open('./data/settings.json', 'w') as outfile:
-        json.dump(result, outfile)
+        json.dump(result, outfile, ensure_ascii=False)
 
     return result
 
@@ -299,7 +334,7 @@ def setup_achievements(items, champions):
     ]
 
     with open('./data/achievements.json', 'w') as outfile:
-        json.dump(result, outfile)
+        json.dump(result, outfile, ensure_ascii=False)
 
     return result
 
