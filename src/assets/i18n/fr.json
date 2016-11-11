@@ -106,14 +106,10 @@
   "True fan": "Vrai fan",
   "Play the game 1000 times": "Jouez au jeu 1000 fois",
 
-  "Attack type": "Type d'attaque",
-  "Hero name": "Nom du héros",
+  "Hero": "Héros",
+  "Item": "Item",
+  "Skill": "Compétence",
   "Pantheon": "Panthéon",
-  "Hero skills": "Compétences du héros",
-  "Hero title": "Titre du héros",
-  "Item price": "Prix de l'item",
-  "Recipe": "Recette",
-  "Skill owner": "Compétence héroïque",
   "Melee": "Corps à corps",
   "Ranged": "Rangé"
 }

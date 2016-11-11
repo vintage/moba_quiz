@@ -106,14 +106,10 @@
   "True fan": "Miłośnik",
   "Play the game 1000 times": "Zagraj 1000 razy",
 
-  "Attack type": "Rodzaj ataku",
-  "Hero name": "Nazwa postaci",
+  "Hero": "Postać",
+  "Item": "Przedmiot",
+  "Skill": "Umiejętność",
   "Pantheon": "Pantheon",
-  "Hero skills": "Umiejętności",
-  "Hero title": "Tytuł postaci",
-  "Item price": "Cena",
-  "Recipe": "Recepta",
-  "Skill owner": "Posiadacz",
   "Melee": "Zwarcie",
   "Ranged": "Dystans"
 }

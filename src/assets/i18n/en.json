@@ -106,14 +106,10 @@
   "True fan": "True fan",
   "Play the game 1000 times": "Play the game 1000 times",
 
-  "Attack type": "Attack type",
-  "Hero name": "Hero name",
+  "Hero": "Hero",
+  "Item": "Item",
+  "Skill": "Skill",
   "Pantheon": "Pantheon",
-  "Hero skills": "Hero skills",
-  "Hero title": "Hero title",
-  "Item price": "Item price",
-  "Recipe": "Recipe",
-  "Skill owner": "Skill owner",
   "Melee": "Melee",
   "Ranged": "Ranged"
 }
