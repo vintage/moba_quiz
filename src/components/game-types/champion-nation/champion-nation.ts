@@ -4,6 +4,7 @@ import _ from "lodash";
 import {ChampionModel} from "../../../providers/champion/model";
 import {ChampionService} from "../../../providers/champion/service";
 import {GameChoice} from "../../../providers/game-type/model";
+import {SettingsService} from "../../../providers/settings/service";
 
 import {BaseGame} from "../base/component";
 
@@ -12,7 +13,10 @@ import {BaseGame} from "../base/component";
   templateUrl: "champion-nation.html",
 })
 export class ChampionNationGame extends BaseGame {
-  constructor(public championService: ChampionService) {
+  constructor(
+    public championService: ChampionService,
+    private settings: SettingsService
+  ) {
     super();
   }
 

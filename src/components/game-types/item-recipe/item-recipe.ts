@@ -4,6 +4,7 @@ import {AchievementService} from "../../../providers/achievement/service";
 import {ItemModel} from "../../../providers/item/model";
 import {ItemService} from "../../../providers/item/service";
 import {GameChoice} from "../../../providers/game-type/model";
+import {SettingsService} from "../../../providers/settings/service";
 
 import {BaseGame} from "../base/component";
 
@@ -14,7 +15,9 @@ import {BaseGame} from "../base/component";
 export class ItemRecipeGame extends BaseGame {
   constructor(
     public itemService: ItemService,
-    public achievements: AchievementService) {
+    public achievements: AchievementService,
+    private settings: SettingsService
+  ) {
     super();
   }
 

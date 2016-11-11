@@ -14,6 +14,7 @@ export class SettingsService {
   rateAppKey: string = "settings_rate_app";
   likeAppKey: string = "settings_like_app";
   followAppKey: string = "settings_follow_app";
+  public currentLanguage: string;
 
   smallBanner: string;
   bigBanner: string;
@@ -130,11 +131,23 @@ export class SettingsService {
     return this.setSettings(this.vibrationEnabledKey, enabled);
   }
 
+  getLanguageSync(): string {
+    return this.currentLanguage;
+  }
+
   getLanguage(): Promise<string> {
-    return this.storage.get(this.languageKey);
+    return new Promise(resolve => {
+      this.storage.get(this.languageKey).then(code => {
+        this.currentLanguage = code;
+
+        resolve(code);
+      });
+    });
   }
 
   setLanguage(code: string): Promise<any> {
+    this.currentLanguage = code;
+
     return this.storage.set(this.languageKey, code);
   }
 

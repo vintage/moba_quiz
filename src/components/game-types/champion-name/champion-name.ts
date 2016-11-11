@@ -4,6 +4,7 @@ import _ from "lodash";
 import {ChampionModel} from "../../../providers/champion/model";
 import {ChampionService} from "../../../providers/champion/service";
 import {GameChoice} from "../../../providers/game-type/model";
+import {SettingsService} from "../../../providers/settings/service";
 
 import {BaseGame} from "../base/component";
 
@@ -12,7 +13,10 @@ import {BaseGame} from "../base/component";
   templateUrl: "champion-name.html",
 })
 export class ChampionNameGame extends BaseGame {
-  constructor(public championService: ChampionService) {
+  constructor(
+    public championService: ChampionService,
+    private settings: SettingsService
+  ) {
     super();
   }
 
@@ -21,11 +25,11 @@ export class ChampionNameGame extends BaseGame {
   }
 
   getChoices(): GameChoice[] {
-    let correct = this.question.name;
+    let correct = this.question.getName(this.settings.getLanguageSync());
     let choices = [correct];
 
     while (choices.length < 6) {
-      let championName = this.championService.getAny().name;
+      let championName = this.championService.getAny().getName(this.settings.getLanguageSync());
       if (choices.indexOf(championName) === -1) {
         choices.push(championName);
       }

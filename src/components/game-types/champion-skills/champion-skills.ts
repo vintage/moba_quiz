@@ -4,6 +4,7 @@ import {AchievementService} from "../../../providers/achievement/service";
 import {ChampionModel, SkillModel} from "../../../providers/champion/model";
 import {ChampionService} from "../../../providers/champion/service";
 import {GameChoice} from "../../../providers/game-type/model";
+import {SettingsService} from "../../../providers/settings/service";
 
 import {BaseGame} from "../base/component";
 
@@ -14,7 +15,9 @@ import {BaseGame} from "../base/component";
 export class ChampionSkillsGame extends BaseGame {
   constructor(
     public championService: ChampionService,
-    public achievements: AchievementService) {
+    public achievements: AchievementService,
+    private settings: SettingsService
+  ) {
     super();
   }
 

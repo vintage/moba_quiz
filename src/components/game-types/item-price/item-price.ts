@@ -4,6 +4,7 @@ import _ from "lodash";
 import {ItemModel} from "../../../providers/item/model";
 import {ItemService} from "../../../providers/item/service";
 import {GameChoice} from "../../../providers/game-type/model";
+import {SettingsService} from "../../../providers/settings/service";
 
 import {BaseGame} from "../base/component";
 
@@ -12,7 +13,10 @@ import {BaseGame} from "../base/component";
   templateUrl: "item-price.html",
 })
 export class ItemPriceGame extends BaseGame {
-  constructor(private items: ItemService) {
+  constructor(
+    private items: ItemService,
+    private settings: SettingsService
+  ) {
     super();
   }
 

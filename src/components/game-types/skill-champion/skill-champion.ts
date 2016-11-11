@@ -3,6 +3,7 @@ import {Component} from "@angular/core";
 import {AchievementService} from "../../../providers/achievement/service";
 import {ChampionModel, SkillModel} from "../../../providers/champion/model";
 import {SkillService} from "../../../providers/champion/service";
+import {SettingsService} from "../../../providers/settings/service";
 
 import {BaseGame} from "../base/component";
 
@@ -13,7 +14,9 @@ import {BaseGame} from "../base/component";
 export class SkillChampionGame extends BaseGame {
   constructor(
     public skillService: SkillService,
-    public achievements: AchievementService) {
+    public achievements: AchievementService,
+    private settings: SettingsService
+  ) {
     super();
   }
 
