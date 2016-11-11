@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers } from "@angular/http";
 import { Storage } from '@ionic/storage';
+import CryptoJS from 'crypto-js';
 
 import { SettingsService } from "../settings/service";
 
@@ -31,7 +32,7 @@ export class ScoreService {
       "platform": platform,
       "is_hardcore": isHardcore,
     };
-    data["hash"] = window['CryptoJS']['SHA1'](this.hashObject(data)).toString();
+    data["hash"] = CryptoJS.SHA1(this.hashObject(data)).toString();
     data["metadata"] = metadata;
 
     return new Promise(resolve => {
