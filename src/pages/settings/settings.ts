@@ -30,6 +30,7 @@ export class SettingsPage {
         {'code': 'fr', 'name': 'French'},
         {'code': 'pl', 'name': 'Polish'},
         {'code': 'pt', 'name': 'Portuguese'},
+        {'code': 'es', 'name': 'Spanish'},
       ];
   }
 
