@@ -153,7 +153,7 @@ def setup_settings():
             'ad_video_id': '1197471',
             'ad_video_key': '4c0a685045ec2ea625ac4e00bfd52e894e11b90e',
             'tracking': 'UA-77793311-2',
-            'store': 'itms-apps://itunes.apple.com/app/id1107274781',
+            'store': 'itms-apps://itunes.apple.com/app/id1175817991',
             'store_premium': 'com.puppybox.quizvg.premium_version',
         },
         'android': {
@@ -162,7 +162,7 @@ def setup_settings():
             'ad_video_id': '1197472',
             'ad_video_key': 'a04ae4e3efe676b70a3f19695b0f95b448e7bb8c',
             'tracking': 'UA-77793311-3',
-            'store': 'market://details?id=com.puppybox.quizlol',
+            'store': 'market://details?id=com.puppybox.quizvg',
             'store_premium': 'com.puppybox.quizvg.premium_version',
         },
         'windows': {
