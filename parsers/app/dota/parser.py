@@ -12,12 +12,24 @@ item_image_path = './data/images/items/'
 champion_image_path = './data/images/champions/'
 
 base_image_url = 'http://cdn.dota2.com/apps/dota2/images'
-items_url = 'https://www.dota2.com/jsfeed/heropediadata?feeds=itemdata&l=english'
+base_items_url = 'https://www.dota2.com/jsfeed/heropediadata?feeds=itemdata&l={}'
 skills_url = 'http://www.dota2.com/jsfeed/heropediadata?feeds=abilitydata&l=english'
-champions_url = 'https://www.dota2.com/jsfeed/heropediadata?feeds=herodata&l=english'
+base_champions_url = 'https://www.dota2.com/jsfeed/heropediadata?feeds=herodata&l={}'
+
+languages_codes = {
+  'en': 'english',
+  'pl': 'polish',
+  'pt': 'portuguese',
+  'de': 'german',
+  'fr': 'french',
+  'ru': 'russian',
+  'es': 'spanish',
+  'tr': 'turkish',
+}
 
 os.makedirs(item_image_path, exist_ok=True)
 os.makedirs(champion_image_path, exist_ok=True)
+
 
 def clean_filename(filename):
     filename = ''.join(filename.split()).lower()
@@ -50,6 +62,14 @@ def download_image(url, path, filename):
 
 
 def setup_items():
+    i18n = {}
+    for lang, code in languages_codes.items():
+        url = base_items_url.format(code)
+
+        i18n[lang] = requests.get(url).json()
+
+    items_url = base_items_url.format('english')
+
     json_data = requests.get(items_url).json()
 
     result = []
@@ -90,6 +110,9 @@ def setup_items():
         result.append({
             'id': item_id,
             'name': name,
+            'name_i18n': {
+                k: v['itemdata'][item_id]['dname'] for k, v in i18n.items()
+            },
             'image': image,
             'into': [],
             'from': data['components'] or [],
@@ -117,12 +140,20 @@ def setup_items():
                 raise Exception(r_from)
 
     with open('./data/items.json', 'w') as outfile:
-        json.dump(result, outfile)
+        json.dump(result, outfile, ensure_ascii=False)
 
     return result
 
 
 def setup_champions():
+    i18n = {}
+    for lang, code in languages_codes.items():
+        url = base_champions_url.format(code)
+
+        i18n[lang] = requests.get(url).json()
+
+    champions_url = base_champions_url.format('english')
+
     skills_data = requests.get(skills_url).json()['abilitydata']
     champions_data = requests.get(champions_url).json()['herodata']
 
@@ -155,6 +186,9 @@ def setup_champions():
         result.append({
             'id': champion_id,
             'name': name,
+            'name_i18n': {
+                k: v['herodata'][champion_id]['dname'] for k, v in i18n.items()
+            },
             'image': download_image(
                 champion_img_url,
                 champion_image_path,
@@ -165,7 +199,7 @@ def setup_champions():
         })
 
     with open('./data/champions.json', 'w') as outfile:
-        json.dump(result, outfile)
+        json.dump(result, outfile, ensure_ascii=False)
 
     return result
 
@@ -206,7 +240,7 @@ def setup_settings():
     }
 
     with open('./data/settings.json', 'w') as outfile:
-        json.dump(result, outfile)
+        json.dump(result, outfile, ensure_ascii=False)
 
     return result
 
@@ -306,7 +340,7 @@ def setup_achievements(items, champions):
     ]
 
     with open('./data/achievements.json', 'w') as outfile:
-        json.dump(result, outfile)
+        json.dump(result, outfile, ensure_ascii=False)
 
     return result
 
