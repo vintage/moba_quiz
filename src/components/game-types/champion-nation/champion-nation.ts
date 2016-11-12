@@ -28,7 +28,7 @@ export class ChampionNationGame extends BaseGame {
     let correct = this.question.nation;
     let choices = this.championService.getNations().filter(node => {
       return node !== correct;
-    }).slice(0, 5);
+    }).slice(0, 3);
     choices.push(correct);
 
     return _.shuffle(choices.map(choice => {
