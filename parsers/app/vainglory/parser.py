@@ -59,19 +59,22 @@ def setup_items():
 
         build_trees = list(detail_dom.items('.build-tree'))
 
-        recipe = []
+        recipe, max_price = [], 0
         for build_tree in build_trees:
             recipe_items = [
                 json.loads(i.attr('data-item')) for i in list(build_tree.items('a'))
             ]
 
             recipe_ids = [r['id'] for r in recipe_items]
+            recipe_price = sum([r['cost'] for r in recipe_items])
+
+            # Skip it as its same item
             if item_id in recipe_ids:
                 continue
 
-            if item_price == sum([r['cost'] for r in recipe_items]):
+            if item_price >= recipe_price and recipe_price > max_price:
+                max_price = recipe_price
                 recipe = recipe_ids
-                break
 
         result.append({
             'id': item_id,
