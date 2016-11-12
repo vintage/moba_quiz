@@ -39,20 +39,6 @@ def download_image(url, path, filename):
     return filename
 
 
-def download_champion_image(url, path, filename):
-    filename = clean_filename(filename)
-    full_path = os.path.join(path, filename)
-
-    # download image
-    urllib.request.urlretrieve(url, full_path)
-
-    # compress image
-    image = Image.open(full_path)
-    image.save(full_path, quality=95, optimize=True)
-
-    return filename
-
-
 def setup_items():
     dom = pq(url=items_url)
     container = dom('.items')
@@ -116,7 +102,8 @@ def setup_champions():
         champion_ranged = detail_dom('.basic-panel .basic-table tr').eq(0).find('td').eq(1).text()
         champion_nation = detail_dom('.basic-panel .basic-table tr').eq(2).find('td').eq(1).text()
 
-        image_url = detail_dom.find('.hero-detail-image').attr('src')
+        image_url = 'http://www.vaingloryfire.com/images/wikibase/icon/heroes/{}.png'.format(champion_id)
+
         image_name = 'hero_{}.png'.format(champion_id)
 
         skill_nodes = list(detail_dom.find('#hero-abilities').items('li'))
@@ -142,7 +129,7 @@ def setup_champions():
             'id': champion_id,
             'name': champion_name,
             'nation': champion_nation,
-            'image': download_champion_image(
+            'image': download_image(
                image_url, champion_image_path, image_name
             ),
             'is_range': champion_ranged.lower() == 'ranged',
