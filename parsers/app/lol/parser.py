@@ -121,18 +121,18 @@ def setup_items():
 
 
 def setup_champions():
-    i18n = {}
-    for lang, code in languages_codes.items():
-        url = base_champions_url.format(code)
-
-        i18n[lang] = requests.get(url).json()
-
     champions_url = base_champions_url.format('en_US')
 
     champion_ids = [ch_id for ch_id in requests.get(champions_url).json()['data'].keys()]
 
     result = []
     for champion_id in tqdm(champion_ids, desc='Parsing champions'):
+        i18n = {}
+        for lang, code in languages_codes.items():
+            url = '{}/data/{}/champion/{}.json'.format(base_url, code, champion_id)
+
+            i18n[lang] = requests.get(url).json()['data'][champion_id]
+
         detail_url = '{}/data/en_US/champion/{}.json'.format(base_url, champion_id)
         data = requests.get(detail_url).json()['data'][champion_id]
 
@@ -155,18 +155,24 @@ def setup_champions():
         spells.append({
             'id': '{}_passive'.format(champion_id),
             'name': passive_data['name'],
+            'name_i18n': {
+                k: v['passive']['name'] for k, v in i18n.items()
+            },
             'image': download_image(
                 '{}/img/passive/{}'.format(base_url, passive_image),
                 image_path, passive_image
             )
         })
 
-        for spell_data in data['spells']:
+        for index, spell_data in enumerate(data['spells']):
             spell_image = spell_data['image']['full']
 
             spells.append({
                 'id': spell_data['id'],
                 'name': spell_data['name'],
+                'name_i18n': {
+                    k: v['spells'][0]['name'] for k, v in i18n.items()
+                },
                 'image': download_image(
                     '{}/img/spell/{}'.format(base_url, spell_image),
                     image_path, spell_image
@@ -179,11 +185,11 @@ def setup_champions():
             'id': champion_id,
             'name': data['name'],
             'name_i18n': {
-                k: v['data'][champion_id]['name'] for k, v in i18n.items()
+                k: v['name'] for k, v in i18n.items()
             },
             'title': data['title'],
             'title_i18n': {
-                k: v['data'][champion_id]['title'] for k, v in i18n.items()
+                k: v['title'] for k, v in i18n.items()
             },
             'image': download_image(
                 '{}/img/champion/{}'.format(base_url, image_name),
