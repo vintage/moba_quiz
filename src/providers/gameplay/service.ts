@@ -15,7 +15,7 @@ export class GameplayService {
 
   // Some configuration options. All of them should be marked as `private`.
   // Minimum amount of time given for providing answer
-  private timeLimitMin: number = 6 * 1000;
+  private timeLimitMin: number = 7 * 1000;
   // Level count after the timer is decreased
   private timeLimitUpdateInterval = 6;
 
