@@ -52,17 +52,27 @@ export class ChampionModel {
 export class SkillModel {
   id: string;
   name: string;
+  nameI18n: Object;
   championId: string;
   private image: string;
 
   constructor(json: Object, championId: string) {
     this.id = _.get(json, "id", "");
     this.name = _.get(json, "name", "");
+    this.nameI18n = _.get(json, "name_i18n", {});
     this.image = _.get(json, "image", "");
     this.championId = championId;
   }
 
   getImageSource() {
     return "assets/data/images/champions/" + this.image;
+  }
+
+  getName(language: string): string {
+    if (!language || !this.nameI18n.hasOwnProperty(language)) {
+      return this.name;
+    }
+
+    return this.nameI18n[language];
   }
 }

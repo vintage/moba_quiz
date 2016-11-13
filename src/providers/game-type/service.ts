@@ -11,6 +11,7 @@ import {ItemNameGame} from "../../components/game-types/item-name/item-name";
 import {ChampionSkillsGame} from "../../components/game-types/champion-skills/champion-skills";
 import {ChampionAttackTypeGame} from "../../components/game-types/champion-attack-type/champion-attack-type";
 import {SkillChampionGame} from "../../components/game-types/skill-champion/skill-champion";
+import {SkillNameGame} from "../../components/game-types/skill-name/skill-name";
 import {ChampionNameGame} from "../../components/game-types/champion-name/champion-name";
 import {ChampionTitleGame} from "../../components/game-types/champion-title/champion-title";
 import {ChampionNationGame} from "../../components/game-types/champion-nation/champion-nation";
@@ -33,6 +34,7 @@ export class GameTypeService {
       new GameTypeModel("champion_skills", ChampionSkillsGame),
       new GameTypeModel("champion_attack_type", ChampionAttackTypeGame),
       new GameTypeModel("skill_champion", SkillChampionGame),
+      new GameTypeModel("skill_name", SkillNameGame),
       new GameTypeModel("champion_name", ChampionNameGame)
     ];
 
