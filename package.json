@@ -48,6 +48,7 @@
     "cordova-plugin-email",
     "cordova-plugin-vibration",
     "cordova-sqlite-storage",
+    "cordova-plugin-admob-free",
     "cordova-plugin-nativeaudio",
     "cordova-plugin-network-information",
     "cordova-plugin-inappbrowser",
@@ -55,27 +56,7 @@
     "cordova-plugin-globalization",
     "cordova-plugin-app-version",
     "cordova-plugin-inapppurchase",
-    "heyzap-cordova",
-    {
-      "locator": "https://github.com/Heyzap/heyzap-cordova-extras.git#:heyzap-cordova-unityads",
-      "id": "heyzap-cordova-unityads"
-    },
-    {
-      "locator": "https://github.com/Heyzap/heyzap-cordova-extras.git#:heyzap-cordova-adcolony",
-      "id": "heyzap-cordova-adcolony"
-    },
-    {
-      "locator": "https://github.com/Heyzap/heyzap-cordova-extras.git#:heyzap-cordova-admob",
-      "id": "heyzap-cordova-admob"
-    },
-    {
-      "locator": "https://github.com/Heyzap/heyzap-cordova-extras.git#:heyzap-cordova-chartboost",
-      "id": "heyzap-cordova-chartboost"
-    },
-    {
-      "locator": "https://github.com/Heyzap/heyzap-cordova-extras.git#:heyzap-cordova-facebook_audience_network",
-      "id": "heyzap-cordova-facebook_audience_network"
-    }
+    "cordova-plugin-ad-unityads"
   ],
   "cordovaPlatforms": [
     "android",
