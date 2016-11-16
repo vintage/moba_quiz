@@ -47,6 +47,7 @@ export class MusicService {
     }
 
     NativeAudio.loop('background');
+    NativeAudio.setVolumeForComplexAsset('background', 0.5);
   }
 
   stop() {
