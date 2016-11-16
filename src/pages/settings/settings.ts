@@ -26,10 +26,12 @@ export class SettingsPage {
     public settings: SettingsService,
     public music: MusicService) {
       this.languages = [
+        {'code': 'de', 'name': 'Deutsch'},
         {'code': 'en', 'name': 'English'},
         {'code': 'fr', 'name': 'French'},
         {'code': 'pl', 'name': 'Polish'},
         {'code': 'pt', 'name': 'Portuguese'},
+        {'code': 'ru', 'name': 'Russian'},
         {'code': 'es', 'name': 'Spanish'},
       ];
   }
