@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, ApplicationRef} from "@angular/core";
 import {App, Platform, Config} from "ionic-angular";
 import {Splashscreen, StatusBar, Globalization} from "ionic-native";
 import {TranslateService} from 'ng2-translate/ng2-translate';
@@ -17,6 +17,7 @@ export class MyApp {
 
   constructor(
     private app: App,
+    private appRef: ApplicationRef,
     public platform: Platform,
     private config: Config,
     private translate: TranslateService,
@@ -40,9 +41,11 @@ export class MyApp {
 
           this.settings.setLanguage(code);
           this.translate.use(code);
+          this.appRef.tick();
         });
       } else {
         this.translate.use(code);
+        this.appRef.tick();
       }
     });
   }
