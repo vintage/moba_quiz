@@ -202,6 +202,7 @@ export class ShopPage {
 
   unlockItem(item: ShopItem) {
     this.shop.buyItem(item).then(isValid => {
+      this.music.play("nextLevel");
       this.updateState(this.coins - item.amount);
     });
   }
