@@ -59,7 +59,7 @@
     "cordova-plugin-ad-unityads"
   ],
   "cordovaPlatforms": [
-    "android",
-    "ios"
+    "android@6.1.0",
+    "ios@4.3.0"
   ]
 }
