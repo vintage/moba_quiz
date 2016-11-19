@@ -12,7 +12,7 @@ champion_image_path = './data/images/champions/'
 
 # Check http://gameinfo.eune.leagueoflegends.com/en/game-info/champions/
 # XHR request to get current API version
-base_url = 'http://ddragon.leagueoflegends.com/cdn/6.20.1'
+base_url = 'http://ddragon.leagueoflegends.com/cdn/6.22.1'
 base_items_url = base_url + '/data/{}/item.json'
 base_champions_url = base_url + '/data/{}/champion.json'
 
@@ -25,6 +25,7 @@ languages_codes = {
   'ru': 'ru_RU',
   'es': 'es_ES',
   'tr': 'tr_TR',
+  'hu': 'hu_HU'
 }
 
 os.makedirs(item_image_path, exist_ok=True)
