@@ -55,7 +55,10 @@
     "cordova-plugin-crosswalk-webview@2.2",
     "cordova-plugin-globalization",
     "cordova-plugin-app-version",
-    "cordova-plugin-inapppurchase",
+    {
+      "locator": "https://github.com/biesbjerg/cordova-plugin-inapppurchase.git",
+      "id": "cordova-plugin-inapppurchase"
+    },
     "cordova-plugin-ad-unityads"
   ],
   "cordovaPlatforms": [
