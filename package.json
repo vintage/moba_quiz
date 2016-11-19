@@ -59,7 +59,6 @@
     "cordova-plugin-ad-unityads"
   ],
   "cordovaPlatforms": [
-    "ios@4.3.0",
     "android@6.1.0"
   ]
 }
