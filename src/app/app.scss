@@ -44,9 +44,8 @@
 
 .panel-box {
   background-color: #171512;
-  border-image-slice: 44;
-  border-image-width: 16px;
-  border-image-source: url('../assets/images/border_simple.png');
+  border: 8px solid transparent;
+  border-image: url('../assets/images/border_simple.png') 44;
   position: relative;
 
   &.panel-ribbon {
