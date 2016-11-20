@@ -28,7 +28,7 @@ export class ChampionNameGame extends BaseGame {
     let correct = this.question.getName(this.settings.getLanguageSync());
     let choices = [correct];
 
-    while (choices.length < 6) {
+    while (choices.length < 4) {
       let name = this.championService.getAny().getName(this.settings.getLanguageSync());
       if (choices.indexOf(name) === -1) {
         choices.push(name);
