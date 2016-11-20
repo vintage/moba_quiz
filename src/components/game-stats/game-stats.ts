@@ -11,12 +11,10 @@ import {GameplayService} from "../../providers/gameplay/service";
 export class GameStats implements OnInit {
   timeOver = new EventEmitter();
 
-  progressCur: number;
   timerEnabled: boolean;
   isDestroyed: boolean;
 
   constructor(public gameplay: GameplayService) {
-    this.progressCur = this.gameplay.timeLimit / 1000;
     this.timerEnabled = true;
   }
 
@@ -30,7 +28,7 @@ export class GameStats implements OnInit {
   }
 
   updateTimer() {
-    let interval = 1000;
+    let interval = 500;
 
     setTimeout(() => {
       if (this.gameplay.isOver() || this.isDestroyed) {
@@ -40,8 +38,6 @@ export class GameStats implements OnInit {
       if (this.timerEnabled) {
         this.gameplay.timeLeft -= interval;
       }
-
-      this.progressCur = Math.max(this.gameplay.timeLeft / 1000, 0);
 
       if (this.gameplay.timeLeft <= 0) {
         this.timeOver.emit(null);

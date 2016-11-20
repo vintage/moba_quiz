@@ -1,10 +1,11 @@
 .game-stats {
-  height: 72px;
+  height: 65px;
 
-  $progress-color: color($colors, primary);
+  $progress-color-primary: color($colors, primary);
+  $progress-color-secondary: color($colors, danger);
 
-  progress::-moz-progress-bar { background: $progress-color; }
-  progress::-webkit-progress-value { background: $progress-color; }
+  progress::-moz-progress-bar { background: $progress-color-primary; }
+  progress::-webkit-progress-value { background: $progress-color-primary; }
 
   progress {
     display: block;
@@ -17,27 +18,22 @@
   /* All good till now. Now we'll style the background */
   progress::-webkit-progress-bar {
   	background: black;
-  	border-radius: 50px;
+  	border-radius: 20px;
   	padding: 2px;
-  	box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.2);
   }
 
   /* Now the value part */
   progress::-webkit-progress-value {
-  	border-radius: 50px;
+  	border-radius: 20px;
   	box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
-  	background:
-  		-webkit-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%),
-  		-webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.2)),
-  		-webkit-linear-gradient(left, $progress-color, yellow);
-
-  	/* Looks great, now animating it */
-  	background-size: 25px 14px, 100% 100%, 100% 100%;
+    background: $progress-color-primary;
+  	background: linear-gradient(45deg, $progress-color-primary, $progress-color-primary, $progress-color-secondary);
   }
 
   .points-bar, .time-bar {
     color: color($colors, secondary);
     font-size: 20px;
+    padding-left: 5px;
 
     .icon {
       display: inline-block;
@@ -62,6 +58,7 @@
   }
 
   .chances-bar {
+    padding-right: 5px;
     font-size: 20px;
     color: color($colors, danger);
   }
