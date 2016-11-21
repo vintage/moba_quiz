@@ -10,18 +10,22 @@ export class AdService {
     let config = this.getConfiguration();
 
     let video = this.getVideoEngine();
-    video.setUp(config.rewardVideoId, "video", "rewardedVideo", false);
+    if (video) {
+      video.setUp(config.rewardVideoId, "video", "rewardedVideo", false);
+    }
 
     let engine = this.getEngine();
-    engine.setOptions({
-      publisherId: config.banner,
-      interstitialAdId: config.full_screen,
-      bannerAtTop: false,  // set to true, to put banner at top
-      overlap: false,  // set to true, to allow banner overlap webview
-      offsetTopBar: false,  // set to true to avoid ios7 status bar overlap
-      isTesting: false,  // receiving test ad
-      autoShow: false,  // auto show interstitial ad when loaded
-    });
+    if (engine) {
+      engine.setOptions({
+        publisherId: config.banner,
+        interstitialAdId: config.full_screen,
+        bannerAtTop: false,  // set to true, to put banner at top
+        overlap: false,  // set to true, to allow banner overlap webview
+        offsetTopBar: false,  // set to true to avoid ios7 status bar overlap
+        isTesting: false,  // receiving test ad
+        autoShow: false,  // auto show interstitial ad when loaded
+      });
+    }
   }
 
   getConfiguration() {

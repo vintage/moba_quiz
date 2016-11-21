@@ -31,7 +31,7 @@ export class ItemRecipeGame extends BaseGame {
   }
 
   getQuestion(): ItemModel {
-    let question = this.itemService.getAny();
+    let question = this.itemService.getComplex();
 
     this.achievements.update("seen_all_items", question.id);
 

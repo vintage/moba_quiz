@@ -3,6 +3,7 @@ import os
 import shutil
 import functools
 import time
+from lxml import etree
 
 from PIL import Image
 import requests
@@ -142,6 +143,9 @@ def setup_champions():
                     skill_image_url, image_path, '{}.png'.format(skill_id)
                 ),
             })
+
+        if not spells:
+            raise Exception('Missing spells')
 
         result.append({
             'id': name.lower(),

@@ -29,6 +29,31 @@ export class ItemService {
   }
 
   getAny() {
+    let items = this.items;
+    let index = _.random(0, items.length - 1);
+
+    return items[index];
+  }
+
+  getPurchasable() {
+    let items = this.items.filter(node => {
+      return node.price > 0;
+    });
+    let index = _.random(0, items.length - 1);
+
+    return items[index];
+  }
+
+  getBase() {
+    let items = this.items.filter(node => {
+      return node.from.length === 0 && node.price > 0;
+    });
+    let index = _.random(0, items.length - 1);
+
+    return items[index];
+  }
+
+  getComplex() {
     let items = this.items.filter(node => {
       return node.from.length > 0 && node.price > 0;
     });
@@ -41,15 +66,6 @@ export class ItemService {
     return this.items.filter(node => {
       return node.from.length > 0;
     }).length > 0;
-  }
-
-  getBase() {
-    let items = this.items.filter(node => {
-      return node.from.length === 0 && node.price > 0;
-    });
-    let index = _.random(0, items.length - 1);
-
-    return items[index];
   }
 
   getValidComponents(item: ItemModel) {

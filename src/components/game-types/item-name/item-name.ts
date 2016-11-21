@@ -21,7 +21,7 @@ export class ItemNameGame extends BaseGame {
   }
 
   getQuestion(): ItemModel {
-    let item = this.items.getBase();
+    let item = this.items.getAny();
 
     return item;
   }
