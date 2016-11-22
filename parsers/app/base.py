@@ -16,12 +16,13 @@ def parse_string(string):
 
 
 class Champion(object):
-    def __init__(self, pk, name, image, title=None, is_range=None):
+    def __init__(self, pk, name, image, title=None, is_range=None, nation=None):
         self.pk = pk
         self.name = name
         self.image = image
         self.title = title
         self.is_range = is_range
+        self.nation = nation
         self.skills = []
         self.translations = {}
 
@@ -35,6 +36,7 @@ class Champion(object):
         return {
             'id': parse_string(self.pk),
             'name': parse_string(self.name),
+            'nation': parse_string(self.nation),
             'image': parse_string(self.image),
             'title': parse_string(self.title),
             'is_range': self.is_range,

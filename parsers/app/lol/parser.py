@@ -94,9 +94,6 @@ class ChampionImporter(base.ChampionImporter):
 
 
 class ItemImporter(base.ItemImporter):
-    export_path = './data/items.json'
-    image_path = './data/images/items/'
-
     def get_objects(self):
         i18n = {}
         for lang, code in languages_codes.items():
