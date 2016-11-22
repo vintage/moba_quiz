@@ -41,12 +41,6 @@ export class ChampionService {
     });
   }
 
-  getAny() {
-    let champions = this.champions;
-    let index = _.random(0, champions.length - 1);
-    return champions[index];
-  }
-
   supportTitle() {
     return this.champions.filter(node => {
       return !!node.title && node.title.length > 0;
@@ -59,35 +53,36 @@ export class ChampionService {
     }).length > 0;
   }
 
-  getAnyWithAttackType() {
-    let champion = this.getAny();
-    while (champion.is_range === null) {
-      champion = this.getAny();
-    }
+  getAll() {
+    return this.champions;
+  }
 
-    return champion;
+  getAny() {
+    let container = this.getAll();
+
+    return _.sample(container);
+  }
+
+  getAnyWithAttackType() {
+    let container = this.getAll().filter(c => {
+      return c.is_range !== null;
+    });
+
+    return _.sample(container);
   }
 
   getValidComponents(champion: ChampionModel) {
-    return this.skills.filter(node => {
-      return champion.skills.indexOf(node) !== -1;
+    return this.skills.filter(s => {
+      return s.championId === champion.id;
     });
   }
 
   getInvalidComponents(champion: ChampionModel, limit: number) {
-    let result: SkillModel[] = [];
-    let container = this.skills;
+    let container = this.skills.filter(s => {
+      return s.championId !== champion.id;
+    });
 
-    while (result.length < limit) {
-      let index = _.random(0, container.length - 1);
-      let node = container[index];
-
-      if (champion.skills.indexOf(node) === -1 && result.indexOf(node) === -1) {
-        result.push(node);
-      }
-    }
-
-    return result;
+    return _.sampleSize(container, limit);
   }
 
   getNations(): string[] {
@@ -106,10 +101,14 @@ export class SkillService {
     })[0];
   }
 
+  getAll() {
+    return this.championService.skills;
+  }
+
   getAny() {
-    let skills = this.championService.skills;
-    let index = _.random(0, skills.length - 1);
-    return skills[index];
+    let container = this.getAll();
+
+    return _.sample(container);
   }
 
   getValidComponents(skill: SkillModel) {
@@ -117,18 +116,10 @@ export class SkillService {
   }
 
   getInvalidComponents(skill: SkillModel, limit: number) {
-    let result: ChampionModel[] = [];
-    let container = this.championService.champions;
+    let container = this.championService.champions.filter(c => {
+      return c.id !== skill.championId;
+    });
 
-    while (result.length < limit) {
-      let index = _.random(0, container.length - 1);
-      let node = container[index];
-
-      if (node.id !== skill.championId && result.indexOf(node) === -1) {
-        result.push(node);
-      }
-    }
-
-    return result;
+    return _.sampleSize(container, limit);
   }
 }

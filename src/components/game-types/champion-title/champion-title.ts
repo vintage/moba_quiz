@@ -25,18 +25,18 @@ export class ChampionTitleGame extends BaseGame {
   }
 
   getChoices(): GameChoice[] {
-    let correct = this.question.getTitle(this.settings.getLanguageSync());
-    let choices = [correct];
+    let champions = this.championService.getAll().filter(c => {
+      return c.id !== this.question.id;
+    });
 
-    while (choices.length < 4) {
-      let championTitle = this.championService.getAny().getTitle(this.settings.getLanguageSync());
-      if (choices.indexOf(championTitle) === -1) {
-        choices.push(championTitle);
-      }
-    }
+    let choices = _.sampleSize(champions, 3);
+    choices.push(this.question);
 
     return _.shuffle(choices.map(choice => {
-      return new GameChoice(choice, choice === correct);
+      return new GameChoice(
+        choice.getTitle(this.settings.getLanguageSync()),
+        choice.id === this.question.id
+      );
     }));
   }
 

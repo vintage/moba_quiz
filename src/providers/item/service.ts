@@ -28,38 +28,38 @@ export class ItemService {
     });
   }
 
-  getAny() {
-    let items = this.items;
-    let index = _.random(0, items.length - 1);
+  getAll() {
+    return this.items;
+  }
 
-    return items[index];
+  getAny() {
+    let container = this.items;
+
+    return _.sample(container);
   }
 
   getPurchasable() {
-    let items = this.items.filter(node => {
-      return node.price > 0;
+    let container = this.items.filter(i => {
+      return i.price > 0;
     });
-    let index = _.random(0, items.length - 1);
 
-    return items[index];
+    return _.sample(container);
   }
 
   getBase() {
-    let items = this.items.filter(node => {
-      return node.from.length === 0 && node.price > 0;
+    let container = this.items.filter(i => {
+      return i.from.length === 0 && i.price > 0;
     });
-    let index = _.random(0, items.length - 1);
 
-    return items[index];
+    return _.sample(container);
   }
 
   getComplex() {
-    let items = this.items.filter(node => {
-      return node.from.length > 0 && node.price > 0;
+    let container = this.items.filter(i => {
+      return i.from.length > 0 && i.price > 0;
     });
-    let index = _.random(0, items.length - 1);
-
-    return items[index];
+    
+    return _.sample(container);
   }
 
   supportRecipe() {
@@ -83,18 +83,10 @@ export class ItemService {
   }
 
   getInvalidComponents(item: ItemModel, limit: number) {
-    let result: ItemModel[] = [];
-    let container = this.items;
+    let container = this.items.filter(i => {
+      return item.id !== i.id && item.from.indexOf(i.id) === -1;
+    });
 
-    while (result.length < limit) {
-      let index = _.random(0, container.length - 1);
-      let node = container[index];
-
-      if (item.id !== node.id && item.from.indexOf(node.id) === -1) {
-        result.push(node);
-      }
-    }
-
-    return result;
+    return _.sampleSize(container, limit);
   }
 }

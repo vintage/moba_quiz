@@ -27,18 +27,18 @@ export class ItemNameGame extends BaseGame {
   }
 
   getChoices(): GameChoice[] {
-    let correct = this.question.getName(this.settings.getLanguageSync());
-    let choices = [correct];
+    let items = this.items.getAll().filter(i => {
+      return i.id !== this.question.id;
+    });
 
-    while (choices.length < 4) {
-      let name = this.items.getAny().getName(this.settings.getLanguageSync());
-      if (choices.indexOf(name) === -1) {
-        choices.push(name);
-      }
-    }
+    let choices = _.sampleSize(items, 3);
+    choices.push(this.question);
 
     return _.shuffle(choices.map(choice => {
-      return new GameChoice(choice, choice === correct);
+      return new GameChoice(
+        choice.getName(this.settings.getLanguageSync()),
+        choice.id === this.question.id
+      );
     }));
   }
 

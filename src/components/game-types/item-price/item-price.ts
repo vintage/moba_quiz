@@ -21,7 +21,7 @@ export class ItemPriceGame extends BaseGame {
   }
 
   getQuestion(): ItemModel {
-    let item = this.items.getBase();
+    let item = this.items.getPurchasable();
 
     return item;
   }
