@@ -1,16 +1,12 @@
-import json
-import os
-import shutil
-import functools
-import re
-import time
+import sys
+sys.path.insert(0,'../..')
 
-from PIL import Image
+import time
 import requests
+
 from tqdm import tqdm
 
-item_image_path = './data/images/items/'
-champion_image_path = './data/images/champions/'
+from app import base
 
 hero_image_url = 'https://www.heroesofnewerth.com/images/heroes/{}/icon_128.jpg'
 skill_image_url = 'https://www.heroesofnewerth.com/images/heroes/{}/ability{}_128.jpg'
@@ -21,38 +17,6 @@ item_url = 'http://api.heroesofnewerth.com/items/name/{}/?token=6V2D6Z89U8ZZWIVN
 
 champions_url = 'http://api.heroesofnewerth.com/heroes/all?token=6V2D6Z89U8ZZWIVN'
 champion_url = 'http://api.heroesofnewerth.com/heroes/id/{}/?token=6V2D6Z89U8ZZWIVN'
-
-os.makedirs(item_image_path, exist_ok=True)
-os.makedirs(champion_image_path, exist_ok=True)
-
-def clean_filename(filename):
-    filename = ''.join(filename.split()).lower()
-    extension_dot = filename.rindex('.')
-
-    left_part = filename[:extension_dot]
-    right_part = filename[extension_dot:]
-    # Characters after last . can be [a-z] only
-    right_part = " ".join(re.findall("[a-zA-Z]+", right_part))
-
-    return "{}.{}".format(left_part, right_part)
-
-
-def download_image(url, path, filename):
-    response = requests.get(url, stream=True)
-    if response.status_code != 200:
-        raise Exception()
-
-    filename = clean_filename(filename)
-    full_path = os.path.join(path, filename)
-    with open(full_path, 'wb') as outfile:
-        shutil.copyfileobj(response.raw, outfile)
-
-    # compress image
-    image = Image.open(full_path)
-    image.save(full_path, quality=95, optimize=True)
-    del response
-
-    return filename
 
 
 def get_api_data(url):
@@ -69,243 +33,118 @@ def get_api_data(url):
     return response.json()
 
 
-def setup_items():
-    json_data = get_api_data(items_url)
+class ChampionImporter(base.ChampionImporter):
+    def get_objects(self):
+        champions_data = get_api_data(champions_url)
 
-    result = []
-    for item_id in tqdm(json_data.keys(), desc='Parsing items'):
-        data = get_api_data(item_url.format(item_id))
-        if data is None:
-            continue
+        objects = []
+        for slug_name, data in tqdm(champions_data.items(), desc='Parsing champions'):
+            data = data[list(data.keys())[0]]
+            o_id = data['hero_id']
+            o_name = data['disp_name']
 
-        data = data['attributes']
+            if data['attacktype'] not in ('melee', 'ranged'):
+                raise Exception("Unknown attack type")
 
-        name = data['name']
-        price = int(data['cost'])
+            o_ranged = data['attacktype'] == 'ranged'
 
-        image_name = data['icon']
-        image_url = item_image_url.format(image_name)
+            o_image_url = hero_image_url.format(o_id)
+            o_image = self.download_image(o_image_url, '{}_avatar.png'.format(o_id))
 
-        image = None
-        try:
-            image = download_image(image_url, item_image_path, image_name)
-        except:
-            print('Item image at {} is broken.'.format(image_url))
-            continue
+            champion = base.Champion(
+                o_id, o_name, o_image, is_range=o_ranged,
+            )
 
-        result.append({
-            'id': item_id,
-            'name': name,
-            'image': image,
-            'into': [],
-            'from': data.get('components', [[]])[0],
-            'price': price,
-        })
+            skills_data = get_api_data(champion_url.format(o_id))
+            for spell_id, spell_data in skills_data['abilities'].items():
+                s_id = spell_data['cli_ab_name']
+                s_name = spell_data['STRINGTABLE']['{}_name'.format(s_id)]
 
-    # verify components
-    item_ids = [i['id'] for i in result]
+                s_image_url = skill_image_url.format(o_id, s_id[-1])
+                s_image = self.download_image(s_image_url, '{}.png'.format(s_id))
 
-    for r in result:
-        for r_from in r['from']:
-            if r_from not in item_ids:
-                raise Exception(r_from)
+                skill = base.Skill(s_id, s_name, s_image)
 
-    with open('./data/items.json', 'w') as outfile:
-        json.dump(result, outfile)
+                champion.add_skill(skill)
 
-    return result
+            objects.append(champion)
+
+        return objects
 
 
-def setup_champions():
-    champions_data = get_api_data(champions_url)
+class ItemImporter(base.ItemImporter):
+    def get_objects(self):
+        json_data = get_api_data(items_url)
 
-    result = []
-    for slug_name, data in tqdm(champions_data.items(), desc='Parsing champions'):
-        data = data[list(data.keys())[0]]
-        hero_id = data['hero_id']
-        name = data['disp_name']
+        objects = []
+        for item_id in tqdm(json_data.keys(), desc='Parsing items'):
+            data = get_api_data(item_url.format(item_id))
+            if data is None:
+                continue
 
-        if data['attacktype'] not in ('melee', 'ranged'):
-            raise Exception("Unknown attack type")
+            data = data['attributes']
 
-        is_range = data['attacktype'] == 'ranged'
+            o_name = data['name']
+            o_price = int(data['cost'])
+            o_from = data.get('components', [[]])[0]
 
-        spells = []
-        skills_data = get_api_data(champion_url.format(hero_id))
-        for spell_id, spell_data in skills_data['abilities'].items():
-            spell_identifier = spell_data['cli_ab_name']
+            o_image_url = item_image_url.format(data['icon'])
 
-            spell_img_url = skill_image_url.format(hero_id, spell_identifier[-1])
-            spells.append({
-                'id': spell_identifier,
-                'name': spell_data['STRINGTABLE']['{}_name'.format(spell_identifier)],
-                'image': download_image(
-                    spell_img_url,
-                    champion_image_path,
-                    '{}.png'.format(spell_identifier)
-                ),
-            })
+            try:
+                o_image = self.download_image(o_image_url, '{}.png'.format(item_id))
+            except:
+                print('Item image at {} is broken.'.format(o_image_url))
+                continue
 
-        champion_img_url = hero_image_url.format(hero_id)
-        result.append({
-            'id': hero_id,
-            'name': name,
-            'image': download_image(
-                champion_img_url,
-                champion_image_path,
-                '{}_avatar.png'.format(hero_id)
-            ),
-            'is_range': is_range,
-            'spells': spells,
-        })
+            item = base.Item(item_id, o_name, o_image, [], o_from, o_price)
 
-    with open('./data/champions.json', 'w') as outfile:
-        json.dump(result, outfile)
+            objects.append(item)
 
-    return result
+        return objects
 
 
-def setup_settings():
-    result = {
-        'ios': {
-            'ad_small': 'ca-app-pub-4764697513834958/5819579664',
-            'ad_big': 'ca-app-pub-4764697513834958/1249779260',
-            'ad_video_id': '1157892',
-            'ad_video_key': 'ab9ffe592cd5f812c2732cc42fdfa5ecf6656265',
-            'tracking': 'UA-77793311-6',
-            'store': 'itms-apps://itunes.apple.com/app/id1109019404',
-            'store_premium': 'com.puppybox.quizhon.premium_version',
-        },
-        'android': {
-            'ad_small': 'ca-app-pub-4764697513834958/3145314865',
-            'ad_big': 'ca-app-pub-4764697513834958/5959180465',
-            'ad_video_id': '1157893',
-            'ad_video_key': '6f7fbf0d533c2d2f2a0a3bed85f585c7929c7c1c',
-            'tracking': 'UA-77793311-7',
-            'store': 'market://details?id=com.puppybox.quizhon',
-            'store_premium': 'com.puppybox.quizhon.premium_version',
-        },
-        'windows': {
-            'ad_small': 'ca-app-pub-4764697513834958/7883646863',
-            'ad_big': 'ca-app-pub-4764697513834958/7744046068',
-            'ad_video_id': '',
-            'ad_video_key': '',
-            'tracking': '',
-            'store': '',
-            'store_premium': '',
-        },
-        'legal_disclaimer': 'This application is not created, sponsored or endorsed by Frostburn Studios and doesn’t reflect the views or opinions of Frostburn Studios or anyone officially involved in producing or managing Heroes of Newerth. Heroes of Newerth is a registered trademark of Frostburn Studios. All in-game descriptions, characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
-        'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/hon/scores/',
-        'source_name': 'Heroes of Newerth',
-        'source_url': 'http://www.heroesofnewerth.com/',
-    }
-
-    with open('./data/settings.json', 'w') as outfile:
-        json.dump(result, outfile)
-
-    return result
+class SettingsImporter(base.SettingsImporter):
+    def get_objects(self):
+        return {
+            'ios': {
+                'ad_small': 'ca-app-pub-4764697513834958/5819579664',
+                'ad_big': 'ca-app-pub-4764697513834958/1249779260',
+                'ad_video_id': '1157892',
+                'ad_video_key': 'ab9ffe592cd5f812c2732cc42fdfa5ecf6656265',
+                'tracking': 'UA-77793311-6',
+                'store': 'itms-apps://itunes.apple.com/app/id1109019404',
+                'store_premium': 'com.puppybox.quizhon.premium_version',
+            },
+            'android': {
+                'ad_small': 'ca-app-pub-4764697513834958/3145314865',
+                'ad_big': 'ca-app-pub-4764697513834958/5959180465',
+                'ad_video_id': '1157893',
+                'ad_video_key': '6f7fbf0d533c2d2f2a0a3bed85f585c7929c7c1c',
+                'tracking': 'UA-77793311-7',
+                'store': 'market://details?id=com.puppybox.quizhon',
+                'store_premium': 'com.puppybox.quizhon.premium_version',
+            },
+            'windows': {
+                'ad_small': 'ca-app-pub-4764697513834958/7883646863',
+                'ad_big': 'ca-app-pub-4764697513834958/7744046068',
+                'ad_video_id': '',
+                'ad_video_key': '',
+                'tracking': '',
+                'store': '',
+                'store_premium': '',
+            },
+            'legal_disclaimer': 'This application is not created, sponsored or endorsed by Frostburn Studios and doesn’t reflect the views or opinions of Frostburn Studios or anyone officially involved in producing or managing Heroes of Newerth. Heroes of Newerth is a registered trademark of Frostburn Studios. All in-game descriptions, characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
+            'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/hon/scores/',
+            'source_name': 'Heroes of Newerth',
+            'source_url': 'http://www.heroesofnewerth.com/',
+        }
 
 
-def setup_achievements(items, champions):
-    item_count = len(list(filter(lambda x: len(x['from']) > 0, items)))
-    champion_count = len(champions)
-    skill_count = functools.reduce(
-        lambda x, y: x + len(y['spells']), champions, 0
-    )
+class AchievementImporter(base.AchievementImporter):
+    pass
 
-    result = [
-      {
-        "id": "seen_all_skills",
-        "name": "Watching your every move",
-        "description": "Open all skill levels",
-        "type": "array",
-        "goal": skill_count,
-      },
-      {
-        "id": "seen_all_items",
-        "name": "Recipe observer",
-        "description": "Open all recipe levels",
-        "type": "array",
-        "goal": item_count,
-      },
-      {
-        "id": "seen_all_champions",
-        "name": "High Five Everybody",
-        "description": "Open all champion levels",
-        "type": "array",
-        "goal": champion_count,
-      },
-      {
-        "id": "solved_all_skills",
-        "name": "Every move is mine",
-        "description": "Solve all skill levels",
-        "type": "array",
-        "goal": skill_count,
-      },
-      {
-        "id": "solved_all_items",
-        "name": "Call me blacksmith",
-        "description": "Solve all recipe levels",
-        "type": "array",
-        "goal": item_count,
-      },
-      {
-        "id": "solved_all_champions",
-        "name": "I know all of them",
-        "description": "Solve all champion levels",
-        "type": "array",
-        "goal": champion_count,
-      },
-      {
-        "id": "gameplay_small_strike",
-        "name": "Warm up",
-        "description": "Make a 10x strike",
-        "type": "number",
-        "goal": 10
-      },
-      {
-        "id": "gameplay_medium_strike",
-        "name": "Unstoppable",
-        "description": "Make a 50x strike",
-        "type": "number",
-        "goal": 50
-      },
-      {
-        "id": "gameplay_big_strike",
-        "name": "Godlike",
-        "description": "Make a 150x strike",
-        "type": "number",
-        "goal": 150
-      },
-      {
-        "id": "gameplay_small_play_count",
-        "name": "Gamer",
-        "description": "Play the game 100 times",
-        "type": "increment",
-        "goal": 100
-      },
-      {
-        "id": "gameplay_medium_play_count",
-        "name": "Hardcore gamer",
-        "description": "Play the game 250 times",
-        "type": "increment",
-        "goal": 250
-      },
-      {
-        "id": "gameplay_big_play_count",
-        "name": "True fan",
-        "description": "Play the game 1000 times",
-        "type": "increment",
-        "goal": 1000
-      },
-    ]
 
-    with open('./data/achievements.json', 'w') as outfile:
-        json.dump(result, outfile)
-
-    return result
-
-items = setup_items()
-champions = setup_champions()
-setup_achievements(items, champions)
-setup_settings()
+items = ItemImporter().run()
+champions = ChampionImporter().run()
+achievements = AchievementImporter(items, champions).run()
+settings = SettingsImporter().run()
