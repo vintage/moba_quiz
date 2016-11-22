@@ -22,9 +22,9 @@ export class ChampionModel {
     this.is_range = _.get(json, "is_range", null);
     this.skills = [];
 
-    let spells = _.get(json, "spells", []);
-    for (let spell of spells) {
-      this.skills.push(new SkillModel(spell, this.id));
+    let skills = _.get(json, "skills", []);
+    for (let skill of skills) {
+      this.skills.push(new SkillModel(skill, this.id));
     }
   }
 
