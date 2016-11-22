@@ -2,10 +2,15 @@ import json
 import os
 import shutil
 import functools
+import re
 
 import requests
 from unidecode import unidecode as udecode
 from PIL import Image
+
+
+class ImageNotFound(Exception):
+    pass
 
 
 def parse_string(string):
@@ -113,10 +118,23 @@ class Importer(object):
             return outfile
 
     def clean_filename(self, filename):
-        return udecode(''.join(filename.split()).lower())
+        filename = udecode(''.join(filename.split()).lower())
+        extension_dot = filename.rindex('.')
+
+        left_part = filename[:extension_dot]
+        right_part = filename[extension_dot:]
+        # Characters after last . can be [a-z] only
+        right_part = " ".join(re.findall("[a-zA-Z]+", right_part))
+
+        return "{}.{}".format(left_part, right_part)
 
     def download_image(self, url, filename):
         response = requests.get(url, stream=True)
+
+        if response.status_code != 200:
+            msg = 'Image at {} not found'.format(url)
+            print(msg)
+            raise ImageNotFound(msg)
 
         filename = self.clean_filename(filename)
         full_path = os.path.join(self.image_path, filename)
