@@ -62,7 +62,9 @@ export class ShopPage {
     this.registerAdHandlers();
     this.ads.prepareRewardVideo();
 
-    InAppPurchase.getProducts([this.settings.storeProduct]);
+    InAppPurchase.getProducts([this.settings.storeProduct]).catch(() => {
+      console.log('Unable to fetch purchase products.');
+    });
   }
 
   registerAdHandlers() {

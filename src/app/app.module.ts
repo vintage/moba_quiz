@@ -1,7 +1,8 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { IsDebug } from 'ionic-native';
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 import Raven from 'raven-js';
 
@@ -62,9 +63,17 @@ Raven
   .config('https://a34e22c7f29e4e3e8b70d86230e98179@sentry.io/107612')
   .install();
 
-export class RavenErrorHandler implements ErrorHandler {
+export class MobaErrorHandler extends IonicErrorHandler {
   handleError(err:any) : void {
-    Raven.captureException(err.originalError);
+    IsDebug.getIsDebug().then(isDebug => {
+      if (!isDebug) {
+        Raven.captureException(err.originalError);
+      } else {
+        super.handleError(err);
+      }
+    }).catch(() => {
+      super.handleError(err);
+    });
   }
 }
 
@@ -161,7 +170,7 @@ export function createTranslateLoader(http: Http) {
     ChampionNationGame
   ],
   providers: [
-    { provide: ErrorHandler, useClass: RavenErrorHandler },
+    { provide: ErrorHandler, useClass: MobaErrorHandler },
     Storage,
     AchievementService,
     AdService,
