@@ -1,33 +1,23 @@
 .game-stats {
-  height: 72px;
+  height: 65px;
 
-  $progress-color-primary: color($colors, primary);
-  $progress-color-secondary: color($colors, danger);
-
-  progress::-moz-progress-bar { background: $progress-color-primary; }
-  progress::-webkit-progress-value { background: $progress-color-primary; }
+  $progress-color-primary: color($colors, secondary);
 
   progress {
     display: block;
     width: 100%;
-    height: 14px;
+    height: 4px;
     -webkit-appearance: none;
     border: none;
   }
 
+  progress::-moz-progress-bar { background: $progress-color-primary; }
+  progress::-webkit-progress-value { background: $progress-color-primary; }
+
   /* All good till now. Now we'll style the background */
   progress::-webkit-progress-bar {
   	background: black;
-  	border-radius: 20px;
-  	padding: 2px;
-  }
-
-  /* Now the value part */
-  progress::-webkit-progress-value {
-  	border-radius: 20px;
-  	box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
-    background: $progress-color-primary;
-  	background: linear-gradient(45deg, $progress-color-primary, $progress-color-primary, $progress-color-secondary);
+  	padding: 0;
   }
 
   .points-bar, .time-bar {
