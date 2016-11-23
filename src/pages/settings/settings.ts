@@ -31,6 +31,7 @@ export class SettingsPage {
         {'code': 'en', 'name': 'English'},
         {'code': 'fr', 'name': 'French'},
         {'code': 'hu', 'name': 'Hungarian'},
+        {'code': 'it', 'name': 'Italian'},
         {'code': 'pl', 'name': 'Polish'},
         {'code': 'pt', 'name': 'Portuguese'},
         {'code': 'ru', 'name': 'Russian'},

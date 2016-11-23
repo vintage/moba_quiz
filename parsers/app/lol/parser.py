@@ -11,15 +11,16 @@ base_items_url = base_url + '/data/{}/item.json'
 base_champions_url = base_url + '/data/{}/champion.json'
 
 languages_codes = {
-  'en': 'en_US',
-  'pl': 'pl_PL',
-  'pt': 'pt_BR',
-  'de': 'de_DE',
-  'fr': 'fr_FR',
-  'ru': 'ru_RU',
-  'es': 'es_ES',
-  'tr': 'tr_TR',
-  'hu': 'hu_HU'
+    'en': 'en_US',
+    'pl': 'pl_PL',
+    'pt': 'pt_BR',
+    'de': 'de_DE',
+    'fr': 'fr_FR',
+    'ru': 'ru_RU',
+    'es': 'es_ES',
+    'tr': 'tr_TR',
+    'hu': 'hu_HU',
+    'it': 'it_IT',
 }
 
 from app import base
