@@ -39,8 +39,8 @@
   "Language": "Nyelv",
   "About application": "Még több az alkalmazásról",
 
-  "Watch short video ad to get coins": "Nézz meg egy rövid videót {{amount}} érméért", 
-  "Rate application or like us on Facebook to get coins": "Értékeld az alkalmazást vagy likeolj minket Facebookon {{amount}} érméért", 
+  "Watch short video ad to get X coins": "Nézz meg egy rövid videót {{amount}} érméért", 
+  "Rate application or like us on Facebook to get X coins": "Értékeld az alkalmazást vagy likeolj minket Facebookon {{amount}} érméért", 
   "Loading video": "Videó betöltése",
   "Get free coins": "Ingyen érmék beszerzése", 
   "Like": "Like", 

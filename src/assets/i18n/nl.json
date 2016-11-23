@@ -39,8 +39,8 @@
   "Language": "Taal",
   "About application": "Over de applicatie",
   
-  "Watch short video ad to get coins": "Bekijk een korte video om {{amount}} munten te krijgen",
-  "Rate application or like us on Facebook to get coins": "Beoordeel de applicatie of like ons op Facebook om {{amount}} munten te krijgen",
+  "Watch short video ad to get X coins": "Bekijk een korte video om {{amount}} munten te krijgen",
+  "Rate application or like us on Facebook to get X coins": "Beoordeel de applicatie of like ons op Facebook om {{amount}} munten te krijgen",
   "Loading video": "Video laden",
   "Get free coins": "Ontvang gratis munten",
   "Like": "Like",

@@ -30,7 +30,7 @@
           <ion-row>
             <ion-col>
               <p>
-                {{ 'Watch short video ad to get coins' | translate:{amount: 1000} }}:
+                {{ 'Watch short video ad to get X coins' | translate:{amount: 1000} }}:
               </p>
 
               <button ion-button outline block color="primary" *ngIf="!isVideoReady" disabled>
@@ -46,7 +46,7 @@
           <ion-row *ngIf="!isAppRated || !isAppLiked || !isAppFollowed">
             <ion-col>
               <p>
-                {{ 'Rate application or like us on Facebook to get coins' | translate:{amount: 5000} }}.
+                {{ 'Rate application or like us on Facebook to get X coins' | translate:{amount: 5000} }}.
               </p>
 
               <ion-row>

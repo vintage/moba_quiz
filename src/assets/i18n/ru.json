@@ -39,8 +39,8 @@
   "Language": "Язык",
   "About application": "О приложении",
 
-  "Watch short video ad to get coins": "Посмотри короткое видео, чтобы получить {{amount}} монет",
-  "Rate application or like us on Facebook to get coins": "Чтобы получить {{amount}} монет, оцени приложение или лайкни нам на Facebook'е",
+  "Watch short video ad to get X coins": "Посмотри короткое видео, чтобы получить {{amount}} монет",
+  "Rate application or like us on Facebook to get X coins": "Чтобы получить {{amount}} монет, оцени приложение или лайкни нам на Facebook'е",
   "Loading video": "Загрузка видео",
   "Get free coins": "Получи бесплатные монеты",
   "Like": "Лайкни",

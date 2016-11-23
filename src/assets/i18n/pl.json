@@ -39,8 +39,8 @@
   "Language": "Język",
   "About application": "O aplikacji",
 
-  "Watch short video ad to get coins": "Obejrzyj krótką reklamę aby otrzymać {{amount}} monet",
-  "Rate application or like us on Facebook to get coins": "Oceń aplikację, lub polub nas na Facebooku, aby otrzymać {{amount}} monet",
+  "Watch short video ad to get X coins": "Obejrzyj krótką reklamę aby otrzymać {{amount}} monet",
+  "Rate application or like us on Facebook to get X coins": "Oceń aplikację, lub polub nas na Facebooku, aby otrzymać {{amount}} monet",
   "Loading video": "Ładuję wideo",
   "Get free coins": "Odbierz darmowe monety",
   "Like": "Polub",

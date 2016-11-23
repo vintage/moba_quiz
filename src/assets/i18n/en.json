@@ -39,8 +39,8 @@
   "Language": "Language",
   "About application": "About application",
 
-  "Watch short video ad to get coins": "Watch short video ad to get {{amount}} coins",
-  "Rate application or like us on Facebook to get coins": "Rate application or like us on Facebook to get {{amount}} coins",
+  "Watch short video ad to get X coins": "Watch short video ad to get {{amount}} coins",
+  "Rate application or like us on Facebook to get X coins": "Rate application or like us on Facebook to get {{amount}} coins",
   "Loading video": "Loading video",
   "Get free coins": "Get free coins",
   "Like": "Like",
