@@ -1,9 +1,9 @@
 {
-  "name": "Moba Quiz",
-  "short_name": "Moba Quiz",
-  "start_url": "index.html",
-  "display": "standalone",
-  "icons": [],
-  "background_color": "#387ef5",
-  "theme_color": "#387ef5"
+    "background_color": "#387ef5",
+    "display": "standalone",
+    "icons": [],
+    "name": "Moba Quiz",
+    "short_name": "Moba Quiz",
+    "start_url": "index.html",
+    "theme_color": "#387ef5"
 }
