@@ -123,8 +123,8 @@ ion-card-content {
   color: color($colors, secondary) !important;
 }
 
-.spinner-crescent circle {
-  stroke: color($colors, primary) !important;
+.spinner-dots circle {
+  fill: color($colors, primary) !important;
 }
 
 .alert-title {
