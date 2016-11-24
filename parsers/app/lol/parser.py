@@ -80,7 +80,7 @@ class ChampionImporter(base.ChampionImporter):
             for index, spell_data in enumerate(data['spells']):
                 s_id = spell_data['id']
                 s_name = spell_data['name']
-                s_name_i18n = {k: v['spells'][0]['name'] for k, v in i18n.items()}
+                s_name_i18n = {k: v['spells'][index]['name'] for k, v in i18n.items()}
                 s_image_url = '{}/img/spell/{}'.format(base_url, spell_data['image']['full'])
                 s_image = self.download_image(s_image_url, '{}_{}.png'.format(champion_id, s_id))
 
@@ -88,7 +88,7 @@ class ChampionImporter(base.ChampionImporter):
                 skill.add_translation('name', s_name_i18n)
 
                 champion.add_skill(skill)
-
+                
             objects.append(champion)
 
         return objects

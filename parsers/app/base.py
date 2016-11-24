@@ -38,7 +38,7 @@ class Champion(object):
         self.translations[field] = value
 
     def to_dict(self):
-        return {
+        data = {
             'id': parse_string(self.pk),
             'name': parse_string(self.name),
             'nation': parse_string(self.nation),
@@ -47,6 +47,11 @@ class Champion(object):
             'is_range': self.is_range,
             'skills': [s.to_dict() for s in self.skills]
         }
+
+        for i18n_key, i18n_value in self.translations.items():
+            data[i18n_key] = i18n_value
+
+        return data
 
 
 class Skill(object):
@@ -60,11 +65,16 @@ class Skill(object):
         self.translations[field] = value
 
     def to_dict(self):
-        return {
+        data = {
             'id': parse_string(self.pk),
             'name': parse_string(self.name),
             'image': parse_string(self.image),
         }
+
+        for i18n_key, i18n_value in self.translations.items():
+            data[i18n_key] = i18n_value
+
+        return data
 
 
 class Item(object):
@@ -81,7 +91,7 @@ class Item(object):
         self.translations[field] = value
 
     def to_dict(self):
-        return {
+        data = {
             'id': parse_string(self.pk),
             'name': parse_string(self.name),
             'image': parse_string(self.image),
@@ -89,6 +99,11 @@ class Item(object):
             'from': self._from,
             'price': self.price,
         }
+
+        for i18n_key, i18n_value in self.translations.items():
+            data['{}_i18n'.format(i18n_key)] = i18n_value
+
+        return data
 
 
 class Importer(object):
