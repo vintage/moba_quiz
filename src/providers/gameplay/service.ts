@@ -69,13 +69,13 @@ export class GameplayService {
 
   getLevelPoints() {
     // Base points
-    let points = 25000;
+    let points = 30000;
 
     // Time bonus
     points += Math.round((this.timeLeft / this.timeLimit) * (points * 2));
 
     // Strike bonus
-    points += Math.min(this.strike * 400, points);
+    points += Math.min(this.strike * 600, points);
 
     return points;
   }
