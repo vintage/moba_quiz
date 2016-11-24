@@ -17,6 +17,7 @@ game-slot {
       height: 100%;
       background-color: #0f1528;
       padding: 1px;
+      border: 2px solid transparent;
       border-image: url("../assets/images/border_simple.png") 7;
 
       .image {
