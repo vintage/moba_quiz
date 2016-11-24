@@ -7,11 +7,9 @@
 <ion-content class="highscore-list">
   <div class="panel-box">
     <div *ngIf="isOnline">
-      <ion-card *ngIf="!scores">
-        <ion-card-content>
-          <ion-spinner name="crescent"></ion-spinner>
-        </ion-card-content>
-      </ion-card>
+      <div *ngIf="!scores" class="loading-container">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
 
       <ion-list no-lines *ngIf="scores && scores.length">
         <ion-item *ngFor="let score of scores; let i=index">
