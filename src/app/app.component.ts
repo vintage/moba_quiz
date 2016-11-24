@@ -29,25 +29,29 @@ export class MyApp {
   }
 
   setLanguage() {
-    this.settings.getLanguage().then(code => {
-      if (!code) {
-        Globalization.getPreferredLanguage().then(language => {
-          let code = language.value.substring(0, 2).toLowerCase();
-          let supportedCodes = ['en', 'pl', 'fr', 'pt', 'es', 'de', 'ru', 'nl', 'hu', 'it'];
+    return new Promise(resolve => {
+      this.settings.getLanguage().then(code => {
+        if (!code) {
+          Globalization.getPreferredLanguage().then(language => {
+            let code = language.value.substring(0, 2).toLowerCase();
+            let supportedCodes = ['en', 'pl', 'fr', 'pt', 'es', 'de', 'ru', 'nl', 'hu', 'it'];
 
-          if (supportedCodes.indexOf(code) === -1) {
-            code = 'en';
-          }
+            if (supportedCodes.indexOf(code) === -1) {
+              code = 'en';
+            }
 
-          this.settings.setLanguage(code);
+            this.settings.setLanguage(code);
+            this.translate.use(code);
+            resolve(code);
+          });
+        } else {
           this.translate.use(code);
-          this.appRef.tick();
-        });
-      } else {
-        this.translate.use(code);
-        this.appRef.tick();
-      }
-    });
+          resolve(code);
+        }
+      }).catch(() => {
+        resolve(null);
+      });
+    }); 
   }
 
   setMusic() {
@@ -72,11 +76,12 @@ export class MyApp {
     this.translate.setDefaultLang('en');
 
     this.platform.ready().then(() => {
-      Splashscreen.hide();
       StatusBar.hide();
-      
-      this.setMusic();
-      this.setLanguage();
+
+      this.setLanguage().then(() => {
+        this.setMusic();
+        Splashscreen.hide();
+      });
 
       this.settings.load().then(() => {
         if (window["analytics"]) {
