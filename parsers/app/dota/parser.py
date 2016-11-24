@@ -8,7 +8,7 @@ from app import base
 
 base_image_url = 'http://cdn.dota2.com/apps/dota2/images'
 base_items_url = 'https://www.dota2.com/jsfeed/heropediadata?feeds=itemdata&l={}'
-skills_url = 'http://www.dota2.com/jsfeed/heropediadata?feeds=abilitydata&l=english'
+base_skills_url = 'http://www.dota2.com/jsfeed/heropediadata?feeds=abilitydata&l={}'
 base_champions_url = 'https://www.dota2.com/jsfeed/heropediadata?feeds=herodata&l={}'
 
 languages_codes = {
@@ -27,11 +27,16 @@ class ChampionImporter(base.ChampionImporter):
     def get_objects(self):
         i18n = {}
         for lang, code in languages_codes.items():
-            url = base_champions_url.format(code)
+            champion_url = base_champions_url.format(code)
+            skill_url = base_skills_url.format(code)
 
-            i18n[lang] = requests.get(url).json()
+            i18n[lang] = {
+                'hero': requests.get(champion_url).json()['herodata'],
+                'skill': requests.get(skill_url).json()['abilitydata'],
+            }
 
         champions_url = base_champions_url.format('english')
+        skills_url = base_skills_url.format('english')
 
         skills_data = requests.get(skills_url).json()['abilitydata']
         champions_data = requests.get(champions_url).json()['herodata']
@@ -40,7 +45,7 @@ class ChampionImporter(base.ChampionImporter):
         for champion_id, data in tqdm(champions_data.items(), desc='Parsing champions'):
             o_name = data['dname']
             o_name_i18n = {
-                k: v['herodata'][champion_id]['dname'] for k, v in i18n.items()
+                k: v['hero'][champion_id]['dname'] for k, v in i18n.items()
             }
             o_slug = data['u']
             o_ranged = data['dac'] == 'Ranged'
@@ -61,10 +66,14 @@ class ChampionImporter(base.ChampionImporter):
                     continue
 
                 s_name = spell_data['dname']
+                s_name_i18n = {
+                    k: v['skill'][spell_id]['dname'] for k, v in i18n.items()
+                }
                 s_image_url = '{}/abilities/{}_hp1.png'.format(base_image_url, spell_id)
                 s_image = self.download_image(s_image_url, '{}.png'.format(spell_id))
 
                 skill = base.Skill(spell_id, s_name, s_image)
+                skill.add_translation('name', s_name_i18n)
 
                 champion.add_skill(skill)
 
