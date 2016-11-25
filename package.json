@@ -4,7 +4,7 @@
   "author": "Kamil Rykowski <kamil.rykowski@gmail.com>",
   "homepage": "https://www.facebook.com/puppy.box.studio/",
   "private": true,
-  "version": "1.9.0",
+  "version": "2.0.0",
   "config": {
     "ionic_source_map": "source-map"
   },
@@ -63,6 +63,7 @@
     "cordova-plugin-ad-unityads"
   ],
   "cordovaPlatforms": [
+    "ios",
     "android@6.1.0"
   ]
 }
