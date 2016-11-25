@@ -77,10 +77,15 @@ def build(provider):
 
     store_key = store_keys[provider]
 
-    # Add manifest file for purchases
-    with open("www/manifest.json", "w") as f:
-        data = {"play_store_key": store_key}
-        f.write(json.dumps(data))
+    # Update manifest file with Google API purchase key
+    manifest_path = 'src/manifest.json'
+    with open(manifest_path) as f:
+        manifest_json = json.load(f)
+
+    with open('src/manifest.json', 'w') as f:
+        manifest_json['play_store_key'] = store_key
+
+        f.write(json.dumps(manifest_json, indent=4, sort_keys=True))
 
     call(["ionic", "resources"])
 
@@ -120,6 +125,10 @@ def build(provider):
     src_apk = "android-x86-release-unsigned.apk"
     jarsigner(src_apk)
     zipalign(src_apk, "builds/{}_x86.apk".format(provider))
+
+    # Revert manifest.json
+    call(["git", "checkout", "src/manifest.json"])
+
 
 
 if __name__ == '__main__':
