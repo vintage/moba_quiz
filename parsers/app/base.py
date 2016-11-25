@@ -49,7 +49,7 @@ class Champion(object):
         }
 
         for i18n_key, i18n_value in self.translations.items():
-            data[i18n_key] = i18n_value
+            data['{}_i18n'.format(i18n_key)] = i18n_value
 
         return data
 
@@ -72,7 +72,7 @@ class Skill(object):
         }
 
         for i18n_key, i18n_value in self.translations.items():
-            data[i18n_key] = i18n_value
+            data['{}_i18n'.format(i18n_key)] = i18n_value
 
         return data
 
