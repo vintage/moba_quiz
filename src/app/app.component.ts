@@ -34,7 +34,7 @@ export class MyApp {
         if (!code) {
           Globalization.getPreferredLanguage().then(language => {
             let code = language.value.substring(0, 2).toLowerCase();
-            let supportedCodes = ['en', 'pl', 'fr', 'pt', 'es', 'de', 'ru', 'nl', 'hu', 'it'];
+            let supportedCodes = ['en', 'pl', 'fr', 'pt', 'es', 'de', 'ru', 'nl', 'hu', 'it', 'tr'];
 
             if (supportedCodes.indexOf(code) === -1) {
               code = 'en';
