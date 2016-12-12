@@ -11,11 +11,19 @@ export class MusicService {
     private settings: SettingsService
   ) {
     this.platform.pause.subscribe(() => {
-      this.pause();
+      this.settings.isMusicEnabled().then(isEnabled => {
+        if (isEnabled) {
+          this.pause();
+        }
+      });
     });
-
+    
     this.platform.resume.subscribe(() => {
-      this.start();
+      this.settings.isMusicEnabled().then(isEnabled => {
+        if (isEnabled) {
+          this.start();
+        }
+      });
     });
   }
 
