@@ -43,7 +43,7 @@ class ChampionImporter(base.ChampionImporter):
             detail_url = '{}/data/en_US/champion/{}.json'.format(base_url, champion_id)
             data = requests.get(detail_url).json()['data'][champion_id]
 
-            if champion_id.lower() in ('gnar', 'jayce', 'elise'):
+            if champion_id.lower() in ('gnar', 'jayce', 'elise', 'ivern'):
                 o_ranged = None
             else:
                 o_ranged = data['stats']['attackrange'] > 250
@@ -88,7 +88,7 @@ class ChampionImporter(base.ChampionImporter):
                 skill.add_translation('name', s_name_i18n)
 
                 champion.add_skill(skill)
-                
+
             objects.append(champion)
 
         return objects
