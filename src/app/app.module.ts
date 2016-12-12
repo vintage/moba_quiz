@@ -65,6 +65,10 @@ Raven
 
 export class MobaErrorHandler extends IonicErrorHandler {
   handleError(err:any) : void {
+    if (!window['cordova']) {
+      return super.handleError(err);
+    }
+
     IsDebug.getIsDebug().then(isDebug => {
       if (!isDebug) {
         Raven.captureException(err.originalError);
@@ -170,7 +174,7 @@ export function createTranslateLoader(http: Http) {
     ChampionNationGame
   ],
   providers: [
-    { provide: ErrorHandler, useClass: MobaErrorHandler },
+    // { provide: ErrorHandler, useClass: MobaErrorHandler },
     Storage,
     AchievementService,
     AdService,

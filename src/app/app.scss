@@ -44,8 +44,9 @@
 
 .panel-box {
   background-color: #171512;
-  border: 8px solid transparent;
-  border-image: url('../assets/images/border_simple.png') 44;
+  border: 16px solid transparent;
+  border-radius: 5px;
+  border-image: url('../assets/images/border_simple.png') 30;
   position: relative;
 
   &.panel-ribbon {
@@ -61,7 +62,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    top: -25px;
+    top: -35px;
     color: #171512;
     text-align: center;
     padding-top: 6px;
@@ -138,6 +139,10 @@ ion-card-content {
 .game-alert {
   .alert-button-group {
     display: none;
+  }
+
+  .alert-wrapper {
+    background-color: rgba(23, 21, 18, 0.6);
   }
 
   .alert-head {
