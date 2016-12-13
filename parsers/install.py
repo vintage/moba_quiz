@@ -90,10 +90,10 @@ def build(provider):
     call(["ionic", "resources"])
 
     # Build ios package
-    # call(["ionic", "build", "ios"])
+    call(["ionic", "build", "ios", "--prod"])
 
     # Build android package
-    call(["ionic", "build", "android", "--release"])
+    call(["ionic", "build", "android", "--prod"])
 
     def jarsigner(apk_name):
         call([
