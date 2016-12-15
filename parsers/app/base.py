@@ -180,7 +180,7 @@ class ChampionImporter(Importer):
             # Validate skills
             skills = obj.skills
             if not skills:
-                raise Exception('Champion is missing skills.'.format(obj.pk))
+                raise Exception('Champion {} missing skills.'.format(obj.pk))
 
             for skill in skills:
                 if not any([skill.pk, skill.name, skill.image]):
