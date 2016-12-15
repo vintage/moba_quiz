@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 # Check http://gameinfo.eune.leagueoflegends.com/en/game-info/champions/
 # XHR request to get current API version
-base_url = 'http://ddragon.leagueoflegends.com/cdn/6.22.1'
+base_url = 'http://ddragon.leagueoflegends.com/cdn/6.24.1'
 base_items_url = base_url + '/data/{}/item.json'
 base_champions_url = base_url + '/data/{}/champion.json'
 
