@@ -174,7 +174,7 @@ export function createTranslateLoader(http: Http) {
     ChampionNationGame
   ],
   providers: [
-    // { provide: ErrorHandler, useClass: MobaErrorHandler },
+    { provide: ErrorHandler, useClass: MobaErrorHandler },
     Storage,
     AchievementService,
     AdService,
