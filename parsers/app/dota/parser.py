@@ -7,9 +7,9 @@ import requests
 from app import base
 
 base_image_url = 'http://cdn.dota2.com/apps/dota2/images'
-base_items_url = 'https://www.dota2.com/jsfeed/heropediadata?feeds=itemdata&l={}'
-base_skills_url = 'http://www.dota2.com/jsfeed/heropediadata?feeds=abilitydata&l={}'
-base_champions_url = 'https://www.dota2.com/jsfeed/heropediadata?feeds=herodata&l={}'
+base_items_url = 'http://www.dota2.com/jsfeed/heropediadata?feeds=itemdata&v=3746773IVyYz94DLu15&l={}'
+base_skills_url = 'http://www.dota2.com/jsfeed/heropediadata?feeds=abilitydata&v=3746773IVyYz94DLu15&l={}'
+base_champions_url = 'http://www.dota2.com/jsfeed/heropickerdata?v=3746773b3746773&l={}'
 
 languages_codes = {
   'en': 'english',

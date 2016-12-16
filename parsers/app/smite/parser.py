@@ -8,8 +8,8 @@ from pyquery import PyQuery as pq
 
 from app import base
 
-items_url = 'https://www.smitegame.com/items/'
-champions_url = 'https://www.smitegame.com/gods/'
+items_url = 'http://www.smitegame.com/items/'
+champions_url = 'http://www.smitegame.com/gods/'
 
 
 class ChampionImporter(base.ChampionImporter):

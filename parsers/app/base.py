@@ -115,7 +115,11 @@ class Importer(object):
 
         objects = self.get_objects()
 
-        is_valid = self.validate(objects)
+        try:
+          is_valid = self.validate(objects)
+        except Exception as e:
+          import ipdb; ipdb.set_trace()
+          raise
         if not is_valid:
             raise Exception('Something went wrong in the validate method.')
 
