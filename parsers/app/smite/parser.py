@@ -22,6 +22,7 @@ class ChampionImporter(base.ChampionImporter):
         objects = []
         for item in tqdm(container.items('.god-package'), desc='Parsing champions'):
             detail_url = item.find('a').attr('href')
+            detail_url = detail_url.replace('https', 'http')
 
             try:
                 detail_dom = pq(url=detail_url)
