@@ -89,9 +89,6 @@ def build(provider):
 
     call(["ionic", "resources"])
 
-    # Build ios package
-    call(["ionic", "build", "ios", "--prod"])
-
     # Build android package
     call(["ionic", "build", "android", "--release", "--prod"])
 
@@ -125,6 +122,9 @@ def build(provider):
     src_apk = "android-x86-release-unsigned.apk"
     jarsigner(src_apk)
     zipalign(src_apk, "builds/{}_x86.apk".format(provider))
+
+    # Build ios package
+    call(["ionic", "build", "ios"])
 
     # Revert manifest.json
     call(["git", "checkout", "src/manifest.json"])

@@ -44,7 +44,8 @@
 
 .panel-box {
   background-color: #171512;
-  border: 16px solid transparent;
+  border-width: 16px;
+  border-style: solid;
   border-radius: 5px;
   border-image: url('../assets/images/border_simple.png') 30;
   position: relative;
