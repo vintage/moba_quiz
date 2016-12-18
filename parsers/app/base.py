@@ -85,7 +85,7 @@ class Item(object):
         self.image = image
         self.into = into
         self._from = _from
-        self.price = price
+        self.price = int(price) if price else None
         self.translations = {}
 
     def add_translation(self, field, value):
