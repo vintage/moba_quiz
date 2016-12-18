@@ -79,7 +79,7 @@ export class GamePage {
     this.shop.getItemAmount("extra_life").then(lifeCount => {
       this.addExtraLife(lifeCount);
     });
-    
+
     this.shop.getItemAmount("skip_questions").then(skipCount => {
       this.addExtraSkips(skipCount);
     });
@@ -148,7 +148,7 @@ export class GamePage {
       this.isLocked = true;
 
       this.music.play("nextLevel");
-      
+
       if (this.isCoinLevel()) {
         this.shop.addCoins(this.getCoinsAmount());
       }
@@ -191,8 +191,8 @@ export class GamePage {
       this.removeExtraLife();
 
       if (this.gameplay.isOver()) {
-        this.finishGame();
         component.gameOver();
+        this.finishGame();
       }
     });
   }
@@ -247,7 +247,7 @@ export class GamePage {
 
   finishGame() {
     this.isLocked = true;
-    
+
     let alertDismissed = false;
 
     let alert = this.alertCtrl.create({
