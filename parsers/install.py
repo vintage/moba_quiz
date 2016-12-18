@@ -123,7 +123,9 @@ def build(provider):
     jarsigner(src_apk)
     zipalign(src_apk, "builds/{}_x86.apk".format(provider))
 
-    # Build ios package
+    # Build ios package, it's strange but I have to remove/add the platform
+    call(["ionic", "platform", "rm", "ios"])
+    call(["ionic", "platform", "add", "ios"])
     call(["ionic", "build", "ios"])
 
     # Revert manifest.json

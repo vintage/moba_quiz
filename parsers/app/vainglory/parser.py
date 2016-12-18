@@ -40,6 +40,7 @@ class ChampionImporter(base.ChampionImporter):
 
             o_ranged = o_ranged == 'Ranged'
             o_nation = tree.xpath('//*[@id="chapter"]/div/table/tr/td[2]/table[1]/tr/td/text()')[6]
+            o_nation = o_nation.split('/')[0]
 
             o_image_url = base_url + item.find('img').attrib['src']
             o_image = self.download_image(o_image_url, '{}_avatar.png'.format(o_id))
@@ -88,6 +89,9 @@ class ItemImporter(base.ItemImporter):
             o_name = tree.xpath('//*[@id="wiki"]/div[1]/div[1]/h2')[0].text
             o_id = self.slugify(o_name)
             o_price = tree.xpath('//*[@id="chapter"]/div/table[1]/tr/td[2]/span[2]/span/span[2]/span[2]/span')[0].text
+
+            if o_price == 'O':
+                continue
 
             o_image_url = base_url + item.find('img').attrib['src']
             o_image = self.download_image(o_image_url, '{}.png'.format(o_id))
