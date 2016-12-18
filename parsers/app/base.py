@@ -7,6 +7,7 @@ import re
 import requests
 from unidecode import unidecode as udecode
 from PIL import Image
+from slugify import slugify
 
 
 class ImageNotFound(Exception):
@@ -135,6 +136,9 @@ class Importer(object):
             json.dump([o.to_dict() for o in objects], outfile, ensure_ascii=False)
 
             return outfile
+
+    def slugify(self, value):
+        return slugify(value)
 
     def clean_filename(self, filename):
         filename = udecode(''.join(filename.split()).lower())

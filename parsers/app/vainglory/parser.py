@@ -3,45 +3,62 @@ sys.path.insert(0,'../..')
 
 import json
 
+import requests
 from tqdm import tqdm
-from pyquery import PyQuery as pq
+from lxml import etree
 
 from app import base
 
-items_url = 'http://vainglorydb.com/items'
-champions_url = 'http://vainglorydb.com/heroes'
+base_url = 'http://www.vaingloryfire.com'
+items_url = 'http://www.vaingloryfire.com/vainglory/wiki/items'
+champions_url = 'http://www.vaingloryfire.com/vainglory/wiki/heroes'
 
 
 class ChampionImporter(base.ChampionImporter):
     def get_objects(self):
-        dom = pq(url=champions_url)
-        container = dom('.items')
+        heroes_response = requests.get(champions_url)
+        tree_list = etree.HTML(heroes_response.content)
+
+        detail_nodes = tree_list.xpath('//*[@id="cards"]/div[1]/div/a')
 
         objects = []
-        for item in tqdm(container.items('li'), desc='Parsing champions'):
-            detail_url = item.find('a').attr('href')
-            detail_dom = pq(url=detail_url)
+        for item in tqdm(detail_nodes, desc='Parsing champions'):
+            detail_url = base_url + item.attrib['href'] + '/abilities/'
+            response = requests.get(detail_url)
+            tree = etree.HTML(response.content)
 
-            o_name = detail_dom.find('.section-head a').text()
-            o_id = o_name.lower()
-            o_ranged = detail_dom('.basic-panel .basic-table tr').eq(0).find('td').eq(1).text()
-            o_nation = detail_dom('.basic-panel .basic-table tr').eq(2).find('td').eq(1).text()
+            o_name = tree.xpath('//*[@id="wiki"]/div[1]/div[1]/h2')[0].text
+            o_id = self.slugify(o_name)
 
-            o_image_url = 'http://www.vaingloryfire.com/images/wikibase/icon/heroes/{}.png'.format(o_id)
+            if o_id in ['idris']:
+                continue
+
+            o_ranged = tree.xpath('//*[@id="chapter"]/div/table/tr/td[2]/table[1]/tr/td/text()')[2]
+
+            if o_ranged not in ('Melee', 'Ranged'):
+                raise Exception('Not this time')
+
+            o_ranged = o_ranged == 'Ranged'
+            o_nation = tree.xpath('//*[@id="chapter"]/div/table/tr/td[2]/table[1]/tr/td/text()')[6]
+
+            o_image_url = base_url + item.find('img').attrib['src']
             o_image = self.download_image(o_image_url, '{}_avatar.png'.format(o_id))
 
-            skill_nodes = list(detail_dom.find('#hero-abilities').items('li'))
+            skill_nodes = tree.xpath('//*[@id="chapter"]/table')
 
             champion = base.Champion(
                 o_id, o_name, o_image, is_range=o_ranged, nation=o_nation
             )
 
             for skill_node in skill_nodes:
-                skill = json.loads(skill_node.attr('data-ability'))
+                cell = skill_node.find('td')
+                if not cell:
+                    continue
 
-                s_id = str(skill['id'])
-                s_name = skill['name']
-                s_image_url = skill['icon']
+                attribs = cell.find('div').find('a').find('img').attrib
+                s_name = attribs['title']
+                s_id = self.slugify(s_name)
+                s_image_url = base_url + attribs['src']
                 s_image = self.download_image(
                     s_image_url, '{}_{}.png'.format(o_id, s_id)
                 )
@@ -57,43 +74,33 @@ class ChampionImporter(base.ChampionImporter):
 
 class ItemImporter(base.ItemImporter):
     def get_objects(self):
-        dom = pq(url=items_url)
-        container = dom('.items')
+        items_response = requests.get(items_url)
+        tree_list = etree.HTML(items_response.content)
+
+        detail_nodes = tree_list.xpath('//*[@id="cards"]/div[1]/div/a')
 
         objects = []
-        for item in tqdm(container.items('li'), desc='Parsing items'):
-            detail_url = item.find('a').attr('href')
-            detail_dom = pq(url=detail_url)
+        for item in tqdm(detail_nodes, desc='Parsing items'):
+            detail_url = base_url + item.attrib['href']
+            response = requests.get(detail_url)
+            tree = etree.HTML(response.content)
 
-            data = json.loads(item.attr('data-item'))
+            o_name = tree.xpath('//*[@id="wiki"]/div[1]/div[1]/h2')[0].text
+            o_id = self.slugify(o_name)
+            o_price = tree.xpath('//*[@id="chapter"]/div/table[1]/tr/td[2]/span[2]/span/span[2]/span[2]/span')[0].text
 
-            o_id = str(data['id'])
-            o_name = data['name']
-            o_price = data['cost']
+            o_image_url = base_url + item.find('img').attrib['src']
+            o_image = self.download_image(o_image_url, '{}.png'.format(o_id))
 
-            o_image_url = data['icon']
-            o_image = self.download_image(
-                o_image_url, '{}.png'.format(o_id)
-            )
+            recipe_1 = tree.xpath('//*[@id="chapter"]/div/table[2]/tr[3]/td/table/tr/td[1]/table[1]/tr/td[2]/span[1]/a')
+            recipe_2 = tree.xpath('//*[@id="chapter"]/div/table[2]/tr[3]/td/table/tr/td[3]/table[1]/tr/td[2]/span[1]/a')
 
-            build_trees = list(detail_dom.items('.build-tree'))
+            recipe = []
+            if recipe_1:
+                recipe.append(self.slugify(recipe_1[0].text))
 
-            recipe, max_price = [], 0
-            for build_tree in build_trees:
-                recipe_items = [
-                    json.loads(i.attr('data-item')) for i in list(build_tree.items('a'))
-                ]
-
-                r_ids = [str(r['id']) for r in recipe_items]
-                r_price = sum([r['cost'] for r in recipe_items])
-
-                # Skip it as its same item
-                if o_id in r_ids:
-                    continue
-
-                if o_price >= r_price and r_price > max_price:
-                    max_price = r_price
-                    recipe = r_ids
+            if recipe_2:
+                recipe.append(self.slugify(recipe_2[0].text))
 
             item = base.Item(o_id, o_name, o_image, [], recipe, o_price)
 
