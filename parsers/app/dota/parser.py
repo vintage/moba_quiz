@@ -31,7 +31,7 @@ class ChampionImporter(base.ChampionImporter):
             skill_url = base_skills_url.format(code)
 
             i18n[lang] = {
-                'hero': requests.get(champion_url).json()['herodata'],
+                'hero': requests.get(champion_url).json(),
                 'skill': requests.get(skill_url).json()['abilitydata'],
             }
 
@@ -39,16 +39,21 @@ class ChampionImporter(base.ChampionImporter):
         skills_url = base_skills_url.format('english')
 
         skills_data = requests.get(skills_url).json()['abilitydata']
-        champions_data = requests.get(champions_url).json()['herodata']
+        champions_data = requests.get(champions_url).json()
 
         objects = []
         for champion_id, data in tqdm(champions_data.items(), desc='Parsing champions'):
-            o_name = data['dname']
+            o_name = data['name']
             o_name_i18n = {
-                k: v['hero'][champion_id]['dname'] for k, v in i18n.items()
+                k: v['hero'][champion_id]['name'] for k, v in i18n.items()
             }
-            o_slug = data['u']
-            o_ranged = data['dac'] == 'Ranged'
+            o_slug = o_name.replace(' ', '_')
+            o_slug = ''.join([o for o in o_slug if o.isalnum() or o in ['_', '-']])
+            if champion_id == 'monkey_king':
+              o_slug = 'MonkeyKing'
+            o_slug = o_slug.lower()
+
+            o_ranged = data['atk'].lower() == 'ranged'
 
             o_image_url = '{}/heroes/{}_lg.png'.format(base_image_url, champion_id)
             o_image = self.download_image(o_image_url, '{}_avatar.png'.format(champion_id))
@@ -59,11 +64,13 @@ class ChampionImporter(base.ChampionImporter):
             champion.add_translation('name', o_name_i18n)
 
             for spell_id, spell_data in skills_data.items():
-                if spell_data['hurl'] != o_slug:
+                if spell_data['hurl'].lower() != o_slug:
                     continue
 
-                if spell_id in ['invoker_attribute_bonus']:
+                if '_bonus' in spell_id:
                     continue
+
+                spell_id = spell_id.replace('_early', '')
 
                 s_name = spell_data['dname']
                 s_name_i18n = {
@@ -118,6 +125,8 @@ class ItemImporter(base.ItemImporter):
             o_name_i18n = {k: v['itemdata'][item_id]['dname'] for k, v in i18n.items()}
             o_price = data['cost']
             o_from = data['components'] or []
+            # Remove empty data from components
+            o_from = [o for o in o_from if o]
 
             o_image_name = data['img']
             o_image_url = '{}/items/{}'.format(base_image_url, o_image_name)
