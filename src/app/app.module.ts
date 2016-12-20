@@ -67,6 +67,10 @@ export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, './assets/i18n', '.json');
 };
 
+export function provideStorage() {
+ return new Storage(['sqlite', 'websql', 'indexeddb']);
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -150,7 +154,7 @@ export function createTranslateLoader(http: Http) {
     ChampionNationGame
   ],
   providers: [
-    Storage,
+    {provide: Storage, useFactory: provideStorage},
     AchievementService,
     AdService,
     ChampionService,
