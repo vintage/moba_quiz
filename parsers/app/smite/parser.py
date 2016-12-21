@@ -65,7 +65,7 @@ class ChampionImporter(base.ChampionImporter):
 
             for spell_dom in detail_dom.items('.single-ability'):
                 s_name = spell_dom.find('.ability-name').text()
-                s_id = '{}_{}'.format(o_id, s_name).lower()
+                s_id = self.slugify('{}_{}'.format(o_id, s_name))
 
                 s_image_url = spell_dom.find('img.icon').attr('src')
                 s_image = self.download_image(s_image_url, '{}.png'.format(s_id))
