@@ -31,7 +31,7 @@ class ChampionImporter(base.ChampionImporter):
                 detail_dom = pq(url=detail_url)
 
             o_name = item.find('.god-name').text()
-            o_id = o_name.lower()
+            o_id = self.slugify(o_name)
             o_title = detail_dom.find('.god-info .title').text()
             o_ranged = None
             o_nation = None
@@ -43,7 +43,7 @@ class ChampionImporter(base.ChampionImporter):
 
                 name_cell = cells[1]
 
-                if name_cell.text_content().strip().lower() == o_id.lower():
+                if name_cell.text_content().strip().lower() == o_name.lower():
                     o_ranged = cells[3].text_content().strip() == 'Ranged'
                     o_nation = cells[2].text_content().strip()
                     break
@@ -87,7 +87,7 @@ class ItemImporter(base.ItemImporter):
         objects = []
         for item in tqdm(container.items('.item-package'), desc='Parsing items'):
             o_name = item.find('.title').text()
-            o_id = o_name.lower()
+            o_id = self.slugify(o_name)
             o_price = int(item.find('.cost').text())
             o_from = item.find('.starting-item-name').text()
 
