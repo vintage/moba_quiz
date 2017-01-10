@@ -9,41 +9,25 @@ export class AdService {
   initialize() {
     let config = this.getConfiguration();
 
-    let video = this.getVideoEngine();
-    if (video) {
-      video.setUp(config.rewardVideoId, "video", "rewardedVideo", false);
-    }
-
     let engine = this.getEngine();
     if (engine) {
-      engine.setOptions({
-        publisherId: config.banner,
-        interstitialAdId: config.full_screen,
-        bannerAtTop: false,  // set to true, to put banner at top
-        overlap: false,  // set to true, to allow banner overlap webview
-        offsetTopBar: false,  // set to true to avoid ios7 status bar overlap
-        isTesting: false,  // receiving test ad
-        autoShow: false,  // auto show interstitial ad when loaded
-      });
+      engine.setAutoCache(engine.INTERSTITIAL, false);
+
+      engine.initialize(
+        config.adId,
+        engine.INTERSTITIAL | engine.BANNER | engine.REWARDED_VIDEO
+      );
     }
   }
 
   getConfiguration() {
     return {
-      banner: this.settings.smallBanner,
-      full_screen: this.settings.bigBanner,
-      rewardVideoId: this.settings.videoBannerId,
-      rewardVideoKey: this.settings.videoBannerKey
+      adId: this.settings.adId
     };
   }
 
   getEngine() {
-    let engine = window["AdMob"];
-    return engine;
-  }
-
-  getVideoEngine() {
-    let engine = window["unityads"];
+    let engine = window["Appodeal"];
     return engine;
   }
 
@@ -53,12 +37,7 @@ export class AdService {
       return;
     }
 
-    engine.createBannerView({}, () => {
-      // Banner added
-      engine.showAd(true);
-    }, () => {
-      // Failed to add banner
-    });
+    engine.show(engine.BANNER);
   }
 
   removeBanner() {
@@ -67,7 +46,7 @@ export class AdService {
       return;
     }
 
-    engine.destroyBannerView();
+    engine.hide(engine.BANNER);
   }
 
   prepareFullScreen() {
@@ -76,7 +55,7 @@ export class AdService {
       return;
     }
 
-    engine.prepareInterstitial();
+    engine.cache(engine.INTERSTITIAL);
   }
 
   showFullScreen() {
@@ -85,25 +64,24 @@ export class AdService {
       return;
     }
 
-    engine.showInterstitial();
+    engine.show(engine.INTERSTITIAL);
   }
 
   prepareRewardVideo() {
-    let engine = this.getVideoEngine();
+    let engine = this.getEngine();
     if (!engine) {
       return;
     }
 
-    // unity ads does not support preloading
-    // engine.preloadRewardedVideoAd('Item Store');
+    engine.cache(engine.REWARDED_VIDEO);
   }
 
   showRewardVideo() {
-    let engine = this.getVideoEngine();
+    let engine = this.getEngine();
     if (!engine) {
       return;
     }
 
-    engine.showRewardedVideoAd('Item Store');
+    engine.show(engine.REWARDED_VIDEO);
   }
 }

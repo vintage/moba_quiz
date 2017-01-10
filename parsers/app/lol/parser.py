@@ -164,6 +164,7 @@ class SettingsImporter(base.SettingsImporter):
                 'ad_big': 'ca-app-pub-4764697513834958/4599582865',
                 'ad_video_id': '1157887',
                 'ad_video_key': 'a04ae4e3efe676b70a3f19695b0f95b448e7bb8c',
+                'ad_id': '660fb73a53929a6171cd4e7c12797fc89bc2b669fff6fc71',
                 'tracking': 'UA-77793311-3',
                 'store': 'market://details?id=com.puppybox.quizlol',
                 'store_premium': 'com.puppybox.quizlol.premium_version',

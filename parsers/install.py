@@ -52,9 +52,7 @@ def setup(provider):
 
 
 @cli.command()
-@click.option('--provider', prompt='Provider name', callback=validate_provider,
-              help='Provider to install')
-def build(provider):
+def clean():
     app_dir = '..'
 
     os.chdir(app_dir)
@@ -67,6 +65,11 @@ def build(provider):
     shutil.rmtree("plugins", ignore_errors=True)
     call(["ionic", "state", "restore"])
 
+
+@cli.command()
+@click.option('--provider', prompt='Provider name', callback=validate_provider,
+              help='Provider to install')
+def build(provider):
     store_keys = {
         'smite': 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAicNxgzEHxuzWtZMOAByBSYEuSEwjhDMV9cJLEV3QuCV5zdWpwJHYW/Rqk0jgBpNNufVZuQoVteUa6Q+d++JsRgyOvqk4WApW+AfhKMO96Zq7cV6qqaqp0slMN7WPpFv69um8yz1MQLSRASj50b0GhhxCDIa819mt9fS1uVfTrxFFi51NWUJ0eMjbuBaX8tl+lreSfolmWjsRwPHyH6N3UPMhbstyElw827acxHCFtco/Bko3rOBAk4NK5VCmdwKuhjk3XVrOjCPqGMi1l9r0HiHYnCGtARcKIu7EpbZqzG5fyNHLopObGko3rU/JwJD0coJD3vQ0bJVAsTK+zrYmCwIDAQAB',
         'lol': 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtdmIAmtlzaHSodoO0OM3bELfMAqbMYsUDXGY9TkzQhQpWAwQcrsujfIvQkEj6fXjRgoeLz6F6KxLq6WtevK3xxtX3r69kVhk+cN4EjnKkJm6hBUHZVF4On1zSP4tPPPzVt1rijQW0jFRphAU9uWAKdrMPkXWu7elhp5rcxzYVyESO8y6fXprLfOyWLRqqJNu+TsIjAYuBF6BKNKcnvHh8pEJ+FD6ad/1CqDH+Buxabsq2/oKe6Q5BsYqO1cK0GgpzXjvTmiLGmDj3JSSviPF1O+yymJDm13KizkWO8KEzuVKtIzB0qXanvokgcZmkh4rC63+6hvxIqUtb4rycrNrTQIDAQAB',

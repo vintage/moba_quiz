@@ -47,7 +47,6 @@
     "cordova-plugin-email",
     "cordova-plugin-vibration",
     "cordova-sqlite-storage",
-    "cordova-plugin-admob-free",
     "cordova-plugin-nativeaudio",
     "cordova-plugin-network-information",
     "cordova-plugin-inappbrowser",
@@ -58,7 +57,11 @@
       "locator": "https://github.com/biesbjerg/cordova-plugin-inapppurchase.git",
       "id": "cordova-plugin-inapppurchase"
     },
-    "cordova-plugin-ad-unityads"
+    {
+      "locator": "https://github.com/jwall149/cordova-multidex",
+      "id": "cordova-multidex"
+    },
+    "com.appodeal.plugin"
   ],
   "cordovaPlatforms": [
     "ios",

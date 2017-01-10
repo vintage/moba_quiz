@@ -14,12 +14,9 @@ export class SettingsService {
   rateAppKey: string = "settings_rate_app";
   likeAppKey: string = "settings_like_app";
   followAppKey: string = "settings_follow_app";
-  public currentLanguage: string;
+  currentLanguage: string;
 
-  smallBanner: string;
-  bigBanner: string;
-  videoBannerId: string;
-  videoBannerKey: string;
+  adId: string;
   legalDisclaimer: string;
   highscoreUrl: string;
   appUrl: string;
@@ -55,12 +52,7 @@ export class SettingsService {
           platformSettings = json["windows"];
         }
 
-        this.smallBanner = platformSettings["ad_small"];
-        this.bigBanner = platformSettings["ad_big"];
-        this.videoBannerId = platformSettings["ad_video_id"];
-        // Deprecated
-        this.videoBannerKey = platformSettings["ad_video_key"];
-
+        this.adId = platformSettings["ad_id"];
         this.trackingId = platformSettings["tracking"];
         this.appUrl = platformSettings["store"];
         this.storeProduct = platformSettings["store_premium"];
