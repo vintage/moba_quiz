@@ -1,6 +1,6 @@
 import {Component, ApplicationRef} from "@angular/core";
 import {App, Platform, Config} from "ionic-angular";
-import {Splashscreen, Globalization} from "ionic-native";
+import {Splashscreen, StatusBar, Globalization} from "ionic-native";
 import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import {AdService} from "../providers/ads/service";
@@ -76,6 +76,8 @@ export class MyApp {
     this.translate.setDefaultLang('en');
 
     this.platform.ready().then(() => {
+      StatusBar.hide();
+      
       this.setLanguage().then(() => {
         this.setMusic();
         Splashscreen.hide();
