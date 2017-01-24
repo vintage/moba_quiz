@@ -3,12 +3,11 @@
 
 /node_modules/
 /typings/
-/www/
 /src/assets/data/
-/www/lib/
 /platforms/
 /plugins/
-/builds/
+/www/*
+/builds/*
 *.swp
 .DS_Store
 Thumbs.db
@@ -27,3 +26,5 @@ npm-debug.log
 /res/
 /config.xml
 /.tmp/
+
+!.keep

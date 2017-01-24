@@ -28,6 +28,6 @@ export class ItemModel {
       return this.name;
     }
 
-    return this.nameI18n[language];
+    return this.nameI18n[language] || this.name;
   }
 }

@@ -37,7 +37,7 @@ export class ChampionModel {
       return this.name;
     }
 
-    return this.nameI18n[language];
+    return this.nameI18n[language] || this.name;
   }
 
   getTitle(language: string): string {
@@ -45,7 +45,7 @@ export class ChampionModel {
       return this.title;
     }
 
-    return this.titleI18n[language];
+    return this.titleI18n[language] || this.title;
   }
 }
 
@@ -73,6 +73,6 @@ export class SkillModel {
       return this.name;
     }
 
-    return this.nameI18n[language];
+    return this.nameI18n[language] || this.name;
   }
 }

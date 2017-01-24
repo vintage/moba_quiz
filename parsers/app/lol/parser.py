@@ -151,19 +151,12 @@ class SettingsImporter(base.SettingsImporter):
     def get_objects(self):
         return {
             'ios': {
-                'ad_small': 'ca-app-pub-4764697513834958/6693594860',
-                'ad_big': 'ca-app-pub-4764697513834958/2123794461',
-                'ad_video_id': '1157886',
-                'ad_video_key': '4c0a685045ec2ea625ac4e00bfd52e894e11b90e',
+                'ad_id': 'e5434bac3a304d98eded6240f346353abc24f4472bc23c50',
                 'tracking': 'UA-77793311-2',
                 'store': 'itms-apps://itunes.apple.com/app/id1107274781',
                 'store_premium': 'com.puppybox.quizlol.premium_version',
             },
             'android': {
-                'ad_small': 'ca-app-pub-4764697513834958/9308984069',
-                'ad_big': 'ca-app-pub-4764697513834958/4599582865',
-                'ad_video_id': '1157887',
-                'ad_video_key': 'a04ae4e3efe676b70a3f19695b0f95b448e7bb8c',
                 'ad_id': '660fb73a53929a6171cd4e7c12797fc89bc2b669fff6fc71',
                 'tracking': 'UA-77793311-3',
                 'store': 'market://details?id=com.puppybox.quizlol',
