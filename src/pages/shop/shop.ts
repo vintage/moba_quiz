@@ -59,8 +59,8 @@ export class ShopPage {
     this.settings.isAppFollowed().then(v => this.isAppFollowed = v);
     this.settings.isPremium().then(v => this.isPremium = v);
 
-    this.registerAdHandlers();
     this.ads.prepareRewardVideo();
+    this.registerAdHandlers();
 
     InAppPurchase.getProducts([this.settings.storeProduct]).catch(() => {
       console.log('Unable to fetch purchase products.');
@@ -74,6 +74,7 @@ export class ShopPage {
     }
 
     document.addEventListener('onRewardedVideoLoaded', () => {
+      console.log('RV loaded');
       if (!this.isVideoReady) {
         this.isVideoReady = true;
         this.appRef.tick();
@@ -81,11 +82,13 @@ export class ShopPage {
     });
 
     document.addEventListener('onRewardedVideoShown', () => {
+      console.log('RV shown');
       this.isVideoPlayed = true;
       this.music.pause();
     });
 
     document.addEventListener('onRewardedVideoFinished', () => {
+      console.log('RV finished');
       if (this.isVideoReady && this.isVideoPlayed) {
         this.isVideoPlayed = false;
         this.isVideoReady = false;
@@ -100,10 +103,12 @@ export class ShopPage {
     });
 
     document.addEventListener('onRewardedVideoClosed', () => {
+      console.log('RV closed');
       this.music.start();
     });
 
     adEngine.isLoaded(adEngine.REWARDED_VIDEO, isLoaded => {
+      console.log('RV already loaded');
       if (isLoaded) {
         this.isVideoReady = true;
         this.appRef.tick();
