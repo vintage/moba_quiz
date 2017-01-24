@@ -68,28 +68,24 @@ export class ShopPage {
   }
 
   registerAdHandlers() {
-    let adEngine = window['unityads'];
+    let adEngine = this.ads.getEngine();
     if (!adEngine) {
       return false;
     }
 
-    adEngine.onRewardedVideoAdShown = (location) => {
-      this.isVideoPlayed = true;
-      this.music.pause();
-    };
-
-    adEngine.onRewardedVideoAdHidden = (location) => {
-      this.music.start();
-    };
-
-    adEngine.onRewardedVideoAdLoaded = (location) => {
+    document.addEventListener('onRewardedVideoLoaded', () => {
       if (!this.isVideoReady) {
         this.isVideoReady = true;
         this.appRef.tick();
       }
-    };
+    });
 
-    adEngine.onRewardedVideoAdCompleted = (location) => {      
+    document.addEventListener('onRewardedVideoShown', () => {
+      this.isVideoPlayed = true;
+      this.music.pause();
+    });
+
+    document.addEventListener('onRewardedVideoFinished', () => {
       if (this.isVideoReady && this.isVideoPlayed) {
         this.isVideoPlayed = false;
         this.isVideoReady = false;
@@ -101,11 +97,18 @@ export class ShopPage {
           this.ads.prepareRewardVideo();
         });
       }
-    };
+    });
 
-    if (adEngine.loadedRewardedVideoAd()) {
-      this.isVideoReady = true;
-    }
+    document.addEventListener('onRewardedVideoClosed', () => {
+      this.music.start();
+    });
+
+    adEngine.isLoaded(adEngine.REWARDED_VIDEO, isLoaded => {
+      if (isLoaded) {
+        this.isVideoReady = true;
+        this.appRef.tick();
+      }
+    });
 
     return true;
   }

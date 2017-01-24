@@ -1,29 +1,20 @@
 import { Injectable } from "@angular/core";
 
-import { SettingsService } from "../settings/service";
-
 @Injectable()
 export class AdService {
-  constructor(private settings: SettingsService) {}
+  constructor() {}
 
-  initialize() {
-    let config = this.getConfiguration();
-
+  initialize(key: string) {
     let engine = this.getEngine();
     if (engine) {
-      engine.setAutoCache(engine.INTERSTITIAL, false);
+      engine.setAutoCache(engine.INTERSTITIAL | engine.REWARDED_VIDEO, true);
+      engine.enableRewardedVideoCallbacks(true);
 
       engine.initialize(
-        config.adId,
-        engine.INTERSTITIAL | engine.BANNER | engine.REWARDED_VIDEO
+        key,
+        engine.INTERSTITIAL | engine.REWARDED_VIDEO | engine.BANNER
       );
     }
-  }
-
-  getConfiguration() {
-    return {
-      adId: this.settings.adId
-    };
   }
 
   getEngine() {
@@ -37,7 +28,7 @@ export class AdService {
       return;
     }
 
-    engine.show(engine.BANNER);
+    engine.show(engine.BANNER_BOTTOM);
   }
 
   removeBanner() {
