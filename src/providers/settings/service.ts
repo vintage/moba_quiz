@@ -65,6 +65,10 @@ export class SettingsService {
 
   isPremium(): Promise<boolean> {
     return new Promise(resolve => {
+      if (this.platform.is('windows')) {
+        return resolve(true);
+      }
+
       return this.storage.get(this.premiumKey).then(isPremium => {
         resolve(!!isPremium);
       }).catch(() => {

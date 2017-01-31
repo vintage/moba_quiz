@@ -38,17 +38,6 @@
           </ion-col>
         </ion-row>
 
-        <!--
-        <ion-row>
-          <ion-col>
-            <button ion-button icon-left block color="secondary" (click)="openTutorial()">
-              <ion-icon name="book"></ion-icon>
-              Tutorial
-            </button>
-          </ion-col>
-        </ion-row>
-        -->
-
         <ion-row>
           <ion-col>
             <button ion-button icon-left block color="secondary" (click)="openSettings()">
@@ -57,7 +46,7 @@
             </button>
           </ion-col>
 
-          <ion-col>
+          <ion-col *ngIf="isShopAvailable">
             <button ion-button icon-left block color="default" (click)="openShop()">
               <ion-icon name="cart"></ion-icon>
               {{ 'Shop' | translate }}

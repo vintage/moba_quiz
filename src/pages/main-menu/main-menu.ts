@@ -22,7 +22,7 @@ import {ShopPage} from "../shop/shop";
 export class MainMenuPage {
   timesPlayed: number;
   bestScore: number;
-  hasPremium: boolean;
+  isShopAvailable: boolean;
 
   constructor(
     public nav: NavController,
@@ -40,14 +40,18 @@ export class MainMenuPage {
   }
 
   openGameHardcore() {
-    this.shop.getItemAmount("hardcore_ticket").then(tickets => {
-      if (tickets > 0) {
-        this.shop.decreaseItemAmount("hardcore_ticket");
-        this.nav.push(GameHardcorePage);
-      } else {
-        this.missingHardcoreTicket();
-      }
-    });
+    if (this.isShopAvailable) {
+      this.shop.getItemAmount("hardcore_ticket").then(tickets => {
+        if (tickets > 0) {
+          this.shop.decreaseItemAmount("hardcore_ticket");
+          this.nav.push(GameHardcorePage);
+        } else {
+          this.missingHardcoreTicket();
+        }
+      });
+    } else {
+      this.nav.push(GameHardcorePage);
+    }
   }
 
   missingHardcoreTicket() {
@@ -98,6 +102,8 @@ export class MainMenuPage {
   }
 
   ionViewWillEnter() {
+    this.isShopAvailable = !this.platform.is('windows');
+
     this.gameplay.getTimesPlayed().then(timesPlayed => {
       this.timesPlayed = timesPlayed;
     });
