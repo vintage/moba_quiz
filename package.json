@@ -1,13 +1,10 @@
 {
   "name": "moba_quiz",
   "description": "MobaQuiz: Framework for Moba quizes",
-  "author": "Kamil Rykowski <kamil.rykowski@gmail.com>",
-  "homepage": "https://www.facebook.com/puppy.box.studio/",
+  "author": "PuppyBox",
+  "homepage": "http://puppybox.pl",
   "private": true,
   "version": "2.0.0",
-  "config": {
-    "ionic_source_map": "source-map"
-  },
   "scripts": {
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve"
@@ -44,13 +41,15 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard",
-    "cordova-plugin-email",
     "cordova-plugin-vibration",
     "cordova-sqlite-storage",
-    "cordova-plugin-nativeaudio",
+    {
+      "locator": "https://github.com/vintage/cordova-plugin-nativeaudio.git",
+      "id": "cordova-plugin-nativeaudio"
+    },
     "cordova-plugin-network-information",
     "cordova-plugin-inappbrowser",
-    "cordova-plugin-crosswalk-webview@2.2",
+    "cordova-plugin-crosswalk-webview",
     "cordova-plugin-globalization",
     "cordova-plugin-app-version",
     {
@@ -72,6 +71,6 @@
   ],
   "cordovaPlatforms": [
     "ios",
-    "android@6.1.0"
+    "android"
   ]
 }

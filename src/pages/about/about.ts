@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {AlertController} from "ionic-angular";
-import {EmailComposer, InAppBrowser} from "ionic-native";
+import {InAppBrowser} from "ionic-native";
 import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import {SettingsService} from "../../providers/settings/service";
@@ -41,20 +41,6 @@ export class AboutPage {
   }
 
   openContact() {
-    if (!window['cordova']) {
-      return this.showContactAlert();
-    }
-
-    EmailComposer.isAvailable().then((available: boolean) => {
-      if (available) {
-        let email = {
-          to: "puppy.box@outlook.com",
-          subject: "Contact form"
-        };
-        EmailComposer.open(email);
-      } else {
-        this.showContactAlert();
-      }
-    });
+    this.showContactAlert();
   }
 }
