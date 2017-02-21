@@ -52,22 +52,13 @@
     "cordova-plugin-crosswalk-webview",
     "cordova-plugin-globalization",
     "cordova-plugin-app-version",
-    {
-      "locator": "https://github.com/appodeal/cordova-plugin-statusbar.git",
-      "id": "cordova-plugin-statusbar"
-    },
+    "cordova-plugin-statusbar",
     {
       "locator": "https://github.com/biesbjerg/cordova-plugin-inapppurchase.git",
       "id": "cordova-plugin-inapppurchase"
     },
-    {
-      "locator": "https://github.com/jwall149/cordova-multidex",
-      "id": "cordova-multidex"
-    },
-    {
-      "locator": "https://github.com/appodeal/appodeal-cordova-plugin.git",
-      "id": "appodeal-cordova-plugin"
-    }
+    "cordova-plugin-admob-free",
+    "cordova-admob-inmobi"
   ],
   "cordovaPlatforms": [
     "ios",

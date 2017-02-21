@@ -16,7 +16,9 @@ export class SettingsService {
   followAppKey: string = "settings_follow_app";
   currentLanguage: string;
 
-  adId: string;
+  adBanner: string;
+  adInterstitial: string;
+  adRewardVideo: string;
   legalDisclaimer: string;
   highscoreUrl: string;
   appUrl: string;
@@ -52,7 +54,9 @@ export class SettingsService {
           platformSettings = json["windows"];
         }
 
-        this.adId = platformSettings["ad_id"];
+        this.adBanner = platformSettings["ad_banner"];
+        this.adInterstitial = platformSettings["ad_interstitial"];
+        this.adRewardVideo = platformSettings["ad_reward"];
         this.trackingId = platformSettings["tracking"];
         this.appUrl = platformSettings["store"];
         this.storeProduct = platformSettings["store_premium"];

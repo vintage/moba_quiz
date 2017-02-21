@@ -88,7 +88,12 @@ export class MyApp {
           window["analytics"].startTrackerWithId(this.settings.trackingId);
         }
 
-        this.ads.initialize(this.settings.adId);
+        this.ads.initialize(
+          this.settings.adBanner,
+          this.settings.adInterstitial,
+          this.settings.adRewardVideo
+        );
+
         this.settings.isPremium().then(isPremium => {
           if (!isPremium) {
             this.ads.showBanner();

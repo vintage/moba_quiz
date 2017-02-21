@@ -73,7 +73,7 @@ export class ShopPage {
       return false;
     }
 
-    document.addEventListener('onRewardedVideoLoaded', () => {
+    document.addEventListener('admob.rewardvideo.events.LOAD', () => {
       console.log('RV loaded');
       if (!this.isVideoReady) {
         this.isVideoReady = true;
@@ -81,13 +81,13 @@ export class ShopPage {
       }
     });
 
-    document.addEventListener('onRewardedVideoShown', () => {
+    document.addEventListener('admob.rewardvideo.events.START', () => {
       console.log('RV shown');
       this.isVideoPlayed = true;
       this.music.pause();
     });
 
-    document.addEventListener('onRewardedVideoFinished', () => {
+    document.addEventListener('admob.rewardvideo.events.REWARD', () => {
       console.log('RV finished');
       if (this.isVideoReady && this.isVideoPlayed) {
         this.isVideoPlayed = false;
@@ -102,12 +102,12 @@ export class ShopPage {
       }
     });
 
-    document.addEventListener('onRewardedVideoClosed', () => {
+    document.addEventListener('admob.rewardvideo.events.CLOSE', () => {
       console.log('RV closed');
       this.music.start();
     });
 
-    adEngine.isLoaded(adEngine.REWARDED_VIDEO, isLoaded => {
+    this.ads.isRewardVideoReady().then(isLoaded => {
       console.log('RV already loaded');
       if (isLoaded) {
         this.isVideoReady = true;

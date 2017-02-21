@@ -4,21 +4,32 @@ import { Injectable } from "@angular/core";
 export class AdService {
   constructor() {}
 
-  initialize(key: string) {
+  initialize(banner: string, interstitial: string, reward: string) {
     let engine = this.getEngine();
     if (engine) {
-      engine.setAutoCache(engine.INTERSTITIAL | engine.REWARDED_VIDEO, true);
-      engine.enableRewardedVideoCallbacks(true);
+      engine.banner.config({
+        id: banner,
+        isTesting: false,
+        autoShow: true,
+        overlap: false
+      });
 
-      engine.initialize(
-        key,
-        engine.INTERSTITIAL | engine.REWARDED_VIDEO | engine.BANNER
-      );
+      engine.interstitial.config({
+        id: interstitial,
+        isTesting: false,
+        autoShow: false
+      });
+
+      engine.rewardvideo.config({
+        id: reward,
+        isTesting: false,
+        autoShow: false
+      });
     }
   }
 
   getEngine() {
-    let engine = window["Appodeal"];
+    let engine = window["admob"];
     return engine;
   }
 
@@ -27,8 +38,8 @@ export class AdService {
     if (!engine) {
       return;
     }
-
-    engine.show(engine.BANNER_BOTTOM);
+    
+    engine.banner.prepare();
   }
 
   removeBanner() {
@@ -37,7 +48,7 @@ export class AdService {
       return;
     }
 
-    engine.hide(engine.BANNER);
+    engine.banner.remove();
   }
 
   prepareFullScreen() {
@@ -46,7 +57,7 @@ export class AdService {
       return;
     }
 
-    engine.cache(engine.INTERSTITIAL);
+    engine.interstitial.prepare();
   }
 
   showFullScreen() {
@@ -55,7 +66,20 @@ export class AdService {
       return;
     }
 
-    engine.show(engine.INTERSTITIAL);
+    engine.interstitial.show();
+  }
+
+  isFullscreenReady() {
+    return new Promise(resolve => {
+      let engine = this.getEngine();
+      if (!engine) {
+        resolve(false);
+      } else {
+        engine.interstitial.isReady().then(isReady => {
+          resolve(isReady);
+        });
+      }
+    });
   }
 
   prepareRewardVideo() {
@@ -64,7 +88,7 @@ export class AdService {
       return;
     }
 
-    engine.cache(engine.REWARDED_VIDEO);
+    engine.rewardvideo.prepare();
   }
 
   showRewardVideo() {
@@ -73,6 +97,19 @@ export class AdService {
       return;
     }
 
-    engine.show(engine.REWARDED_VIDEO);
+    engine.rewardvideo.show();
+  }
+
+  isRewardVideoReady() {
+    return new Promise(resolve => {
+      let engine = this.getEngine();
+      if (!engine) {
+        resolve(false);
+      } else {
+        engine.rewardvideo.isReady().then(isReady => {
+          resolve(isReady);
+        });
+      }
+    });
   }
 }

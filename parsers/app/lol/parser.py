@@ -151,24 +151,20 @@ class SettingsImporter(base.SettingsImporter):
     def get_objects(self):
         return {
             'ios': {
-                'ad_id': 'e5434bac3a304d98eded6240f346353abc24f4472bc23c50',
+                'ad_banner': 'ca-app-pub-4764697513834958/6693594860',
+                'ad_interstitial': 'ca-app-pub-4764697513834958/2123794461',
+                'ad_reward': 'ca-app-pub-4764697513834958/8452888461',
                 'tracking': 'UA-77793311-2',
                 'store': 'itms-apps://itunes.apple.com/app/id1107274781',
                 'store_premium': 'com.puppybox.quizlol.premium_version',
             },
             'android': {
-                'ad_id': '660fb73a53929a6171cd4e7c12797fc89bc2b669fff6fc71',
+                'ad_banner': 'ca-app-pub-4764697513834958/9308984069',
+                'ad_interstitial': 'ca-app-pub-4764697513834958/4599582865',
+                'ad_reward': 'ca-app-pub-4764697513834958/5918224469',
                 'tracking': 'UA-77793311-3',
                 'store': 'market://details?id=com.puppybox.quizlol',
                 'store_premium': 'com.puppybox.quizlol.premium_version',
-            },
-            'windows': {
-                'ad_small': 'ca-app-pub-4764697513834958/7883646863',
-                'ad_big': 'ca-app-pub-4764697513834958/7744046068',
-                'ad_video_id': '',
-                'ad_video_key': '',
-                'tracking': '',
-                'store': '',
             },
             'legal_disclaimer': 'This application is not created, sponsored or endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends is a registered trademark of Riot Games. All in-game descriptions, characters, locations, imagery and videos of game content are copyright and are trademarked to their respective owners. Usage for this game falls within fair use guidelines.',
             'highscore_url': 'http://mobascore-puppybox.rhcloud.com/api/v1/leaderboards/lol/scores/',
