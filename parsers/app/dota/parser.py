@@ -188,7 +188,7 @@ class AchievementImporter(base.AchievementImporter):
     pass
 
 
-# items = ItemImporter().run()
+items = ItemImporter().run()
 champions = ChampionImporter().run()
-# achievements = AchievementImporter(items, champions).run()
+achievements = AchievementImporter(items, champions).run()
 settings = SettingsImporter().run()
