@@ -85,7 +85,12 @@ export class ShopPage {
       console.log('RV shown');
       this.isVideoPlayed = true;
       this.music.pause();
-      this.ads.removeBanner();
+
+      this.settings.isPremium().then(isPremium => {
+        if (!isPremium) {
+          this.ads.removeBanner();
+        }
+      });
     });
 
     document.addEventListener('admob.rewardvideo.events.REWARD', () => {
@@ -102,7 +107,13 @@ export class ShopPage {
       this.isVideoPlayed = false;
       this.isVideoReady = false;
       this.music.start();
-      this.ads.showBanner();
+
+      this.settings.isPremium().then(isPremium => {
+        if (!isPremium) {
+          this.ads.showBanner();
+        }
+      });
+
       this.ads.prepareRewardVideo();
     });
 
