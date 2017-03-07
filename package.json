@@ -58,7 +58,10 @@
       "id": "cordova-plugin-inapppurchase"
     },
     "cordova-plugin-admob-free",
-    "cordova-plugin-admob-mediation-inmobi"
+    {
+      "locator": "https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git",
+      "id": "cordova-plugin-admob-mediation-inmobi"
+    }
   ],
   "cordovaPlatforms": [
     "ios",

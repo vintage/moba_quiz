@@ -85,26 +85,25 @@ export class ShopPage {
       console.log('RV shown');
       this.isVideoPlayed = true;
       this.music.pause();
+      this.ads.removeBanner();
     });
 
     document.addEventListener('admob.rewardvideo.events.REWARD', () => {
       console.log('RV finished');
-      if (this.isVideoReady && this.isVideoPlayed) {
-        this.isVideoPlayed = false;
-        this.isVideoReady = false;
-        
-        this.shop.addCoins(1000).then(coins => {
-          return this.updateState(coins);
-        }).then(() => {
-          this.appRef.tick();
-          this.ads.prepareRewardVideo();
-        });
-      }
+      this.shop.addCoins(1000).then(coins => {
+        return this.updateState(coins);
+      }).then(() => {
+        this.appRef.tick();
+      });
     });
 
     document.addEventListener('admob.rewardvideo.events.CLOSE', () => {
       console.log('RV closed');
+      this.isVideoPlayed = false;
+      this.isVideoReady = false;
       this.music.start();
+      this.ads.showBanner();
+      this.ads.prepareRewardVideo();
     });
 
     this.ads.isRewardVideoReady().then(isLoaded => {
