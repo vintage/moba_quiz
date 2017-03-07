@@ -58,7 +58,7 @@
       "id": "cordova-plugin-inapppurchase"
     },
     "cordova-plugin-admob-free",
-    "cordova-admob-inmobi"
+    "cordova-plugin-admob-mediation-inmobi"
   ],
   "cordovaPlatforms": [
     "ios",
