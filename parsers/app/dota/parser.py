@@ -49,8 +49,6 @@ class ChampionImporter(base.ChampionImporter):
             }
             o_slug = o_name.replace(' ', '_')
             o_slug = ''.join([o for o in o_slug if o.isalnum() or o in ['_', '-']])
-            if champion_id == 'monkey_king':
-              o_slug = 'MonkeyKing'
             o_slug = o_slug.lower()
 
             o_ranged = data['atk'].lower() == 'ranged'
@@ -83,6 +81,10 @@ class ChampionImporter(base.ChampionImporter):
                 skill.add_translation('name', s_name_i18n)
 
                 champion.add_skill(skill)
+
+            if not champion.skills:
+                hurls = sorted(set([s['hurl'] for i, s in skills_data.items()]))
+                import ipdb; ipdb.set_trace()
 
             objects.append(champion)
 
@@ -186,7 +188,7 @@ class AchievementImporter(base.AchievementImporter):
     pass
 
 
-items = ItemImporter().run()
+# items = ItemImporter().run()
 champions = ChampionImporter().run()
-achievements = AchievementImporter(items, champions).run()
+# achievements = AchievementImporter(items, champions).run()
 settings = SettingsImporter().run()
