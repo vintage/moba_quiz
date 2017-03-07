@@ -117,10 +117,11 @@ class Importer(object):
         objects = self.get_objects()
 
         try:
-          is_valid = self.validate(objects)
+            is_valid = self.validate(objects)
         except Exception as e:
-          import ipdb; ipdb.set_trace()
-          raise
+            import ipdb; ipdb.set_trace()
+            is_valid = False
+
         if not is_valid:
             raise Exception('Something went wrong in the validate method.')
 
@@ -182,7 +183,7 @@ class ChampionImporter(Importer):
     def validate(self, objects):
         for obj in objects:
             # Validate basic fields
-            if not any([obj.pk, obj.name, obj.image]):
+            if not all([obj.pk, obj.name, obj.image]):
                 raise Exception('Champion {} missing fields.'.format(obj.pk))
 
             # Validate skills
@@ -191,7 +192,7 @@ class ChampionImporter(Importer):
                 raise Exception('Champion {} missing skills.'.format(obj.pk))
 
             for skill in skills:
-                if not any([skill.pk, skill.name, skill.image]):
+                if not all([skill.pk, skill.name, skill.image]):
                     raise Exception('Champion {} skill {} missing fields'.format(
                         obj.pk, skill.pk
                     ))
@@ -210,7 +211,7 @@ class ItemImporter(Importer):
         flat_ids = set([i.pk for i in objects])
         for obj in objects:
             # Validate basic fields
-            if not any([obj.pk, obj.name, obj.image]):
+            if not all([obj.pk, obj.name, obj.image]):
                 raise Exception('Item {} missing fields.'.format(obj.pk))
 
             # Validate recipe

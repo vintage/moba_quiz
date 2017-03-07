@@ -124,7 +124,7 @@ class ItemImporter(base.ItemImporter):
                 print('Skip {} because of invalid map'.format(o_name))
                 continue
 
-            if item_id in ['3043', '3048']:
+            if item_id in ['3043', '3048', '3632']:
                 continue
 
             o_price = data['gold']['total']
