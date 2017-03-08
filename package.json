@@ -59,7 +59,7 @@
     },
     "cordova-plugin-admob-free",
     {
-      "locator": "https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git",
+      "locator": "https://github.com/vintage/cordova-plugin-admob-mediation-inmobi.git",
       "id": "cordova-plugin-admob-mediation-inmobi"
     }
   ],

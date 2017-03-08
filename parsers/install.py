@@ -137,6 +137,7 @@ def build(provider):
 
     # Revert manifest.json
     call(["git", "checkout", "src/manifest.json"])
+    call(["git", "checkout", "www/.keep"])
 
 
 @cli.command()
