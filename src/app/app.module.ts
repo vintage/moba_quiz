@@ -60,7 +60,8 @@ import { GameTypeService } from '../providers/game-type/service';
 let appConfig = {
   statusbarPadding: false,
   backButtonText: '',
-  prodMode: true
+  prodMode: true,
+  mode: 'md'
 };
 
 export function createTranslateLoader(http: Http) {
@@ -116,7 +117,7 @@ export function provideStorage() {
   imports: [
     IonicModule.forRoot(MyApp, appConfig),
     HttpModule,
-    TranslateModule.forRoot({ 
+    TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
       deps: [Http]

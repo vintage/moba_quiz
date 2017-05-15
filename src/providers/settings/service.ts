@@ -51,7 +51,7 @@ export class SettingsService {
         } else if (this.platform.is("android")) {
           platformSettings = json["android"];
         } else {
-          platformSettings = json["windows"];
+          platformSettings = json["android"];
         }
 
         this.adBanner = platformSettings["ad_banner"];

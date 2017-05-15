@@ -14,7 +14,7 @@
         <ion-row>
           <ion-col>
             <button ion-button icon-left block color="danger" (click)="openGameHardcore()">
-              <ion-icon name="nuclear"></ion-icon>
+              <ion-icon name="flame"></ion-icon>
               {{ 'Hardcore mode' | translate }}
             </button>
           </ion-col>
@@ -27,9 +27,7 @@
               {{ 'Highscore' | translate }}
             </button>
           </ion-col>
-        </ion-row>
 
-        <ion-row>
           <ion-col>
             <button ion-button icon-left block color="secondary" (click)="openAchievements()">
               <ion-icon name="ribbon"></ion-icon>
@@ -50,6 +48,21 @@
             <button ion-button icon-left block color="default" (click)="openShop()">
               <ion-icon name="cart"></ion-icon>
               {{ 'Shop' | translate }}
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <div class="divider"></div>
+
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-left block color="danger" (click)="openPersonalAd()">
+              <ion-icon name="nuclear"></ion-icon>
+              Play Vaultomb
             </button>
           </ion-col>
         </ion-row>

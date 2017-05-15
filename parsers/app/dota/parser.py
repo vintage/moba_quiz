@@ -30,9 +30,12 @@ class ChampionImporter(base.ChampionImporter):
             champion_url = base_champions_url.format(code)
             skill_url = base_skills_url.format(code)
 
+            champion_response = requests.get(champion_url)
+            skill_response = requests.get(skill_url)
+
             i18n[lang] = {
-                'hero': requests.get(champion_url).json(),
-                'skill': requests.get(skill_url).json()['abilitydata'],
+                'hero': champion_response.json(),
+                'skill': skill_response.json()['abilitydata'],
             }
 
         champions_url = base_champions_url.format('english')

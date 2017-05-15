@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {NavController, Platform, AlertController} from "ionic-angular";
 import {TranslateService} from 'ng2-translate/ng2-translate';
+import {InAppBrowser} from "ionic-native";
 
 import {GameplayService} from "../../providers/gameplay/service";
 import {ScoreService} from "../../providers/score/service";
@@ -93,6 +94,17 @@ export class MainMenuPage {
 
   openShop() {
     this.nav.push(ShopPage);
+  }
+
+  openPersonalAd() {
+    let url: string = null;
+    if (this.platform.is('ios')) {
+      url = 'itms-apps://itunes.apple.com/app/id1227277525';
+    } else {
+      url = 'market://details?id=pl.puppybox.vaultomb';
+    }
+
+    new InAppBrowser(url, '_system');
   }
 
   ionViewDidEnter() {
