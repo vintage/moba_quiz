@@ -36,7 +36,7 @@
               <button ion-button outline block color="primary" *ngIf="!isVideoReady" disabled>
                 {{ 'Loading video' | translate }} ...
               </button>
-              
+
               <button ion-button outline block color="primary" (click)="getFreeCoins()" *ngIf="isVideoReady">
                 {{ 'Get free coins' | translate }}
               </button>
@@ -68,6 +68,23 @@
                   <button ion-button icon-left outline block color="primary" (click)="followApp()">
                     <ion-icon name="logo-twitter"></ion-icon>
                     {{ 'Like' | translate }}
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="!isVaultombDownloaded">
+            <ion-col>
+              <p>
+                Play <span class="vaultomb">Vaultomb Post Apocalyptic RPG</span> to get 20 000 coins!
+              </p>
+
+              <ion-row>
+                <ion-col>
+                  <button ion-button icon-left outline block color="primary" (click)="downloadVaultomb()">
+                    <ion-icon name="appstore"></ion-icon>
+                    {{ 'Play' | translate }}
                   </button>
                 </ion-col>
               </ion-row>

@@ -1,5 +1,5 @@
 import {Component, ApplicationRef} from "@angular/core";
-import {AlertController, ToastController} from "ionic-angular";
+import {AlertController, ToastController, Platform} from "ionic-angular";
 import {InAppBrowser, InAppPurchase} from "ionic-native";
 import {TranslateService} from 'ng2-translate/ng2-translate';
 
@@ -20,12 +20,14 @@ export class ShopPage {
   isAppRated: boolean;
   isAppLiked: boolean;
   isAppFollowed: boolean;
+  isVaultombDownloaded: boolean;
   isPremium: boolean;
   items: ShopItem[];
   itemsAvailability: Object;
 
   constructor(
     private appRef: ApplicationRef,
+    private platform: Platform,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private translate: TranslateService,
@@ -58,6 +60,7 @@ export class ShopPage {
     this.settings.isAppLiked().then(v => this.isAppLiked = v);
     this.settings.isAppFollowed().then(v => this.isAppFollowed = v);
     this.settings.isPremium().then(v => this.isPremium = v);
+    this.settings.isVaultombDownloaded().then(v => this.isVaultombDownloaded = v);
 
     this.ads.prepareRewardVideo();
     this.registerAdHandlers();
@@ -238,6 +241,25 @@ export class ShopPage {
 
     this.settings.rateApp().then(() => {
       return this.shop.addCoins(5000);
+    }).then(coins => {
+      this.updateState(coins);
+      console.log('Opening url: ', url);
+      new InAppBrowser(url, '_system');
+    });
+  }
+
+  downloadVaultomb() {
+    this.isVaultombDownloaded = true;
+
+    let url: string = null;
+    if (this.platform.is('ios')) {
+      url = 'itms-apps://itunes.apple.com/app/id1227277525';
+    } else {
+      url = 'market://details?id=pl.puppybox.vaultomb';
+    }
+
+    this.settings.downloadVaultomb().then(() => {
+      return this.shop.addCoins(20000);
     }).then(coins => {
       this.updateState(coins);
       console.log('Opening url: ', url);

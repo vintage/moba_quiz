@@ -14,6 +14,7 @@ export class SettingsService {
   rateAppKey: string = "settings_rate_app";
   likeAppKey: string = "settings_like_app";
   followAppKey: string = "settings_follow_app";
+  downloadVaultombKey: string = "settings_download_vaultomb";
   currentLanguage: string;
 
   adBanner: string;
@@ -173,5 +174,13 @@ export class SettingsService {
 
   followApp(): Promise<any> {
     return this.setSettings(this.followAppKey, true);
+  }
+
+  isVaultombDownloaded(): Promise<boolean> {
+    return this.isSettingsEnabled(this.downloadVaultombKey, false);
+  }
+
+  downloadVaultomb(): Promise<any> {
+    return this.setSettings(this.downloadVaultombKey, true);
   }
 }

@@ -1,4 +1,10 @@
 page-shop {
+  .vaultomb {
+    color: color($colors, primary);
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
   ion-card {
     margin: 0 !important;
 
