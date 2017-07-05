@@ -28,6 +28,7 @@ class ChampionImporter(base.ChampionImporter):
                 detail_dom = pq(url=detail_url)
             except:
                 time.sleep(1)
+                print("Failed to fetch {}".format(detail_url))
                 detail_dom = pq(url=detail_url)
 
             o_name = item.find('.god-name').text()

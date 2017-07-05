@@ -39,8 +39,11 @@ class ChampionImporter(base.ChampionImporter):
                 raise Exception('Not this time')
 
             o_ranged = o_ranged == 'Ranged'
-            o_nation = tree.xpath('//*[@id="chapter"]/div/table/tr/td[2]/table[1]/tr/td/text()')[6]
-            o_nation = o_nation.split('/')[0]
+            try:
+                o_nation = tree.xpath('//*[@id="chapter"]/div/table/tr/td[2]/table[1]/tr/td/text()')[6]
+                o_nation = o_nation.split('/')[0]
+            except IndexError:
+                o_nation = None
 
             o_image_url = base_url + item.find('img').attrib['src']
             o_image = self.download_image(o_image_url, '{}_avatar.png'.format(o_id))

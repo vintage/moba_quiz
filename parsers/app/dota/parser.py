@@ -6,10 +6,12 @@ import requests
 
 from app import base
 
+# Check http://www.dota2.com/heroes/
+# XHR request to get current API version
 base_image_url = 'http://cdn.dota2.com/apps/dota2/images'
-base_items_url = 'http://www.dota2.com/jsfeed/heropediadata?feeds=itemdata&v=3746773IVyYz94DLu15&l={}'
-base_skills_url = 'http://www.dota2.com/jsfeed/heropediadata?feeds=abilitydata&v=3746773IVyYz94DLu15&l={}'
-base_champions_url = 'http://www.dota2.com/jsfeed/heropickerdata?v=3746773b3746773&l={}'
+base_items_url = 'http://www.dota2.com/jsfeed/heropediadata?feeds=itemdata&v=4039841bOvCkdk2ChhN&l={}'
+base_skills_url = 'http://www.dota2.com/jsfeed/heropediadata?feeds=abilitydata&v=4039841bOvCkdk2ChhN&l={}'
+base_champions_url = 'http://www.dota2.com/jsfeed/heropickerdata?v=4039841bOvCkdk2ChhN&l={}'
 
 languages_codes = {
   'en': 'english',

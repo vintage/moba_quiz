@@ -6,6 +6,7 @@ Moba Quiz is an application skeleton for building mobile app quizes for Moba gam
   - Dota (iOS, Android)
   - Heroes of Newerth (iOS, Android)
   - SMITE (iOS, Android)
+  - Vainglory (iOS, Android)
 
 
 ### Showcase
@@ -16,13 +17,15 @@ Few applications has been made using this skeleton. Here is the showcase:
  - [Heroes of Newerth - Android](https://play.google.com/store/apps/details?id=com.puppybox.quizhon)
  - [Dota 2 - Android](https://play.google.com/store/apps/details?id=com.puppybox.quizdota)
  - [SMITE - Android](https://play.google.com/store/apps/details?id=com.puppybox.quizsmite)
+ - [Vainglory - Android](https://play.google.com/store/apps/details?id=com.puppybox.quizvg)
  - [League of Legends - iOS](https://itunes.apple.com/us/app/quiz-for-league-legends-ultimate/id1107274781?mt=8)
  - [Heroes of Newerth - iOS](https://itunes.apple.com/us/app/quiz-for-heroes-newerth-ultimate/id1109019404?mt=8)
  - [Dota 2 - iOS](https://itunes.apple.com/us/app/quiz-for-dota-2-ultimate/id1109010695)
  - [SMITE - iOS](https://itunes.apple.com/us/app/quiz-for-smite-ultimate/id1121065896?mt=8)
+ - [Vainglory - iOS](https://itunes.apple.com/nz/app/quiz-for-vainglory-ultimate/id1175817991?mt=8)
 
 ### Version
-1.7.0
+2.3.5
 
 ### Tech
 
@@ -76,6 +79,7 @@ http://localhost:8100/
  - [x] Integrate in-app purchases
  - [ ] Integrate facebook sharing for content (scores)
  - [x] Integrate with Google Analytics (Firebase?)
+ - `find . -name '*.png' -exec pngquant --ext .png --force 256 {} \;`
 
 License
 ----
